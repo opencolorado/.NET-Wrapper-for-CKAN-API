@@ -1,0 +1,7 @@
+﻿@using CkanDotNet.Web.Models
+@model PackageSearchResultsModel
+       
+<section class="container">
+<h2>Recently Updated | @Html.ActionLink("View All Datasets", "Index", "Search", null, null)</h2>
+@Html.Partial("~/Views/Shared/Search/_SearchResultsList.cshtml",Model)
+</section>

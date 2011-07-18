@@ -1,0 +1,102 @@
+﻿@using CkanDotNet.Api.Model
+@using System.Text
+@model Package
+
+@*<div style="float: right;">
+    <a href="http://colorado.ckan.net//package/history/@Model.name?format=atom&days=7">
+        <img src="http://static.arvada.org/city/2.0/images/icons/socialmedia/rss_16.png"
+            alt="Subscribe" height="12" width="12" /></a></div>*@
+
+
+<div class="package">
+
+    <h1>@Model.BaseTitle</h1>
+
+    <div class="tagline">
+        @{
+            StringBuilder sb = new StringBuilder();
+            sb.AppendFormat("Posted {0}",Model.MetadataCreated.ToShortDateString());
+             
+            if (Model.MetadataModified > DateTime.MinValue) {
+                sb.AppendFormat(", last updated {0}",Model.MetadataModified.ToShortDateString());  
+            }
+        }
+        @sb.ToString()
+    </div>
+
+    <div class="notes">
+        <p>@Model.Notes</p>
+    </div>
+    
+    @* Show the resources *@
+    <h3>Resources</h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Format</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (Resource resource in Model.Resources)
+        {
+            <tr>
+                <td>
+                    <a href="@resource.Url">Download</a>
+                </td>
+                <td>
+                    @resource.Format
+                </td>
+                <td>
+                    @resource.Description
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+
+    @* Show the details *@
+    <h3>Details</h3>
+    <table cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr>
+                <th>
+                    Level of Government
+                </th>
+                <td>
+                    @Model.Extras.LevelOfGovernment
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Agency
+                </th>
+                <td>
+                    @Model.Extras.Agency
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Update Frequency
+                </th>
+                <td>
+                    @Model.Extras.UpdateFrequency
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Temporal Coverage
+                </th>
+                <td>
+                    @if (@Model.Extras.TemporalCoverageFrom != null ) {
+                        @Model.Extras.TemporalCoverageFrom @:to @Model.Extras.TemporalCoverageTo
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>

@@ -1,0 +1,45 @@
+﻿@using CkanDotNet.Web.Models
+@model BreadCrumbs
+
+@{
+    bool filterLabelDisplayed = false;
+}
+<div class="breadcrumbs">      
+@for (int i = 0; i < Model.Count; i++)
+{
+    var breadCrumb = Model[i];
+    
+    <span class="breadcrumb">
+        @if (breadCrumb.Filter) {
+
+            if (!filterLabelDisplayed)
+            {
+                @::
+                filterLabelDisplayed = true;
+            }
+                  
+            
+            <a href="@Url.Action(breadCrumb.ActionName, breadCrumb.RouteValues)">
+                <span class="filter">@breadCrumb.Label</span>
+            </a>
+            
+        }
+        else if (breadCrumb.IsLink)
+        {
+            if (i > 0) { 
+                @: > 
+            }
+                
+            @Html.ActionLink(breadCrumb.Label, breadCrumb.ActionName, breadCrumb.ControllerName)
+        }
+        else
+        {
+            if (i > 0) { 
+                @: > 
+            }
+            <span>@breadCrumb.Label</span>
+        }
+
+    </span>
+}
+</div> 

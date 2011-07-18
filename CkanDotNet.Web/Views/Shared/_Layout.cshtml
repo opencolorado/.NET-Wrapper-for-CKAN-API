@@ -1,0 +1,22 @@
+@using System.Configuration
+@{
+    var theme = ConfigurationManager.AppSettings["theme"];
+} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+    @RenderPage("~/Views/Theme/" + @theme + "/_PageHead.cshtml")
+</head>
+
+<body>
+@RenderPage("~/Views/Theme/" + @theme + "/_PageHeader.cshtml")
+
+@Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")
+                                        
+@RenderBody()
+
+@RenderPage("~/Views/Theme/" + @theme + "/_PageFooter.cshtml")
+
+</body>           
+</html>

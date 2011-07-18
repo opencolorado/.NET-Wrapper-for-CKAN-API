@@ -1,0 +1,41 @@
+﻿@using CkanDotNet.Api.Model
+@using CkanDotNet.Web.Models
+@model PackageSearchResultsModel
+
+@{
+
+    // Start with the current route values
+    var routeValues = RouteHelper.RouteFromParameters(Html.ViewContext);
+
+    // Remove the page number since we want to start from the beginning if we filter
+    RouteHelper.UpdateRoute(routeValues, "page", null);
+
+    // Loop through the current available format types
+    Dictionary<string,int> formats = new Dictionary<string,int>();
+    foreach (Package package in Model.SearchResults.Results)
+    {
+        foreach (Resource resource in package.Resources)
+        {
+            if (!formats.ContainsKey(resource.Format))
+            {
+                formats.Add(resource.Format,1);
+            }
+            else 
+            {
+                formats[resource.Format]++;
+            }
+
+        }
+    }
+}
+<section class="container">
+    <h2>Filter By Resource Format</h2>
+    <ul>
+        @foreach (var format in formats)
+        {
+            var label = String.Format("{0} ({1})", format.Key,format.Value); 
+            var value = format.Key;
+            <li>@Html.ActionLink(label, "Index", "Search", RouteHelper.UpdateRoute(routeValues, "format", value), null)</li>
+        }
+    </ul>
+</section>

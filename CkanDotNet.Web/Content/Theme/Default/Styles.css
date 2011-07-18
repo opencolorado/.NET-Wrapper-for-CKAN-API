@@ -1,0 +1,493 @@
+﻿body
+{
+    font-family:  Helvetica,Verdana,Arial,Sans;
+    font-size: 10pt;
+    background-color: #eeeeee;
+    font-size: 0.813em;
+    line-height: 1.188em;
+}
+
+a {
+    color: #0074BD;
+    text-decoration: none;
+}
+
+a:active, a:hover 
+{
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 
+{
+    font-weight: bold;
+    line-height: 120%;
+    margin: 5px 0;
+    position: relative;
+}
+
+h1
+{
+    font-size: 22pt;
+    color: #444444;
+}
+
+h2
+{
+    font-size: 22pt;
+    color: #444444;
+}
+
+/* Common styles */
+a.package
+{
+    color: #005C96;
+    font-size:14px;
+    font-weight: bold;
+}
+
+.formats .label
+{
+    font-size: 11px;
+    color: #444444;
+}
+
+.format
+{   
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    margin: 0 0px 5px 0;
+    padding: 3px;
+    background-color: #699A48;
+    font-size: 11px;
+}
+
+.rating
+{
+    display: inline-block;
+}
+
+.ratingResponse
+{
+    padding: 0px 0px 0px 4px;
+    font-size: 12px;
+}
+
+.openDataButton
+{
+    padding: 8px 2px;
+}
+
+/* Table styles */
+table {
+    border: 1px solid #bbbbbb;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th
+{
+    text-align: left;
+    background-color: #eeeeee;
+    border-bottom: 1px solid #BEBFB9;
+    border-right: 1px solid #BEBFB9;
+    padding: 5px;
+}
+
+td {
+    padding: 5px 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #BEBFB9;
+    border-right: 1px solid #BEBFB9;
+}
+
+tbody {
+    border-top: 1px solid #CCCCCC;
+}
+
+tr {
+    border-bottom: 1px solid #CCCCCC;
+}
+
+.odd {
+    background-color: #FFFFFF;
+}
+
+.odd:hover {
+    background-color: #eeeeee;
+}
+
+.even {
+    background-color: #FFFFFF;
+}
+
+.even:hover {
+    background-color: #eeeeee;
+}
+
+/* Page layout */
+
+#page 
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 5px 20px #888888;
+    margin: 0 auto 50px;
+    text-align: left;
+    width: 940px;
+}
+
+#header
+{
+    height: 60px; 
+    border:1px dashed #999999;
+    color:#cccccc; 
+    text-align: center; 
+    padding-top: 40px;
+    font-size: 30px;
+}
+
+#main
+{
+    padding: 10px 10px 10px 10px;
+}
+
+#body
+{
+  float: left;
+  width : 100%;
+}
+
+#content
+{
+  margin-right: 300px;
+  /*box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);*/
+}
+
+#sidebar
+{
+    float: left;
+    width: 300px; /*Width of right column in pixels*/
+    margin-left: -300px; /*Set left margin to -(RightColumnWidth) */
+}
+ 
+ #footer
+{
+    clear: left;
+    width: 100%;
+    height: 30px; 
+    border:1px dashed #999999;
+    color:#cccccc; 
+    text-align: center; 
+    padding-top: 15px;
+    font-size: 20px;
+    
+}
+
+/* Breadcrumbs */
+.breadcrumbs 
+{
+    font-size: 12px;
+    color: #444444;
+}
+
+.breadcrumb .filter
+{
+    display: inline-block;
+    border: 1px solid #999999;
+    border-radius: 2px 2px 2px 2px;
+    color: #444444;
+    margin: 0 0px 5px 0;
+    padding: 1px 14px 1px 2px;
+    background-color: #eeeeee;
+    font-size: 11px;
+    background-image: url("Images/remove_small.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.breadcrumb .filter:hover
+{
+    background-image: url("Images/remove_small_hover.png");
+}
+
+.breadcrumb .filter a 
+{
+    color: #444444;
+    text-decoration: none;
+}
+
+
+/* Sections */
+.container
+{
+    border: none;
+    padding: 0px;
+    margin: 5px;
+    background-color: #f1f1f1;
+    margin-bottom: 10px;
+}
+
+.container h2 
+{
+    background: none repeat scroll 0 0 #666666;
+    color: #FFFFFF;
+    font-size: 1em;
+    margin: 0px 0px;
+    padding: 8px 10px;
+    
+    background-color: #0063A7;
+    background-image: -moz-linear-gradient(top, #45A3CC, #3C74A3);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3C74A3), color-stop(1, #45A3CC));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#45A3CC', endColorstr='#3C74A3');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#45A3CC', endColorstr='#3C74A3')";
+    border-radius: 4px 4px 0px 0px;
+}
+
+.container h2 a
+{
+    color: #ffffff;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.container > p
+{
+    padding: 5px;
+    margin: 3px 2px;
+    position: relative;
+}
+
+.container > div
+{
+    padding: 5px;
+    margin: 3px 2px;
+    position: relative;
+}
+
+/* Search box styles */
+.search 
+{
+    margin: 5px;
+    position:relative;
+    padding: 8px 0px;
+}
+
+.searchText 
+{
+    border:1px solid #999999;
+    border-radius: 3px 3px;
+    width: 400px;
+    font-size:18px;
+    height: 28px; 
+    padding-left: 3px;
+}
+
+.searchText:hover 
+{
+    border:1px solid #333333; 
+}
+
+.searchSubmit 
+{
+    border:1px solid #999999;
+    font-size:18px;
+    padding: 0 8px 2px;
+    background-color: #699A48;
+    border: 0 none;
+    border-radius: 3px 3px;
+    color: #FFFFFF;
+    cursor: pointer;
+    height: 32px;
+    
+    background-image: -moz-linear-gradient(top, #80B558, #699A48);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #699A48), color-stop(1, #80B558));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#80B558', endColorstr='#699A48');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80B558', endColorstr='#699A48')";
+}
+
+.searchSubmit:hover 
+{
+    background-image: -moz-linear-gradient(top, #80B558, #699A48);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #79AA48), color-stop(1, #90C558));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#90C558', endColorstr='#79AA48');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#90C558', endColorstr='#79AA48')";
+}
+
+/* Search results styles */
+.results
+{
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.results .result 
+{
+    cursor: pointer;
+    position: relative;
+    padding: 9px 4px 9px 4px;
+    border-top:1px solid #999999;
+}
+
+.results .result .title
+{
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0px 0px 2px 0px;
+}
+
+.results .result .date
+{
+    display: block;
+    font-size: 11px;
+    padding: 1px 0px 3px 0px;
+
+}
+.result .formats
+{ 
+    position: absolute;
+    top: 6px;
+    right:4px;
+}
+
+.result .resultRating
+{
+    padding: 0 0 3px;
+}
+
+/* Pager styles */
+.pagerContainer
+{
+    position: relative;
+    height: 24px;
+}
+
+.pager
+{
+    display: inline-block;
+    padding: 0px !important;
+    position: absolute;
+    right: 10px;
+}
+
+.pager ul
+{
+    margin: 0px;
+    padding-left: 10px;
+}
+
+.pager li 
+{
+    display: inline;
+    padding: 2px 0;
+}
+
+.pager li.link
+{
+    font-size: 12px;
+
+}
+.pager li.item
+{
+    font-weight:bold;
+    font-size: 14px;
+    border: 1px solid #666666;
+    background-color: #ffffff;
+    border-radius: 2px;
+}
+
+.pager li.item a
+{
+    padding: 2px 5px;
+}
+
+.pager li.item span
+{
+    padding: 2px 5px;
+    
+}
+
+/* Pager in a header */
+h2 .pager
+{
+    margin: 0px !important;
+    padding: 0px !important;
+    position: absolute;
+    right: 6px;
+    top: 8px;
+}
+
+h2 .pager .link a
+{
+    color: #ffffff;
+}
+
+h2 .pager .item span
+{
+    color: #000000;
+}
+
+/* Package styles */
+.package .tagline
+{
+    font-size:12px;
+    border-bottom: 1px solid #D3D3D3;
+    padding-bottom: 10px;
+}
+
+/* Tag counts */
+.tag
+{
+    display: inline-block;
+    border-radius: 2px 2px 2px 2px;
+    color: #ffffff;
+    margin: 0 0px 5px 0;
+    padding: 3px;
+    background-color: #699A48;
+    font-size: 13px;
+}
+
+.tag a
+{    
+    color: #ffffff;
+}
+
+/* Featured items */
+
+.container.featured > div
+{
+    margin: 0px;
+    padding: 0px;
+    background-color:#ebebeb;
+}
+
+
+.container .featuredItem
+{
+    position:relative;
+    display: inline-block;
+    vertical-align: top;   
+    width: 175px;
+    height: 100px;
+    border: 1px solid #999999;
+    margin: 7px 0px 7px 7px;
+    padding: 7px; 
+    border-radius: 5px 5px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 5px #cccccc;
+    
+}
+
+.container .featuredItem p
+{
+    margin: 3px 0px 0px 0px;
+    padding: 0px;
+}
+
+.container .featuredItem .formats
+{ 
+    position: absolute;
+    bottom: 5px;
+    left:4px;
+}

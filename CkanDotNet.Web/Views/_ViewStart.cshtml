@@ -1,0 +1,8 @@
+﻿@using System.Configuration
+@{
+    var theme = ConfigurationManager.AppSettings["theme"];
+} 
+@{
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Theme/" + theme + "/_Page.cshtml";
+}

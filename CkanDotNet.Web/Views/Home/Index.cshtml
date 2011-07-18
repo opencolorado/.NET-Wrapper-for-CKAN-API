@@ -1,0 +1,26 @@
+﻿@using System.Configuration
+@using CkanDotNet.Web.Models
+@{
+    var theme = ConfigurationManager.AppSettings["theme"];
+} 
+
+@{
+    ViewBag.Title = "Open Data Catalog";
+}
+
+
+@RenderPage("~/Views/Theme/" + @theme + "/_HomeHeader.cshtml")
+
+<section id="body">
+    <section id="content">
+        @Html.Partial("~/Views/Shared/Search/_Search.cshtml")
+        @Html.Action("FeaturedPackages", "Widget")
+        @Html.Action("RecentlyUpdated", "Widget")
+    </section>
+
+</section>
+<aside id="sidebar">
+    @Html.Action("PopularTags", "Widget")
+    @Html.Partial("_License")
+    @Html.Partial("_About")
+</aside>

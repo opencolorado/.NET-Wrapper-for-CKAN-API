@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Open Data Catalog";
+}
+
+<div id="body">
+    <div id="content">
+        @Html.Partial("~/Views/Shared/Search/_Search.cshtml")
+        @Html.Partial("~/Views/Shared/Search/_SearchResults.cshtml")
+    </div>
+</div>
+<aside id="sidebar">
+    @* @Html.Partial("~/Views/Shared/Search/_SearchResultsSortBy.cshtml") *@
+
+    @Html.Partial("~/Views/Shared/Search/_SearchResultsFilterByTag.cshtml")
+
+    @Html.Partial("~/Views/Shared/_About.cshtml")
+</aside>

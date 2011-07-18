@@ -1,0 +1,48 @@
+﻿@using CkanDotNet.Api.Model
+@using CkanDotNet.Web.Models
+@model Package
+
+@{
+    bool editable = Convert.ToBoolean(ViewData["editable"]);
+    string ratingId = GuidHelper.GetUniqueKey(16);
+}
+
+@if (Model.RatingsAverage.HasValue || editable)
+{
+<div id="@ratingId" class="rating">
+    @{
+    int rating = 0;
+    if (Model.RatingsAverage.HasValue)
+    {
+        rating = (int)Math.Round(Model.RatingsAverage.Value);
+    }
+    }
+    @for (int i = 1; i <= 5; i++)
+    {
+        @Html.RadioButton("newrate", i, rating == i)
+    }
+    
+</div>
+<span class="ratingResponse"></span>
+}
+
+<script language="javascript">
+$("#@(ratingId)").stars({
+    oneVoteOnly: true,
+    @if (!editable)
+    {  
+        @:disabled: true, 
+    }
+    callback: function(ui, type, value){
+        var url = "http://colorado.ckan.net/package/rate/@Model.Name?rating=" + value;
+        $("#@(ratingId)_iframe").get(0).src = url;
+
+        $(".ratingResponse").text("Thanks for your rating!");
+    }
+});
+</script>
+
+@if (editable)
+{
+<iframe id="@(ratingId)_iframe" width="0" height="0" frameborder="0" src=""></iframe>
+}

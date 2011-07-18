@@ -1,0 +1,45 @@
+﻿@using CkanDotNet.Api.Model
+@model PackageSearchResults
+ 
+@if (Model.Results.Count >= 3)
+{  
+<section class="container featured">
+<h2>Featured Datasets | @Html.ActionLink("View All Datasets", "Index", "Search", null, null)</h2>
+<div>
+    @foreach (var result in Model.Results)
+    {
+        <div class="featuredItem">
+            @Html.ActionLink(@result.BaseTitle, "Index", "Package", new { package = @result.Name }, new { @class = "package" })
+            
+            <div class="resultRating">
+            @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
+            </div>
+
+
+            <p>
+            @result.GetAbbreviatedNotes(75)
+            </p>
+
+            <div class="formats">
+            @foreach (var resource in result.Resources)
+            {
+                <span class="format" title="@resource.Description">@resource.Format</span>
+            }
+            </div>
+        </div>
+    }
+
+</div>
+</section>
+    
+<script language="javascript">
+        $(function () {
+            $(".format").tipTip({
+                defaultPosition: "top",
+                delay: 200
+            });
+        });
+</script>
+
+    }
+

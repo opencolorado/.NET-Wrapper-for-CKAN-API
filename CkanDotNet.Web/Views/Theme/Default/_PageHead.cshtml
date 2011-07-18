@@ -1,0 +1,5 @@
+﻿@using System.Configuration
+@{
+    var theme = ConfigurationManager.AppSettings["theme"];
+} 
+<link href="@Url.Content("~/Content/Theme/" + @theme + "/Styles.css")" rel="stylesheet" type="text/css" />

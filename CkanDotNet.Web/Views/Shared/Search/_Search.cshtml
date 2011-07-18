@@ -1,0 +1,25 @@
+﻿@using CkanDotNet.Api.Model
+@using CkanDotNet.Web.Models
+@model PackageSearchResultsModel
+
+@{
+    string query = String.Empty;
+    if (Model != null) {
+        query = Model.SearchParameters.Query;
+    }
+}
+<form id="search" action="/search" method="get">
+<div class="search">
+<input name="q" type="text" tabindex="1" class="searchText" value="@query" />
+<input type="submit" class="searchSubmit" value="Search" />
+@if (!String.IsNullOrEmpty(query))
+{
+<span>Clear</span>
+}
+</div>
+
+</form>
+
+<script language="javascript">
+    $('.searchText').watermark('Search...');
+</script>

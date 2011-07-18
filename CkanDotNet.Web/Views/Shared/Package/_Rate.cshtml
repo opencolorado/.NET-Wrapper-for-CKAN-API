@@ -1,0 +1,9 @@
+﻿@using CkanDotNet.Api.Model
+@model Package
+
+<section class="container">
+    <h2>Rate this Package</h2>
+    <div>
+       @Html.Partial("~/Views/Shared/_Rating.cshtml", Model, new ViewDataDictionary { { "editable", true } })
+    </div>
+</section>

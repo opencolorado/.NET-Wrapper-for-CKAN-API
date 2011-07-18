@@ -1,0 +1,22 @@
+﻿@using CkanDotNet.Api.Model
+@model Package
+           
+@{
+    ViewBag.Title = Model.BaseTitle;
+}
+
+<section id="body">
+    <section id="content">
+        @Html.Partial("~/Views/Shared/Package/_Package.cshtml")
+    </section>
+</section>
+<aside id="sidebar">
+
+    @Html.Partial("~/Views/Shared/Package/_Rate.cshtml")
+    
+    @Html.Partial("~/Views/Shared/Package/_Tags.cshtml")
+
+    @Html.Partial("~/Views/Shared/Package/_License.cshtml")
+
+    @Html.Partial("~/Views/Shared/_About.cshtml")
+</aside>

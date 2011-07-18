@@ -1,0 +1,15 @@
+﻿@using CkanDotNet.Api.Model
+@model Dictionary<string, int>
+ 
+<section class="container">
+<h2>Popular Tags</h2>
+<div>
+    @foreach (var result in Model)
+    {
+        <div class="tag">
+        @Html.ActionLink(@result.Key + " (" +  @result.Value + ")", "Index", "Search", new { tag = @result.Key }, null)
+        </div>
+    }
+
+</div>
+</section>

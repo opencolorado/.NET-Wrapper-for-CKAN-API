@@ -1,0 +1,40 @@
+@using System.Configuration
+@using CkanDotNet.Web.Models
+@{
+    var theme = ConfigurationManager.AppSettings["theme"];
+} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery.watermark.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.14.custom.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/stars/jquery.ui.stars.min.js")"></script>
+    <link href="@Url.Content("~/Scripts/stars/jquery.ui.stars.min.css")" rel="stylesheet" type="text/css"></link>
+    <script src="@Url.Content("~/Scripts/tiptip/jquery.tipTip.min.js")"></script>
+    <link href="@Url.Content("~/Scripts/tiptip/tipTip.css")" rel="stylesheet" type="text/css"></link>
+    @RenderPage("~/Views/Theme/" + @theme + "/_PageHead.cshtml")
+</head>
+
+<body>
+<div id="page">
+    @RenderPage("~/Views/Theme/" + @theme + "/_PageHeader.cshtml")
+
+    <div id="main">
+       
+        @* Render the breadcrumbs if present *@
+        @if (ViewData.ContainsKey("BreadCrumbs"))
+        {
+            @Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml", (BreadCrumbs)ViewData["BreadCrumbs"])  
+        }
+        
+        @* Render the body of the page *@                            
+        @RenderBody()
+
+    </div>
+
+    @RenderPage("~/Views/Theme/" + @theme + "/_PageFooter.cshtml")
+</div>
+</body>           
+</html>

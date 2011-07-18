@@ -1,0 +1,21 @@
+﻿@using CkanDotNet.Api.Model
+@using CkanDotNet.Web.Models
+@model PackageSearchResultsModel
+
+@{
+
+    // Start with the current route values
+    var routeValues = RouteHelper.RouteFromParameters(Html.ViewContext);
+    
+    // Remove the page number since we want to start from the beginning if we sort differently
+    RouteHelper.UpdateRoute(routeValues, "page", "");
+}
+<section class="container">
+    <h2>Sort By</h2>
+    <ul>
+        <li>@Html.ActionLink("Relevancy", "Index", "Search", RouteHelper.UpdateRoute(routeValues,"order_by","rank"),null)</li>
+        <li>@Html.ActionLink("Name", "Index", "Search", RouteHelper.UpdateRoute(routeValues, "order_by", "name"), null)</li>
+        <li>@Html.ActionLink("Rating", "Index", "Search", RouteHelper.UpdateRoute(routeValues, "order_by", "ratings_average"), null)</li>
+        <li>@Html.ActionLink("Last Updated", "Index", "Search", RouteHelper.UpdateRoute(routeValues,"order_by","metadata_modified"),null)</li>
+    </ul>
+</section>

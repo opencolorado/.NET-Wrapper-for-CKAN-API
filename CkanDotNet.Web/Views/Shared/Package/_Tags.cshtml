@@ -1,0 +1,17 @@
+﻿@using CkanDotNet.Api.Model
+@model Package
+
+<section class="container">
+    <h2>Tags</h2>
+    <div>
+        @foreach (var tag in Model.Tags)
+        {
+            <div class="tag">
+            @Html.ActionLink(tag, "Index", "Search", new { tag = tag }, null)
+            </div>
+        }
+    </div>
+</section>
+
+
+

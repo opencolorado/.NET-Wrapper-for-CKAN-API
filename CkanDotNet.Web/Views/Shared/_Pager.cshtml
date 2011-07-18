@@ -1,0 +1,48 @@
+﻿@using CkanDotNet.Api.Model
+@using CkanDotNet.Web.Models
+@using System.Collections.Specialized
+@model PackageSearchResultsModel
+
+@{
+var routeValues = RouteHelper.RouteFromParameters(Html.ViewContext);
+}
+
+@if (Model.Pager.Last > 1)
+{
+    
+<div class="pager">
+<ul>
+
+@* Show the previous link*@
+@if (Model.Pager.Page > 1)
+{
+    routeValues["page"] = Model.Pager.Previous;
+    <li class="link">@Html.ActionLink("< previous", "Index", "Search", routeValues, null)</li>
+}
+
+@* Show the individual pages*@
+@for (int i = 1; i <= Model.Pager.Last; i++)
+{
+    routeValues["page"] = i;
+    if (i == Model.Pager.Page)
+    {
+        <li class="item"><span>@i</span></li>
+    }
+    else
+    {
+            
+        <li class="item">@Html.ActionLink(@i.ToString(), "Index", "Search", routeValues, null)</li>
+    };
+}
+
+@* Show the next link*@
+@if (Model.Pager.Page < Model.Pager.Last)
+{
+    routeValues["page"] = Model.Pager.Next;
+    <li class="link">@Html.ActionLink("next >", "Index", "Search", routeValues, null)</li>
+}
+
+</ul>
+</div>
+    
+}

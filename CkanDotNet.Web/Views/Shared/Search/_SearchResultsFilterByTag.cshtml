@@ -1,0 +1,28 @@
+﻿@using CkanDotNet.Api.Model
+@using CkanDotNet.Web.Models
+@model PackageSearchResultsModel
+
+@{
+
+    // Start with the current route values
+    var routeValues = RouteHelper.RouteFromParameters(Html.ViewContext);
+
+    // Remove the page number since we want to start from the beginning if we filter
+    RouteHelper.UpdateRoute(routeValues, "page", null);
+
+    Dictionary<string, int> tagCounts = TagHelper.GetTagCounts(Model.SearchResults);
+   
+}
+<section class="container">
+    <h2>Filter By Tag</h2>
+    <div>
+        @foreach (var entry in tagCounts)
+        {
+            var label = String.Format("{0} ({1})", entry.Key, entry.Value); 
+            <div class="tag">
+            @Html.ActionLink(label, "Index", "Search", RouteHelper.UpdateRoute(routeValues, "tag", entry.Key), null)
+            </div>
+        }
+    </div>
+</section>
+

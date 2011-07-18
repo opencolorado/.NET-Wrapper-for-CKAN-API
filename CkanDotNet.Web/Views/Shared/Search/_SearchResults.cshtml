@@ -1,0 +1,20 @@
+﻿@using CkanDotNet.Api.Model
+@using CkanDotNet.Web.Models
+@model PackageSearchResultsModel
+
+@using System.Configuration
+@{
+    var theme = ConfigurationManager.AppSettings["theme"];
+} 
+
+<section class="container">
+    <h2>Results (@Model.SearchResults.Count) @Html.Partial("_Pager")</h2>
+
+    @Html.Partial("~/Views/Shared/Search/_SearchResultsList.cshtml")
+
+
+</section>
+
+    <div class="pagerContainer">
+    @Html.Partial("_Pager")
+    </div>
