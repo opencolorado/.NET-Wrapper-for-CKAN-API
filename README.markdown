@@ -4,15 +4,14 @@
 Provides a ASP.NET MVC 3 front-end for the [CKAN API Version 2][1] that is intended to be used for providing a fully functioning data catalog.  Uses the CkanDotNet.Api library (see below).
 
 ### Features
-* Designed to create a data catalog from a CKAN group
+* Designed to present a data catalog based on a CKAN group
 * Customizable/configurable data catalog front-end
 * Home page provides:
  * Welcome message
  * Search
- * Featured packages (packages tagged with 'featured'
+ * Featured packages (packages tagged with 'featured')
  * Recently updated packages
  * Top tags
- * etc.
 * Search screen provides:
  * Pagination
  * Tag filtering
