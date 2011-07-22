@@ -1,5 +1,8 @@
 # .NET Wrapper for CKAN API
 
+## Release Notes
+See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/wiki/Release-Notes
+
 ## CkanDotNet.Web
 Provides a ASP.NET MVC 3 front-end for the [CKAN API Version 2][1] that is intended to be used for providing a fully functioning data catalog.  Uses the CkanDotNet.Api library (see below).
 
