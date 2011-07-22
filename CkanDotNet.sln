@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CkanDotNet.Web", "CkanDotNe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CkanDotNet.Api", "CkanDotNet.Api\CkanDotNet.Api.csproj", "{C396235F-68A5-48F1-B804-18E7CF030E1D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CkanDotNet.Api.Tests", "CkanDotNet.Api.Tests\CkanDotNet.Api.Tests.csproj", "{BA372126-B963-4908-B55E-9C340D309996}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{C396235F-68A5-48F1-B804-18E7CF030E1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C396235F-68A5-48F1-B804-18E7CF030E1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C396235F-68A5-48F1-B804-18E7CF030E1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA372126-B963-4908-B55E-9C340D309996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA372126-B963-4908-B55E-9C340D309996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA372126-B963-4908-B55E-9C340D309996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA372126-B963-4908-B55E-9C340D309996}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

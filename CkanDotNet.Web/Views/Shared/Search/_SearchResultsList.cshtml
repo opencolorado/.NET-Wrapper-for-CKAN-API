@@ -10,7 +10,7 @@
             <div class="result @(odd ? "odd" : "even")">
                 <div class="title">@Html.ActionLink(@result.BaseTitle, "Index", "Package", new { package = @result.Name }, new { @class = "package" })</div>
                 
-                 <div class="date">Last updated @result.MetadataModified.ToShortDateString()</div>
+                 <div class="date">Last updated @result.MetadataModifiedAsDate.ToShortDateString()</div>
 
                  <div class="resultRating">
                  @Html.Partial("~/Views/Shared/_Rating.cshtml", result)

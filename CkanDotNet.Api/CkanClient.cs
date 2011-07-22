@@ -82,7 +82,6 @@ namespace CkanDotNet.Api
         public Package GetPackage(string name)
         {
             var request = new RestRequest();
-            request.DateFormat = "yyyy-MM-ddTHH:mm:ss.ffffff";
             request.Resource = String.Format("rest/package/{0}", name);
             Package package = Execute<Package>(request);
 
@@ -109,11 +108,7 @@ namespace CkanDotNet.Api
         public Group GetGroup(string name)
         {
             var request = new RestRequest();
-            request.Resource = String.Format("rest/group/{0}", name);
-
-            // HACK: The CKAN date format is different in the response for this request..
-            request.DateFormat = "yyyy-MM-dd HH:mm:ss.ffffff";
-            
+            request.Resource = String.Format("rest/group/{0}", name);            
             Group group = Execute<Group>(request);
             return group;
         }

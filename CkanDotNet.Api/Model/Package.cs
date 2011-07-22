@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CkanDotNet.Api.Helper;
 
 namespace CkanDotNet.Api.Model
 {
@@ -29,9 +30,25 @@ namespace CkanDotNet.Api.Model
         public List<Resource> Resources { get; set; }
         public string CkanUrl { get; set; }
         public List<Package> Relationships { get; set; }
-        public DateTime MetadataModified { get; set; }
-        public DateTime MetadataCreated { get; set; }
+        public string MetadataModified { get; set; }
+        public string MetadataCreated { get; set; }
         public string NotesRendered { get; set; }
+
+        public DateTime MetadataModifiedAsDate
+        {
+            get
+            {
+                return DateHelper.Parse(MetadataModified);
+            }
+        }
+
+        public DateTime MetadataCreatedAsDate
+        {
+            get
+            {
+                return DateHelper.Parse(MetadataCreated);
+            }
+        }
 
         public string GetAbbreviatedNotes(int length)
         {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CkanDotNet.Api.Helper;
 
 namespace CkanDotNet.Api.Model
 {
@@ -15,7 +16,15 @@ namespace CkanDotNet.Api.Model
         public string Title { get; set; }
         public bool IsOkdCompliant { get; set; }
         public bool IsOsiCompliant { get; set; }
-        public DateTime DateCreated { get; set; }
+        public string DateCreated { get; set; }
         public string Id { get; set; }
+
+        public DateTime DateCreatedAsDate
+        {
+            get
+            {
+                return DateHelper.Parse(DateCreated);
+            }
+        }
     }
 }
