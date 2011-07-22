@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using log4net;
+using System.Reflection;
 
 namespace CkanDotNet.Web
 {
@@ -55,6 +57,9 @@ namespace CkanDotNet.Web
 
         protected void Application_Start()
         {
+            // Configure log4net
+            log4net.Config.XmlConfigurator.Configure();
+
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);

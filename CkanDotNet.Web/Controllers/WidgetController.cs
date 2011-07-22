@@ -7,17 +7,23 @@ using CkanDotNet.Api.Model;
 using CkanDotNet.Api;
 using System.Web.UI;
 using CkanDotNet.Web.Models;
+using log4net;
+using System.Reflection;
 
 namespace CkanDotNet.Web.Controllers
 {
     public class WidgetController : Controller
     {
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// Provides a view of the top 10 tags in the repository group
         /// </summary>
         [OutputCache(Duration = 300)]
         public ActionResult PopularTags ()
         {
+            log.DebugFormat("Controller action requested");
+
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
             searchParameters.Groups.Add("denver");
@@ -43,6 +49,8 @@ namespace CkanDotNet.Web.Controllers
         [OutputCache(Duration = 300)]
         public ActionResult FeaturedPackages()
         {
+            log.DebugFormat("Controller action requested");
+
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
             searchParameters.Groups.Add("denver");
@@ -64,6 +72,8 @@ namespace CkanDotNet.Web.Controllers
         [OutputCache(Duration = 300)]
         public ActionResult RecentlyUpdated()
         {
+            log.DebugFormat("Controller action requested");
+
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
             searchParameters.Groups.Add("denver");

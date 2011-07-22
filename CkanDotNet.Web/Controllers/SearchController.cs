@@ -11,11 +11,15 @@ using System.IO;
 using CkanDotNet.Api;
 using CkanDotNet.Web.Models;
 using CkanDotNet.Api.Model;
+using log4net;
+using System.Reflection;
 
 namespace CkanDotNet.Web.Controllers
 {
     public class SearchController : Controller
     {
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// Default search action
         /// </summary>
@@ -24,6 +28,8 @@ namespace CkanDotNet.Web.Controllers
         /// <returns></returns>
         public ActionResult Index(string q, int? page, string order_by, string format, string tag)
         {
+            log.DebugFormat("Controller action requested");
+
             this.ConfigureBreadCrumbs(q, tag);
 
             // Create the CKAN search parameters
@@ -69,7 +75,7 @@ namespace CkanDotNet.Web.Controllers
         }
 
         /// <summary>
-        /// Configure the breadcrumbs for this page.
+        /// Configure the breadcrumbs for this controller.
         /// </summary>
         /// <param name="q">The query</param>
         /// <param name="tag">The selected tag</param>

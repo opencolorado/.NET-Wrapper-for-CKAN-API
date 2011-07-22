@@ -8,6 +8,8 @@ using System.Collections.Specialized;
 using System.Web;
 using CkanDotNet.Api.Model;
 using RestSharp;
+using log4net;
+using System.Reflection;
 
 namespace CkanDotNet.Api
 {
@@ -16,10 +18,12 @@ namespace CkanDotNet.Api
     /// </summary>
     public class CkanClient
     {
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// The supported CKAN api version
         /// </summary>
-        private static string apiVersion = "2";
+        private const string apiVersion = "2";
 
         /// <summary>
         /// Gets or sets the CKAN repository host name
@@ -48,10 +52,13 @@ namespace CkanDotNet.Api
             var client = new RestClient();
             client.BaseUrl = String.Format("http://{0}/api/{1}/",this.Repository,apiVersion);
             
-            // TODO: Log the request URL
-            string url = GetRequestUrl(client, request);
+            // Log the request that is being sent to CKAN
+            log.InfoFormat("Sending request to CKAN repository: {0}", GetRequestUrl(client, request));
 
             var response = client.Execute<T>(request);
+
+            log.DebugFormat("Response recieved: {0}", response.Content);
+
             return response.Data;
         }
 
@@ -279,24 +286,6 @@ namespace CkanDotNet.Api
                 }
             }
 
-            return sb.ToString();
-        }
-
-        /// <summary>
-        /// Build an encoded query string from a collection of name/value pairs.
-        /// </summary>
-        /// <param name="values"></param>
-        /// <returns></returns>
-        private static string BuildQueryString(NameValueCollection values)
-        {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < values.Count; i++)
-            {
-                sb.Append(i == 0 ? "?" : "&");
-                sb.Append(values.Keys[i]);
-                sb.Append("=");
-                sb.Append(HttpUtility.UrlEncode(values[i]));
-            }
             return sb.ToString();
         }
 
