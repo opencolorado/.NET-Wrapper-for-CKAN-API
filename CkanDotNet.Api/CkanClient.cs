@@ -62,8 +62,11 @@ namespace CkanDotNet.Api
             return response.Data;
         }
 
+        #region CKAN Model API
+
         /// <summary>
         /// Get all CKAN packages ids.
+        /// CKAN Model Resource: Package Register
         /// </summary>
         /// <returns>A list of package ids.</returns>
         public List<string> GetPackageIds()
@@ -75,14 +78,15 @@ namespace CkanDotNet.Api
         }
 
         /// <summary>
-        /// Get a CKAN package by name or by id.
+        /// Get a CKAN package by id or name.
+        /// CKAN Model Resource: Package Entity
         /// </summary>
         /// <param name="name">The package name or id.</param>
         /// <returns>The package</returns>
-        public Package GetPackage(string name)
+        public Package GetPackage(string id)
         {
             var request = new RestRequest();
-            request.Resource = String.Format("rest/package/{0}", name);
+            request.Resource = String.Format("rest/package/{0}", id);
             Package package = Execute<Package>(request);
 
             return package;
@@ -90,6 +94,7 @@ namespace CkanDotNet.Api
 
         /// <summary>
         /// Get all CKAN group ids.
+        /// CKAN Model Resource: Group Register
         /// </summary>
         /// <returns>A list of group ids.</returns>
         public List<string> GetGroupIds()
@@ -101,45 +106,63 @@ namespace CkanDotNet.Api
         }
 
         /// <summary>
-        /// Get a CKAN group by name or id.
+        /// Get a CKAN group by id or name.
+        /// CKAN Model Resource: Group Entity
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public Group GetGroup(string name)
+        public Group GetGroup(string id)
         {
             var request = new RestRequest();
-            request.Resource = String.Format("rest/group/{0}", name);            
+            request.Resource = String.Format("rest/group/{0}", id);            
             Group group = Execute<Group>(request);
             return group;
         }
 
         /// <summary>
-        /// Get a list of package names by tag.
+        /// Get all CKAN tags
+        /// CKAN Model Resource: Tag Register
         /// </summary>
-        /// <param name="tag"></param>
-        /// <returns></returns>
-        public List<string> GetPackageNamesByTag(string tag)
+        /// <returns>A list of tags</returns>
+        public List<string> GetTags()
         {
             var request = new RestRequest();
-            request.Resource = String.Format("rest/tag/{0}", tag);
-            List<string> packageNames = Execute<List<string>>(request);
-            return packageNames;
+            request.Resource = "rest/tag";
+            List<string> tags = Execute<List<string>>(request);
+            return tags;
         }
 
         /// <summary>
-        /// Get all CKAN licenses.
+        /// Get a list of package ids by tag.
+        /// CKAN Model Resource: Tag Entity
         /// </summary>
-        /// <returns>A list of licenses.</returns>
-        public List<License> GetLicenses()
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public List<string> GetPackageIdsByTag(string tag)
         {
             var request = new RestRequest();
-            request.Resource = "rest/licenses";
-            List<License> licenses = Execute<List<License>>(request);
-            return licenses;
+            request.Resource = String.Format("rest/tag/{0}", tag);
+            List<string> packageIds = Execute<List<string>>(request);
+            return packageIds;
+        }
+
+        /// <summary>
+        /// Get a list of package revision by package id or name.
+        /// CKAN Model Resource: Package’s Revisions Entity
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public List<Revision> GetPackageRevisions(string id)
+        {
+            var request = new RestRequest();
+            request.Resource = String.Format("rest/package/{0}/revisions", id);
+            List<Revision> revisions = Execute<List<Revision>>(request);
+            return revisions;
         }
 
         /// <summary>
         /// Get all CKAN revision ids.
+        /// CKAN Model Resource: Revision Register
         /// </summary>
         /// <returns>A list of revision ids.</returns>
         public List<string> GetRevisionIds()
@@ -152,6 +175,7 @@ namespace CkanDotNet.Api
 
         /// <summary>
         /// Get all CKAN revision ids.
+        /// CKAN Model Resource: Revision Register (with since_time)
         /// </summary>
         /// <returns>A list of revision ids.</returns>
         public List<string> GetRevisionIds(DateTime since)
@@ -165,17 +189,36 @@ namespace CkanDotNet.Api
         }
 
         /// <summary>
-        /// Get a CKAN revision by id.
+        /// Get a revision by id.
+        /// CKAN Model Resource: Revision Entity
         /// </summary>
-        /// <returns>A list of revision ids.</returns>
+        /// <param name="tag"></param>
+        /// <returns></returns>
         public Revision GetRevision(string id)
         {
             var request = new RestRequest();
             request.Resource = String.Format("rest/revision/{0}", id);
-
             Revision revision = Execute<Revision>(request);
             return revision;
         }
+
+        /// <summary>
+        /// Get all CKAN licenses.
+        /// CKAN Model Resource: License List
+        /// </summary>
+        /// <returns>A list of licenses.</returns>
+        public List<License> GetLicenses()
+        {
+            var request = new RestRequest();
+            request.Resource = "rest/licenses";
+            List<License> licenses = Execute<List<License>>(request);
+            return licenses;
+        }
+
+       
+
+        #endregion
+
 
         /// <summary>
         /// Search the CKAN repository.
@@ -186,7 +229,6 @@ namespace CkanDotNet.Api
         {
             var request = new RestRequest();
             request.Resource = "search/package";
-            request.DateFormat = "yyyy-MM-ddTHH:mm:ss.ffffff";
 
             // Apply group parameters
             foreach (var group in parameters.Groups)

@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\LogHelper.cs" />
-    <Compile Include="WhenUsingCkanClient.cs" />
+    <Compile Include="WhenUsingCkanModelApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
