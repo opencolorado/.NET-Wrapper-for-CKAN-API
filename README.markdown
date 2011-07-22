@@ -35,7 +35,9 @@ Provides a .NET wrapper for the [CKAN API Version 2][1].
  * Package Entity
  * Group Register
  * Group Entity
+ * Tag Register
  * Tag Entity
+ * Package’s Revisions Entity
  * Revision Register
  * Revision Entity
  * License List
