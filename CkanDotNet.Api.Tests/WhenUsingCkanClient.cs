@@ -32,7 +32,7 @@ namespace CkanDotNet.Api.Tests
         }
 
         [Fact]
-        public void ShouldReturnGroupById()
+        public void ShouldReturnGroupByIdAndName()
         {
             CkanClient client = new CkanClient("test.ckan.net");
             
@@ -40,7 +40,51 @@ namespace CkanDotNet.Api.Tests
 
             Group group = client.GetGroup(groups[0]);
 
-            Assert.True(group.Name.Length > 0);
+            Assert.NotNull(group);
+
+            group = client.GetGroup(group.Name);
+
+            Assert.NotNull(group);
+        }
+
+        [Fact]
+        public void ShouldReturnLicenses()
+        {
+            CkanClient client = new CkanClient("test.ckan.net");
+
+            List<License> licenses = client.GetLicenses();
+
+            Console.WriteLine("Licenses found: {0}", licenses.Count);
+
+            Assert.NotEmpty(licenses);
+        }
+
+        [Fact]
+        public void ShouldReturnPackageIds()
+        {
+            CkanClient client = new CkanClient("test.ckan.net");
+
+            List<string> packageIds = client.GetPackageIds();
+
+            Console.WriteLine("Package ids found: {0}", packageIds.Count);
+
+            Assert.NotEmpty(packageIds);
+        }
+
+        [Fact]
+        public void ShouldReturnPackageByIdAndName()
+        {
+            CkanClient client = new CkanClient("test.ckan.net");
+
+            List<string> packageIds = client.GetPackageIds();
+
+            Package package = client.GetPackage(packageIds[0]);
+
+            Assert.NotNull(package);
+
+            package = client.GetPackage(package.Name);
+
+            Assert.NotNull(package);
         }
     }
 }
