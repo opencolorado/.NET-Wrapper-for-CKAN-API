@@ -10,8 +10,8 @@ namespace CkanDotNet.Api.Model
     /// </summary>
     public class ResourceSearchParameters
     {
-        private int page = 0;
-        private int recordsPerPage = 20;
+        private int offset = 0;
+        private int limit = 20;
         
         /// <summary>
         /// Search packages by resource url.
@@ -37,18 +37,22 @@ namespace CkanDotNet.Api.Model
         /// <summary>
         /// The page number to return when paginating.
         /// </summary>
-        public int Page
+        public int Offset
         {
-            get { return page; }
-            set { page = value; }
+            get { return offset; }
+            set
+            {
+                offset = value;
+            }
         }
 
         /// <summary>
         /// The number of records to return per page.
         /// </summary>
-        public int RecordsPerPage {
-            get { return recordsPerPage; }
-            set { recordsPerPage = value; }
+        public int Limit
+        {
+            get { return limit; }
+            set { limit = value; }
         }
 
         /// <summary>

@@ -26,7 +26,7 @@ namespace CkanDotNet.Web.Controllers
         /// <param name="query"></param>
         /// <param name="page"></param>
         /// <returns></returns>
-        public ActionResult Index(string q, int? page, string order_by, string format, string tag)
+        public ActionResult Index(string q, int? page, string order_by, string tag)
         {
             log.DebugFormat("Controller action requested");
 
@@ -36,7 +36,6 @@ namespace CkanDotNet.Web.Controllers
             var searchParameters = new PackageSearchParameters();
             searchParameters.Groups.Add("denver");
             searchParameters.Query = q;
-            searchParameters.IncludePackageDetails = true;
             
             // Ordering
             if (!String.IsNullOrEmpty(order_by))
@@ -64,7 +63,7 @@ namespace CkanDotNet.Web.Controllers
             // Build the view model for the results
             PackageSearchResultsModel model = ViewDataFactory.Create<PackageSearchResultsModel>();
             model.SearchParameters = searchParameters;
-            model.SearchResults = CkanHelper.GetClient().SearchPackages(searchParameters);
+            model.SearchResults = CkanHelper.GetClient().SearchPackages<Package>(searchParameters);
             model.Pager = pager;
 
             // Set the number of records to be paged

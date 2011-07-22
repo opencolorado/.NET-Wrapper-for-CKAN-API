@@ -27,10 +27,9 @@ namespace CkanDotNet.Web.Controllers
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
             searchParameters.Groups.Add("denver");
-            searchParameters.IncludePackageDetails = true;
 
             // Collect the results
-            PackageSearchResults results = CkanHelper.GetClient().SearchPackages(searchParameters);
+            PackageSearchResponse<Package> results = CkanHelper.GetClient().SearchPackages<Package>(searchParameters);
 
             // Get the tag counts
             List<string> ignoreTags = new List<string>();
@@ -54,12 +53,11 @@ namespace CkanDotNet.Web.Controllers
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
             searchParameters.Groups.Add("denver");
-            searchParameters.IncludePackageDetails = true;
             searchParameters.Limit = 5;
             searchParameters.Tags.Add("featured");
 
             // Collect the results
-            PackageSearchResults results = CkanHelper.GetClient().SearchPackages(searchParameters);
+            PackageSearchResponse<Package> results = CkanHelper.GetClient().SearchPackages<Package>(searchParameters);
 
             // Render the view
             return View(results);
@@ -77,10 +75,9 @@ namespace CkanDotNet.Web.Controllers
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
             searchParameters.Groups.Add("denver");
-            searchParameters.IncludePackageDetails = true;
 
             // Collect the results
-            PackageSearchResults results = CkanHelper.GetClient().SearchPackages(searchParameters);
+            PackageSearchResponse<Package> results = CkanHelper.GetClient().SearchPackages<Package>(searchParameters);
 
             // Sort by date and take the top 3
             List<Package> packages = (from package in results.Results

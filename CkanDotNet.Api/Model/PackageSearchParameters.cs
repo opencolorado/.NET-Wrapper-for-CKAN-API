@@ -39,14 +39,19 @@ namespace CkanDotNet.Api.Model
         public List<string> Groups { get { return groups; } }
 
         /// <summary>
+        /// Search the author field.
+        /// </summary>
+        public string Author { get; set; }
+
+        /// <summary>
+        /// Search the maintainer field.
+        /// </summary>
+        public string Maintainer { get; set; }
+
+        /// <summary>
         /// Search the notes.
         /// </summary>
         public string Notes { get; set; }
-
-        /// <summary>
-        /// Search by maintainer
-        /// </summary>
-        public string Maintainer { get; set; }
 
         /// <summary>
         /// Search by update frequency.
@@ -85,12 +90,6 @@ namespace CkanDotNet.Api.Model
             get { return limit; }
             set { limit = value; }
         }
-
-        /// <summary>
-        /// Each matching search result is given as either a package name (when false; default) 
-        /// or the full package record (when true).
-        /// </summary>
-        public bool IncludePackageDetails { get; set; }
 
         /// <summary>
         /// Filters results by ones which are open (default: false)

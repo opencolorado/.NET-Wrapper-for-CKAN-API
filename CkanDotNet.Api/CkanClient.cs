@@ -215,35 +215,19 @@ namespace CkanDotNet.Api
             return licenses;
         }
 
-       
-
         #endregion
 
+        #region CKAN Search API
 
         /// <summary>
-        /// Search the CKAN repository.
+        /// Search for packages in the CKAN repository.
         /// </summary>
         /// <param name="parameters">Provides that parameters to use in the search.</param>
         /// <returns>Search results</returns>
-        public PackageSearchResults SearchPackages(PackageSearchParameters parameters)
+        public PackageSearchResponse<T> SearchPackages<T>(PackageSearchParameters parameters)
         {
             var request = new RestRequest();
             request.Resource = "search/package";
-
-            // Apply group parameters
-            foreach (var group in parameters.Groups)
-            {
-                request.AddParameter("groups", group);
-            }
-
-            // Apply tag parameters
-            foreach (var tag in parameters.Tags)
-            {
-                request.AddParameter("tags", tag);
-            }
-            
-            // Apply all_fields parameter
-            request.AddParameter("all_fields", 1);
 
             // Apply query parameter
             if (!String.IsNullOrEmpty(parameters.Query))
@@ -257,10 +241,40 @@ namespace CkanDotNet.Api
                 request.AddParameter("title", parameters.Title);
             }
 
+            // Apply tag parameters
+            foreach (var tag in parameters.Tags)
+            {
+                request.AddParameter("tags", tag);
+            }
+
             // Apply notes parameter
             if (!String.IsNullOrEmpty(parameters.Notes))
             {
                 request.AddParameter("notes", parameters.Notes);
+            }
+
+            // Apply group parameters
+            foreach (var group in parameters.Groups)
+            {
+                request.AddParameter("groups", group);
+            }
+
+            // Apply author parameter
+            if (!String.IsNullOrEmpty(parameters.Author))
+            {
+                request.AddParameter("author", parameters.Author);
+            }
+
+            // Apply update_frequency parameter
+            if (!String.IsNullOrEmpty(parameters.UpdateFrequency))
+            {
+                request.AddParameter("update_frequency", parameters.UpdateFrequency);
+            }
+
+            // Apply maintainer parameter
+            if (!String.IsNullOrEmpty(parameters.Maintainer))
+            {
+                request.AddParameter("maintainer", parameters.Maintainer);
             }
 
             // Apply order_by parameter
@@ -269,21 +283,131 @@ namespace CkanDotNet.Api
                 request.AddParameter("order_by", parameters.OrderBy);
             }
 
-            // Set the offset and limit (pagination)
+            // Set the offset and limit parameters
             request.AddParameter("offset", parameters.Offset);
             request.AddParameter("limit", parameters.Limit);
 
-            // Execute the request
-            var results = Execute<PackageSearchResults>(request);
-
-            // If no results, return an empty results object
-            if (results == null)
+            // Apply all_fields parameter
+            if (typeof(T) == typeof(Package))
             {
-                results = new PackageSearchResults();
+                request.AddParameter("all_fields", 1);
             }
 
-            return results;
+            // Apply filter_by_openness parameter
+            if (parameters.FilterByOpenness)
+            {
+                request.AddParameter("filter_by_openness", "1");
+            }
+
+            // Apply filter_by_downloadable parameter
+            if (parameters.FilterByDownloadable)
+            {
+                request.AddParameter("filter_by_downloadable", "1");
+            }
+
+            // Execute the request
+            PackageSearchResponse<T> response = Execute<PackageSearchResponse<T>>(request);
+
+            // If no results, return an empty results object
+            if (response == null)
+            {
+                response = new PackageSearchResponse<T>();
+            }
+
+            return response;
         }
+
+        /// <summary>
+        /// Search for revisions in the CKAN repository.
+        /// </summary>
+        /// <param name="parameters">Provides that parameters to use in the search.</param>
+        /// <returns>Search results</returns>
+        public List<string> SearchRevisions(RevisionSearchParameters parameters)
+        {
+            var request = new RestRequest();
+            request.Resource = "search/revision";
+
+            // Apply since_id parameter
+            if (!String.IsNullOrEmpty(parameters.SinceId))
+            {
+                request.AddParameter("since_id", parameters.SinceId);
+            }
+
+            // Apply since_time parameter
+            if (parameters.SinceTime != DateTime.MinValue)
+            {
+                request.AddParameter("since_time", parameters.SinceTime);
+            }
+
+            // Execute the request
+            List<string> revisionIds = Execute<List<string>>(request);
+
+            // If no results, return an empty results object
+            if (revisionIds == null)
+            {
+                revisionIds = new List<string>();
+            }
+
+            return revisionIds;
+        }
+
+        /// <summary>
+        /// Search for resources in the CKAN repository.
+        /// </summary>
+        /// <param name="parameters">Provides that parameters to use in the search.</param>
+        /// <returns>Search results</returns>
+        public ResourceSearchResponse SearchPackages(ResourceSearchParameters parameters)
+        {
+            var request = new RestRequest();
+            request.Resource = "search/resource";
+
+            // Apply url parameter
+            if (!String.IsNullOrEmpty(parameters.Url))
+            {
+                request.AddParameter("url", parameters.Url);
+            }
+
+            // Apply format parameter
+            if (!String.IsNullOrEmpty(parameters.Format))
+            {
+                request.AddParameter("format", parameters.Format);
+            }
+
+            // Apply description parameter
+            if (!String.IsNullOrEmpty(parameters.Description))
+            {
+                request.AddParameter("description", parameters.Description);
+            }
+
+            // Apply hash parameter
+            if (!String.IsNullOrEmpty(parameters.Hash))
+            {
+                request.AddParameter("hash", parameters.Hash);
+            }
+
+            // Set the offset and limit parameters
+            request.AddParameter("offset", parameters.Offset);
+            request.AddParameter("limit", parameters.Limit);
+
+            // Apply all_fields parameter
+            if (parameters.IncludeResourceDetails)
+            {
+                request.AddParameter("all_fields", 1);
+            }
+
+            // Execute the request
+            ResourceSearchResponse response = Execute<ResourceSearchResponse>(request);
+
+            // If no results, return an empty results object
+            if (response == null)
+            {
+                response = new ResourceSearchResponse();
+            }
+
+            return response;
+        }
+        #endregion
+
         #endregion
 
         #region Private Methods

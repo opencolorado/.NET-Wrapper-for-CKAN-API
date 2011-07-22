@@ -50,7 +50,8 @@
   <ItemGroup>
     <Compile Include="CkanClient.cs" />
     <Compile Include="Helper\DateHelper.cs" />
-    <Compile Include="Model\PackageSearchResults.cs" />
+    <Compile Include="Model\ResourceSearchResponse.cs" />
+    <Compile Include="Model\PackageSearchResponse.cs" />
     <Compile Include="Model\RevisionSearchParameters.cs" />
     <Compile Include="Model\PackageSearchParameters.cs" />
     <Compile Include="Model\Group.cs" />

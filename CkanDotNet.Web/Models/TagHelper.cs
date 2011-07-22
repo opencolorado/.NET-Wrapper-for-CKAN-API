@@ -11,17 +11,17 @@ namespace CkanDotNet.Web.Models
 {
     public static class TagHelper
     {
-        public static Dictionary<string, int> GetTagCounts(PackageSearchResults results)
+        public static Dictionary<string, int> GetTagCounts(PackageSearchResponse<Package> results)
         {
             return GetTagCounts(results, new List<string>());
         }
 
-        public static Dictionary<string, int> GetTagCounts(PackageSearchResults results, List<string> ignoreTags)
+        public static Dictionary<string, int> GetTagCounts(PackageSearchResponse<Package> results, List<string> ignoreTags)
         {
             return GetTagCounts(results, ignoreTags, 0);
         }
 
-        public static Dictionary<string, int> GetTagCounts(PackageSearchResults results, List<string> ignoreTags, int limit)
+        public static Dictionary<string, int> GetTagCounts(PackageSearchResponse<Package> results, List<string> ignoreTags, int limit)
         {
             Dictionary<string, int> tagCounts = new Dictionary<string, int>();
 

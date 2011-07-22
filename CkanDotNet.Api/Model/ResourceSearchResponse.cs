@@ -5,14 +5,14 @@ using System.Text;
 
 namespace CkanDotNet.Api.Model
 {
-    public class PackageSearchResults
+    public class ResourceSearchResponse
     {
         public int Count { get; set; }
-        public List<Package> Results { get; set; }
+        public List<Resource> Results { get; set; }
 
-        public PackageSearchResults()
+        public ResourceSearchResponse()
         {
-            Results = new List<Package>();
+            Results = new List<Resource>();
         }
     }
 }

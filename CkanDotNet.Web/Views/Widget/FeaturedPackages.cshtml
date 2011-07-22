@@ -1,5 +1,5 @@
 ﻿@using CkanDotNet.Api.Model
-@model PackageSearchResults
+@model PackageSearchResponse<Package>
  
 @if (Model.Results.Count >= 3)
 {  
@@ -14,7 +14,6 @@
             <div class="resultRating">
             @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
             </div>
-
 
             <p>
             @result.GetAbbreviatedNotes(75)

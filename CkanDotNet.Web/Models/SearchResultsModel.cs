@@ -8,7 +8,7 @@ namespace CkanDotNet.Web.Models
 {
     public class PackageSearchResultsModel : SearchResultsSideBarModel
     {
-        public PackageSearchResults SearchResults { get; set; }
+        public PackageSearchResponse<Package> SearchResults { get; set; }
         public Pager Pager { get; set; }
         public PackageSearchParameters SearchParameters { get; set; } 
     }
