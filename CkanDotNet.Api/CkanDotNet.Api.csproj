@@ -58,7 +58,6 @@
     <Compile Include="Model\Rating.cs" />
     <Compile Include="Model\Resource.cs" />
     <Compile Include="Model\Revision.cs" />
-    <Compile Include="Pagination.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

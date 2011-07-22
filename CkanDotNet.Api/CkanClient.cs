@@ -11,26 +11,20 @@ using RestSharp;
 
 namespace CkanDotNet.Api
 {
+    /// <summary>
+    /// A client for the CKAN API v2.
+    /// </summary>
     public class CkanClient
     {
+        /// <summary>
+        /// The supported CKAN api version
+        /// </summary>
         private static string apiVersion = "2";
 
-        private string repository;
-
         /// <summary>
-        /// Gets or sets the CKAN repository host
+        /// Gets or sets the CKAN repository host name
         /// </summary>
-        public string Repository
-        {
-            get
-            {
-                return repository;
-            }
-            set
-            {
-                repository = value;
-            }
-        }
+        private string Repository { get; set; }
 
         /// <summary>
         /// Create an instance of the Ckan client.
@@ -38,11 +32,13 @@ namespace CkanDotNet.Api
         /// <param name="repository">The hostname of the CKAN repository.</param>
         public CkanClient(string repository)
         {
-            this.repository = repository;
+            this.Repository = repository;
         }
 
+        #region Public Methods
+
         /// <summary>
-        /// Execute a request to the CKAN REST API.
+        /// Execute a request for the CKAN REST API.
         /// </summary>
         /// <typeparam name="T">The type that will be used for the JSON returned.</typeparam>
         /// <param name="request">The RestRequest</param>
@@ -50,47 +46,13 @@ namespace CkanDotNet.Api
         public T Execute<T>(RestRequest request) where T : new()
         {
             var client = new RestClient();
-            client.BaseUrl = String.Format("http://{0}/api/{1}/",repository,apiVersion);
+            client.BaseUrl = String.Format("http://{0}/api/{1}/",this.Repository,apiVersion);
             
-            // Write the request to the console for diagnostic purposes
-            WriteRequestToConsole(client, request);
+            // TODO: Log the request URL
+            string url = GetRequestUrl(client, request);
 
             var response = client.Execute<T>(request);
             return response.Data;
-        }
-
-        /// <summary>
-        /// Write the request to the console that will be sent to CKAN
-        /// </summary>
-        /// <param name="client"></param>
-        /// <param name="request"></param>
-        private void WriteRequestToConsole(RestClient client, RestRequest request)
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append(client.BaseUrl);
-            sb.Append("/");
-            sb.Append(request.Resource);
-
-            if (request.Parameters.Count > 0)
-            {
-                sb.Append("?");
-                bool first = true;
-                foreach (var parameter in request.Parameters)
-                {
-                    if (!first)
-                    {
-                        sb.Append("&");
-                    }
-                    else
-                    {
-                        first = false;
-                    }
-
-                    sb.AppendFormat("{0}={1}", parameter.Name, parameter.Value);
-                }
-            }
-
-            System.Diagnostics.Debug.WriteLine(sb);
         }
 
         /// <summary>
@@ -214,10 +176,10 @@ namespace CkanDotNet.Api
         }
 
         /// <summary>
-        /// 
+        /// Search the CKAN repository.
         /// </summary>
-        /// <param name="parameters"></param>
-        /// <returns></returns>
+        /// <param name="parameters">Provides that parameters to use in the search.</param>
+        /// <returns>Search results</returns>
         public PackageSearchResults SearchPackages(PackageSearchParameters parameters)
         {
             var request = new RestRequest();
@@ -278,8 +240,47 @@ namespace CkanDotNet.Api
 
             return results;
         }
+        #endregion
 
         #region Private Methods
+
+        /// <summary>
+        /// Gets the URL represtation of the request that will be submitted to CKAN
+        /// for diagnostic purposes.
+        /// </summary>
+        /// <param name="client"></param>
+        /// <param name="request"></param>
+        private string GetRequestUrl(RestClient client, RestRequest request)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            // Append the base url
+            sb.Append(client.BaseUrl);
+            sb.Append("/");
+            sb.Append(request.Resource);
+
+            // Append the querystring parameters
+            if (request.Parameters.Count > 0)
+            {
+                sb.Append("?");
+                bool first = true;
+                foreach (var parameter in request.Parameters)
+                {
+                    if (!first)
+                    {
+                        sb.Append("&");
+                    }
+                    else
+                    {
+                        first = false;
+                    }
+
+                    sb.AppendFormat("{0}={1}", parameter.Name, parameter.Value);
+                }
+            }
+
+            return sb.ToString();
+        }
 
         /// <summary>
         /// Build an encoded query string from a collection of name/value pairs.
