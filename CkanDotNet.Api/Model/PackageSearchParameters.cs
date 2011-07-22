@@ -102,6 +102,5 @@ namespace CkanDotNet.Api.Model
         /// </summary>
         public bool FilterByDownloadable { get; set; }
 
-        public string Format { get; set; }
     }
 }

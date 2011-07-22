@@ -46,7 +46,7 @@ namespace CkanDotNet.Web.Models
             }
             else
             {
-                licenses = Ckan.GetLicenses();
+                licenses = CkanHelper.GetClient().GetLicenses();
 
                 HttpRuntime.Cache.Insert(
                     "License",

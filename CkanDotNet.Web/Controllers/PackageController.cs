@@ -16,7 +16,7 @@ namespace CkanDotNet.Web.Controllers
 
         public ActionResult Index(string package)
         {
-            Package packageFound = Ckan.GetPackage(package);
+            Package packageFound = CkanHelper.GetClient().GetPackage(package);
 
             if (package != null)
             {

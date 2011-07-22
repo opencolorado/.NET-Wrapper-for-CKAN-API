@@ -24,10 +24,11 @@ namespace CkanDotNet.Web.Controllers
         /// <returns></returns>
         public ActionResult Index(string q, int? page, string order_by, string format, string tag)
         {
-            this.ConfigureBreadCrumbs(q, tag, format);
+            this.ConfigureBreadCrumbs(q, tag);
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
+            searchParameters.Groups.Add("denver");
             searchParameters.Query = q;
             searchParameters.IncludePackageDetails = true;
             
@@ -41,11 +42,6 @@ namespace CkanDotNet.Web.Controllers
             if (!String.IsNullOrEmpty(tag))
             {
                 searchParameters.Tags.Add(tag);
-            }
-
-            if (!String.IsNullOrEmpty(format))
-            {
-                searchParameters.Format = format;
             }
 
             // Set up the pagination
@@ -62,7 +58,7 @@ namespace CkanDotNet.Web.Controllers
             // Build the view model for the results
             PackageSearchResultsModel model = ViewDataFactory.Create<PackageSearchResultsModel>();
             model.SearchParameters = searchParameters;
-            model.SearchResults = Ckan.SearchPackages(searchParameters);
+            model.SearchResults = CkanHelper.GetClient().SearchPackages(searchParameters);
             model.Pager = pager;
 
             // Set the number of records to be paged
@@ -72,7 +68,12 @@ namespace CkanDotNet.Web.Controllers
             return View(model);
         }
 
-        private void ConfigureBreadCrumbs(string q, string tag, string format)
+        /// <summary>
+        /// Configure the breadcrumbs for this page.
+        /// </summary>
+        /// <param name="q">The query</param>
+        /// <param name="tag">The selected tag</param>
+        private void ConfigureBreadCrumbs(string q, string tag)
         {
             // Set up the breadcrumbs for this action
             var breadCrumbs = new BreadCrumbs();
@@ -111,19 +112,6 @@ namespace CkanDotNet.Web.Controllers
                    RouteHelper.UpdateRoute(routeValues, "tag", ""),
                    true)
                );
-            }
-
-            // Add breadcrumb for the format filter
-            if (!String.IsNullOrEmpty(format))
-            {
-                var routeValues = RouteHelper.RouteFromParameters(RouteData.Values);
-                // Create a route that removes the format parameter
-                breadCrumbs.Add(new BreadCrumb(
-                    String.Format("Format: {0}", format),
-                    "Index",
-                    RouteHelper.UpdateRoute(routeValues, "format", ""),
-                    true)
-                );
             }
 
             ViewData["BreadCrumbs"] = breadCrumbs;

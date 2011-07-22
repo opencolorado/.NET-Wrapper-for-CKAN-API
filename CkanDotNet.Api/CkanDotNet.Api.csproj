@@ -45,8 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ckan.cs" />
-    <Compile Include="JsonParser.cs" />
+    <Compile Include="CkanClient.cs" />
     <Compile Include="Model\PackageSearchResults.cs" />
     <Compile Include="Model\RevisionSearchParameters.cs" />
     <Compile Include="Model\PackageSearchParameters.cs" />
