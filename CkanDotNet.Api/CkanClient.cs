@@ -356,7 +356,7 @@ namespace CkanDotNet.Api
         /// </summary>
         /// <param name="parameters">Provides that parameters to use in the search.</param>
         /// <returns>Search results</returns>
-        public ResourceSearchResponse SearchPackages(ResourceSearchParameters parameters)
+        public ResourceSearchResponse<T> SearchResources<T>(ResourceSearchParameters parameters)
         {
             var request = new RestRequest();
             request.Resource = "search/resource";
@@ -390,18 +390,18 @@ namespace CkanDotNet.Api
             request.AddParameter("limit", parameters.Limit);
 
             // Apply all_fields parameter
-            if (parameters.IncludeResourceDetails)
+            if (typeof(T) == typeof(Resource))
             {
                 request.AddParameter("all_fields", 1);
             }
 
             // Execute the request
-            ResourceSearchResponse response = Execute<ResourceSearchResponse>(request);
+            ResourceSearchResponse<T> response = Execute<ResourceSearchResponse<T>>(request);
 
             // If no results, return an empty results object
             if (response == null)
             {
-                response = new ResourceSearchResponse();
+                response = new ResourceSearchResponse<T>();
             }
 
             return response;

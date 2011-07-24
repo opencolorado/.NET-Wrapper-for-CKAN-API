@@ -55,10 +55,5 @@ namespace CkanDotNet.Api.Model
             set { limit = value; }
         }
 
-        /// <summary>
-        /// Each matching search result is given as either a resource name (when false; default) 
-        /// or the full resource record (when true).
-        /// </summary>
-        public bool IncludeResourceDetails { get; set; }
     }
 }
