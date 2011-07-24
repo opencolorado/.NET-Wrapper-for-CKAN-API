@@ -8,6 +8,7 @@ using CkanDotNet.Api.Model;
 using CkanDotNet.Web.Models;
 using log4net;
 using System.Reflection;
+using CkanDotNet.Web.Models.Helpers;
 
 namespace CkanDotNet.Web.Controllers
 {
@@ -23,6 +24,8 @@ namespace CkanDotNet.Web.Controllers
             log.DebugFormat("Controller action requested for package {0}", package);
 
             Package packageFound = CkanHelper.GetClient().GetPackage(package);
+            SettingsHelper.FilterTitle(packageFound);
+            SettingsHelper.FilterTags(packageFound.Tags);
 
             if (package != null)
             {
@@ -47,7 +50,7 @@ namespace CkanDotNet.Web.Controllers
                 "Home"));
 
             breadCrumbs.Add(new BreadCrumb(
-                String.Format("Package: {0}",package.BaseTitle)));
+                String.Format("Package: {0}",package.Title)));
 
             ViewData["BreadCrumbs"] = breadCrumbs;
         }

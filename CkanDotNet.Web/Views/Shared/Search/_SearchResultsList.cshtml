@@ -8,7 +8,7 @@
          @foreach (var result in Model.SearchResults.Results)
          {
             <div class="result @(odd ? "odd" : "even")">
-                <div class="title">@Html.ActionLink(@result.BaseTitle, "Index", "Package", new { package = @result.Name }, new { @class = "package" })</div>
+                <div class="title">@Html.ActionLink(@result.Title, "Index", "Package", new { package = @result.Name }, new { @class = "package" })</div>
                 
                  <div class="date">Last updated @result.MetadataModifiedAsDate.ToShortDateString()</div>
 

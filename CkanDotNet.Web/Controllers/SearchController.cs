@@ -13,6 +13,8 @@ using CkanDotNet.Web.Models;
 using CkanDotNet.Api.Model;
 using log4net;
 using System.Reflection;
+using System.Configuration;
+using CkanDotNet.Web.Models.Helpers;
 
 namespace CkanDotNet.Web.Controllers
 {
@@ -34,8 +36,8 @@ namespace CkanDotNet.Web.Controllers
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add("denver");
             searchParameters.Query = q;
+            searchParameters.Groups.Add(SettingsHelper.GetGroup());
             
             // Ordering
             if (!String.IsNullOrEmpty(order_by))
@@ -64,6 +66,7 @@ namespace CkanDotNet.Web.Controllers
             PackageSearchResultsModel model = ViewDataFactory.Create<PackageSearchResultsModel>();
             model.SearchParameters = searchParameters;
             model.SearchResults = CkanHelper.GetClient().SearchPackages<Package>(searchParameters);
+            SettingsHelper.FilterTitles(model.SearchResults.Results);
             model.Pager = pager;
 
             // Set the number of records to be paged

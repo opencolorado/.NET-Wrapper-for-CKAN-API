@@ -9,6 +9,7 @@ using System.Web.UI;
 using CkanDotNet.Web.Models;
 using log4net;
 using System.Reflection;
+using CkanDotNet.Web.Models.Helpers;
 
 namespace CkanDotNet.Web.Controllers
 {
@@ -26,15 +27,14 @@ namespace CkanDotNet.Web.Controllers
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add("denver");
+            searchParameters.Groups.Add(SettingsHelper.GetGroup());
 
             // Collect the results
             PackageSearchResponse<Package> results = CkanHelper.GetClient().SearchPackages<Package>(searchParameters);
+            SettingsHelper.FilterTitles(results.Results);
 
             // Get the tag counts
-            List<string> ignoreTags = new List<string>();
-            ignoreTags.Add("denver");
-            ignoreTags.Add("colorado");
+            List<string> ignoreTags = SettingsHelper.GetHiddenTags();
             Dictionary<string, int> tagCounts = TagHelper.GetTagCounts(results, ignoreTags, 10);
             
             // Render the view
@@ -52,12 +52,13 @@ namespace CkanDotNet.Web.Controllers
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add("denver");
+            searchParameters.Groups.Add(SettingsHelper.GetGroup());
             searchParameters.Limit = 5;
             searchParameters.Tags.Add("featured");
 
             // Collect the results
             PackageSearchResponse<Package> results = CkanHelper.GetClient().SearchPackages<Package>(searchParameters);
+            SettingsHelper.FilterTitles(results.Results);
 
             // Render the view
             return View(results);
@@ -74,7 +75,7 @@ namespace CkanDotNet.Web.Controllers
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add("denver");
+            searchParameters.Groups.Add(SettingsHelper.GetGroup());
 
             // Collect the results
             PackageSearchResponse<Package> results = CkanHelper.GetClient().SearchPackages<Package>(searchParameters);
@@ -86,6 +87,8 @@ namespace CkanDotNet.Web.Controllers
                                       select package)
                          .Take(3)
                          .ToList();
+
+            SettingsHelper.FilterTitles(packages);
 
             // Update the results to the top 3
             results.Results = packages;

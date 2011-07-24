@@ -8,6 +8,8 @@ namespace CkanDotNet.Api.Model
 {
     public class Package
     {
+        private string baseTitle;
+
         public string Id { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
@@ -58,15 +60,6 @@ namespace CkanDotNet.Api.Model
                 summary = summary.Substring(0, length) + "...";
             }
             return summary;
-        }
-
-        public string BaseTitle
-        {
-            get
-            {   
-                //TODO: Move to config
-                return Title.Replace("City of Denver: ","");
-            }
         }
     }
 

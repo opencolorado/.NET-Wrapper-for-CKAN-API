@@ -9,7 +9,7 @@
     @foreach (var result in Model.Results)
     {
         <div class="featuredItem">
-            @Html.ActionLink(@result.BaseTitle, "Index", "Package", new { package = @result.Name }, new { @class = "package" })
+            @Html.ActionLink(@result.Title, "Index", "Package", new { package = @result.Name }, new { @class = "package" })
             
             <div class="resultRating">
             @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
