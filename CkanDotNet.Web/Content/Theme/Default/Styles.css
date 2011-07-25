@@ -153,26 +153,25 @@ tr {
 
 #body
 {
-  float: left;
-  width : 100%;
+   float: left;
+   width: 610px;
 }
 
 #content
 {
-  margin-right: 300px;
+  /*margin-right: 300px;*/
   /*box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);*/
 }
 
 #sidebar
 {
-    float: left;
+    float: right;
     width: 300px; /*Width of right column in pixels*/
-    margin-left: -300px; /*Set left margin to -(RightColumnWidth) */
 }
  
  #footer
 {
-    clear: left;
+    clear: both;
     width: 100%;
     height: 30px; 
     border:1px dashed #999999;
