@@ -10,7 +10,7 @@
     // Remove the page number since we want to start from the beginning if we filter
     RouteHelper.UpdateRoute(routeValues, "page", null);
 
-    Dictionary<string, int> tagCounts = TagHelper.GetTagCounts(Model.SearchResults);
+    Dictionary<string, int> tagCounts = TagHelper.GetTagCounts(Model.SearchResults.Results);
    
 }
 <section class="container">

@@ -72,7 +72,6 @@
     <Compile Include="Models\BreadCrumbs.cs" />
     <Compile Include="Models\Helpers\CkanHelper.cs" />
     <Compile Include="Models\Helpers\GuidHelper.cs" />
-    <Compile Include="Models\Helpers\LicenseHelper.cs" />
     <Compile Include="Models\Helpers\SettingsHelper.cs" />
     <Compile Include="Models\Helpers\TagHelper.cs" />
     <Compile Include="Models\Pager.cs" />

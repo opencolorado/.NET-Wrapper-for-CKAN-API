@@ -13,6 +13,15 @@ namespace CkanDotNet.Web.Models.Helpers
         /// Get the list of groups that have been configured in the settings.
         /// </summary>
         /// <returns></returns>
+        public static string GetRepository()
+        {
+            return ConfigurationManager.AppSettings["Repository"];
+        }
+
+        /// <summary>
+        /// Get the list of groups that have been configured in the settings.
+        /// </summary>
+        /// <returns></returns>
         public static string GetGroup()
         {
             return ConfigurationManager.AppSettings["Group"];

@@ -3,7 +3,7 @@
 @model Package
 
 @{
-    var license = LicenseHelper.GetLicenseById(Model.LicenseId);
+    var license = CkanHelper.GetLicenseById(Model.LicenseId);
 }
 <section class="container">
     <h2>License</h2>

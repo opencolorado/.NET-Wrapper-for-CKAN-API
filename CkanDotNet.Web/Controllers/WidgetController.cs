@@ -30,12 +30,13 @@ namespace CkanDotNet.Web.Controllers
             searchParameters.Groups.Add(SettingsHelper.GetGroup());
 
             // Collect the results
-            PackageSearchResponse<Package> results = CkanHelper.GetClient().SearchPackages<Package>(searchParameters);
-            SettingsHelper.FilterTitles(results.Results);
+            // Collect the results
+            List<Package> packages = CkanHelper.GetAllPackages();
+            SettingsHelper.FilterTitles(packages);
 
             // Get the tag counts
             List<string> ignoreTags = SettingsHelper.GetHiddenTags();
-            Dictionary<string, int> tagCounts = TagHelper.GetTagCounts(results, ignoreTags, 10);
+            Dictionary<string, int> tagCounts = TagHelper.GetTagCounts(packages, ignoreTags, 10);
             
             // Render the view
             return View(tagCounts);
@@ -78,10 +79,10 @@ namespace CkanDotNet.Web.Controllers
             searchParameters.Groups.Add(SettingsHelper.GetGroup());
 
             // Collect the results
-            PackageSearchResponse<Package> results = CkanHelper.GetClient().SearchPackages<Package>(searchParameters);
+            List<Package> packages = CkanHelper.GetAllPackages();
 
             // Sort by date and take the top 3
-            List<Package> packages = (from package in results.Results
+            packages = (from package in packages
                                       orderby package.MetadataModified
                                       descending
                                       select package)
@@ -91,12 +92,13 @@ namespace CkanDotNet.Web.Controllers
             SettingsHelper.FilterTitles(packages);
 
             // Update the results to the top 3
-            results.Results = packages;
-            results.Count = packages.Count;
+            PackageSearchResponse<Package> response = new PackageSearchResponse<Package>();
+            response.Results = packages;
+            response.Count = packages.Count;
 
             // Populate the model
             PackageSearchResultsModel model = new PackageSearchResultsModel();
-            model.SearchResults = results;
+            model.SearchResults = response;
 
             // Render the view
             return View(model);
