@@ -1,4 +1,10 @@
-﻿body
+﻿/* HTML5 support for IE versions less than*/
+header,nav,article,footer,section,aside,figure,figcaption
+{
+    display:block
+}
+
+body
 {
     font-family:  Helvetica,Verdana,Arial,Sans;
     font-size: 10pt;
@@ -129,38 +135,38 @@ tr {
 
 #page 
 {
+    position: relative;
     background: none repeat scroll 0 0 #FFFFFF;
     box-shadow: 0 5px 20px #888888;
     margin: 0 auto 50px;
-    text-align: left;
     width: 940px;
+    border: 1px solid #cccccc;
 }
 
 #header
 {
-    height: 60px; 
-    border:1px dashed #999999;
-    color:#cccccc; 
-    text-align: center; 
-    padding-top: 40px;
+    line-height: 60px;
+    border-bottom:1px dashed #999999;
+    color:#cccccc;
+    text-align: center;
     font-size: 30px;
 }
 
 #main
 {
     padding: 10px 10px 10px 10px;
+    overflow:hidden;
+	clear:both;
 }
 
 #body
 {
    float: left;
-   width: 610px;
+   width: 620px;
 }
 
 #content
 {
-  /*margin-right: 300px;*/
-  /*box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5);*/
 }
 
 #sidebar
@@ -171,15 +177,11 @@ tr {
  
  #footer
 {
-    clear: both;
-    width: 100%;
-    height: 30px; 
-    border:1px dashed #999999;
-    color:#cccccc; 
-    text-align: center; 
-    padding-top: 15px;
-    font-size: 20px;
-    
+    line-height: 60px;
+    border-top:1px dashed #999999;
+    color:#cccccc;
+    text-align: center;
+    font-size: 30px;
 }
 
 /* Breadcrumbs */
