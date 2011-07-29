@@ -72,11 +72,14 @@
     <Compile Include="Models\BreadCrumbs.cs" />
     <Compile Include="Models\Helpers\CkanHelper.cs" />
     <Compile Include="Models\Helpers\GuidHelper.cs" />
+    <Compile Include="Models\Settings\ResourceAction.cs" />
+    <Compile Include="Models\Settings\ResourceType.cs" />
     <Compile Include="Models\Helpers\SettingsHelper.cs" />
     <Compile Include="Models\Helpers\TagHelper.cs" />
     <Compile Include="Models\Pager.cs" />
     <Compile Include="Models\PartialRequest.cs" />
     <Compile Include="Models\Helpers\RouteHelper.cs" />
+    <Compile Include="Models\Settings\ResourceSettings.cs" />
     <Compile Include="Models\ViewDataFactory.cs" />
     <Compile Include="Models\SearchResultsModel.cs" />
     <Compile Include="Models\SearchResultsSideBarModel.cs" />
