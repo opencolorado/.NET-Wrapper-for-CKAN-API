@@ -27,12 +27,13 @@
     </div>
     
     @* Show the resources *@
-    <h3>Resources</h3>
+    <section class="container">
+    <h2>Resources</h2>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th>Format</th>
                 <th>Description</th>
+                <th>Format</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -40,42 +41,45 @@
         @foreach (Resource resource in Model.Resources)
         {
             <tr>
-                <td>
-                    @if (!formatTypes.ContainsKey(resource.Format))
-                    {
-                        @resource.Format
-                    }
-                    else
-                    {
-                        <span class="tooltip" title="@formatTypes[resource.Format].Title">@resource.Format</span>
-                    }
-                    
-                </td>
+               
                 <td>
                     @resource.Description
                 </td>
+
+                <td>
+                    @if (!formatTypes.ContainsKey(resource.Format))
+                    {
+                        <span class="format">@resource.Format</span>
+                    }
+                    else
+                    {
+                        <span class="tooltip format" title="@formatTypes[resource.Format].Title">@resource.Format</span>
+                    }
+                    
+                </td>
+
                 <td nowrap="nowrap">
                     @if (!formatTypes.ContainsKey(resource.Format))
                     {
-                        <a href="@resource.Url">Download</a>
+                        <a href="@resource.Url" class="action">Download</a>
                     }
                     else
                     {
                         foreach (var action in formatTypes[resource.Format].Actions)
                         {
-                            <a href="@action.BuildUrl(resource.Url)">@action.Action</a><br />
+                            <a href="@action.BuildUrl(resource.Url)" class="action">@action.Action</a>
                         }
                     }
                 </td>
-
             </tr>
         }
         </tbody>
     </table>
-
+    </section>
 
     @* Show the details *@
-    <h3>Details</h3>
+    <section class="container">
+    <h2>Details</h2>
     <table cellpadding="0" cellspacing="0">
         <tbody>
             <tr>
@@ -115,5 +119,6 @@
             </tr>
         </tbody>
     </table>
+</section>
 
 </div>

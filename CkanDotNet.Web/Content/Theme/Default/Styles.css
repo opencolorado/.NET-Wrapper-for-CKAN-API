@@ -9,8 +9,6 @@ body
     font-family:  Helvetica,Verdana,Arial,Sans;
     font-size: 10pt;
     background-color: #eeeeee;
-    font-size: 0.813em;
-    line-height: 1.188em;
 }
 
 a {
@@ -98,10 +96,11 @@ th
     border-bottom: 1px solid #BEBFB9;
     border-right: 1px solid #BEBFB9;
     padding: 5px;
+    font-size: 12px;
 }
 
 td {
-    padding: 5px 10px;
+    padding: 5px 5px;
     vertical-align: top;
     border-bottom: 1px solid #BEBFB9;
     border-right: 1px solid #BEBFB9;
@@ -435,6 +434,32 @@ h2 .pager .item span
     font-size:12px;
     border-bottom: 1px solid #D3D3D3;
     padding-bottom: 10px;
+}
+
+a.action 
+{
+    font-size: 11px;
+    font-weight: bold;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    padding: 4px;
+    margin: 0px 0px 4px 0px;
+    display: block;
+    color: #333333;
+   
+    background-color: #cccccc;
+    background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #cccccc), color-stop(1, #eeeeee));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#eeeeee', endColorstr='#cccccc');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#eeeeee', endColorstr='#cccccc')";
+    
+}
+
+a:active, a:hover 
+{
+    cursor: pointer;
+    border: 1px solid #333333;
+    text-decoration: none;
 }
 
 /* Tag counts */
