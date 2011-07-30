@@ -1,9 +1,40 @@
 ﻿@using CkanDotNet.Api.Model
+@using CkanDotNet.Web.Models.Helpers
+@using System.Text
 @model Package
            
 @{
     ViewBag.Title = Model.Title;
 }
+
+<div class="package">
+<h1>@Model.Title</h1>
+
+    <div class="subtitle">
+
+        <div class="tagline">
+            @{
+                StringBuilder sb = new StringBuilder();
+                sb.AppendFormat("Posted {0}", Model.MetadataCreatedAsDate.ToShortDateString());
+
+                if (Model.MetadataModifiedAsDate > DateTime.MinValue)
+                {
+                    sb.AppendFormat(", last updated {0}", Model.MetadataModifiedAsDate.ToShortDateString());
+                }
+            }
+            @sb.ToString()
+
+            
+        </div>
+
+        <a class="subscribe tooltip" title="Subscribe" href="http://@SettingsHelper.GetRepository()/package/history/@Model.Name?format=atom&days=7"> </a>
+
+    </div>
+
+    <div class="notes">
+        <p>@Model.Notes</p>
+    </div>
+</div>
 
 <section id="body">
     <section id="content">

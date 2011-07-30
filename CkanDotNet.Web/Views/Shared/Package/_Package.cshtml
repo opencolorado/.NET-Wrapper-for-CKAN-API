@@ -1,4 +1,5 @@
 ﻿@using CkanDotNet.Api.Model
+@using CkanDotNet.Web.Models.Helpers
 @using System.Text
 @model Package
 
@@ -7,25 +8,6 @@
 }
 <div class="package">
 
-    <h1>@Model.Title</h1>
-
-    <div class="tagline">
-        @{
-            StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("Posted {0}", Model.MetadataCreatedAsDate.ToShortDateString());
-
-            if (Model.MetadataModifiedAsDate > DateTime.MinValue)
-            {
-                sb.AppendFormat(", last updated {0}", Model.MetadataModifiedAsDate.ToShortDateString());
-            }
-        }
-        @sb.ToString()
-    </div>
-
-    <div class="notes">
-        <p>@Model.Notes</p>
-    </div>
-    
     @* Show the resources *@
     <section class="container">
     <h2>Resources</h2>
