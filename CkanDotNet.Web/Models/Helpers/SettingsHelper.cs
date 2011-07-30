@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using CkanDotNet.Api.Model;
 using System.Configuration;
+using CkanDotNet.Web.Models.Settings;
 
 namespace CkanDotNet.Web.Models.Helpers
 {
@@ -99,6 +100,80 @@ namespace CkanDotNet.Web.Models.Helpers
             {
                 tags.Remove(hiddenTag);
             }
+        }
+
+        public static ResourceSettings GetResourceSettings()
+        {
+            ResourceSettings settings = new ResourceSettings();
+
+            foreach (var key in ConfigurationManager.AppSettings.AllKeys)
+            {
+                if (key.Contains("ResourceType")) {
+
+                    // Get or create the resource type
+                    string type = key.Split(char.Parse("."))[1];
+                    string property = key.Split(char.Parse("."))[2];
+
+                    ResourceType resourceType;
+                    if (settings.Types.ContainsKey(type)) 
+                    {
+                        resourceType = settings.Types[type];
+                    }
+                    else
+                    {
+                        resourceType = new ResourceType();
+                        settings.Types.Add(type,resourceType);
+                    }
+
+                    // Check for the title
+                    if (property == "Title")
+                    {
+                        resourceType.Title = ConfigurationManager.AppSettings[key]; 
+                    }
+                    else if (property == "Actions")
+                    {
+
+                        // Add the actions
+                        string value = ConfigurationManager.AppSettings[key];
+                        value = value.Replace(Environment.NewLine, "");
+
+                        foreach (var actionSetting in value.Split(char.Parse("|")))
+                        {
+
+                            ResourceAction action = new ResourceAction();
+
+                            foreach (var parameterSetting in actionSetting.Split(char.Parse(";")))
+                            {
+                                string parameter = parameterSetting.Trim();
+
+                                int equalsIndex = parameter.IndexOf("=");
+
+                                var parameterKey = parameter.Substring(0, equalsIndex);
+                                var parameterValue = parameter.Substring(equalsIndex + 1);
+
+                                if (parameterKey == "action")
+                                {
+                                    action.Action = parameterValue;
+                                }
+                                else if (parameterKey == "url")
+                                {
+                                    action.UrlTemplate = parameterValue;
+                                }
+                                else if (parameterKey == "title")
+                                {
+                                    action.Title = parameterValue;
+                                }
+
+                            }
+
+                            resourceType.Actions.Add(action);
+                        }
+                    }
+
+                }
+            }
+
+            return settings;
         }
     }
 }

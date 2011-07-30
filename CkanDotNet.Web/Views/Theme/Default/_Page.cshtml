@@ -8,13 +8,21 @@
 <head>
     <title>@ViewBag.Title</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js"></script>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/south-street/jquery-ui.css" rel="stylesheet" type="text/css"></link>
+
     <script src="@Url.Content("~/Scripts/jquery.watermark.min.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery-ui-1.8.14.custom.min.js")"></script>
     <script src="@Url.Content("~/Scripts/stars/jquery.ui.stars.min.js")"></script>
     <link href="@Url.Content("~/Scripts/stars/jquery.ui.stars.min.css")" rel="stylesheet" type="text/css"></link>
     <script src="@Url.Content("~/Scripts/tiptip/jquery.tipTip.min.js")"></script>
     <link href="@Url.Content("~/Scripts/tiptip/tipTip.css")" rel="stylesheet" type="text/css"></link>
+    
     @RenderPage("~/Views/Theme/" + @theme + "/_PageHead.cshtml")
+
+    <!--[if lt IE 9]>
+     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 
 <body>
@@ -36,5 +44,14 @@
 
     @RenderPage("~/Views/Theme/" + @theme + "/_PageFooter.cshtml")
 </div>
+
+<script language="javascript">
+    $(function () {
+        $(".tooltip").tipTip({
+            defaultPosition: "top",
+            delay: 200
+        });
+    });
+</script>
 </body>           
 </html>

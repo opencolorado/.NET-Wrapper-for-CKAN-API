@@ -2,12 +2,9 @@
 @using System.Text
 @model Package
 
-@*<div style="float: right;">
-    <a href="http://colorado.ckan.net//package/history/@Model.name?format=atom&days=7">
-        <img src="http://static.arvada.org/city/2.0/images/icons/socialmedia/rss_16.png"
-            alt="Subscribe" height="12" width="12" /></a></div>*@
-
-
+@{
+    var formatTypes = CkanDotNet.Web.Models.Helpers.SettingsHelper.GetResourceSettings().Types;
+}
 <div class="package">
 
     <h1>@Model.Title</h1>
@@ -15,11 +12,11 @@
     <div class="tagline">
         @{
             StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("Posted {0}",Model.MetadataCreatedAsDate.ToShortDateString());
+            sb.AppendFormat("Posted {0}", Model.MetadataCreatedAsDate.ToShortDateString());
 
             if (Model.MetadataModifiedAsDate > DateTime.MinValue)
             {
-                sb.AppendFormat(", last updated {0}",Model.MetadataModifiedAsDate.ToShortDateString());  
+                sb.AppendFormat(", last updated {0}", Model.MetadataModifiedAsDate.ToShortDateString());
             }
         }
         @sb.ToString()
@@ -30,36 +27,59 @@
     </div>
     
     @* Show the resources *@
-    <h3>Resources</h3>
+    <section class="container">
+    <h2>Resources</h2>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th>Action</th>
-                <th>Format</th>
                 <th>Description</th>
+                <th>Format</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach (Resource resource in Model.Resources)
         {
             <tr>
-                <td>
-                    <a href="@resource.Url">Download</a>
-                </td>
-                <td>
-                    @resource.Format
-                </td>
+               
                 <td>
                     @resource.Description
+                </td>
+
+                <td>
+                    @if (!formatTypes.ContainsKey(resource.Format))
+                    {
+                        <span class="format">@resource.Format</span>
+                    }
+                    else
+                    {
+                        <span class="tooltip format" title="@formatTypes[resource.Format].Title">@resource.Format</span>
+                    }
+                    
+                </td>
+
+                <td nowrap="nowrap">
+                    @if (!formatTypes.ContainsKey(resource.Format))
+                    {
+                        <a href="@resource.Url" class="action">Download</a>
+                    }
+                    else
+                    {
+                        foreach (var action in formatTypes[resource.Format].Actions)
+                        {
+                            <a href="@action.BuildUrl(resource.Url)" class="action">@action.Action</a>
+                        }
+                    }
                 </td>
             </tr>
         }
         </tbody>
     </table>
-
+    </section>
 
     @* Show the details *@
-    <h3>Details</h3>
+    <section class="container">
+    <h2>Details</h2>
     <table cellpadding="0" cellspacing="0">
         <tbody>
             <tr>
@@ -91,13 +111,14 @@
                     Temporal Coverage
                 </th>
                 <td>
-                    @if (@Model.Extras.TemporalCoverageFrom != null ) {
+                    @if (@Model.Extras.TemporalCoverageFrom != null)
+                    {
                         @Model.Extras.TemporalCoverageFrom @:to @Model.Extras.TemporalCoverageTo
                     }
                 </td>
             </tr>
         </tbody>
     </table>
-
+</section>
 
 </div>
