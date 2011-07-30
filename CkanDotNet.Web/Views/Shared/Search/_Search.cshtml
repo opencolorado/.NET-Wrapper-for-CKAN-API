@@ -14,7 +14,7 @@
 <input type="submit" class="searchSubmit" value="Search" />
 @if (!String.IsNullOrEmpty(query))
 {
-<span>Clear</span>
+    @Html.ActionLink("Clear", "Index", "Search");
 }
 </div>
 

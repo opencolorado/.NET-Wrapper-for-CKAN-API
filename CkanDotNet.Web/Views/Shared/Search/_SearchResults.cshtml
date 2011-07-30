@@ -8,9 +8,21 @@
 } 
 
 <section class="container">
-    <h2>Results (@Model.SearchResults.Count) @Html.Partial("_Pager")</h2>
-
-    @Html.Partial("~/Views/Shared/Search/_SearchResultsList.cshtml")
+    <h2>Results 
+    @if (Model.SearchResults.Count > 0) { 
+       @("(" + Model.SearchResults.Count + ")") @Html.Partial("_Pager")      
+    }
+   </h2>
+    
+    @if (Model.SearchResults.Count > 0)
+    {
+        @Html.Partial("~/Views/Shared/Search/_SearchResultsList.cshtml")
+    }
+    else
+    {
+        <div class="noResults">We weren't able to find what you were looking for..  
+        Try a new search term or <a href="#">suggest</a> a new dataset..</div>   
+    }
 
 
 </section>

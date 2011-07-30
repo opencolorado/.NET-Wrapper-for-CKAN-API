@@ -13,6 +13,9 @@
     Dictionary<string, int> tagCounts = TagHelper.GetTagCounts(Model.SearchResults.Results);
    
 }
+
+@if (Model.SearchResults.Count > 0)
+{
 <section class="container">
     <h2>Filter By Tag</h2>
     <div>
@@ -25,4 +28,5 @@
         }
     </div>
 </section>
+}
 
