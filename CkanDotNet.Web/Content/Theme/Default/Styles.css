@@ -319,6 +319,13 @@ tr {
 }
 
 /* Search results styles */
+.noResults
+{
+    font-size: 14px;
+    padding: 10px 0px 10px 0px;
+}
+
+
 .results
 {
     margin: 0px !important;
@@ -430,6 +437,12 @@ h2 .pager .link a
 h2 .pager .item span
 {
     color: #000000;
+}
+
+h2 .pager li.item a
+{
+    color: #0074BD;
+    font-weight: bold;
 }
 
 /* Package styles */
