@@ -1,5 +1,6 @@
 ﻿@using CkanDotNet.Api.Model
 @using CkanDotNet.Web.Models
+@using CkanDotNet.Web.Models.Helpers
 @model Package
 
 @{
@@ -34,7 +35,7 @@ $("#@(ratingId)").stars({
         @:disabled: true, 
     }
     callback: function(ui, type, value){
-        var url = "http://colorado.ckan.net/package/rate/@Model.Name?rating=" + value;
+        var url = "http://@SettingsHelper.GetRepository()/package/rate/@Model.Name?rating=" + value;
         $("#@(ratingId)_iframe").get(0).src = url;
 
         $(".ratingResponse").text("Thanks for your rating!");

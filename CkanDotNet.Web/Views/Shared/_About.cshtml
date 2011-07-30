@@ -1,4 +1,5 @@
-﻿<section class="container">
+﻿@using CkanDotNet.Web.Models.Helpers
+<section class="container">
 <h2>About This Catalog</h2>
 <p>
 This catalog was created in partnership with <a href="http://www.opencolorado.org">Open Colorado</a>.
@@ -7,7 +8,7 @@ This catalog was created in partnership with <a href="http://www.opencolorado.or
 <p>
 To search for open data provided
 by other government organizations in Colorado please visit
-the <a href="http://colorado.ckan.net">Open Colorado Data Catalog</a>.
+the <a href="@SettingsHelper.GetRepository()">Open Colorado Data Catalog</a>.
 </p>
 
 </section>
