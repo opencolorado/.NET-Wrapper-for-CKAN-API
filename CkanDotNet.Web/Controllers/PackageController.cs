@@ -50,7 +50,7 @@ namespace CkanDotNet.Web.Controllers
                 "Home"));
 
             breadCrumbs.Add(new BreadCrumb(
-                String.Format("Package: {0}",package.Title)));
+                String.Format("Package > {0}",package.Title)));
 
             ViewData["BreadCrumbs"] = breadCrumbs;
         }
