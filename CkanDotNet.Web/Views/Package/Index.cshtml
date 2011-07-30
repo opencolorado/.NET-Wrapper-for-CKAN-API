@@ -27,8 +27,11 @@
             
         </div>
 
-        <a class="subscribe tooltip" title="Subscribe" href="http://@SettingsHelper.GetRepository()/package/history/@Model.Name?format=atom&days=7"> </a>
-
+        @if (SettingsHelper.GetPackageRssFeedEnabled())
+        {
+        <a class="subscribe tooltip" title="Subscribe" href="http://@SettingsHelper.GetRepository()/package/history/@Model.Name?format=atom&days=@SettingsHelper.GetPackageRssFeedDays()"> </a>
+        }
+        
     </div>
 
     <div class="notes">

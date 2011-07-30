@@ -23,6 +23,26 @@ namespace CkanDotNet.Web.Models.Helpers
         /// Get the list of groups that have been configured in the settings.
         /// </summary>
         /// <returns></returns>
+        public static bool GetPackageRssFeedEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["PackageRSSFeedEnabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Get the list of groups that have been configured in the settings.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetPackageRssFeedDays()
+        {
+            string days = ConfigurationManager.AppSettings["PackageRSSFeedDays"];
+            return int.Parse(days);
+        }
+
+        /// <summary>
+        /// Get the list of groups that have been configured in the settings.
+        /// </summary>
+        /// <returns></returns>
         public static string GetGroup()
         {
             return ConfigurationManager.AppSettings["Group"];
