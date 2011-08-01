@@ -19,39 +19,20 @@ namespace CkanDotNet.Web.Models
 
         /// <summary>
         /// Get all packages from the CKAN group.
-        /// TODO: Implement common caching proxy for cachable requests.
         /// </summary>
         /// <returns></returns>
         public static List<Package> GetAllPackages()
         {
-            List<Package> packages = null;
+            CacheSettings settings = new CacheSettings(SettingsHelper.GetAllPackagesCacheDuration());
 
-            if (HttpRuntime.Cache["Packages"] != null)
-            {
-                packages = (List<Package>)HttpRuntime.Cache.Get("Packages");
-            }
-            else
-            {
-                // Create the CKAN search parameters
-                var searchParameters = new PackageSearchParameters();
-                searchParameters.Groups.Add(SettingsHelper.GetGroup());
+            // Create the CKAN search parameters
+            var searchParameters = new PackageSearchParameters();
+            searchParameters.Groups.Add(SettingsHelper.GetGroup());
 
-                // Collect the results
-                PackageSearchResponse<Package> response = CkanHelper.GetClient().SearchPackages<Package>(searchParameters);
-                packages = response.Results;
+            // Collect the results
+            PackageSearchResponse<Package> response = CkanHelper.GetClient().SearchPackages<Package>(searchParameters, settings);
 
-                HttpRuntime.Cache.Insert(
-                    "Packages",
-                    packages,
-                    null,
-                    Cache.NoAbsoluteExpiration,
-                    new TimeSpan(1, 0, 0),
-                    CacheItemPriority.Default,
-                    null
-                );
-            }
-
-            return packages;
+            return response.Results;
         }
 
         /// <summary>
@@ -83,28 +64,8 @@ namespace CkanDotNet.Web.Models
         /// <returns></returns>
         private static List<License> GetLicenses()
         {
-            List<License> licenses = null;
-
-            if (HttpRuntime.Cache["Licenses"] != null)
-            {
-                licenses = (List<License>)HttpRuntime.Cache.Get("Licenses");
-            }
-            else
-            {
-                licenses = CkanHelper.GetClient().GetLicenses();
-
-                HttpRuntime.Cache.Insert(
-                    "License",
-                    licenses,
-                    null,
-                    Cache.NoAbsoluteExpiration,
-                    new TimeSpan(1, 0, 0),
-                    CacheItemPriority.Default,
-                    null
-                );
-            }
-
-            return licenses;
+            CacheSettings settings = new CacheSettings(SettingsHelper.GetAllLicensesCacheDuration());
+            return CkanHelper.GetClient().GetLicenses(settings);
         }
 
     }

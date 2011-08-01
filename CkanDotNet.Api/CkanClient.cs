@@ -10,6 +10,8 @@ using CkanDotNet.Api.Model;
 using RestSharp;
 using log4net;
 using System.Reflection;
+using System.Runtime.Caching;
+using CkanDotNet.Api.Helper;
 
 namespace CkanDotNet.Api
 {
@@ -41,27 +43,6 @@ namespace CkanDotNet.Api
 
         #region Public Methods
 
-        /// <summary>
-        /// Execute a request for the CKAN REST API.
-        /// </summary>
-        /// <typeparam name="T">The type that will be used for the JSON returned.</typeparam>
-        /// <param name="request">The RestRequest</param>
-        /// <returns></returns>
-        public T Execute<T>(RestRequest request) where T : new()
-        {
-            var client = new RestClient();
-            client.BaseUrl = String.Format("http://{0}/api/{1}/",this.Repository,apiVersion);
-            
-            // Log the request that is being sent to CKAN
-            log.InfoFormat("Sending request to CKAN repository: {0}", GetRequestUrl(client, request));
-
-            var response = client.Execute<T>(request);
-
-            log.DebugFormat("Response recieved: {0}", response.Content);
-
-            return response.Data;
-        }
-
         #region CKAN Model API
 
         /// <summary>
@@ -71,9 +52,20 @@ namespace CkanDotNet.Api
         /// <returns>A list of package ids.</returns>
         public List<string> GetPackageIds()
         {
+            return GetPackageIds(null);
+        }
+
+        /// <summary>
+        /// Get all CKAN packages ids with caching.
+        /// CKAN Model Resource: Package Register
+        /// </summary>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns>A list of package ids.</returns>
+        public List<string> GetPackageIds(CacheSettings settings)
+        {
             var request = new RestRequest();
             request.Resource = "rest/package";
-            List<string> packageIds = Execute<List<string>>(request);
+            List<string> packageIds = Execute<List<string>>(request, settings);
             return packageIds;
         }
 
@@ -85,10 +77,21 @@ namespace CkanDotNet.Api
         /// <returns>The package</returns>
         public Package GetPackage(string id)
         {
+            return GetPackage(id, null);
+        }
+
+        /// <summary>
+        /// Get a CKAN package by id or name with caching.
+        /// CKAN Model Resource: Package Entity
+        /// </summary>
+        /// <param name="name">The package name or id.</param>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns>The package</returns>
+        public Package GetPackage(string id, CacheSettings settings)
+        {
             var request = new RestRequest();
             request.Resource = String.Format("rest/package/{0}", id);
-            Package package = Execute<Package>(request);
-
+            Package package = Execute<Package>(request, settings);
             return package;
         }
 
@@ -99,9 +102,20 @@ namespace CkanDotNet.Api
         /// <returns>A list of group ids.</returns>
         public List<string> GetGroupIds()
         {
+            return GetGroupIds(null);
+        }
+
+        /// <summary>
+        /// Get all CKAN group ids with caching.
+        /// CKAN Model Resource: Group Register
+        /// </summary>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns>A list of group ids.</returns>
+        public List<string> GetGroupIds(CacheSettings settings)
+        {
             var request = new RestRequest();
             request.Resource = "rest/group";
-            List<string> groupIds = Execute<List<string>>(request);
+            List<string> groupIds = Execute<List<string>>(request, settings);
             return groupIds;
         }
 
@@ -113,9 +127,21 @@ namespace CkanDotNet.Api
         /// <returns></returns>
         public Group GetGroup(string id)
         {
+            return GetGroup(id, null);
+        }
+
+        /// <summary>
+        /// Get a CKAN group by id or name with caching.
+        /// CKAN Model Resource: Group Entity
+        /// </summary>
+        /// <param name="id">The pacakge id or name.</param>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns></returns>
+        public Group GetGroup(string id, CacheSettings settings)
+        {
             var request = new RestRequest();
-            request.Resource = String.Format("rest/group/{0}", id);            
-            Group group = Execute<Group>(request);
+            request.Resource = String.Format("rest/group/{0}", id);
+            Group group = Execute<Group>(request, settings);
             return group;
         }
 
@@ -126,9 +152,20 @@ namespace CkanDotNet.Api
         /// <returns>A list of tags</returns>
         public List<string> GetTags()
         {
+            return GetTags(null);
+        }
+
+        /// <summary>
+        /// Get all CKAN tags with caching.
+        /// CKAN Model Resource: Tag Register
+        /// </summary>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns>A list of tags</returns>
+        public List<string> GetTags(CacheSettings settings)
+        {
             var request = new RestRequest();
             request.Resource = "rest/tag";
-            List<string> tags = Execute<List<string>>(request);
+            List<string> tags = Execute<List<string>>(request, settings);
             return tags;
         }
 
@@ -140,9 +177,21 @@ namespace CkanDotNet.Api
         /// <returns></returns>
         public List<string> GetPackageIdsByTag(string tag)
         {
+            return GetPackageIdsByTag(tag, null);
+        }
+
+        /// <summary>
+        /// Get a list of package ids by tag with caching.
+        /// CKAN Model Resource: Tag Entity
+        /// </summary>
+        /// <param name="settings">The cache settings.</param>
+        /// <param name="tag"></param>
+        /// <returns></returns>
+        public List<string> GetPackageIdsByTag(string tag, CacheSettings settings)
+        {
             var request = new RestRequest();
             request.Resource = String.Format("rest/tag/{0}", tag);
-            List<string> packageIds = Execute<List<string>>(request);
+            List<string> packageIds = Execute<List<string>>(request, settings);
             return packageIds;
         }
 
@@ -154,9 +203,21 @@ namespace CkanDotNet.Api
         /// <returns></returns>
         public List<Revision> GetPackageRevisions(string id)
         {
+            return GetPackageRevisions(id, null);
+        }
+
+        /// <summary>
+        /// Get a list of package revision by package id or name with caching.
+        /// CKAN Model Resource: Package’s Revisions Entity
+        /// </summary>
+        /// <param name="id">The package id or name.</param>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns></returns>
+        public List<Revision> GetPackageRevisions(string id, CacheSettings settings)
+        {
             var request = new RestRequest();
             request.Resource = String.Format("rest/package/{0}/revisions", id);
-            List<Revision> revisions = Execute<List<Revision>>(request);
+            List<Revision> revisions = Execute<List<Revision>>(request, settings);
             return revisions;
         }
 
@@ -167,9 +228,20 @@ namespace CkanDotNet.Api
         /// <returns>A list of revision ids.</returns>
         public List<string> GetRevisionIds()
         {
+            return GetRevisionIds(null);
+        }
+
+        /// <summary>
+        /// Get all CKAN revision ids with caching.
+        /// CKAN Model Resource: Revision Register
+        /// </summary>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns>A list of revision ids.</returns>
+        public List<string> GetRevisionIds(CacheSettings settings)
+        {
             var request = new RestRequest();
             request.Resource = "rest/revision";
-            List<string> revisionIds = Execute<List<string>>(request);
+            List<string> revisionIds = Execute<List<string>>(request, settings);
             return revisionIds;
         }
 
@@ -180,11 +252,22 @@ namespace CkanDotNet.Api
         /// <returns>A list of revision ids.</returns>
         public List<string> GetRevisionIds(DateTime since)
         {
+            return GetRevisionIds(since, null);
+        }
+
+        /// <summary>
+        /// Get all CKAN revision ids with caching.
+        /// CKAN Model Resource: Revision Register (with since_time)
+        /// </summary>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns>A list of revision ids.</returns>
+        public List<string> GetRevisionIds(DateTime since, CacheSettings settings)
+        {
             var request = new RestRequest();
             request.Resource = "rest/revision";
             request.AddParameter("since_time", since);
 
-            List<string> revisionIds = Execute<List<string>>(request);
+            List<string> revisionIds = Execute<List<string>>(request, settings);
             return revisionIds;
         }
 
@@ -192,13 +275,25 @@ namespace CkanDotNet.Api
         /// Get a revision by id.
         /// CKAN Model Resource: Revision Entity
         /// </summary>
-        /// <param name="tag"></param>
+        /// <param name="id">The revision id</param>
         /// <returns></returns>
         public Revision GetRevision(string id)
         {
+            return GetRevision(id, null);
+        }
+
+        /// <summary>
+        /// Get a revision by id with caching.
+        /// CKAN Model Resource: Revision Entity
+        /// </summary>
+        /// <param name="id">The revision id</param>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns></returns>
+        public Revision GetRevision(string id, CacheSettings settings)
+        {
             var request = new RestRequest();
             request.Resource = String.Format("rest/revision/{0}", id);
-            Revision revision = Execute<Revision>(request);
+            Revision revision = Execute<Revision>(request, settings);
             return revision;
         }
 
@@ -209,9 +304,20 @@ namespace CkanDotNet.Api
         /// <returns>A list of licenses.</returns>
         public List<License> GetLicenses()
         {
+            return GetLicenses(null);
+        }
+
+        /// <summary>
+        /// Get all CKAN licenses with caching.
+        /// CKAN Model Resource: License List
+        /// </summary>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns>A list of licenses.</returns>
+        public List<License> GetLicenses(CacheSettings settings)
+        {
             var request = new RestRequest();
             request.Resource = "rest/licenses";
-            List<License> licenses = Execute<List<License>>(request);
+            List<License> licenses = Execute<List<License>>(request, settings);
             return licenses;
         }
 
@@ -225,6 +331,18 @@ namespace CkanDotNet.Api
         /// <param name="parameters">Provides that parameters to use in the search.</param>
         /// <returns>Search results</returns>
         public PackageSearchResponse<T> SearchPackages<T>(PackageSearchParameters parameters)
+        {
+            return SearchPackages<T>(parameters, null);
+
+        }
+
+        /// <summary>
+        /// Search for packages in the CKAN repository with caching.
+        /// </summary>
+        /// <param name="parameters">Provides that parameters to use in the search.</param>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns>Search results</returns>
+        public PackageSearchResponse<T> SearchPackages<T>(PackageSearchParameters parameters, CacheSettings settings)
         {
             var request = new RestRequest();
             request.Resource = "search/package";
@@ -306,7 +424,7 @@ namespace CkanDotNet.Api
             }
 
             // Execute the request
-            PackageSearchResponse<T> response = Execute<PackageSearchResponse<T>>(request);
+            PackageSearchResponse<T> response = Execute<PackageSearchResponse<T>>(request, settings);
 
             // If no results, return an empty results object
             if (response == null)
@@ -324,6 +442,17 @@ namespace CkanDotNet.Api
         /// <returns>Search results</returns>
         public List<string> SearchRevisions(RevisionSearchParameters parameters)
         {
+            return SearchRevisions(parameters, null);
+        }
+
+        /// <summary>
+        /// Search for revisions in the CKAN repository with caching.
+        /// </summary>
+        /// <param name="parameters">Provides that parameters to use in the search.</param>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns>Search results</returns>
+        public List<string> SearchRevisions(RevisionSearchParameters parameters, CacheSettings settings)
+        {
             var request = new RestRequest();
             request.Resource = "search/revision";
 
@@ -340,7 +469,7 @@ namespace CkanDotNet.Api
             }
 
             // Execute the request
-            List<string> revisionIds = Execute<List<string>>(request);
+            List<string> revisionIds = Execute<List<string>>(request, settings);
 
             // If no results, return an empty results object
             if (revisionIds == null)
@@ -357,6 +486,17 @@ namespace CkanDotNet.Api
         /// <param name="parameters">Provides that parameters to use in the search.</param>
         /// <returns>Search results</returns>
         public ResourceSearchResponse<T> SearchResources<T>(ResourceSearchParameters parameters)
+        {
+            return SearchResources<T>(parameters, null);
+        }
+
+        /// <summary>
+        /// Search for resources in the CKAN repository with caching.
+        /// </summary>
+        /// <param name="parameters">Provides that parameters to use in the search.</param>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns>Search results</returns>
+        public ResourceSearchResponse<T> SearchResources<T>(ResourceSearchParameters parameters, CacheSettings settings)
         {
             var request = new RestRequest();
             request.Resource = "search/resource";
@@ -396,7 +536,7 @@ namespace CkanDotNet.Api
             }
 
             // Execute the request
-            ResourceSearchResponse<T> response = Execute<ResourceSearchResponse<T>>(request);
+            ResourceSearchResponse<T> response = Execute<ResourceSearchResponse<T>>(request, settings);
 
             // If no results, return an empty results object
             if (response == null)
@@ -411,6 +551,50 @@ namespace CkanDotNet.Api
         #endregion
 
         #region Private Methods
+
+        /// <summary>
+        /// Execute a request for the CKAN REST API with support for individual request caching.
+        /// </summary>
+        /// <typeparam name="T">The type that will be used for the JSON returned.</typeparam>
+        /// <param name="request">The RestRequest</param>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns></returns>
+        private T Execute<T>(RestRequest request, CacheSettings settings) where T : new()
+        {
+            var client = new RestClient();
+            client.BaseUrl = String.Format("http://{0}/api/{1}/", this.Repository, apiVersion);
+
+            var url = GetRequestUrl(client, request);
+
+            // Log the request that is being sent to CKAN
+            log.InfoFormat("Prepared request for CKAN repository: {0}", url);
+
+            // Get the response
+            RestResponse<T> response = null;
+
+            if (settings == null)
+            {
+                // If no caching call directly
+                response = client.Execute<T>(request);
+                log.DebugFormat("Response recieved: {0}", response.Content);
+            }
+            else
+            {
+                // Otherwise get from the cache or update if not cached
+                response = CacheHelper.Get<T>(url);
+                if (response != null)
+                {
+                    log.DebugFormat("Response retrieved from cache: {0}", response.Content);
+                }
+                else
+                {
+                    response = CacheHelper.Insert<T>(url, client.Execute<T>(request), settings);
+                    log.DebugFormat("Response cached: {0}", response.Content);
+                }
+            }
+
+            return response.Data;
+        }
 
         /// <summary>
         /// Gets the URL represtation of the request that will be submitted to CKAN

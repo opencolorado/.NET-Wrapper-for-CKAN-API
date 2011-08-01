@@ -58,7 +58,7 @@ namespace CkanDotNet.Web.Controllers
             searchParameters.Tags.Add("featured");
 
             // Collect the results
-            PackageSearchResponse<Package> results = CkanHelper.GetClient().SearchPackages<Package>(searchParameters);
+            PackageSearchResponse<Package> results = CkanHelper.GetClient().SearchPackages<Package>(searchParameters, new CacheSettings(SettingsHelper.GetFeaturedPackagesCacheDuration()));
             SettingsHelper.FilterTitles(results.Results);
 
             // Render the view

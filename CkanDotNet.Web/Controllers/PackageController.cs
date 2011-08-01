@@ -23,7 +23,7 @@ namespace CkanDotNet.Web.Controllers
         {
             log.DebugFormat("Controller action requested for package {0}", package);
 
-            Package packageFound = CkanHelper.GetClient().GetPackage(package);
+            Package packageFound = CkanHelper.GetClient().GetPackage(package, new CacheSettings(SettingsHelper.GetPackageCacheDuration()));
             SettingsHelper.FilterTitle(packageFound);
             SettingsHelper.FilterTags(packageFound.Tags);
 

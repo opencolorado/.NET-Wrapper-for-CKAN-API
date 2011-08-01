@@ -8,31 +8,27 @@
 <section class="container">
     <h2>License</h2>
     <div>
-    <a href="@license.Url">@license.Title</a>
 
-    @if (license.IsOkdCompliant)
+    @if (license != null) {
+        <a href="@license.Url">@license.Title</a>
+
+        if (license.IsOkdCompliant)
+        {
+            <!-- Open Data Link -->
+            <a href="http://opendefinition.org/">
+              <img class="openDataButton tooltip"
+              alt="This material is Open Data" border="0"
+              src="http://m.okfn.org/images/ok_buttons/od_80x15_blue.png"
+              title="This material is Open Data"/>
+            </a>
+            <!-- /Open Data Link -->
+        }
+    }
+    else
     {
-        <!-- Open Data Link -->
-        <a href="http://opendefinition.org/">
-          <img class="openDataButton"
-          alt="This material is Open Data" border="0"
-          src="http://m.okfn.org/images/ok_buttons/od_80x15_blue.png"
-          title="This material is Open Data"/>
-        </a>
-        <!-- /Open Data Link -->
-        
-        <script language="javascript">
-            $(function () {
-
-                // Create the tool tips
-                $(".openDataButton").tipTip({
-                    defaultPosition: "top",
-                    delay: 200
-                });
-
-            });
-</script>
+        <span>License not specified.</span>
     }
     </div>
+
 </section>
 

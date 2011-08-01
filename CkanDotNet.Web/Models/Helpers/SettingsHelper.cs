@@ -40,6 +40,56 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Get the duration to cache the full package list.
+        /// </summary>
+        /// <returns></returns>
+        public static TimeSpan GetAllPackagesCacheDuration()
+        {
+            string minutes = ConfigurationManager.AppSettings["AllPackagesCacheDuration"];
+            return TimeSpan.FromMinutes(int.Parse(minutes));
+        }
+
+        /// <summary>
+        /// Get the duration to cache search results.
+        /// </summary>
+        /// <returns></returns>
+        public static TimeSpan GetSearchResultsCacheDuration()
+        {
+            string minutes = ConfigurationManager.AppSettings["SearchResultsCacheDuration"];
+            return TimeSpan.FromMinutes(int.Parse(minutes));
+        }
+
+        /// <summary>
+        /// Get the duration to cache package details.
+        /// </summary>
+        /// <returns></returns>
+        public static TimeSpan GetPackageCacheDuration()
+        {
+            string minutes = ConfigurationManager.AppSettings["PackageCacheDuration"];
+            return TimeSpan.FromMinutes(int.Parse(minutes));
+        }
+
+        /// <summary>
+        /// Get the duration to cache featured packages.
+        /// </summary>
+        /// <returns></returns>
+        public static TimeSpan GetFeaturedPackagesCacheDuration()
+        {
+            string minutes = ConfigurationManager.AppSettings["FeaturedPackagesCacheDuration"];
+            return TimeSpan.FromMinutes(int.Parse(minutes));
+        }
+
+        /// <summary>
+        /// Get the duration to cache information about all licenses.
+        /// </summary>
+        /// <returns></returns>
+        public static TimeSpan GetAllLicensesCacheDuration()
+        {
+            string minutes = ConfigurationManager.AppSettings["AllLicensesCacheDuration"];
+            return TimeSpan.FromMinutes(int.Parse(minutes));
+        }
+
+        /// <summary>
         /// Get the list of groups that have been configured in the settings.
         /// </summary>
         /// <returns></returns>

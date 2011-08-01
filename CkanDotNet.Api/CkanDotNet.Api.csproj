@@ -40,6 +40,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,7 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CacheSettings.cs" />
     <Compile Include="CkanClient.cs" />
+    <Compile Include="Helper\CacheHelper.cs" />
     <Compile Include="Helper\DateHelper.cs" />
     <Compile Include="Model\ResourceSearchResponse.cs" />
     <Compile Include="Model\PackageSearchResponse.cs" />
@@ -64,6 +67,9 @@
     <Compile Include="Model\Resource.cs" />
     <Compile Include="Model\Revision.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
