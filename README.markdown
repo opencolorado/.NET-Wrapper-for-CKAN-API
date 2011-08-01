@@ -15,13 +15,13 @@ Also includes a C# wrapper for the CKAN API that can be used as a stand-alone cl
 
 ## Dependencies
 * Client:
-** jQuery 1.6.2
-** jQuery plugin - Star Rating widget (http://plugins.jquery.com/project/Star_Rating_widget)
-** jQuery plugin - tipTip (http://code.drewwilson.com/entry/tiptip-jquery-plugin)
-** jQuery plugin - watermark (http://jquery-watermark.googlecode.com/)
+ * jQuery 1.6.2
+ * jQuery plugin - Star Rating widget (http://plugins.jquery.com/project/Star_Rating_widget)
+ * jQuery plugin - tipTip (http://code.drewwilson.com/entry/tiptip-jquery-plugin)
+ * jQuery plugin - watermark (http://jquery-watermark.googlecode.com/)
 * Server
-**log4net (http://logging.apache.org/log4net/)
-**RestSharp (http://restsharp.org/)
+ *log4net (http://logging.apache.org/log4net/)
+ *RestSharp (http://restsharp.org/)
 
 ## Release Notes
 See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/wiki/Release-Notes
