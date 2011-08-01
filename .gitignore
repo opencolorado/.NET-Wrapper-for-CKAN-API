@@ -28,4 +28,5 @@ obj/
 [Tt]est[Rr]esult*
 *.csproj.user
 Download/
+Logs/
 
