@@ -45,4 +45,4 @@ Provides a .NET wrapper for the [CKAN API Version 2][1].
 * Provides the following support for the Search API
  * Package Search
 
-[1]: http://packages.python.org/ckan/api/version2.html
+[1]: http://docs.ckan.org/en/latest/api.html#api-details-versions-1-2
