@@ -23,11 +23,11 @@ namespace CkanDotNet.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //routes.MapRoute(
-            //    "Tag", // Route name
-            //    "tag/{tag}", // URL with parameters
-            //    new { controller = "Search", action = "Index", tag = UrlParameter.Optional } // Parameter defaults
-            //);
+            routes.MapRoute(
+                "Tag", // Route name
+                "tag/{tag}", // URL with parameters
+                new { controller = "Tag", action = "Index", tag = UrlParameter.Optional } // Parameter defaults
+            );
 
             routes.MapRoute(
                 "Package", // Route name
