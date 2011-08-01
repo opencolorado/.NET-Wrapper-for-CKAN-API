@@ -40,6 +40,16 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Get the list of groups that have been configured in the settings.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetSearchResultsPerPage()
+        {
+            string results = ConfigurationManager.AppSettings["SearchResultsPerPage"];
+            return int.Parse(results);
+        }
+
+        /// <summary>
         /// Get the duration to cache the full package list.
         /// </summary>
         /// <returns></returns>

@@ -58,7 +58,7 @@ namespace CkanDotNet.Web.Controllers
                 pageNumber = (int)page;
             }
 
-            Pager pager = new Pager(pageNumber, 10);
+            Pager pager = new Pager(pageNumber, SettingsHelper.GetSearchResultsPerPage());
             searchParameters.Offset = pager.RecordOffset;
             searchParameters.Limit = pager.RecordsPerPage;
 
