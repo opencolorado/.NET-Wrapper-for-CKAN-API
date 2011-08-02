@@ -62,48 +62,27 @@
         </section>
     }
     
-    @* Show the details *@
+    @* Show the details (package extras)*@
+    @if (Model.Extras.Count > 0)
+    {
     <section class="container">
-    <h2>Details</h2>
-    <table cellpadding="0" cellspacing="0">
-        <tbody>
-            <tr>
-                <th>
-                    Level of Government
-                </th>
-                <td>
-                    @Model.Extras.LevelOfGovernment
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Agency
-                </th>
-                <td>
-                    @Model.Extras.Agency
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Update Frequency
-                </th>
-                <td>
-                    @Model.Extras.UpdateFrequency
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Temporal Coverage
-                </th>
-                <td>
-                    @if (@Model.Extras.TemporalCoverageFrom != null)
-                    {
-                        @Model.Extras.TemporalCoverageFrom @:to @Model.Extras.TemporalCoverageTo
-                    }
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
-
+        <h2>Details</h2>
+        <table cellpadding="0" cellspacing="0">
+            <tbody>
+                @foreach (var key in Model.Extras.Keys)
+                {
+                    <tr>
+                    <th>
+                        @key
+                    </th>
+                    <td>
+                        @Model.Extras[key]
+                    </td>
+                </tr>
+                }
+               </tbody>
+        </table>
+    </section>
+    }
+    
 </div>

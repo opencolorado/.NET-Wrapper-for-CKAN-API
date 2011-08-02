@@ -26,7 +26,7 @@ namespace CkanDotNet.Api.Model
         public string License { get; set; }
         public List<string> Tags { get; set; }
         public List<string> Groups { get; set; }
-        public PackageExtras Extras { get; set; }
+        public Dictionary<string, string> Extras { get; set; }
         public double? RatingsAverage { get; set; }
         public int RatingsCount { get; set; }
         public List<Resource> Resources { get; set; }
