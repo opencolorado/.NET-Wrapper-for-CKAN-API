@@ -65,24 +65,27 @@
     @* Show the details (package extras)*@
     @if (Model.Extras.Count > 0)
     {
-    <section class="container">
-        <h2>Details</h2>
-        <table cellpadding="0" cellspacing="0">
-            <tbody>
-                @foreach (var key in Model.Extras.Keys)
-                {
-                    <tr>
-                    <th>
-                        @key
-                    </th>
-                    <td>
-                        @Model.Extras[key]
-                    </td>
-                </tr>
-                }
-               </tbody>
-        </table>
-    </section>
+        <section class="container">
+            <h2>Details</h2>
+            <table cellpadding="0" cellspacing="0">
+                <tbody>
+                    @foreach (var key in Model.Extras.Keys)
+                    {
+                        if (!String.IsNullOrEmpty(Model.Extras[key])) 
+                        {
+                        <tr>
+                            <th>
+                                @SettingsHelper.GetPackageExtraFieldLabel(key)
+                            </th>
+                            <td>
+                                @Model.Extras[key]
+                            </td>
+                        </tr>
+                        }
+                    }
+                   </tbody>
+            </table>
+        </section>
     }
     
 </div>

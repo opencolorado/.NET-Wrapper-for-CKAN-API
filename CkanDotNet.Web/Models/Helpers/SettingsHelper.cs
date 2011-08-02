@@ -50,6 +50,21 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Get the label for a package 'extra' field.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPackageExtraFieldLabel(string field)
+        {
+            string label = ConfigurationManager.AppSettings[String.Format("PackageExtra.{0}", field)];
+            if (String.IsNullOrEmpty(label))
+            {
+                label = field;
+            }
+
+            return label;
+        }
+
+        /// <summary>
         /// Get the duration to cache the full package list.
         /// </summary>
         /// <returns></returns>
