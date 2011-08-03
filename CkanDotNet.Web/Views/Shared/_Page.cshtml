@@ -1,0 +1,41 @@
+@using System.Configuration
+@using CkanDotNet.Web.Models
+@{
+    var theme = ConfigurationManager.AppSettings["Theme"];
+} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery.watermark.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.14.custom.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/stars/jquery.ui.stars.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/tiptip/jquery.tipTip.min.js")"></script>
+
+    <link href="@Url.Content("~/Content/Styles.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("~/Scripts/stars/jquery.ui.stars.min.css")" rel="stylesheet" type="text/css"/>
+    <link href="@Url.Content("~/Scripts/tiptip/tipTip.css")" rel="stylesheet" type="text/css"/>
+
+    <!-- Theme resources -->
+    @RenderPage("~/Views/Theme/" + @theme + "/_Head.cshtml")
+
+    <!-- Support HTML5 in older IE browsers
+    <!--[if lt IE 9]>
+     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Enable tipTip tooltips -->
+    <script language="javascript">
+        $(function () {
+            $(".tooltip").tipTip({
+                defaultPosition: "top",
+                delay: 200
+            });
+        });
+    </script>
+</head>
+
+@RenderBody()
+           
+</html>

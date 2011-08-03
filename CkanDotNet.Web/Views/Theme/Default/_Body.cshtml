@@ -1,0 +1,21 @@
+﻿@using System.Configuration
+@using CkanDotNet.Web.Models
+@{
+    Layout = "~/Views/Shared/_Page.cshtml";
+    var theme = ConfigurationManager.AppSettings["Theme"];
+} 
+<body>
+<div id="page">
+    <header id="header">Header</header>
+
+    <div id="main">
+       
+        @Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")  
+                               
+        @RenderBody()
+
+    </div>
+
+    <footer id="footer">Footer</footer>
+</div>
+</body>

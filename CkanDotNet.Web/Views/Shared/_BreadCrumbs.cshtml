@@ -1,16 +1,26 @@
 ﻿@using CkanDotNet.Web.Models
-@model BreadCrumbs
-
 @{
     bool filterLabelDisplayed = false;
+    BreadCrumbs breadCrumbs = null;
+    
+    if (ViewData.ContainsKey("BreadCrumbs"))
+    {
+        breadCrumbs = (BreadCrumbs)ViewData["BreadCrumbs"];  
+    }
+
 }
-<div class="breadcrumbs">      
-@for (int i = 0; i < Model.Count; i++)
+
+@if (breadCrumbs != null)
 {
-    var breadCrumb = Model[i];
+    
+<div class="breadcrumbs">      
+@for (int i = 0; i < breadCrumbs.Count; i++)
+{
+    var breadCrumb = breadCrumbs[i];
     
     <span class="breadcrumb">
-        @if (breadCrumb.Filter) {
+        @if (breadCrumb.Filter)
+        {
 
             if (!filterLabelDisplayed)
             {
@@ -26,7 +36,8 @@
         }
         else if (breadCrumb.IsLink)
         {
-            if (i > 0) { 
+            if (i > 0)
+            { 
                 @: > 
             }
                 
@@ -34,7 +45,8 @@
         }
         else
         {
-            if (i > 0) { 
+            if (i > 0)
+            { 
                 @: > 
             }
             <span>@breadCrumb.Label</span>
@@ -42,4 +54,6 @@
 
     </span>
 }
-</div> 
+</div>
+    
+} 
