@@ -22,7 +22,7 @@
             <div class="formats">
             @foreach (var resource in result.Resources)
             {
-                <span class="format" title="@resource.Description">@resource.Format</span>
+                <span class="format tooltip" title="@resource.Description">@resource.Format</span>
             }
             </div>
         </div>
@@ -30,15 +30,5 @@
 
 </div>
 </section>
-    
-<script language="javascript">
-        $(function () {
-            $(".format").tipTip({
-                defaultPosition: "top",
-                delay: 200
-            });
-        });
-</script>
-
-    }
+}
 
