@@ -1,6 +1,2 @@
-﻿@using System.Configuration
-@{
-    var theme = ConfigurationManager.AppSettings["Theme"];
-} 
-
-<link href="@Url.Content("~/Content/Theme/" + @theme + "/Styles.css")" rel="stylesheet" type="text/css" />
+﻿@using CkanDotNet.Web.Models.Helpers
+<link href="@Url.Content("~/Content/Theme/" + SettingsHelper.GetTheme() + "/Styles.css")" rel="stylesheet" type="text/css" />

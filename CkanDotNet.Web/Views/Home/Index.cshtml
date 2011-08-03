@@ -1,15 +1,11 @@
-﻿@using System.Configuration
+﻿@using CkanDotNet.Web.Models.Helpers
 @using CkanDotNet.Web.Models
 @{
-    var theme = ConfigurationManager.AppSettings["Theme"];
-} 
-
-@{
+    // TODO: Add to config
     ViewBag.Title = "Open Data Catalog";
 }
 
-
-@RenderPage("~/Views/Theme/" + @theme + "/_HomeHeader.cshtml")
+@RenderPage("~/Views/Theme/" + SettingsHelper.GetTheme() + "/_HomeHeader.cshtml")
 
 <section id="body">
     <section id="content">

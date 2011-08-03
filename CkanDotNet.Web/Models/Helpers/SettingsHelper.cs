@@ -20,6 +20,15 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Gets the current theme name
+        /// </summary>
+        /// <returns></returns>
+        public static string GetTheme()
+        {
+            return ConfigurationManager.AppSettings["Theme"];
+        }
+
+        /// <summary>
         /// Get the list of groups that have been configured in the settings.
         /// </summary>
         /// <returns></returns>

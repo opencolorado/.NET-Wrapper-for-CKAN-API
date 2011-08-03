@@ -1,8 +1,5 @@
-@using System.Configuration
+@using CkanDotNet.Web.Models.Helpers
 @using CkanDotNet.Web.Models
-@{
-    var theme = ConfigurationManager.AppSettings["Theme"];
-} 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +15,7 @@
     <link href="@Url.Content("~/Scripts/tiptip/tipTip.css")" rel="stylesheet" type="text/css"/>
 
     <!-- Theme resources -->
-    @RenderPage("~/Views/Theme/" + @theme + "/_Head.cshtml")
+    @RenderPage("~/Views/Theme/" + SettingsHelper.GetTheme() + "/_Head.cshtml")
 
     <!-- Support HTML5 in older IE browsers
     <!--[if lt IE 9]>
