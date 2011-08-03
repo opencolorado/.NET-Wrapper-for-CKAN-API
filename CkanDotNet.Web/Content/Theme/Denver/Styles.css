@@ -1,5 +1,5 @@
 ﻿/*=============================================*/
-/* Theme: Default
+/* Theme: Denver
 /*=============================================*/
 
 /* Page styles */
@@ -7,7 +7,7 @@ body
 {
     font-family:  Helvetica,Verdana,Arial,Sans;
     font-size: 10pt;
-    background-color: #eeeeee;
+    background-color: #ffffff;
 }
 
 a {
@@ -20,31 +20,43 @@ a:active, a:hover
     text-decoration: underline;
 }
 
-h1, h2, h3, h4, h5, h6 
+/* Page layout */
+#TM
 {
-    font-weight: bold;
-    line-height: 120%;
-    margin: 5px 0;
-    position: relative;
+    padding-top: 10px !important;
 }
 
-h1
+#body
 {
-    font-size: 22pt;
-    color: #444444;
+   float: left;
+   width: 620px; /* Width of body in pixels */
 }
 
-h2
+#sidebar
 {
-    font-size: 22pt;
-    color: #444444;
+    float: right;
+    width: 280px; /*Width of right column in pixels*/
 }
 
 /* Breadcrumbs */
 .breadcrumbs 
-{
-    font-size: 12px;
-    color: #444444;
+{   
+    color: #70747F;
+    font-family: Arial,Helvetica,Verdana,Sans;
+    font-size: 85%;
+    font-weight: normal;
+    margin-bottom: 2px;
+    padding: 0;
+    position: relative;
+    vertical-align: top;
+}
+
+.breadcrumb 
+{   
+    color: #609A2B;
+    font-family: Arial,Helvetica,Verdana,Sans;
+    font-weight: normal;
+    text-decoration: none;
 }
 
 .breadcrumb-filter
@@ -81,7 +93,11 @@ h2
     color: #ffffff;
     font-weight: normal;
     font-size: 14px;
+}
 
+.container-title-link:visited
+{
+    color: #ffffff;
 }
 
 .container-content
@@ -311,33 +327,4 @@ h2
 .tag a
 {    
     color: #ffffff;
-}
-
-/* Theme specific styles */
-#page 
-{
-    position: relative;
-    background: none repeat scroll 0 0 #FFFFFF;
-    box-shadow: 0 5px 20px #888888;
-    margin: 0 auto 50px;
-    width: 940px;
-    border: 1px solid #cccccc;
-}
-
-#header
-{
-    line-height: 60px;
-    border-bottom:1px dashed #999999;
-    color:#cccccc;
-    text-align: center;
-    font-size: 30px;
-}
-
-#footer
-{
-    line-height: 60px;
-    border-top:1px dashed #999999;
-    color:#cccccc;
-    text-align: center;
-    font-size: 30px;
 }

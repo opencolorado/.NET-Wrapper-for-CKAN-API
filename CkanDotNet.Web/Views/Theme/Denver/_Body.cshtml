@@ -1,0 +1,146 @@
+﻿@using CkanDotNet.Web.Models
+@{
+    Layout = "~/Views/Shared/_Page.cshtml";
+}
+<body bottommargin="0" leftmargin="0" topmargin="0" rightmargin="0" marginwidth="0"
+    marginheight="0">
+    <div id="BackgroundApps">
+        <div id="wrapieApps">
+            <div id="AP">
+                <div id="BgColor">
+                    <div id="GreyBarCurves" class="PageWidth">
+                        <!-- Start Header Banner Area -->
+                        <div id="HeaderBannerApps" class="FullPageWidth">
+                            <div id="HeaderBannerBox">
+                                <div id="HeaderBannerBoxIn">
+                                    <div class="left">
+                                        <img src="http://www.denvergov.org/portals/0/skins/ForSiteAdministrators/images/dummy.gif"
+                                            alt="headerL" border="0" /></div>
+                                    <div class="right">
+                                        <img src="http://www.denvergov.org/portals/0/skins/ForSiteAdministrators/images/dummy.gif"
+                                            alt="headerR" border="0" /></div>
+                                    <div class="leftEffect">
+                                        <img src="http://www.denvergov.org/portals/0/skins/ForSiteAdministrators/images/dummy.gif"
+                                            alt="Left effects" border="0" /></div>
+                                    <div class="rightEffect">
+                                        <img src="http://www.denvergov.org/portals/0/skins/ForSiteAdministrators/images/dummy.gif"
+                                            alt="Right effects" border="0" /></div>
+                                    <div id="ctl00_ctl00_divPortalName" class="PortalNameApps">
+                                        Denver Open Data Catalog</div>
+                                    <div id="HeaderBannerContent">
+                                    </div>
+                                </div>
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Header Banner Area -->
+                        <div id="TopRow">
+                            <div id="NavAux">
+                                <div id="Logo">
+                                    <a href="http://www.denvergov.org">
+                                        <img src="http://www.denvergov.org/images/spacer.gif" width="200" height="87" alt="DenverGov Homepage"
+                                            title="DenverGov Homepage" /></a></div>
+                                <!--Start Utility Bar-->
+                                <div id="utilitybar" class="utilitybar">
+                                    <div>
+                                        <span class="AtoZ"><a href="http://www.denvergov.org/AtoZDepartmentsandServices/tabid/435568/Default.aspx">
+                                            A-Z Departments and Services</a></span> <span class="Subscribe"><a href="http://www.denvergov.org/subscriptions">
+                                                Sign Up</a></span>
+                                    </div>
+                                    <div class="menu2" id="menu2">
+                                        <div class="mleft">
+                                            <ul>
+                                                <li><span class="greyout">Translate</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <span class="TextSize">Text Size:&nbsp;</span><span class="txtsm"><a href="javascript:void(0);"
+                                        onclick="javascript:body.style.fontSize='83%'" title="Small Text">A</a></span><span
+                                            class="txtmd"><a href="javascript:void(0);" onclick="javascript:body.style.fontSize='85%'"
+                                                title="Medium Text">A</a></span> <span class="txtlg"><a href="javascript:void(0);"
+                                                    onclick="javascript:body.style.fontSize='95%'" title="Large Text">A</a></span></div>
+                                <!-- End Utility Bar -->
+                                <!-- Start DropdownNav -->
+                                <div id="menu">
+                                    <div id="table">
+                                        <ul class="levelone">
+                                            <li class="levelone-li"><a class="levelone-a drop" href="http://www.denvergov.org/livingindenver">
+                                                <b>Living in Denver</b></a> </li>
+                                            <li class="levelone-li"><a class="levelone-a drop" href="http://www.denvergov.org/doingbusiness">
+                                                <b>Doing Business in Denver</b></a></li>
+                                            <li class="levelone-li"><a class="levelone-a drop" href="http://www.denvergov.org/citygovernment">
+                                                <b>City Government</b></a></li>
+                                            <li class="levelone-li"><a class="levelone-a drop" href="http://www.denvergov.org/onlineservices">
+                                                <b>Online Services</b></a></li>
+                                            <li class="levelone-li"><a class="levelone-a drop" href="http://www.denvergov.org/Denver311">
+                                                <b>311 Help</b></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- End DropdownNav -->
+                            </div>
+                        </div>
+                        <!-- Start Middle Row -->
+                        <div id="MiddleRow">
+                            <div id="MiddleRowSpacer">
+                                <img src="http://www.denvergov.org/portals/0/skins/ForSiteAdministrators/images/dummy.gif"
+                                    alt="spacer" border="0" /></div>
+                        </div>
+                        <!-- Start Middle White Bg Content Area -->
+                        <div id="MiddleRowClear">
+                        </div>
+                        <div id="MiddleRowWhiteBGFull">
+                            <div id="TL">
+                                <img src="http://www.denvergov.org/portals/0/skins/ForSiteAdministrators/images/Middle.bgTL.apps.jpg"
+                                    alt="TopL" border="0" /></div>
+                            <div id="TM">
+                                <table width="100%" border="0" cellpadding="0" cellspacing="0" class="content">
+                                    <tr>
+                                        <td width="100%" valign="top">
+                                            <!--Application Content Here-->
+                                            @Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")
+                                            @RenderBody()
+                                            <!--End Application Content Here-->
+                                        </td>
+                                        <td valign="top" width="100%">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="TR">
+                                <img src="http://www.denvergov.org/portals/0/skins/ForSiteAdministrators/images/Middle.bgTR.apps.jpg"
+                                    alt="TopR" border="0" /></div>
+                        </div>
+                        <div id="BottomRowWhiteBGT">
+                            <div id="BL">
+                                <img src="http://www.denvergov.org/portals/0/skins/ForSiteAdministrators/images/Middle.bgBL.C.jpg"
+                                    alt="BottomL" border="0" /></div>
+                            <div id="BM">
+                                <img src="http://www.denvergov.org/portals/0/skins/ForSiteAdministrators/images/dummy.gif"
+                                    alt="BottomM" border="0" />
+                            </div>
+                            <div id="BR">
+                                <img src="http://www.denvergov.org/portals/0/skins/ForSiteAdministrators/images/Middle.bgBR.C.jpg"
+                                    alt="BottomR" border="0" /></div>
+                        </div>
+                        <div id="FooterColor">
+                            <div id="FooterPadding">
+                                <span class="FOOTER_objects">Copyright&nbsp;&copy;&nbsp;2011 City of Denver | <a
+                                    href="http://www.denvergov.org/privacy">Privacy Statement</a> | <a href="http://www.denvergov.org/terms">
+                                        Terms of Use</a> | <a href="http://www.denvergov.org/atoz">A-Z Departments and Services</a>
+                                    | <a href="http://www.denvergov.org/subscriptions">Sign Up</a> | <a href="http://www.denvergov.org/jobs">
+                                        City Jobs</a> | <a href="http://www.denvergov.org/Denver311">Contact Us</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

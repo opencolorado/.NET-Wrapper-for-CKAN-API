@@ -24,7 +24,7 @@
     }
     
 </div>
-<span class="ratingResponse"></span>
+<span class="rating-response"></span>
 }
 
 <script language="javascript">
@@ -38,7 +38,7 @@ $("#@(ratingId)").stars({
         var url = "http://@SettingsHelper.GetRepository()/package/rate/@Model.Name?rating=" + value;
         $("#@(ratingId)_iframe").get(0).src = url;
 
-        $(".ratingResponse").text("Thanks for your rating!");
+        $(".rating-response").text("Thanks for your rating!");
     }
 });
 </script>

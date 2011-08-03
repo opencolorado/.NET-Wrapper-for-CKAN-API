@@ -10,7 +10,7 @@
 <div class="package">
 <h1>@Model.Title</h1>
 
-    <div class="subtitle">
+    <div class="package-subtitle">
 
         <div class="tagline">
             @{
@@ -29,7 +29,7 @@
 
         @if (SettingsHelper.GetPackageRssFeedEnabled())
         {
-        <a class="subscribe tooltip" title="Subscribe" href="http://@SettingsHelper.GetRepository()/package/history/@Model.Name?format=atom&days=@SettingsHelper.GetPackageRssFeedDays()"> </a>
+        <a class="package-subscribe tooltip" title="Subscribe" href="http://@SettingsHelper.GetRepository()/package/history/@Model.Name?format=atom&days=@SettingsHelper.GetPackageRssFeedDays()"> </a>
         }
         
     </div>
@@ -60,7 +60,7 @@
     
     @Html.Partial("~/Views/Shared/Package/_Tags.cshtml")
 
-    @Html.Partial("~/Views/Shared/Package/_License.cshtml")
+    @Html.Partial("~/Views/Theme/" + SettingsHelper.GetTheme() + "/_License.cshtml")
 
-    @Html.Partial("~/Views/Shared/_About.cshtml")
+    @Html.Partial("~/Views/Theme/" + SettingsHelper.GetTheme() + "/_About.cshtml")
 </aside>

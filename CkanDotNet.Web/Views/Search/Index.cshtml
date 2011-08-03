@@ -1,4 +1,5 @@
-﻿@{
+﻿@using CkanDotNet.Web.Models.Helpers
+@{
     ViewBag.Title = "Open Data Catalog";
 }
 
@@ -13,5 +14,5 @@
 
     @Html.Partial("~/Views/Shared/Search/_SearchResultsFilterByTag.cshtml")
 
-    @Html.Partial("~/Views/Shared/_About.cshtml")
+    @Html.Partial("~/Views/Theme/" + SettingsHelper.GetTheme() + "/_About.cshtml")
 </aside>

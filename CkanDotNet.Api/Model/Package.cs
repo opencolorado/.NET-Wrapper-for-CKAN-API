@@ -70,8 +70,16 @@ namespace CkanDotNet.Api.Model
             // Abbreviate the notes
             if (summary.Length > length)
             {
-                // Find the nearest word and crop the string there.
-                summary = summary.Substring(0, summary.IndexOf(" ", length-5)) + "...";
+                // Get the nearest space
+                int spaceIndex = summary.IndexOf(" ", length);
+
+                if (spaceIndex > 0) {
+                    summary = summary.Substring(0, spaceIndex) + "...";
+                }
+                else 
+                {
+                    summary = summary.Substring(0, length) + "...";
+                }
             }
             return summary;
         }

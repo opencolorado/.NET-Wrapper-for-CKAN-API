@@ -10,8 +10,8 @@
 }
 <form id="search" action="/search" method="get">
 <div class="search">
-<input name="q" type="text" tabindex="1" class="searchText" value="@query" />
-<input type="submit" class="searchSubmit" value="Search" />
+<input name="q" type="text" tabindex="1" class="search-input" value="@query" />
+<input type="submit" class="search-submit" value="Search" />
 @if (!String.IsNullOrEmpty(query))
 {
     @Html.ActionLink("Clear", "Index", "Search");
@@ -21,5 +21,5 @@
 </form>
 
 <script language="javascript">
-    $('.searchText').watermark('Search...');
+    $('.search-input').watermark('Search...');
 </script>
