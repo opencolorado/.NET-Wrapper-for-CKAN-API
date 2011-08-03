@@ -34,9 +34,19 @@
         
     </div>
 
+    @if (!String.IsNullOrEmpty(Model.NotesRendered) && !String.IsNullOrEmpty(Model.Notes))
+    {   
     <div class="notes">
-        <p>@Model.Notes</p>
+        @if (!String.IsNullOrEmpty(Model.NotesRendered))
+        {
+            <p>@Html.Raw(Model.NotesRendered)</p>
+        }
+        else if (!String.IsNullOrEmpty(Model.Notes))
+        {
+            <p>@Html.Raw(Model.Notes)</p>
+        }
     </div>
+    }
 </div>
 
 <section id="body">

@@ -27,17 +27,31 @@
                 <tr>
                
                     <td>
-                        @resource.Description
-                    </td>
-
-                    <td>
-                        @if (!formatTypes.ContainsKey(resource.Format))
-                        {
-                            <span class="format">@resource.Format</span>
+                        @if (!String.IsNullOrEmpty(resource.Description))
+                        {   
+                          @resource.Description
                         }
                         else
                         {
-                            <span class="tooltip format" title="@formatTypes[resource.Format].Title">@resource.Format</span>
+                           @("None")
+                        }
+                    </td>
+
+                    <td>
+                        @if (!String.IsNullOrEmpty(resource.Format))
+                        {
+                            if (!formatTypes.ContainsKey(resource.Format))
+                            {
+                                <span class="format">@resource.Format</span>
+                            }
+                            else
+                            {
+                                <span class="tooltip format" title="@formatTypes[resource.Format].Title">@resource.Format</span>
+                            }
+                        }
+                        else
+                        {
+                            @("Unspecified")
                         }
                     
                     </td>
@@ -71,7 +85,7 @@
                 <tbody>
                     @foreach (var key in Model.Extras.Keys)
                     {
-                        if (!String.IsNullOrEmpty(Model.Extras[key])) 
+                        if (!String.IsNullOrEmpty(Model.Extras[key]))
                         {
                         <tr>
                             <th>

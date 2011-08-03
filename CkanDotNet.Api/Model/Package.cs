@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CkanDotNet.Api.Helper;
+using System.Text.RegularExpressions;
 
 namespace CkanDotNet.Api.Model
 {
@@ -52,12 +53,25 @@ namespace CkanDotNet.Api.Model
             }
         }
 
+        /// <summary>
+        /// Get the abbreviated notes truncated to a specific size (nearest word).  All markup is 
+        /// removed.
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public string GetAbbreviatedNotes(int length)
         {
-            string summary = Notes;
+            // Get the rendered notes
+            string summary = NotesRendered;
+
+            // Strip the HTML
+            summary = Regex.Replace(summary, @"<(.|\n)*?>", "");
+
+            // Abbreviate the notes
             if (summary.Length > length)
             {
-                summary = summary.Substring(0, length) + "...";
+                // Find the nearest word and crop the string there.
+                summary = summary.Substring(0, summary.IndexOf(" ", length-5)) + "...";
             }
             return summary;
         }

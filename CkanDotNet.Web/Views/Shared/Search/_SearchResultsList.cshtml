@@ -16,14 +16,27 @@
                  @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
                  </div>
 
-                 <div class="formats"><span class="label">Available formats:</span>
-                    @foreach (var resource in result.Resources)
-                    {
-                        <span class="format" title="@resource.Description">@resource.Format</span>
-                    }
-                </div>
-
-                <div class="notes">@result.GetAbbreviatedNotes(300)
+                 @if (result.Resources.Count > 0)
+                 {
+                     <div class="formats"><span class="label">Available formats:</span>
+                        @foreach (var resource in result.Resources)
+                        {
+                            <span class="format" title="@resource.Description">
+                            @if (!String.IsNullOrEmpty(resource.Format))
+                            {
+                                
+                                @resource.Format
+                            }
+                            else
+                            {
+                                @("unspecified")
+                            }
+                            </span>
+                        }
+                    </div>
+                 }
+                 
+                <div class="notes">@Html.Raw(result.GetAbbreviatedNotes(300))
                     <!--<div class="tags">Tags:
                     @foreach (var tag in result.Tags)
                     {
