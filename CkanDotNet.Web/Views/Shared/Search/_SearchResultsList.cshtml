@@ -1,27 +1,24 @@
 ﻿@using CkanDotNet.Api.Model
 @using CkanDotNet.Web.Models
 @model PackageSearchResultsModel
-    
 <div class="results">
-
-         @{ var odd = true; }
-         @foreach (var result in Model.SearchResults.Results)
-         {
-            <div class="result @(odd ? "odd" : "even")">
-                <div class="title">@Html.ActionLink(@result.Title, "Index", "Package", new { package = @result.Name }, new { @class = "package" })</div>
-                
-                 <div class="date">Last updated @result.MetadataModifiedAsDate.ToShortDateString()</div>
-
-                 <div class="resultRating">
-                 @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
-                 </div>
-
-                 @if (result.Resources.Count > 0)
-                 {
-                     <div class="formats"><span class="label">Available formats:</span>
-                        @foreach (var resource in result.Resources)
-                        {
-                            <span class="format tooltip" title="@resource.Description">
+    @{ var odd = true; }
+    @foreach (var result in Model.SearchResults.Results)
+    {
+        <div class="result @(odd ? "odd" : "even")">
+            <div class="title">@Html.ActionLink(@result.Title, "Index", "Package", new { package = @result.Name }, new { @class = "package" })</div>
+            <div class="date">
+                Last updated @result.MetadataModifiedAsDate.ToShortDateString()</div>
+            <div class="resultRating">
+                @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
+            </div>
+            @if (result.Resources.Count > 0)
+            {
+                <div class="formats">
+                    <span class="label">Available formats:</span>
+                    @foreach (var resource in result.Resources)
+                    {
+                        <span class="format tooltip" title="@resource.Description">
                             @if (!String.IsNullOrEmpty(resource.Format))
                             {
                                 
@@ -31,26 +28,21 @@
                             {
                                 @("unspecified")
                             }
-                            </span>
-                        }
-                    </div>
-                 }
-                 
-                <div class="notes">@Html.Raw(result.GetAbbreviatedNotes(300))
-                    <!--<div class="tags">Tags:
+                        </span>
+                    }
+                </div>
+            }
+            <div class="notes">@Html.Raw(result.GetAbbreviatedNotes(300))
+                <!--<div class="tags">Tags:
                     @foreach (var tag in result.Tags)
                     {
                         <span class="tag">@Html.ActionLink((string)@tag, "Tag", "Search", new { tag = @tag }, null)</span>
                     }
                     </div>-->
-                </div>
-
-                
             </div>
-            odd = !odd;
-         }
-         </tbody>
-    </table>
+        </div>
+        odd = !odd;
+    }
 </div>
 
 <script language="javascript">
@@ -62,6 +54,6 @@
         $(".result").click(function (item) {
             window.location = $(this).find("a.package").attr('href');
         });
-        
+
     });
 </script>

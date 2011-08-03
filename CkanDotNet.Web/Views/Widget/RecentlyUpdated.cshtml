@@ -2,6 +2,6 @@
 @model PackageSearchResultsModel
        
 <section class="container">
-<h2>Recently Updated | @Html.ActionLink("View All Datasets", "Index", "Search", null, null)</h2>
+<h2 class="container-title">Recently Updated | @Html.ActionLink("View All Datasets", "Index", "Search", null, new { @class = "container-title-link" } )</h2>
 @Html.Partial("~/Views/Shared/Search/_SearchResultsList.cshtml",Model)
 </section>

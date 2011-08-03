@@ -20,7 +20,6 @@ namespace CkanDotNet.Web.Controllers
         /// <summary>
         /// Provides a view of the top 10 tags in the repository group
         /// </summary>
-        [OutputCache(Duration = 300)]
         public ActionResult PopularTags ()
         {
             log.DebugFormat("Controller action requested");
@@ -46,7 +45,6 @@ namespace CkanDotNet.Web.Controllers
         /// Provides a view of features packages in the repository group.  Featured
         /// packages are those that are tagged with "featured".
         /// </summary>
-        [OutputCache(Duration = 300)]
         public ActionResult FeaturedPackages()
         {
             log.DebugFormat("Controller action requested");
@@ -69,7 +67,6 @@ namespace CkanDotNet.Web.Controllers
         /// Provides a view of features packages that have recently bee updated in the repository group.
         /// Return the three most recently updated packages in the group.
         /// </summary>
-        [OutputCache(Duration = 300)]
         public ActionResult RecentlyUpdated()
         {
             log.DebugFormat("Controller action requested");

@@ -11,7 +11,7 @@
     RouteHelper.UpdateRoute(routeValues, "page", "");
 }
 <section class="container">
-    <h2>Sort By</h2>
+    <h2 class="container-title">Sort By</h2>
     <ul>
         <li>@Html.ActionLink("Relevancy", "Index", "Search", RouteHelper.UpdateRoute(routeValues,"order_by","rank"),null)</li>
         <li>@Html.ActionLink("Name", "Index", "Search", RouteHelper.UpdateRoute(routeValues, "order_by", "name"), null)</li>

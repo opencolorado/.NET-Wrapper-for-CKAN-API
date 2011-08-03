@@ -1,3 +1,4 @@
-﻿@{
-    Layout = "~/Views/Theme/Default/_Body.cshtml";
+﻿@using CkanDotNet.Web.Models.Helpers
+@{
+    Layout = "~/Views/Theme/" + SettingsHelper.GetTheme() + "/_Body.cshtml";
 }

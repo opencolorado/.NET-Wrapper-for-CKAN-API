@@ -6,8 +6,8 @@
     var license = CkanHelper.GetLicenseById(Model.LicenseId);
 }
 <section class="container">
-    <h2>License</h2>
-    <div>
+    <h2 class="container-title">License</h2>
+    <div class="container-content">
 
     @if (license != null) {
         <a href="@license.Url">@license.Title</a>

@@ -42,7 +42,7 @@ header,nav,article,footer,section,aside,figure,figcaption
     text-decoration: none;
 }
 
-/* Sections */
+/* Containers*/
 .container
 {
     border: none;
@@ -52,7 +52,7 @@ header,nav,article,footer,section,aside,figure,figcaption
     margin-bottom: 10px;
 }
 
-.container h2 
+.container-title 
 {
     background: none repeat scroll 0 0 #666666;
     color: #FFFFFF;
@@ -69,21 +69,14 @@ header,nav,article,footer,section,aside,figure,figcaption
     border-radius: 5px 5px 0px 0px;
 }
 
-.container h2 a
+.container-title-link
 {
     color: #ffffff;
     font-weight: normal;
     font-size: 12px;
 }
 
-.container > p
-{
-    padding: 5px;
-    margin: 3px 2px;
-    position: relative;
-}
-
-.container > div
+.container-content
 {
     padding: 5px;
     margin: 3px 2px;

@@ -2,8 +2,8 @@
 @model Package
 
 <section class="container">
-    <h2>Rate this Package</h2>
-    <div>
+    <h2 class="container-title">Rate this Package</h2>
+    <div class="container-content">
        @Html.Partial("~/Views/Shared/_Rating.cshtml", Model, new ViewDataDictionary { { "editable", true } })
     </div>
 </section>

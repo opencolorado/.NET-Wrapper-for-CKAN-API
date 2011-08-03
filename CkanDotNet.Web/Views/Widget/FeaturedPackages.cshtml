@@ -4,7 +4,7 @@
 @if (Model.Results.Count >= 3)
 {  
 <section class="container featured">
-<h2>Featured Datasets | @Html.ActionLink("View All Datasets", "Index", "Search", null, null)</h2>
+<h2 class="container-title">Featured Datasets | @Html.ActionLink("View All Datasets", "Index", "Search", null, new { @class = "container-title-link" })</h2>
 <div>
     @foreach (var result in Model.Results)
     {

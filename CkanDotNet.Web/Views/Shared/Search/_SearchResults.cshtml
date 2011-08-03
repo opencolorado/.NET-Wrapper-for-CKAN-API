@@ -8,7 +8,7 @@
 } 
 
 <section class="container">
-    <h2>Results 
+    <h2 class="container-title">Results 
     @if (Model.SearchResults.Count > 0) { 
        @("(" + Model.SearchResults.Count + ")") @Html.Partial("_Pager")      
     }
@@ -27,6 +27,6 @@
 
 </section>
 
-    <div class="pagerContainer">
-    @Html.Partial("_Pager")
-    </div>
+<div class="pagerContainer">
+@Html.Partial("_Pager")
+</div>
