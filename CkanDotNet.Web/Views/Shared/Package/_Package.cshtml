@@ -76,14 +76,52 @@
         </section>
     }
     
-    @* Show the details (package extras)*@
-    @if (Model.Extras.Count > 0)
-    {
+    @* Show the package details*@
         <section class="container">
             <h2>Details</h2>
             <table cellpadding="0" cellspacing="0">
                 <tbody>
-                    @foreach (var key in Model.Extras.Keys)
+                    
+                @if (!String.IsNullOrEmpty(Model.Author))
+                {
+                    <tr>
+                        <th>
+                            Author
+                        </th>
+                        <td>
+                            @Model.Author
+                        </td>
+                    </tr>
+                }
+                
+                @if (!String.IsNullOrEmpty(Model.AuthorEmail))
+                {
+                    <tr>
+                        <th>
+                            Author Email
+                        </th>
+                        <td>
+                            @Model.AuthorEmail
+                        </td>
+                    </tr>
+                } 
+                
+                @if (!String.IsNullOrEmpty(Model.Version))
+                {
+                    <tr>
+                        <th>
+                            Version
+                        </th>
+                        <td>
+                            @Model.Version
+                        </td>
+                    </tr>
+                }  
+                              
+                @if (Model.Extras.Count > 0)
+                {
+                    
+                    foreach (var key in Model.Extras.Keys)
                     {
                         if (!String.IsNullOrEmpty(Model.Extras[key]))
                         {
@@ -97,9 +135,10 @@
                         </tr>
                         }
                     }
-                   </tbody>
+                }
+                </tbody>
             </table>
         </section>
-    }
+    
     
 </div>
