@@ -1,23 +1,32 @@
 ﻿/*=============================================*/
 /* Theme: Default
+/* About: This is a basic theme that is loosely
+/* based on the styles of OpenColorado.
 /*=============================================*/
 
 /* Page styles */
 body
-{
-    font-family:  Helvetica,Verdana,Arial,Sans;
-    font-size: 10pt;
-    background-color: #eeeeee;
+{    
+    font-family:  "Trebuchet MS", Helvetica,Verdana,Arial,Sans;
+    font-size: 14px;
+    background: url("http://opencolorado.org/wordpress/wp-content/themes/the-advent/css/style1/body_bg_inner.gif") repeat-x scroll 0 0 transparent;
+    color: #4C4C4C;
+    font: 14px/20px "Trebuchet MS";
 }
 
 a {
-    color: #0074BD;
+    color: #BB2222;
     text-decoration: none;
 }
 
-a:active, a:hover 
+a:active, a:hover
 {
     text-decoration: underline;
+}
+
+a:visited
+{
+    text-decoration: none;
 }
 
 h1, h2, h3, h4, h5, h6 
@@ -31,13 +40,13 @@ h1, h2, h3, h4, h5, h6
 h1
 {
     font-size: 22pt;
-    color: #444444;
+    color: #000000;
 }
 
 h2
 {
     font-size: 22pt;
-    color: #444444;
+    color: #000000;
 }
 
 /* Breadcrumbs */
@@ -53,35 +62,28 @@ h2
    color: #444444;
    border: 1px solid #999999;
    border-radius: 2px 2px 2px 2px;
-   background-color: #eeeeee;
+   background-color: #EEEEEE;
 }
 
 /* Containers*/
 .container
 {
-   background-color: #f1f1f1;
+   background-color: #FCFCFC;
    border: none;
 }
 
 .container-title 
 {
-    background: none repeat scroll 0 0 #666666;
     color: #FFFFFF;
-    font-size: 14px;
-    background-color: #0063A7;
-    background-image: -moz-linear-gradient(top, #45A3CC, #3C74A3);
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #3C74A3), color-stop(1, #45A3CC));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#45A3CC', endColorstr='#3C74A3');
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#45A3CC', endColorstr='#3C74A3')";
-    border-radius: 5px 5px 0px 0px;
+    font-size: 16px;
+    background-color: #002868;
 }
 
 .container-title-link
 {
-    color: #ffffff;
+    color: #FFFFFF;
     font-weight: normal;
-    font-size: 14px;
-
+    font-size: 16px;
 }
 
 .container-content
@@ -101,11 +103,13 @@ h2
 }
 
 .format
-{   
-    border-radius: 2px 2px 2px 2px;
-    color: #FFFFFF;
-    background-color: #699A48;
-    font-size: 11px;
+{     
+    background: none repeat scroll 0 0 #ECECEC;
+    border: medium none;
+    color: #808080;
+    font-size: 12px;
+    font-weight: normal;
+    
 }
 
 /* Rating styles */
@@ -116,41 +120,21 @@ h2
 
 /* Search box styles */
 .search-input 
-{
-    border:1px solid #999999;
-    border-radius: 3px 3px;
+{ 
     font-size:18px;
     height: 28px; 
 }
 
 .search-input:hover 
 {
-    border:1px solid #333333; 
+ 
 }
 
 .search-submit 
 {
     height: 32px;
-    border:1px solid #999999;
     font-size:18px;
     padding: 0 8px 2px;
-    background-color: #699A48;
-    border: 0 none;
-    border-radius: 3px 3px;
-    color: #FFFFFF;
-    
-    background-image: -moz-linear-gradient(top, #80B558, #699A48);
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #699A48), color-stop(1, #80B558));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#80B558', endColorstr='#699A48');
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80B558', endColorstr='#699A48')";
-}
-
-.search-submit:hover 
-{
-    background-image: -moz-linear-gradient(top, #80B558, #699A48);
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #79AA48), color-stop(1, #90C558));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#90C558', endColorstr='#79AA48');
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#90C558', endColorstr='#79AA48')";
 }
 
 /* Search results styles */
@@ -169,7 +153,7 @@ h2
 }
 
 .result.odd:hover {
-    background-color: #eeeeee;
+    background-color: #FFFFFF;
 }
 
 .result.even {
@@ -177,7 +161,7 @@ h2
 }
 
 .result.even:hover {
-    background-color: #eeeeee;
+    background-color: #FFFFFF;
 }
 
 .result-title
@@ -204,14 +188,14 @@ h2
     font-weight:bold;
     font-size: 14px;
     border: 1px solid #666666;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     border-radius: 2px;
 }
 
 /* Pager in a header */
 .container-title .pager .link a
 {
-    color: #ffffff;
+    color: #FFFFFF;
 }
 
 .container-title .pager .item span
@@ -234,42 +218,24 @@ h2
 
 .package-link
 {
-    color: #005C96;
+    color: #BB2222;
     font-size:14px;
     font-weight: bold;
 }
 
 .package-action
 {
-    font-size: 11px;
-    font-weight: bold;
-    border: 1px solid #aaaaaa;
-    border-radius: 5px;
-    display: block;
-    color: #333333;
-   
-    background-color: #CDD0D4;
-    background-image: -moz-linear-gradient(top, #F2F4F7, #CDD0D4);
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #CDD0D4), color-stop(1, #F2F4F7));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#F2F4F7', endColorstr='#CDD0D4');
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F2F4F7', endColorstr='#CDD0D4')"; 
+    display:block;
 }
 
 .package-action:active, .package-action:hover 
 {
-    cursor: pointer;
-    border: 1px solid #666666;
-    text-decoration: none;
     
-    background-color: #D4D7DB;
-    background-image: -moz-linear-gradient(top, #ffffff, #D4D7DB);
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #D4D7DB), color-stop(1, #ffffff));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#D4D7DB');
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ffffff', endColorstr='#D4D7DB')";
 }
 
 .package table
 {
+    margin-top: 20px;
     border-left: 1px solid #CCCCCC;
     font-size: 13px;
 }
@@ -280,18 +246,18 @@ h2
 
 .package th
 {
-    border-right: 1px solid #BEBFB9;
-    background-color: #dedede;
-    border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #eeeeee;
+    padding: 6px 12px;
+    border-right: 1px solid #E7E7E7;
+    background-color: #ffffff;
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #EEEEEE;
 }
 
 .package td 
 {
-    border-right: 1px solid #BEBFB9;
-    background-color: #F5F5F5;
-    border-top: 1px solid #ffffff;
-    border-bottom: 1px solid #CCCCCC;
+    border-right: 1px solid #E7E7E7;
+    background-color: #F0F0F0;
+    border-top: 1px solid #E7E7E7;
 }
 
 .package tbody {
@@ -301,43 +267,36 @@ h2
 /* Tag counts */
 .tag
 {
-    padding: 3px;
-    border-radius: 2px 2px 2px 2px;
-    color: #ffffff;
-    background-color: #699A48;
-    font-size: 13px;
+    display: block;
+    padding: 0px;
+    color: #FFFFFF;
+    font-size: 14px;
 }
 
 .tag a
 {    
-    color: #ffffff;
+    color: #BB0000;
 }
 
 /* Theme specific styles */
 #page 
 {
     position: relative;
-    background: none repeat scroll 0 0 #FFFFFF;
-    box-shadow: 0 5px 20px #888888;
     margin: 0 auto 50px;
     width: 940px;
-    border: 1px solid #cccccc;
 }
 
 #header
 {
-    line-height: 60px;
-    border-bottom:1px dashed #999999;
-    color:#cccccc;
-    text-align: center;
-    font-size: 30px;
+    padding-bottom: 35px;
+    padding-top: 35px;
 }
 
 #footer
 {
     line-height: 60px;
     border-top:1px dashed #999999;
-    color:#cccccc;
+    color:#CCCCCC;
     text-align: center;
     font-size: 30px;
 }
