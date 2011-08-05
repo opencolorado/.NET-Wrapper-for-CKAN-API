@@ -52,8 +52,8 @@ namespace CkanDotNet.Web.Controllers
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
             searchParameters.Groups.Add(SettingsHelper.GetGroup());
-            searchParameters.Limit = 5;
-            searchParameters.Tags.Add("featured");
+            searchParameters.Limit = SettingsHelper.GetHomeFeaturedPackageLimit();
+            searchParameters.Tags.Add(SettingsHelper.GetHomeFeaturedPackagesTag());
 
             // Collect the results
             PackageSearchResponse<Package> results = CkanHelper.GetClient().SearchPackages<Package>(searchParameters, new CacheSettings(SettingsHelper.GetFeaturedPackagesCacheDuration()));

@@ -29,12 +29,62 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Should featured packages be displayed on the home page
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetHomeFeaturedPackagesEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Home.FeaturedPackagesEnabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Gets the tag to use for featured packages
+        /// </summary>
+        /// <returns></returns>
+        public static string GetHomeFeaturedPackagesTag()
+        {
+            string tag = ConfigurationManager.AppSettings["Home.FeaturedPackagesTag"];
+            return tag;
+        }
+
+        /// <summary>
+        /// Get the maximum number of featured packages to display on the home page
+        /// </summary>
+        /// <returns></returns>
+        public static int GetHomeFeaturedPackageLimit()
+        {
+            string limit = ConfigurationManager.AppSettings["Home.FeaturedPackagesLimit"];
+            return int.Parse(limit);
+        }
+       
+        /// <summary>
+        /// Should recently updated packages be displayed on the home page
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetHomeRecentlyUpdatedPackagesEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Home.RecentlyUpdatedPackagesEnabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Should browsing of all packages be displayed on the home page
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetHomeBrowseAllPackagesEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Home.BrowseAllPackagesEnabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
         /// Get the list of groups that have been configured in the settings.
         /// </summary>
         /// <returns></returns>
         public static bool GetPackageRssFeedEnabled()
         {
-            string enabled = ConfigurationManager.AppSettings["PackageRSSFeedEnabled"];
+            string enabled = ConfigurationManager.AppSettings["Package.RSSFeedEnabled"];
             return (enabled == "true") ? true : false;
         }
 
@@ -44,7 +94,7 @@ namespace CkanDotNet.Web.Models.Helpers
         /// <returns></returns>
         public static int GetPackageRssFeedDays()
         {
-            string days = ConfigurationManager.AppSettings["PackageRSSFeedDays"];
+            string days = ConfigurationManager.AppSettings["Package.RSSFeedDays"];
             return int.Parse(days);
         }
 
@@ -54,7 +104,7 @@ namespace CkanDotNet.Web.Models.Helpers
         /// <returns></returns>
         public static int GetSearchResultsPerPage()
         {
-            string results = ConfigurationManager.AppSettings["SearchResultsPerPage"];
+            string results = ConfigurationManager.AppSettings["Search.ResultsPerPage"];
             return int.Parse(results);
         }
 
@@ -64,7 +114,7 @@ namespace CkanDotNet.Web.Models.Helpers
         /// <returns></returns>
         public static string GetPackageExtraFieldLabel(string field)
         {
-            string label = ConfigurationManager.AppSettings[String.Format("PackageExtra.{0}", field)];
+            string label = ConfigurationManager.AppSettings[String.Format("Package.Extra.{0}", field)];
             if (String.IsNullOrEmpty(label))
             {
                 label = field;

@@ -10,8 +10,17 @@
 <section id="body">
     <section id="content">
         @Html.Partial("~/Views/Shared/Search/_Search.cshtml")
-        @Html.Action("FeaturedPackages", "Widget")
-        @Html.Action("RecentlyUpdated", "Widget")
+
+        @if (SettingsHelper.GetHomeFeaturedPackagesEnabled())
+        {
+            @Html.Action("FeaturedPackages", "Widget")
+        }
+        
+        @if (SettingsHelper.GetHomeRecentlyUpdatedPackagesEnabled())
+        {
+            @Html.Action("RecentlyUpdated", "Widget")
+        }
+        
     </section>
 
 </section>
