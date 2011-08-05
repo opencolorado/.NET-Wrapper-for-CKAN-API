@@ -45,7 +45,7 @@
                 <div class="result-tags">Tags:
                 @foreach (var tag in SettingsHelper.FilterTags(result.Tags))
                 {
-                    <span class="result-tag">@Html.ActionLink((string)@tag, "Tag", "Search", new { tag = @tag }, null)</span>
+                    <span class="result-tag">@Html.ActionLink(tag, "Index", "Search", new { tag = @tag }, null)</span>
                 }
                 </div>
             }
