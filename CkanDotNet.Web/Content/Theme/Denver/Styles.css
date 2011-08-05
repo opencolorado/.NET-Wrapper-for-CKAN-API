@@ -328,3 +328,31 @@ a:active, a:hover
 {    
     color: #ffffff;
 }
+
+/* Featured packages */
+.featured-container
+{
+    background-color:#ebebeb;
+}
+
+.featured-package
+{  
+    border: 1px solid #999999;
+    background-color: #ffffff;
+    box-shadow: 0 3px 5px #cccccc;
+    border-radius: 5px 5px;
+}
+
+.featured-package-notes
+{
+    margin: 3px 0px 0px 0px;
+    padding: 0px;
+    font-size: 12px;
+}
+
+.featured-package .formats
+{ 
+    position: absolute;
+    bottom: 7px;
+    left:1px;
+}

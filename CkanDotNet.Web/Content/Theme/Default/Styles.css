@@ -4,6 +4,29 @@
 /* based on the styles of OpenColorado.
 /*=============================================*/
 
+/* Theme specific styles */
+#page 
+{
+    position: relative;
+    margin: 0 auto 50px;
+    width: 940px;
+}
+
+#header
+{
+    padding-bottom: 35px;
+    padding-top: 35px;
+}
+
+#footer
+{
+    line-height: 60px;
+    border-top:1px dashed #999999;
+    color:#CCCCCC;
+    text-align: center;
+    font-size: 30px;
+}
+
 /* Page styles */
 body
 {    
@@ -278,25 +301,29 @@ h2
     color: #BB0000;
 }
 
-/* Theme specific styles */
-#page 
+/* Featured packages */
+.featured-container
 {
-    position: relative;
-    margin: 0 auto 50px;
-    width: 940px;
+    background-color:#ebebeb;
 }
 
-#header
-{
-    padding-bottom: 35px;
-    padding-top: 35px;
+.featured-package
+{  
+    border: 1px solid #999999;
+    background-color: #ffffff;
 }
 
-#footer
+.featured-package-notes
 {
-    line-height: 60px;
-    border-top:1px dashed #999999;
-    color:#CCCCCC;
-    text-align: center;
-    font-size: 30px;
+    margin: 3px 0px 0px 0px;
+    padding: 0px;
+    font-size: 12px;
 }
+
+.featured-package .formats
+{ 
+    position: absolute;
+    bottom: 7px;
+    left:1px;
+}
+

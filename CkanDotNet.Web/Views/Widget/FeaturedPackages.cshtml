@@ -3,19 +3,19 @@
  
 @if (Model.Results.Count >= 3)
 {  
-<section class="container featured">
+<section class="container">
 <h2 class="container-title">Featured Datasets | @Html.ActionLink("View All Datasets", "Index", "Search", null, new { @class = "container-title-link" })</h2>
-<div>
+<div class="featured-container">
     @foreach (var result in Model.Results)
     {
-        <div class="featuredItem">
+        <div class="featured-package">
             @Html.ActionLink(@result.Title, "Index", "Package", new { package = @result.Name }, new { @class = "package-link" })
             
             <div class="resultRating">
             @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
             </div>
 
-            <p>
+            <p class="featured-package-notes">
             @result.GetAbbreviatedNotes(75)
             </p>
 

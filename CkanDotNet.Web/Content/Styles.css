@@ -275,39 +275,34 @@ header,nav,article,footer,section,aside,figure,figcaption
     margin: 0 0px 5px 0;
 }
 
-/* Featured items */
-.container.featured > div
+/* Featured packages */
+.featured-container
 {
     margin: 0px;
     padding: 0px;
-    background-color:#ebebeb;
 }
 
-.container .featuredItem
+.featured-package
 {
     position:relative;
     display: inline-block;
     vertical-align: top;   
     width: 175px;
-    height: 100px;
-    border: 1px solid #999999;
+    height: 130px;
     margin: 7px 0px 7px 7px;
-    padding: 7px; 
-    border-radius: 5px 5px;
-    background-color: #ffffff;
-    box-shadow: 0 3px 5px #cccccc;
-    
+    padding: 7px;
 }
 
-.container .featuredItem p
+.featured-package-notes
 {
     margin: 3px 0px 0px 0px;
     padding: 0px;
+    font-size: 12px;
 }
 
-.container .featuredItem .formats
+.featured-package .formats
 { 
     position: absolute;
-    bottom: 5px;
-    left:4px;
+    bottom: 7px;
+    left:1px;
 }
