@@ -207,6 +207,12 @@ a:active, a:hover
     font-size: 11px;
 }
 
+.result-tags
+{
+    font-size: 11px;
+    color: #666666;
+}
+
 /* Pager styles */
 
 .pager li.link
@@ -257,13 +263,16 @@ a:active, a:hover
 
 .package-action
 {
+    position:relative; /* Required to make "button" clickable in IE */
+    
     font-size: 11px;
     font-weight: bold;
     border: 1px solid #aaaaaa;
     border-radius: 5px;
     display: block;
     color: #333333;
-   
+    text-decoration: none !important;
+       
     background-color: #CDD0D4;
     background-image: -moz-linear-gradient(top, #F2F4F7, #CDD0D4);
     background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #CDD0D4), color-stop(1, #F2F4F7));
@@ -271,17 +280,30 @@ a:active, a:hover
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F2F4F7', endColorstr='#CDD0D4')"; 
 }
 
-.package-action:active, .package-action:hover 
+.package-action:hover 
 {
     cursor: pointer;
     border: 1px solid #666666;
     text-decoration: none;
-    
+       
     background-color: #D4D7DB;
     background-image: -moz-linear-gradient(top, #ffffff, #D4D7DB);
     background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #D4D7DB), color-stop(1, #ffffff));
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#D4D7DB');
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ffffff', endColorstr='#D4D7DB')";
+}
+
+.package-action:active 
+{
+    cursor: pointer;
+    border: 1px solid #666666;
+    text-decoration: none;
+       
+    background-color: #ffffff;
+    background-image: -moz-linear-gradient(top, #D4D7DB, #ffffff);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ffffff), color-stop(1, #D4D7DB));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#D4D7DB', endColorstr='#ffffff');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#D4D7DB', endColorstr='#ffffff')";
 }
 
 .package table

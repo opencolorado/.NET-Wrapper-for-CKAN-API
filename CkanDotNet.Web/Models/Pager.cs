@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Text;
 
 namespace CkanDotNet.Web.Models
 {
@@ -56,23 +57,6 @@ namespace CkanDotNet.Web.Models
                 return (int)Math.Ceiling((double)recordCount / (double)recordsPerPage);
             }
         }
-
-        /// <summary>
-        /// Get the last page number
-        /// </summary>
-        //public int Last
-        //{
-        //    get
-        //    {
-        //        int last = this.page * this.limit;
-        //        if (last > count)
-        //        {
-        //            last = count;
-        //        }
-                
-        //        return last;
-        //    }
-        //}
 
         /// <summary>
         /// Get the previous page number
@@ -140,6 +124,49 @@ namespace CkanDotNet.Web.Models
             {
                 return (this.page * this.recordsPerPage) - recordsPerPage;
             }
+        }
+
+        /// <summary>
+        /// Get the record offset for the first record on the current page
+        /// </summary>
+        public int FirstRecordNumberOnCurrentPage
+        {
+            get
+            {
+                return RecordOffset + 1;
+            }
+        }
+
+        /// <summary>
+        /// Get the record offset for the first record on the current page
+        /// </summary>
+        public int LastRecordNumberOnCurrentPage
+        {
+            get
+            {
+                return Math.Min(RecordOffset + RecordsPerPage, RecordCount);
+            }
+        }
+
+        public override string ToString()
+        {
+            string result = String.Empty;
+
+            if (FirstRecordNumberOnCurrentPage != LastRecordNumberOnCurrentPage)
+            {
+                result = String.Format("{0} - {1} of {2}",
+                    FirstRecordNumberOnCurrentPage,
+                    LastRecordNumberOnCurrentPage,
+                    RecordCount);
+            }
+            else
+            {
+                result = String.Format("{0} of {1}",
+                    LastRecordNumberOnCurrentPage,
+                    RecordCount);
+            }   
+
+            return result;
         }
     }
 }

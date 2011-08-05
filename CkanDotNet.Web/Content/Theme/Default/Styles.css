@@ -198,6 +198,12 @@ h2
     font-size: 11px;
 }
 
+.result-tags
+{
+    font-size: 11px;
+    color: #666666;
+}
+
 /* Pager styles */
 
 .pager li.link

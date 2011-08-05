@@ -100,5 +100,34 @@ namespace CkanDotNet.Web.Controllers
             // Render the view
             return View(model);
         }
+
+        /// <summary>
+        /// Provides a view of features packages that have recently bee updated in the repository group.
+        /// Return the three most recently updated packages in the group.
+        /// </summary>
+        public ActionResult BrowsePackages()
+        {
+            log.DebugFormat("Controller action requested");
+
+            var searchParameters = new PackageSearchParameters();
+            searchParameters.Groups.Add(SettingsHelper.GetGroup());
+
+            // Set up the pagination
+            Pager pager = new Pager(1, SettingsHelper.GetSearchResultsPerPage());
+            searchParameters.Offset = pager.RecordOffset;
+            searchParameters.Limit = pager.RecordsPerPage;
+
+            PackageSearchResultsModel model = ViewDataFactory.Create<PackageSearchResultsModel>();
+            model.SearchParameters = searchParameters;
+            model.SearchResults = CkanHelper.GetClient().SearchPackages<Package>(searchParameters, new CacheSettings(SettingsHelper.GetSearchResultsCacheDuration()));
+            SettingsHelper.FilterTitles(model.SearchResults.Results);
+            model.Pager = pager;
+
+            // Set the number of records to be paged
+            pager.RecordCount = model.SearchResults.Count;
+
+            // Render the view
+            return View(model);
+        }
     }
 }

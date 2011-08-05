@@ -1,5 +1,6 @@
 ﻿@using CkanDotNet.Api.Model
 @using CkanDotNet.Web.Models
+@using CkanDotNet.Web.Models.Helpers
 @model PackageSearchResultsModel
 <div class="results">
     @{ var odd = true; }
@@ -9,9 +10,14 @@
             <div class="result-title">@Html.ActionLink(@result.Title, "Index", "Package", new { package = @result.Name }, new { @class = "package-link" })</div>
             <div class="result-date">
                 Last updated @result.MetadataModifiedAsDate.ToShortDateString()</div>
+            
+            @if (SettingsHelper.GetSearchResultsShowRating())
+            {
             <div class="result-rating">
                 @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
             </div>
+            }
+            
             @if (result.Resources.Count > 0)
             {
                 <div class="formats">
@@ -32,16 +38,20 @@
                     }
                 </div>
             }
-            <div class="notes">@Html.Raw(result.GetAbbreviatedNotes(300))
-                <!--<div class="tags">Tags:
-                    @foreach (var tag in result.Tags)
-                    {
-                        <span class="tag">@Html.ActionLink((string)@tag, "Tag", "Search", new { tag = @tag }, null)</span>
-                    }
-                    </div>-->
-            </div>
+            <div class="notes">@Html.Raw(result.GetAbbreviatedNotes(300))</div>
+
+            @if (SettingsHelper.GetSearchResultsShowTags())
+            {
+                <div class="result-tags">Tags:
+                @foreach (var tag in SettingsHelper.FilterTags(result.Tags))
+                {
+                    <span class="result-tag">@Html.ActionLink((string)@tag, "Tag", "Search", new { tag = @tag }, null)</span>
+                }
+                </div>
+            }
+            
         </div>
-        odd = !odd;
+            odd = !odd;
     }
 </div>
 

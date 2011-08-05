@@ -8,12 +8,12 @@
 } 
 
 <section class="container">
-    <h2 class="container-title">Results 
+    <h2 class="container-title">Results (@Model.Pager.ToString())
     @if (Model.SearchResults.Count > 0) { 
-       @("(" + Model.SearchResults.Count + ")") @Html.Partial("_Pager")      
+         @Html.Partial("_Pager")      
     }
    </h2>
-    
+
     @if (Model.SearchResults.Count > 0)
     {
         @Html.Partial("~/Views/Shared/Search/_SearchResultsList.cshtml")

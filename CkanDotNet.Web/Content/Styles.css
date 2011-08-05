@@ -171,6 +171,11 @@ header,nav,article,footer,section,aside,figure,figcaption
     padding: 0 0 3px;
 }
 
+.result-tags
+{
+    margin: 6px 0px 0px 0px;
+}
+
 /* Pager styles */
 .pager-container
 {
@@ -239,6 +244,12 @@ header,nav,article,footer,section,aside,figure,figcaption
 }
 
 .package-action
+{
+    padding: 4px;
+    margin: 0px 0px 4px 0px;
+}
+
+.package-action:active, .package-action:hover 
 {
     padding: 4px;
     margin: 0px 0px 4px 0px;

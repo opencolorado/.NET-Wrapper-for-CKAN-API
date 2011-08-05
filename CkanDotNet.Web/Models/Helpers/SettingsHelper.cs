@@ -109,6 +109,27 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Is the rating shown in the search results
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetSearchResultsShowRating()
+        {
+            string enabled = ConfigurationManager.AppSettings["Search.ResultsShowRating"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Are the tags shown in the search results
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetSearchResultsShowTags()
+        {
+            string enabled = ConfigurationManager.AppSettings["Search.ResultsShowTags"];
+            return (enabled == "true") ? true : false;
+        }
+
+
+        /// <summary>
         /// Get the label for a package 'extra' field.
         /// </summary>
         /// <returns></returns>
@@ -247,13 +268,14 @@ namespace CkanDotNet.Web.Models.Helpers
         /// Filter the package titles with the package title prefix.
         /// </summary>
         /// <param name="packages"></param>
-        public static void FilterTags(List<string> tags)
+        public static List<string> FilterTags(List<string> tags)
         {
             List<string> hiddenTags = GetHiddenTags();
             foreach (var hiddenTag in hiddenTags)
             {
                 tags.Remove(hiddenTag);
             }
+            return tags;
         }
 
         public static ResourceSettings GetResourceSettings()

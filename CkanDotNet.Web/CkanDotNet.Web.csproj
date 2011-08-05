@@ -187,9 +187,6 @@
     <Content Include="Views\Shared\Search\_SearchResultsSortBy.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\Search\_SearchResultsFilterByFormat.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\_BreadCrumbs.cshtml" />
   </ItemGroup>
   <ItemGroup>
