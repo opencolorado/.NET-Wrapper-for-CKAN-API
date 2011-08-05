@@ -38,6 +38,11 @@ a:active, a:hover
     width: 280px; /*Width of right column in pixels*/
 }
 
+.header-package-count
+{
+    font-weight: bold;
+}
+
 /* Breadcrumbs */
 .breadcrumbs 
 {   

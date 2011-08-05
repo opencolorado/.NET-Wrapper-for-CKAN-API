@@ -72,6 +72,11 @@ h2
     color: #000000;
 }
 
+.header-package-count
+{
+    font-weight: bold;
+}
+
 /* Breadcrumbs */
 .breadcrumbs 
 {

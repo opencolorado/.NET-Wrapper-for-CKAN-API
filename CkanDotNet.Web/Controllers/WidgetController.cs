@@ -129,5 +129,17 @@ namespace CkanDotNet.Web.Controllers
             // Render the view
             return View(model);
         }
+
+        /// <summary>
+        /// Provides a view of the top 10 tags in the repository group
+        /// </summary>
+        public ActionResult PackageCount()
+        {
+            var searchParameters = new PackageSearchParameters();
+            searchParameters.Groups.Add(SettingsHelper.GetGroup());
+
+            int count = CkanHelper.GetClient().SearchPackages<string>(searchParameters, new CacheSettings(SettingsHelper.GetSearchResultsCacheDuration())).Count;
+            return Content(count.ToString());
+        }
     }
 }
