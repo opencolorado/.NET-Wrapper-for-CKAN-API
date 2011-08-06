@@ -150,8 +150,18 @@ namespace CkanDotNet.Web.Models.Helpers
         /// <returns></returns>
         public static TimeSpan GetAllPackagesCacheDuration()
         {
-            string minutes = ConfigurationManager.AppSettings["AllPackagesCacheDuration"];
+            string minutes = ConfigurationManager.AppSettings["Cache.AllPackages.Duration"];
             return TimeSpan.FromMinutes(int.Parse(minutes));
+        }
+
+        /// <summary>
+        /// Automatically update the all packages cache in the background
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetAllPackagesCacheBackgroundUpdate()
+        {
+            string enabled = ConfigurationManager.AppSettings["Cache.AllPackages.BackgroundUpdate"];
+            return (enabled == "true") ? true : false;
         }
 
         /// <summary>
@@ -160,7 +170,7 @@ namespace CkanDotNet.Web.Models.Helpers
         /// <returns></returns>
         public static TimeSpan GetSearchResultsCacheDuration()
         {
-            string minutes = ConfigurationManager.AppSettings["SearchResultsCacheDuration"];
+            string minutes = ConfigurationManager.AppSettings["Cache.SearchResults.Duration"];
             return TimeSpan.FromMinutes(int.Parse(minutes));
         }
 
@@ -170,8 +180,28 @@ namespace CkanDotNet.Web.Models.Helpers
         /// <returns></returns>
         public static TimeSpan GetPackageCacheDuration()
         {
-            string minutes = ConfigurationManager.AppSettings["PackageCacheDuration"];
+            string minutes = ConfigurationManager.AppSettings["Cache.Package.Duration"];
             return TimeSpan.FromMinutes(int.Parse(minutes));
+        }
+
+        /// <summary>
+        /// Get the duration to cache the pacakge count
+        /// </summary>
+        /// <returns></returns>
+        public static TimeSpan GetPackageCountCacheDuration()
+        {
+            string minutes = ConfigurationManager.AppSettings["Cache.PackageCount.Duration"];
+            return TimeSpan.FromMinutes(int.Parse(minutes));
+        }
+
+        /// <summary>
+        /// Automatically update the package count cache in the background
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetPackageCountCacheBackgroundUpdate()
+        {
+            string enabled = ConfigurationManager.AppSettings["Cache.PackageCount.BackgroundUpdate"];
+            return (enabled == "true") ? true : false;
         }
 
         /// <summary>
@@ -180,7 +210,7 @@ namespace CkanDotNet.Web.Models.Helpers
         /// <returns></returns>
         public static TimeSpan GetFeaturedPackagesCacheDuration()
         {
-            string minutes = ConfigurationManager.AppSettings["FeaturedPackagesCacheDuration"];
+            string minutes = ConfigurationManager.AppSettings["Cache.FeaturedPackages.Duration"];
             return TimeSpan.FromMinutes(int.Parse(minutes));
         }
 
@@ -190,8 +220,18 @@ namespace CkanDotNet.Web.Models.Helpers
         /// <returns></returns>
         public static TimeSpan GetAllLicensesCacheDuration()
         {
-            string minutes = ConfigurationManager.AppSettings["AllLicensesCacheDuration"];
+            string minutes = ConfigurationManager.AppSettings["Cache.AllLicenses.Duration"];
             return TimeSpan.FromMinutes(int.Parse(minutes));
+        }
+
+        /// <summary>
+        /// Automatically update the all licenses cache in the background
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetAllLicensesCacheBackgroundUpdate()
+        {
+            string enabled = ConfigurationManager.AppSettings["Cache.AllLicenses.BackgroundUpdate"];
+            return (enabled == "true") ? true : false;
         }
 
         /// <summary>

@@ -12,6 +12,7 @@ using log4net;
 using System.Reflection;
 using System.Runtime.Caching;
 using CkanDotNet.Api.Helper;
+using System.Security.Cryptography;
 
 namespace CkanDotNet.Api
 {
@@ -402,8 +403,16 @@ namespace CkanDotNet.Api
             }
 
             // Set the offset and limit parameters
-            request.AddParameter("offset", parameters.Offset);
-            request.AddParameter("limit", parameters.Limit);
+            if (parameters.Offset > -1)
+            {
+                request.AddParameter("offset", parameters.Offset);
+                
+            }
+
+            if (parameters.Limit > 0)
+            {
+                request.AddParameter("limit", parameters.Limit);
+            }
 
             // Apply all_fields parameter
             if (typeof(T) == typeof(Package))
@@ -553,6 +562,17 @@ namespace CkanDotNet.Api
         #region Private Methods
 
         /// <summary>
+        /// Gets a RestClient to interact with the configured CKAN repository.
+        /// </summary>
+        /// <returns></returns>
+        private RestClient GetRestClient()
+        {
+            var client = new RestClient();
+            client.BaseUrl = String.Format("http://{0}/api/{1}/", this.Repository, apiVersion);
+            return client;
+        }
+
+        /// <summary>
         /// Execute a request for the CKAN REST API with support for individual request caching.
         /// </summary>
         /// <typeparam name="T">The type that will be used for the JSON returned.</typeparam>
@@ -561,17 +581,16 @@ namespace CkanDotNet.Api
         /// <returns></returns>
         private T Execute<T>(RestRequest request, CacheSettings settings) where T : new()
         {
-            var client = new RestClient();
-            client.BaseUrl = String.Format("http://{0}/api/{1}/", this.Repository, apiVersion);
+            var client = GetRestClient();
 
-            var url = GetRequestUrl(client, request);
+            var url = GetRequestUrl(request);
 
             // Log the request that is being sent to CKAN
             log.InfoFormat("Prepared request for CKAN repository: {0}", url);
 
             // Get the response
             RestResponse<T> response = null;
-
+            
             if (settings == null)
             {
                 // If no caching call directly
@@ -580,20 +599,100 @@ namespace CkanDotNet.Api
             }
             else
             {
-                // Otherwise get from the cache or update if not cached
-                response = CacheHelper.Get<T>(url);
-                if (response != null)
-                {
-                    log.DebugFormat("Response retrieved from cache: {0}", response.Content);
-                }
-                else
-                {
-                    response = CacheHelper.Insert<T>(url, client.Execute<T>(request), settings);
-                    log.DebugFormat("Response cached: {0}", response.Content);
-                }
+                // Otherwise get from the cache or exceute and cache if not cached
+                response = CachedExecute<T>(request, settings);
             }
 
             return response.Data;
+        }
+        
+        /// <summary>
+        /// Get a RestResponse from the cached based on the URL.
+        /// </summary>
+        /// <typeparam name="T">The RestResponse type to retrieve from the cache.</typeparam>
+        /// <param name="url">The url</param>
+        /// <returns></returns>
+        public RestResponse<T> CachedExecute<T>(RestRequest request, CacheSettings settings) where T : new()
+        {
+            string key = Checksum(request);
+
+            MemoryCache cache = MemoryCache.Default;
+
+            // Get the response from the cache
+            CachedRequestResponse<T> cachedItem = cache[key] as CachedRequestResponse<T>;
+            if (cachedItem == null)
+            {
+                log.DebugFormat("Response not cached, sending request");
+                cachedItem = new CachedRequestResponse<T>();
+
+                // Response not cached, so execute the request and get the response
+                cachedItem.Request = request;
+                cachedItem.Response = this.GetRestClient().Execute<T>(request);
+
+                CacheItemPolicy policy = new CacheItemPolicy();
+                policy.AbsoluteExpiration = DateTimeOffset.Now.Add(settings.Duration);
+
+                // Keep the cache updated if requested and it has expired
+                if (settings.KeepCurrent)
+                {
+                    policy.UpdateCallback = CacheUpdated<T>;
+                }
+
+                cache.Set(key, cachedItem, policy);
+
+                log.DebugFormat("Response cached");
+            }
+            else
+            {
+                log.Debug("Response retrieved from cache.");
+            }
+            return cachedItem.Response;;
+        }
+
+        public void CacheUpdated<T>(CacheEntryUpdateArguments arguments) where T : new()
+        {
+            if (arguments.RemovedReason == CacheEntryRemovedReason.Expired)
+            {
+                CachedRequestResponse<T> cachedItem = arguments.Source[arguments.Key] as CachedRequestResponse<T>;
+
+                log.DebugFormat("Cache item expired and being updated for request: {0}", GetRequestUrl(cachedItem.Request));
+
+                CachedRequestResponse<T> newCachedItem = new CachedRequestResponse<T>();
+                newCachedItem.Request = cachedItem.Request;
+                newCachedItem.Response = this.GetRestClient().Execute<T>(cachedItem.Request);
+
+                arguments.UpdatedCacheItem = newCachedItem as CacheItem;
+
+                CacheItemPolicy policy = new CacheItemPolicy();
+                policy.AbsoluteExpiration = arguments.UpdatedCacheItemPolicy.AbsoluteExpiration;
+                policy.UpdateCallback = CacheUpdated<T>;
+
+                arguments.UpdatedCacheItemPolicy = policy;
+
+                log.Debug("Request automatically recached.");
+            }
+        }
+
+        /// <summary>
+        /// Compute a checksum of the URL to use as a key
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        private string Checksum(string url)
+        {
+            byte[] bytes = System.Text.Encoding.Unicode.GetBytes(url);
+            return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(bytes)).Replace("-", "").ToLower();
+        }
+
+        /// <summary>
+        /// Compute a checksum of the URL to use as a key
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public string Checksum(RestRequest request)
+        {
+            string url = GetRequestUrl(request);
+            return Checksum(url);
         }
 
         /// <summary>
@@ -602,8 +701,10 @@ namespace CkanDotNet.Api
         /// </summary>
         /// <param name="client"></param>
         /// <param name="request"></param>
-        private string GetRequestUrl(RestClient client, RestRequest request)
+        private string GetRequestUrl(RestRequest request)
         {
+            RestClient client = GetRestClient();
+
             StringBuilder sb = new StringBuilder();
 
             // Append the base url

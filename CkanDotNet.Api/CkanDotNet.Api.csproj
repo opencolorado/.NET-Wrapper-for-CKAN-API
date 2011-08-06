@@ -53,6 +53,7 @@
     <Compile Include="CacheSettings.cs" />
     <Compile Include="CkanClient.cs" />
     <Compile Include="Helper\CacheHelper.cs" />
+    <Compile Include="Helper\CachedRequestResponse.cs" />
     <Compile Include="Helper\DateHelper.cs" />
     <Compile Include="Model\ResourceSearchResponse.cs" />
     <Compile Include="Model\PackageSearchResponse.cs" />

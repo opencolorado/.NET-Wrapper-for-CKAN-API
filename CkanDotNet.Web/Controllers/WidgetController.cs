@@ -135,11 +135,7 @@ namespace CkanDotNet.Web.Controllers
         /// </summary>
         public ActionResult PackageCount()
         {
-            var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add(SettingsHelper.GetGroup());
-
-            int count = CkanHelper.GetClient().SearchPackages<string>(searchParameters, new CacheSettings(SettingsHelper.GetSearchResultsCacheDuration())).Count;
-            return Content(count.ToString());
+            return Content(CkanHelper.GetPackageCount().ToString());
         }
     }
 }

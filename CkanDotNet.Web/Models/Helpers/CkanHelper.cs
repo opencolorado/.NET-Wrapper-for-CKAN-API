@@ -11,10 +11,27 @@ namespace CkanDotNet.Web.Models
 {
     public static class CkanHelper
     {
+        /// <summary>
+        /// Gets a CKAN client for the configured repository.
+        /// </summary>
+        /// <returns></returns>
         public static CkanClient GetClient()
         {
             CkanClient client = new CkanClient(SettingsHelper.GetRepository());
             return client;
+        }
+
+        /// <summary>
+        /// Get the number of packages in the CKAN group.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetPackageCount()
+        {
+            var searchParameters = new PackageSearchParameters();
+            searchParameters.Groups.Add(SettingsHelper.GetGroup());
+
+            int count = CkanHelper.GetClient().SearchPackages<string>(searchParameters, new CacheSettings(SettingsHelper.GetPackageCountCacheDuration(), SettingsHelper.GetPackageCountCacheBackgroundUpdate())).Count;
+            return count;
         }
 
         /// <summary>
@@ -23,7 +40,7 @@ namespace CkanDotNet.Web.Models
         /// <returns></returns>
         public static List<Package> GetAllPackages()
         {
-            CacheSettings settings = new CacheSettings(SettingsHelper.GetAllPackagesCacheDuration());
+            CacheSettings settings = new CacheSettings(SettingsHelper.GetAllPackagesCacheDuration(), SettingsHelper.GetAllPackagesCacheBackgroundUpdate());
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
@@ -62,9 +79,9 @@ namespace CkanDotNet.Web.Models
         /// TODO: Implement common caching proxy for cachable requests.
         /// </summary>
         /// <returns></returns>
-        private static List<License> GetLicenses()
+        public static List<License> GetLicenses()
         {
-            CacheSettings settings = new CacheSettings(SettingsHelper.GetAllLicensesCacheDuration());
+            CacheSettings settings = new CacheSettings(SettingsHelper.GetAllLicensesCacheDuration(), SettingsHelper.GetAllLicensesCacheBackgroundUpdate());
             return CkanHelper.GetClient().GetLicenses(settings);
         }
 

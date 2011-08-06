@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using log4net;
 using System.Reflection;
+using CkanDotNet.Api;
+using CkanDotNet.Web.Models;
+using CkanDotNet.Web.Models.Helpers;
 
 namespace CkanDotNet.Web
 {
@@ -64,6 +67,23 @@ namespace CkanDotNet.Web
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            // Start caching of auto-cached CKAN requests
+
+            if (SettingsHelper.GetPackageCountCacheBackgroundUpdate())
+            {
+                CkanHelper.GetPackageCount();
+            }
+
+            if (SettingsHelper.GetAllPackagesCacheBackgroundUpdate())
+            {
+                CkanHelper.GetAllPackages();
+            }
+
+            if (SettingsHelper.GetAllLicensesCacheBackgroundUpdate())
+            {
+                CkanHelper.GetLicenses();
+            }
         }
     }
 }
