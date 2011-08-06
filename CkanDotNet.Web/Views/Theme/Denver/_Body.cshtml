@@ -100,7 +100,9 @@
                                     <tr>
                                         <td width="100%" valign="top">
                                             <!--Application Content Here-->
-                                            @Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")
+                                            <div id="Breadcrumb">
+                                            You are here: @Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")
+                                            </div>
                                             @RenderBody()
                                             <!--End Application Content Here-->
                                         </td>

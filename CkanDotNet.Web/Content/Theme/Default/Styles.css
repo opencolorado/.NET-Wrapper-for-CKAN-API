@@ -20,11 +20,10 @@
 
 #footer
 {
-    line-height: 60px;
-    border-top:1px dashed #999999;
-    color:#CCCCCC;
-    text-align: center;
-    font-size: 30px;
+    background: url("http://opencolorado.org/wordpress/wp-content/themes/the-advent/css/style1/footer_top_bg.gif") repeat-x scroll left top #002868;
+    height: 40px;
+    margin: 0 auto;
+    padding-top: 30px;
 }
 
 /* Page styles */
@@ -35,6 +34,7 @@ body
     background: url("http://opencolorado.org/wordpress/wp-content/themes/the-advent/css/style1/body_bg_inner.gif") repeat-x scroll 0 0 transparent;
     color: #4C4C4C;
     font: 14px/20px "Trebuchet MS";
+    margin: 0px;
 }
 
 a {

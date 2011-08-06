@@ -48,12 +48,12 @@ a:active, a:hover
 {   
     color: #70747F;
     font-family: Arial,Helvetica,Verdana,Sans;
-    font-size: 85%;
     font-weight: normal;
     margin-bottom: 2px;
     padding: 0;
     position: relative;
     vertical-align: top;
+    display: inline;
 }
 
 .breadcrumb 
