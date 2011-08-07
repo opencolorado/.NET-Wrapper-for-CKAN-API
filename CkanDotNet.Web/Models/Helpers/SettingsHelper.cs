@@ -243,6 +243,35 @@ namespace CkanDotNet.Web.Models.Helpers
             return ConfigurationManager.AppSettings["Group"];
         }
 
+
+        /// <summary>
+        /// Is the data catalog currently offline
+        /// </summary>
+        /// <returns></returns>
+        public static bool IsDataCatalogOffline()
+        {
+            string offline = ConfigurationManager.AppSettings["Offline.Enabled"];
+            return (offline == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Get the offline title
+        /// </summary>
+        /// <returns></returns>
+        public static string GetOfflineTitle()
+        {
+            return ConfigurationManager.AppSettings["Offline.Title"];
+        }
+
+        /// <summary>
+        /// Get the offline message
+        /// </summary>
+        /// <returns></returns>
+        public static string GetOfflineMessage()
+        {
+            return ConfigurationManager.AppSettings["Offline.Message"];
+        }
+
         /// <summary>
         /// Get the list of hidden tags that have been configured in the settings
         /// </summary>

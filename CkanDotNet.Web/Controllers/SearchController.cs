@@ -28,6 +28,7 @@ namespace CkanDotNet.Web.Controllers
         /// <param name="query"></param>
         /// <param name="page"></param>
         /// <returns></returns>
+        [CheckOffline]
         public ActionResult Index(string q, int? page, string order_by, string tag)
         {
             log.DebugFormat("Controller action requested");

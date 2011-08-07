@@ -1,0 +1,15 @@
+﻿@using CkanDotNet.Web.Models.Helpers
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>@SettingsHelper.GetOfflineTitle()</h1>
+
+<p>
+@SettingsHelper.GetOfflineMessage()
+</p>
+
+<p>
+@Html.ActionLink("Return to Home", "Index", "Home")
+</p>
+

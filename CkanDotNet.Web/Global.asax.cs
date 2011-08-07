@@ -69,20 +69,22 @@ namespace CkanDotNet.Web
             RegisterRoutes(RouteTable.Routes);
 
             // Start caching of auto-cached CKAN requests
-
-            if (SettingsHelper.GetPackageCountCacheBackgroundUpdate())
+            if (!SettingsHelper.IsDataCatalogOffline())
             {
-                CkanHelper.GetPackageCount();
-            }
+                if (SettingsHelper.GetPackageCountCacheBackgroundUpdate())
+                {
+                    CkanHelper.GetPackageCount();
+                }
 
-            if (SettingsHelper.GetAllPackagesCacheBackgroundUpdate())
-            {
-                CkanHelper.GetAllPackages();
-            }
+                if (SettingsHelper.GetAllPackagesCacheBackgroundUpdate())
+                {
+                    CkanHelper.GetAllPackages();
+                }
 
-            if (SettingsHelper.GetAllLicensesCacheBackgroundUpdate())
-            {
-                CkanHelper.GetLicenses();
+                if (SettingsHelper.GetAllLicensesCacheBackgroundUpdate())
+                {
+                    CkanHelper.GetLicenses();
+                }
             }
         }
     }

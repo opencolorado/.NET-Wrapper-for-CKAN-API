@@ -18,7 +18,7 @@ namespace CkanDotNet.Web.Controllers
 
         //
         // GET: /Package/
-
+        [CheckOffline]
         public ActionResult Index(string package)
         {
             log.DebugFormat("Controller action requested for package {0}", package);

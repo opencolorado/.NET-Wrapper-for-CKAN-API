@@ -15,7 +15,7 @@ namespace CkanDotNet.Web.Controllers
 
         //
         // GET: /Home/
-
+        [CheckOffline]
         public ActionResult Index()
         {
             log.Debug("Controller action requested");

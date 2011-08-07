@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CkanDotNet.Web.Models;
 
 namespace CkanDotNet.Web.Controllers
 {
@@ -15,6 +16,7 @@ namespace CkanDotNet.Web.Controllers
         /// </summary>
         /// <param name="tag">The tag</param>
         /// <returns></returns>
+        [CheckOffline]
         public ActionResult Index(string tag)
         {
             return RedirectToAction("Index", "Search", new { tag = tag });

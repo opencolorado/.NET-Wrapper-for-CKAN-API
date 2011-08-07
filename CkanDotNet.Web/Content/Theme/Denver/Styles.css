@@ -53,7 +53,6 @@ a:active, a:hover
     padding: 0;
     position: relative;
     vertical-align: top;
-    display: inline;
 }
 
 .breadcrumb 
