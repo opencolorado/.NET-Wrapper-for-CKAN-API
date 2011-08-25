@@ -663,11 +663,15 @@ namespace CkanDotNet.Api
 
                 arguments.UpdatedCacheItem = newCachedItem as CacheItem;
 
-                CacheItemPolicy policy = new CacheItemPolicy();
-                policy.AbsoluteExpiration = arguments.UpdatedCacheItemPolicy.AbsoluteExpiration;
-                policy.UpdateCallback = CacheUpdated<T>;
+                //CacheItemPolicy policy = new CacheItemPolicy();
+                //if (arguments.UpdatedCacheItemPolicy.AbsoluteExpiration != null)
+                //{
+                //    policy.AbsoluteExpiration = arguments.UpdatedCacheItemPolicy.AbsoluteExpiration;
+                    
+                //}
+                //policy.UpdateCallback = CacheUpdated<T>;
 
-                arguments.UpdatedCacheItemPolicy = policy;
+                //arguments.UpdatedCacheItemPolicy = policy;
 
                 log.Debug("Request automatically recached.");
             }
