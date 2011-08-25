@@ -69,6 +69,26 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Should popular tags be displayed on the home page
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetHomePopularTagsEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Home.PopularTagsEnabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Get the maximum number of popular tags to display on the home page
+        /// </summary>
+        /// <returns></returns>
+        public static int GetHomePopularTagsLimit()
+        {
+            string limit = ConfigurationManager.AppSettings["Home.PopularTagsLimit"];
+            return int.Parse(limit);
+        }
+
+        /// <summary>
         /// Should browsing of all packages be displayed on the home page
         /// </summary>
         /// <returns></returns>

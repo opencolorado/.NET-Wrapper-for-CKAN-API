@@ -25,7 +25,10 @@
 
 </section>
 <aside id="sidebar">
-    @Html.Action("PopularTags", "Widget")
+    @if (SettingsHelper.GetHomePopularTagsEnabled())
+    {
+        @Html.Action("PopularTags", "Widget")
+    }
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetTheme() + "/_License.cshtml")
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetTheme() + "/_About.cshtml")
 </aside>
