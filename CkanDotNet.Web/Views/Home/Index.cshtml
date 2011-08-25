@@ -1,8 +1,7 @@
 ﻿@using CkanDotNet.Web.Models.Helpers
 @using CkanDotNet.Web.Models
 @{
-    // TODO: Add to config
-    ViewBag.Title = "Open Data Catalog";
+    ViewBag.Title = SettingsHelper.GetHomePageTitle();
 }
 
 @RenderPage("~/Views/Theme/" + SettingsHelper.GetTheme() + "/_HomeHeader.cshtml")

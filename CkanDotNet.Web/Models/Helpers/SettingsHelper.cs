@@ -29,6 +29,33 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Gets the page title for the home page
+        /// </summary>
+        /// <returns></returns>
+        public static string GetHomePageTitle()
+        {
+            return ConfigurationManager.AppSettings["Home.Title"];
+        }
+
+        /// <summary>
+        /// Gets the page title for the search page
+        /// </summary>
+        /// <returns></returns>
+        public static string GetSearchPageTitle()
+        {
+            return ConfigurationManager.AppSettings["Search.Title"];
+        }
+
+        /// <summary>
+        /// Gets the page title for the package page
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPackagePageTitle()
+        {
+            return ConfigurationManager.AppSettings["Package.Title"];
+        }
+
+        /// <summary>
         /// Should featured packages be displayed on the home page
         /// </summary>
         /// <returns></returns>

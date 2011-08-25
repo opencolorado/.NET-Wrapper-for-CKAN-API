@@ -4,7 +4,8 @@
 @model Package
            
 @{
-    ViewBag.Title = Model.Title;
+    string title = SettingsHelper.GetPackagePageTitle();
+    ViewBag.Title = title.Replace("{Package.Title}", @Model.Title);
 }
 
 <div class="package">
