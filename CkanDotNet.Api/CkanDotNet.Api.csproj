@@ -52,6 +52,9 @@
   <ItemGroup>
     <Compile Include="CacheSettings.cs" />
     <Compile Include="CkanClient.cs" />
+    <Compile Include="Exceptions\CkanTimeoutException.cs" />
+    <Compile Include="Exceptions\CkanException.cs" />
+    <Compile Include="Exceptions\CkanRequestException.cs" />
     <Compile Include="Helper\CachedRequestResponse.cs" />
     <Compile Include="Helper\DateHelper.cs" />
     <Compile Include="Model\ResourceSearchResponse.cs" />
@@ -72,6 +75,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
