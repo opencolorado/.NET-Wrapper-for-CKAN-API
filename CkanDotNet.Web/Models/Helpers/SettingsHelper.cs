@@ -29,6 +29,33 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Gets the page title for the home page
+        /// </summary>
+        /// <returns></returns>
+        public static string GetHomePageTitle()
+        {
+            return ConfigurationManager.AppSettings["Home.Title"];
+        }
+
+        /// <summary>
+        /// Gets the page title for the search page
+        /// </summary>
+        /// <returns></returns>
+        public static string GetSearchPageTitle()
+        {
+            return ConfigurationManager.AppSettings["Search.Title"];
+        }
+
+        /// <summary>
+        /// Gets the page title for the package page
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPackagePageTitle()
+        {
+            return ConfigurationManager.AppSettings["Package.Title"];
+        }
+
+        /// <summary>
         /// Should featured packages be displayed on the home page
         /// </summary>
         /// <returns></returns>
@@ -66,6 +93,26 @@ namespace CkanDotNet.Web.Models.Helpers
         {
             string enabled = ConfigurationManager.AppSettings["Home.RecentlyUpdatedPackagesEnabled"];
             return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Should popular tags be displayed on the home page
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetHomePopularTagsEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Home.PopularTagsEnabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Get the maximum number of popular tags to display on the home page
+        /// </summary>
+        /// <returns></returns>
+        public static int GetHomePopularTagsLimit()
+        {
+            string limit = ConfigurationManager.AppSettings["Home.PopularTagsLimit"];
+            return int.Parse(limit);
         }
 
         /// <summary>

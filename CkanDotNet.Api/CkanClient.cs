@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Runtime.Caching;
 using CkanDotNet.Api.Helper;
 using System.Security.Cryptography;
+using CkanDotNet.Api.Exceptions;
 
 namespace CkanDotNet.Api
 {
@@ -34,12 +35,29 @@ namespace CkanDotNet.Api
         private string Repository { get; set; }
 
         /// <summary>
+        /// Gets or sets the CKAN request timeout in milliseconds.
+        /// </summary>
+        public int Timeout { get; set; }
+
+        /// <summary>
         /// Create an instance of the Ckan client.
         /// </summary>
         /// <param name="repository">The hostname of the CKAN repository.</param>
         public CkanClient(string repository)
         {
             this.Repository = repository;
+            this.Timeout = 30000;
+        }
+
+        /// <summary>
+        /// Create an instance of the Ckan client.
+        /// </summary>
+        /// <param name="repository">The hostname of the CKAN repository.</param>
+        /// <param name="timeout">The timeout in milliseconds.</param>
+        public CkanClient(string repository, int timeout)
+        {
+            this.Repository = repository;
+            this.Timeout = timeout;
         }
 
         #region Public Methods
@@ -568,6 +586,7 @@ namespace CkanDotNet.Api
         private RestClient GetRestClient()
         {
             var client = new RestClient();
+            client.Timeout = this.Timeout;
             client.BaseUrl = String.Format("http://{0}/api/{1}/", this.Repository, apiVersion);
             return client;
         }
@@ -601,6 +620,17 @@ namespace CkanDotNet.Api
             {
                 // Otherwise get from the cache or exceute and cache if not cached
                 response = CachedExecute<T>(request, settings);
+
+                // Check for a failed response
+                if (response.ResponseStatus == ResponseStatus.TimedOut)
+                {
+                    throw new CkanTimeoutException("CKAN request timed out");
+                }
+                else if (response.ResponseStatus == ResponseStatus.Error)
+                {
+                    int statusCode = (int)response.StatusCode;
+                    throw new CkanRequestException(response.Content, statusCode);
+                }
             }
 
             return response.Data;
@@ -663,11 +693,15 @@ namespace CkanDotNet.Api
 
                 arguments.UpdatedCacheItem = newCachedItem as CacheItem;
 
-                CacheItemPolicy policy = new CacheItemPolicy();
-                policy.AbsoluteExpiration = arguments.UpdatedCacheItemPolicy.AbsoluteExpiration;
-                policy.UpdateCallback = CacheUpdated<T>;
+                //CacheItemPolicy policy = new CacheItemPolicy();
+                //if (arguments.UpdatedCacheItemPolicy.AbsoluteExpiration != null)
+                //{
+                //    policy.AbsoluteExpiration = arguments.UpdatedCacheItemPolicy.AbsoluteExpiration;
+                    
+                //}
+                //policy.UpdateCallback = CacheUpdated<T>;
 
-                arguments.UpdatedCacheItemPolicy = policy;
+                //arguments.UpdatedCacheItemPolicy = policy;
 
                 log.Debug("Request automatically recached.");
             }
