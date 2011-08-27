@@ -14,8 +14,8 @@ namespace CkanDotNet.Api.Model
         private List<string> groups = new List<string>();
         private PackageExtras packageExtras = new PackageExtras();
         private string orderBy = "rank";
-        private int offset = 0;
-        private int limit = 20;
+        private int offset = -1;
+        private int limit = -1;
 
         /// <summary>
         /// Criteria to search all package fields for.  Used for general purpose searching.
