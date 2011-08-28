@@ -12,7 +12,7 @@ repository (http://colorado.ckan.net) while hosting a local data catalog front-e
 Windows/.NET platform.  For organizations that prefer, there is also 
 a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API)  available.
 
-### Features
+## Features
 * Customizable home page:
  * Display featured packages (packages tagged with 'featured')
  * Show recently updated packages
@@ -20,30 +20,15 @@ a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API)  av
  * Show total number of packages that are available
  * Customizable welcome information, usage information and about information
 * Search for data packages by query or by tag
-* Paginated search results
+ * Paginated search results
+ * Filter results by tag
 * View package details including:
- * 
-* Designed to present a data catalog based on a CKAN group
-* Customizable/configurable data catalog front-end
-* Home page provides:
- * Welcome message
- * Search
- * Featured packages (packages tagged with 'featured')
- * Recently updated packages
- * Top tags
-* Search screen provides:
- * Pagination
- * Tag filtering
- * Breadcrumbs for search parameters
-* Package screen provides:
  * Description
- * Resource list
- * Package details
- * Rate this package
- * License information
-
-The catalog is fully configurable and it is designed to be easy to integrate with the look 
-feel or an existing site.
+ * Resources with customizable resource actions (ex. View KML in Google Maps)
+ * Package rating (and 'rate this package')
+ * License details for each package
+* Themeable/skinnable
+ * The catalog is fully configurable with CSS/HTML
 
 ## Getting Started
 
@@ -53,11 +38,16 @@ feel or an existing site.
 * .NET Framework 4
 * ASP.NET MVC 3
 
-## Development Tools
+## Release Notes
+See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/wiki/Release-Notes
+
+## Want to Contribute?
+
+### Development Tools
 * Microsoft Visual Web Developer Express 2010
 * xUnit 1.8
 
-## Dependencies
+### Dependencies
 * Client:
  * jQuery 1.6.2
  * jQuery plugin - Star Rating widget (http://plugins.jquery.com/project/Star_Rating_widget)
@@ -67,15 +57,8 @@ feel or an existing site.
  * log4net (http://logging.apache.org/log4net/)
  * RestSharp (http://restsharp.org/)
 
-## Release Notes
-See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/wiki/Release-Notes
 
-## CkanDotNet.Web
-Provides a ASP.NET MVC 3 front-end for the [CKAN API Version 2][1] that is intended to be used for providing a fully functioning data catalog.  Uses the CkanDotNet.Api library (see below).
-
-
-
-## CkanDotNet.Api
+# CkanDotNet.Api
 Provides a .NET wrapper for the [CKAN API Version 2][1].
 
 ### Features
