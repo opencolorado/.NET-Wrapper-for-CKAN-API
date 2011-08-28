@@ -35,7 +35,7 @@ namespace CkanDotNet.Api
         private string Repository { get; set; }
 
         /// <summary>
-        /// Gets or sets the CKAN request timeout in milliseconds.
+        /// Gets or sets the CKAN request timeout in milliseconds (Default: 30000)
         /// </summary>
         public int Timeout { get; set; }
 
@@ -592,34 +592,28 @@ namespace CkanDotNet.Api
         }
 
         /// <summary>
-        /// Execute a request for the CKAN REST API with support for individual request caching.
+        /// Executes the RestSharp REST request and returns the data object.  If no data is returned 
+        /// an exception is thrown.
         /// </summary>
-        /// <typeparam name="T">The type that will be used for the JSON returned.</typeparam>
-        /// <param name="request">The RestRequest</param>
-        /// <param name="settings">The cache settings.</param>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="request"></param>
         /// <returns></returns>
-        private T Execute<T>(RestRequest request, CacheSettings settings) where T : new()
+        private T ExecuteRestRequest<T>(RestRequest request) where T : new()
         {
-            var client = GetRestClient();
-
             var url = GetRequestUrl(request);
 
             // Log the request that is being sent to CKAN
-            log.InfoFormat("Prepared request for CKAN repository: {0}", url);
+            log.InfoFormat("Executing request against CKAN repository: {0}", url);
 
-            // Get the response
+            var client = GetRestClient();
+
             RestResponse<T> response = null;
-            
-            if (settings == null)
+
+            try
             {
-                // If no caching call directly
                 response = client.Execute<T>(request);
-                log.DebugFormat("Response recieved: {0}", response.Content);
-            }
-            else
-            {
-                // Otherwise get from the cache or exceute and cache if not cached
-                response = CachedExecute<T>(request, settings);
+
+                log.InfoFormat("Response received");
 
                 // Check for a failed response
                 if (response.ResponseStatus == ResponseStatus.TimedOut)
@@ -628,12 +622,70 @@ namespace CkanDotNet.Api
                 }
                 else if (response.ResponseStatus == ResponseStatus.Error)
                 {
-                    int statusCode = (int)response.StatusCode;
-                    throw new CkanRequestException(response.Content, statusCode);
+                    if (!String.IsNullOrEmpty(response.ErrorMessage) && response.ErrorMessage.Contains("timed out"))
+                    {
+                        throw new CkanTimeoutException("CKAN request timed out");
+                    }
+                    else
+                    {
+                        // Raise the specific HTTP error code and message
+                        int statusCode = (int)response.StatusCode;
+                        throw new CkanRequestException(response.Content, statusCode);
+                    }
                 }
+            }
+            catch (CkanTimeoutException ex)
+            {
+                log.Error("CKAN request timed out", ex);
+                throw;
+            }
+            catch (CkanRequestException ex)
+            {
+                log.Error("CKAN request failed", ex);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                log.Error("An unexpected error occured while accessing CKAN", ex);
+                throw;
             }
 
             return response.Data;
+        }
+
+        /// <summary>
+        /// Execute a request for the CKAN REST API with support for individual request caching.
+        /// </summary>
+        /// <typeparam name="T">The type that will be used for the JSON returned.</typeparam>
+        /// <param name="request">The RestRequest</param>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns></returns>
+        private T Execute<T>(RestRequest request, CacheSettings settings) where T : new()
+        {
+            var url = GetRequestUrl(request);
+
+            // Log the request that is being sent to CKAN
+            log.InfoFormat("Prepared request for CKAN repository: {0}", url);
+
+            // Get the response
+            T data = default(T);
+            
+            if (settings == null)
+            {
+                log.Info("Not using caching for this request");
+
+                // If no caching call directly
+                data = this.ExecuteRestRequest<T>(request);
+            }
+            else
+            {
+                log.Info("Checking for a cached response");
+
+                // Otherwise get from the cache or execute and cache if not cached
+                data = CachedExecute<T>(request, settings);
+            }
+
+            return data;
         }
         
         /// <summary>
@@ -642,7 +694,7 @@ namespace CkanDotNet.Api
         /// <typeparam name="T">The RestResponse type to retrieve from the cache.</typeparam>
         /// <param name="url">The url</param>
         /// <returns></returns>
-        public RestResponse<T> CachedExecute<T>(RestRequest request, CacheSettings settings) where T : new()
+        public T CachedExecute<T>(RestRequest request, CacheSettings settings) where T : new()
         {
             string key = Checksum(request);
 
@@ -657,7 +709,7 @@ namespace CkanDotNet.Api
 
                 // Response not cached, so execute the request and get the response
                 cachedItem.Request = request;
-                cachedItem.Response = this.GetRestClient().Execute<T>(request);
+                cachedItem.Data = this.ExecuteRestRequest<T>(request);
 
                 CacheItemPolicy policy = new CacheItemPolicy();
                 policy.AbsoluteExpiration = DateTimeOffset.Now.Add(settings.Duration);
@@ -676,7 +728,7 @@ namespace CkanDotNet.Api
             {
                 log.Debug("Response retrieved from cache.");
             }
-            return cachedItem.Response;;
+            return cachedItem.Data;;
         }
 
         public void CacheUpdated<T>(CacheEntryUpdateArguments arguments) where T : new()
@@ -689,19 +741,9 @@ namespace CkanDotNet.Api
 
                 CachedRequestResponse<T> newCachedItem = new CachedRequestResponse<T>();
                 newCachedItem.Request = cachedItem.Request;
-                newCachedItem.Response = this.GetRestClient().Execute<T>(cachedItem.Request);
+                newCachedItem.Data = this.ExecuteRestRequest<T>(cachedItem.Request);
 
                 arguments.UpdatedCacheItem = newCachedItem as CacheItem;
-
-                //CacheItemPolicy policy = new CacheItemPolicy();
-                //if (arguments.UpdatedCacheItemPolicy.AbsoluteExpiration != null)
-                //{
-                //    policy.AbsoluteExpiration = arguments.UpdatedCacheItemPolicy.AbsoluteExpiration;
-                    
-                //}
-                //policy.UpdateCallback = CacheUpdated<T>;
-
-                //arguments.UpdatedCacheItemPolicy = policy;
 
                 log.Debug("Request automatically recached.");
             }

@@ -14,7 +14,7 @@ namespace CkanDotNet.Web.Models
         {
             base.OnActionExecuting(filterContext); 
             
-            if (SettingsHelper.IsDataCatalogOffline())
+            if (SettingsHelper.GetOfflineEnabled())
             {
                 // Do a server transfer to the offline controller
                 ServerTransferToRoute(filterContext,

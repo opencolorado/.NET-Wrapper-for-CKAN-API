@@ -4,7 +4,7 @@
     ViewBag.Title = SettingsHelper.GetHomePageTitle();
 }
 
-@RenderPage("~/Views/Theme/" + SettingsHelper.GetTheme() + "/_HomeHeader.cshtml")
+@RenderPage("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_HomeHeader.cshtml")
 
 <section id="body">
     <section id="content">
@@ -28,6 +28,6 @@
     {
         @Html.Action("PopularTags", "Widget")
     }
-    @Html.Partial("~/Views/Theme/" + SettingsHelper.GetTheme() + "/_License.cshtml")
-    @Html.Partial("~/Views/Theme/" + SettingsHelper.GetTheme() + "/_About.cshtml")
+    @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_License.cshtml")
+    @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_About.cshtml")
 </aside>
