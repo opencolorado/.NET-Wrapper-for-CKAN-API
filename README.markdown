@@ -1,13 +1,20 @@
-# .NET Wrapper for CKAN API
+## Welcome
+This project provides an [ASP.NET MVC 3] (http://www.asp.net/mvc/mvc3) front-end for a 
+[CKAN] (http://wiki.ckan.net/Main_Page) repository.  This project is designed to provide
+a data catalog that is based on a  group in a shared CKAN respository.
 
-## Overview
-Provides a ASP.NET MVC 3 front-end for a CKAN repository that is intended to be used for providing a fully functioning data catalog for a CKAN group.  
+### About
+This project was created in partnership with [Open Colorado] (http://www.opencolorado.org) and 
+Colorado Smart Communities.  This .NET implementation was created for communities that want to host
+a local data catalog on Windows/IIS while sharing a common CKAN repository.
 
-Also includes a C# wrapper for the CKAN API that can be used as a stand-alone client library for .NET development.
+## Getting Started
 
-## System Requirements
-* Microsoft Internet Information Services (IIS) 5 or greater
+### System Requirements
+* Windows Server 2003 or greater
+* Microsoft Internet Information Services 6 or greater
 * .NET Framework 4
+* ASP.NET MVC 3
 
 ## Development Tools
 * Microsoft Visual Web Developer Express 2010
