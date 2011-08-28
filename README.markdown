@@ -21,7 +21,7 @@ a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API)  av
  * Show popular tags
  * Show total number of packages that are available
  * Customizable welcome information, usage information and about information
-* Search for data packages by query or by tag
+* Search for data packages by query or by tag:
  * Paginated search results
  * Filter results by tag
 * View package details including:
@@ -29,8 +29,11 @@ a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API)  av
  * Resources with customizable resource actions (ex. View KML in Google Maps)
  * Package rating (and 'rate this package')
  * License details for each package
-* Themeable/skinnable
- * The catalog is fully configurable with CSS/HTML
+* Themeable/skinnable:
+ * The catalog supports themes (just copy an existing theme and customize from there)
+ * Theming uses CSS and HTML
+ * Designed to be integrated into an organizations web site with no code changes required
+* Highly configurable
 
 ## Getting Started
 
