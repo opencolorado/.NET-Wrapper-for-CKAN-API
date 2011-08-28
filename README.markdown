@@ -1,12 +1,20 @@
 ## Welcome
 This project provides an [ASP.NET MVC 3] (http://www.asp.net/mvc/mvc3) front-end for a 
-[CKAN] (http://wiki.ckan.net/Main_Page) repository.  This project is designed to provide
-a data catalog that is based on a  group in a shared CKAN respository.
+[CKAN] (http://wiki.ckan.net/Main_Page) repository.  This project provides
+a fully functioning web-based data catalog that is specific to a group in a shared CKAN respository.
 
 ### About
 This project was created in partnership with [Open Colorado] (http://www.opencolorado.org) and 
-Colorado Smart Communities.  This .NET implementation was created for communities that want to host
-a local data catalog on Windows/IIS while sharing a common CKAN repository.
+Colorado Smart Communities.  
+
+This .NET implementation was created for communities that want to leverage the common CKAN 
+repository (http://colorado.ckan.net) while hosting a local data catalog front-end on their organization's
+Windows hosting platform.  
+
+The catalog is fully configurable and it is designed to be easy to integrate with the look 
+feel or an existing site.
+
+
 
 ## Getting Started
 
