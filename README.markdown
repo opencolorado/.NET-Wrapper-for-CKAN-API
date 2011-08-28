@@ -1,4 +1,4 @@
-#DRAFT
+#DRAF
 
 ## Welcome
 This project provides an [ASP.NET MVC 3] (http://www.asp.net/mvc/mvc3) front-end for a 
@@ -9,31 +9,43 @@ a fully functioning web-based data catalog that is specific to a group in a shar
 This project was created in partnership with [Open Colorado] (http://www.opencolorado.org) and 
 Colorado Smart Communities.  
 
-This .NET implementation was created for communities that want to leverage the common CKAN 
+This .NET implementation was created for communities that want to leverage the Colorado CKAN 
 repository (http://colorado.ckan.net) while hosting a local data catalog front-end on their organization's
 Windows/.NET platform.  For organizations that prefer, there is also 
-a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API)  available.
+a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API) available.
+
+There is no specific implemention in this project related to colorado.ckan.net so this can be
+used with any CKAN instance.
 
 ## Features
 * Customizable home page:
- * Display featured packages (packages tagged with 'featured')
+ * Show featured packages (packages tagged with 'featured')
  * Show recently updated packages
  * Show popular tags
  * Show total number of packages that are available
- * Customizable welcome information, usage information and about information
+ * Customizable text content and layout
 * Search for data packages by query or by tag:
  * Paginated search results
  * Filter results by tag
+ * Optionally show package ratings with search results
 * View package details including:
- * Description
+ * Date posted and date last updated
+ * Package description with support for CKAN Markdown formatting
  * Resources with customizable resource actions (ex. View KML in Google Maps)
+ * Addition package details
  * Package rating (and 'rate this package')
- * License details for each package
+ * License details
+ * RSS feed for package revisions
 * Themeable/skinnable:
- * The catalog supports themes (just copy an existing theme and customize from there)
- * Theming uses CSS and HTML
+ * Supports custom themes with CSS/HTML (just copy an existing theme and customize from there)
  * Designed to be integrated into an organizations web site with no code changes required
 * Highly configurable
+* Configurable CKAN request caching for performance
+ * Supports automatic background caching
+* Maintenance mode
+ * Catalog can be taken offline with a custom notice if the CKAN repository needs maintenance
+* Uses clean RESTful URLs with breadcrumb support
+* Configurable logging for system monitoring and troubleshooting
 
 ## Getting Started
 
