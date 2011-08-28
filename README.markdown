@@ -9,12 +9,41 @@ Colorado Smart Communities.
 
 This .NET implementation was created for communities that want to leverage the common CKAN 
 repository (http://colorado.ckan.net) while hosting a local data catalog front-end on their organization's
-Windows hosting platform.  
+Windows/.NET platform.  For organizations that prefer, there is also 
+a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API)  available.
+
+### Features
+* Customizable home page:
+ * Display featured packages (packages tagged with 'featured')
+ * Show recently updated packages
+ * Show popular tags
+ * Show total number of packages that are available
+ * Customizable welcome information, usage information and about information
+* Search for data packages by query or by tag
+* Paginated search results
+* View package details including:
+ * 
+* Designed to present a data catalog based on a CKAN group
+* Customizable/configurable data catalog front-end
+* Home page provides:
+ * Welcome message
+ * Search
+ * Featured packages (packages tagged with 'featured')
+ * Recently updated packages
+ * Top tags
+* Search screen provides:
+ * Pagination
+ * Tag filtering
+ * Breadcrumbs for search parameters
+* Package screen provides:
+ * Description
+ * Resource list
+ * Package details
+ * Rate this package
+ * License information
 
 The catalog is fully configurable and it is designed to be easy to integrate with the look 
 feel or an existing site.
-
-
 
 ## Getting Started
 
@@ -44,25 +73,7 @@ See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/wiki/Release-Notes
 ## CkanDotNet.Web
 Provides a ASP.NET MVC 3 front-end for the [CKAN API Version 2][1] that is intended to be used for providing a fully functioning data catalog.  Uses the CkanDotNet.Api library (see below).
 
-### Features
-* Designed to present a data catalog based on a CKAN group
-* Customizable/configurable data catalog front-end
-* Home page provides:
- * Welcome message
- * Search
- * Featured packages (packages tagged with 'featured')
- * Recently updated packages
- * Top tags
-* Search screen provides:
- * Pagination
- * Tag filtering
- * Breadcrumbs for search parameters
-* Package screen provides:
- * Description
- * Resource list
- * Package details
- * Rate this package
- * License information
+
 
 ## CkanDotNet.Api
 Provides a .NET wrapper for the [CKAN API Version 2][1].
