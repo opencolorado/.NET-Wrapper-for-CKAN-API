@@ -22,25 +22,25 @@ used with any CKAN instance.
 See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/wiki/Release-Notes
 
 ## Features
-* Customizable home page:
+* Customizable home page
  * Show featured packages (packages tagged with 'featured')
  * Show recently updated packages
  * Show popular tags
  * Show total number of packages that are available
  * Customizable text content and layout
-* Search for data packages by query or by tag:
+* Search for data packages by query or by tag
  * Paginated search results
  * Filter results by tag
  * Optionally show package ratings with search results
-* View package details including:
+* View package details
  * Date posted and date last updated
  * Package description with support for CKAN Markdown formatting
  * Resources with customizable resource actions (ex. View KML in Google Maps)
- * Addition package details
+ * Additional package details
  * Package rating (and 'rate this package')
  * License details
  * RSS feed for package revisions
-* Themeable/skinnable:
+* Themeable
  * Supports custom themes with CSS/HTML (just copy an existing theme and customize from there)
  * Designed to be integrated into an organizations web site with no code changes required
 * Highly configurable
@@ -59,12 +59,19 @@ See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/wiki/Release-Notes
 * .NET Framework 4
 * ASP.NET MVC 3
 
+### Installation Guide
+
+See (TODO)
 
 ## Want to Contribute?
 
-### Development Tools
-* Microsoft Visual Web Developer Express 2010
-* xUnit 1.8
+Feel free to fork this repo and contribute your ideas.
+
+This project was created using free tools and open source libraries.  You will need the following tools
+to run the project from source:
+
+* [Microsoft Visual Web Developer Express 2010] (http://www.microsoft.com/visualstudio/en-us/products/2010-editions/visual-web-developer-express) 
+* [xUnit] [http://xunit.codeplex.com]
 
 ### Dependencies
 * Client:
