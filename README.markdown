@@ -76,17 +76,17 @@ This project was created using free tools and open source libraries.  You will n
 to run the project from source:
 
 * [Microsoft Visual Web Developer Express 2010] (http://www.microsoft.com/visualstudio/en-us/products/2010-editions/visual-web-developer-express) 
-* [xUnit] [http://xunit.codeplex.com]
+* [xUnit] (http://xunit.codeplex.com)
 
 ### Dependencies
 * Client:
  * jQuery 1.6.2
- * jQuery plugin - Star Rating widget (http://plugins.jquery.com/project/Star_Rating_widget)
- * jQuery plugin - tipTip (http://code.drewwilson.com/entry/tiptip-jquery-plugin)
- * jQuery plugin - watermark (http://jquery-watermark.googlecode.com/)
+ * jQuery plugin - [Star Rating widget] (http://plugins.jquery.com/project/Star_Rating_widget)
+ * jQuery plugin - [tipTip] (http://code.drewwilson.com/entry/tiptip-jquery-plugin)
+ * jQuery plugin - [watermark] (http://jquery-watermark.googlecode.com/)
 * Server
- * log4net (http://logging.apache.org/log4net/)
- * RestSharp (http://restsharp.org/)
+ * [log4net] (http://logging.apache.org/log4net/)
+ * [RestSharp] (http://restsharp.org/)
 
 ## CKAN.NET API
 
