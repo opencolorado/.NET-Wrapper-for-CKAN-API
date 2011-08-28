@@ -1,5 +1,3 @@
-#DRAFT
-
 ## Welcome
 This project provides an [ASP.NET MVC 3] (http://www.asp.net/mvc/mvc3) front-end for a 
 [CKAN] (http://wiki.ckan.net/Main_Page) repository.  This project provides
@@ -20,6 +18,13 @@ used with any CKAN instance.
 ### Release Notes
 
 See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/wiki/Release-Notes
+
+### .NET API for CKAN
+This project includes both a web application and a stand-alone .NET wrapper for the [CKAN API Version 2][1].
+If you are just looking for the .NET wrapper you can download the source and build the CkanDotNet.Api
+project separately.  We'll try to provide a separate binary download for future releases.
+
+For more details on the .NET wrapper see [TODO].
 
 ## Features
 * Customizable home page
@@ -83,9 +88,7 @@ to run the project from source:
  * log4net (http://logging.apache.org/log4net/)
  * RestSharp (http://restsharp.org/)
 
-
-# CkanDotNet.Api
-Provides a .NET wrapper for the [CKAN API Version 2][1].
+## CKAN.NET API
 
 ### Features
 * Provides the following support for the Model API
