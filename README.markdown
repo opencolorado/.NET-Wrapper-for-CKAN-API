@@ -1,4 +1,4 @@
-#DRAF
+#DRAFT
 
 ## Welcome
 This project provides an [ASP.NET MVC 3] (http://www.asp.net/mvc/mvc3) front-end for a 
@@ -16,6 +16,10 @@ a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API) ava
 
 There is no specific implemention in this project related to colorado.ckan.net so this can be
 used with any CKAN instance.
+
+### Release Notes
+
+See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/wiki/Release-Notes
 
 ## Features
 * Customizable home page:
@@ -55,8 +59,6 @@ used with any CKAN instance.
 * .NET Framework 4
 * ASP.NET MVC 3
 
-## Release Notes
-See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/wiki/Release-Notes
 
 ## Want to Contribute?
 
