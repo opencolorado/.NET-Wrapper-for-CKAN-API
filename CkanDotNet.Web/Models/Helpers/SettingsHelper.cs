@@ -10,23 +10,227 @@ namespace CkanDotNet.Web.Models.Helpers
 {
     public static class SettingsHelper
     {
+        #region Offline Settings
+
+        /// <summary>
+        /// Is the data catalog currently offline
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetOfflineEnabled()
+        {
+            string offline = ConfigurationManager.AppSettings["Offline.Enabled"];
+            return (offline == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Get the offline title
+        /// </summary>
+        /// <returns></returns>
+        public static string GetOfflineTitle()
+        {
+            return ConfigurationManager.AppSettings["Offline.Title"];
+        }
+
+        /// <summary>
+        /// Get the offline message
+        /// </summary>
+        /// <returns></returns>
+        public static string GetOfflineMessage()
+        {
+            return ConfigurationManager.AppSettings["Offline.Message"];
+        }
+
+        #endregion
+
+        #region Repository Settings
+
         /// <summary>
         /// Get the list of groups that have been configured in the settings.
         /// </summary>
         /// <returns></returns>
-        public static string GetRepository()
+        public static string GetRepositoryHost()
         {
-            return ConfigurationManager.AppSettings["Repository"];
+            return ConfigurationManager.AppSettings["Repository.Host"];
         }
+
+        /// <summary>
+        /// Get the respository request timeout in milliseconds.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetRepositoryRequestTimeout()
+        {
+            string timeout = ConfigurationManager.AppSettings["Repository.RequestTimeout"];
+            return int.Parse(timeout);
+        }
+
+        #endregion
+
+        #region Catalog Settings
 
         /// <summary>
         /// Gets the current theme name
         /// </summary>
         /// <returns></returns>
-        public static string GetTheme()
+        public static string GetCatalogTheme()
         {
-            return ConfigurationManager.AppSettings["Theme"];
+            return ConfigurationManager.AppSettings["Catalog.Theme"];
         }
+
+        /// <summary>
+        /// Get the list of groups that have been configured in the settings.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetCatalogGroup()
+        {
+            return ConfigurationManager.AppSettings["Catalog.Group"];
+        }
+
+        /// <summary>
+        /// Get the prefix for package titles.  The prefix is removed from 
+        /// package names as the prefix is not necessary in a filtered catalog.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetCatalogPackageTitlePrefix()
+        {
+            return ConfigurationManager.AppSettings["Catalog.PackageTitlePrefix"];
+        }
+
+        /// <summary>
+        /// Filter the package title with the package title prefix.
+        /// </summary>
+        /// <param name="package"></param>
+        public static void FilterTitle(Package package)
+        {
+            string title = package.Title;
+            string titlePrefix = GetCatalogPackageTitlePrefix();
+            if (!String.IsNullOrEmpty(titlePrefix))
+            {
+                package.Title = title.Replace(titlePrefix, "");
+            }
+
+        }
+
+        /// <summary>
+        /// Filter the package titles with the package title prefix.
+        /// </summary>
+        /// <param name="packages"></param>
+        public static void FilterTitles(List<Package> packages)
+        {
+            foreach (var package in packages)
+            {
+                FilterTitle(package);
+            }
+        }
+
+        /// <summary>
+        /// Get the list of hidden tags that have been configured in the settings
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetCatalogHiddenTags()
+        {
+            return GetList("Catalog.HiddenTags");
+        }
+
+        /// <summary>
+        /// Filter the package titles with the package title prefix.
+        /// </summary>
+        /// <param name="packages"></param>
+        public static List<string> FilterTags(List<string> tags)
+        {
+            List<string> hiddenTags = GetCatalogHiddenTags();
+            foreach (var hiddenTag in hiddenTags)
+            {
+                tags.Remove(hiddenTag);
+            }
+            return tags;
+        }
+
+        #endregion
+
+        #region Resource Settings
+
+        /// <summary>
+        /// Get the resource settings (custom actions for CKAN resource types)
+        /// </summary>
+        /// <returns></returns>
+        public static ResourceSettings GetResourceSettings()
+        {
+            ResourceSettings settings = new ResourceSettings();
+
+            foreach (var key in ConfigurationManager.AppSettings.AllKeys)
+            {
+                if (key.Contains("ResourceType"))
+                {
+
+                    // Get or create the resource type
+                    string type = key.Split(char.Parse("."))[1];
+                    string property = key.Split(char.Parse("."))[2];
+
+                    ResourceType resourceType;
+                    if (settings.Types.ContainsKey(type))
+                    {
+                        resourceType = settings.Types[type];
+                    }
+                    else
+                    {
+                        resourceType = new ResourceType();
+                        settings.Types.Add(type, resourceType);
+                    }
+
+                    // Check for the title
+                    if (property == "Title")
+                    {
+                        resourceType.Title = ConfigurationManager.AppSettings[key];
+                    }
+                    else if (property == "Actions")
+                    {
+
+                        // Add the actions
+                        string value = ConfigurationManager.AppSettings[key];
+                        value = value.Replace(Environment.NewLine, "");
+
+                        foreach (var actionSetting in value.Split(char.Parse("|")))
+                        {
+
+                            ResourceAction action = new ResourceAction();
+
+                            foreach (var parameterSetting in actionSetting.Split(char.Parse(";")))
+                            {
+                                string parameter = parameterSetting.Trim();
+
+                                int equalsIndex = parameter.IndexOf("=");
+
+                                var parameterKey = parameter.Substring(0, equalsIndex);
+                                var parameterValue = parameter.Substring(equalsIndex + 1);
+
+                                if (parameterKey == "action")
+                                {
+                                    action.Action = parameterValue;
+                                }
+                                else if (parameterKey == "url")
+                                {
+                                    action.UrlTemplate = parameterValue;
+                                }
+                                else if (parameterKey == "title")
+                                {
+                                    action.Title = parameterValue;
+                                }
+
+                            }
+
+                            resourceType.Actions.Add(action);
+                        }
+                    }
+
+                }
+            }
+
+            return settings;
+        }
+
+        #endregion
+
+        #region Home Page Settings
 
         /// <summary>
         /// Gets the page title for the home page
@@ -38,21 +242,23 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
-        /// Gets the page title for the search page
+        /// Should popular tags be displayed on the home page
         /// </summary>
         /// <returns></returns>
-        public static string GetSearchPageTitle()
+        public static bool GetHomePopularTagsEnabled()
         {
-            return ConfigurationManager.AppSettings["Search.Title"];
+            string enabled = ConfigurationManager.AppSettings["Home.PopularTagsEnabled"];
+            return (enabled == "true") ? true : false;
         }
 
         /// <summary>
-        /// Gets the page title for the package page
+        /// Get the maximum number of popular tags to display on the home page
         /// </summary>
         /// <returns></returns>
-        public static string GetPackagePageTitle()
+        public static int GetHomePopularTagsLimit()
         {
-            return ConfigurationManager.AppSettings["Package.Title"];
+            string limit = ConfigurationManager.AppSettings["Home.PopularTagsLimit"];
+            return int.Parse(limit);
         }
 
         /// <summary>
@@ -84,7 +290,7 @@ namespace CkanDotNet.Web.Models.Helpers
             string limit = ConfigurationManager.AppSettings["Home.FeaturedPackagesLimit"];
             return int.Parse(limit);
         }
-       
+
         /// <summary>
         /// Should recently updated packages be displayed on the home page
         /// </summary>
@@ -93,26 +299,6 @@ namespace CkanDotNet.Web.Models.Helpers
         {
             string enabled = ConfigurationManager.AppSettings["Home.RecentlyUpdatedPackagesEnabled"];
             return (enabled == "true") ? true : false;
-        }
-
-        /// <summary>
-        /// Should popular tags be displayed on the home page
-        /// </summary>
-        /// <returns></returns>
-        public static bool GetHomePopularTagsEnabled()
-        {
-            string enabled = ConfigurationManager.AppSettings["Home.PopularTagsEnabled"];
-            return (enabled == "true") ? true : false;
-        }
-
-        /// <summary>
-        /// Get the maximum number of popular tags to display on the home page
-        /// </summary>
-        /// <returns></returns>
-        public static int GetHomePopularTagsLimit()
-        {
-            string limit = ConfigurationManager.AppSettings["Home.PopularTagsLimit"];
-            return int.Parse(limit);
         }
 
         /// <summary>
@@ -125,24 +311,17 @@ namespace CkanDotNet.Web.Models.Helpers
             return (enabled == "true") ? true : false;
         }
 
-        /// <summary>
-        /// Get the list of groups that have been configured in the settings.
-        /// </summary>
-        /// <returns></returns>
-        public static bool GetPackageRssFeedEnabled()
-        {
-            string enabled = ConfigurationManager.AppSettings["Package.RSSFeedEnabled"];
-            return (enabled == "true") ? true : false;
-        }
+        #endregion
+
+        #region Search Page Settings
 
         /// <summary>
-        /// Get the list of groups that have been configured in the settings.
+        /// Gets the page title for the search page
         /// </summary>
         /// <returns></returns>
-        public static int GetPackageRssFeedDays()
+        public static string GetSearchPageTitle()
         {
-            string days = ConfigurationManager.AppSettings["Package.RSSFeedDays"];
-            return int.Parse(days);
+            return ConfigurationManager.AppSettings["Search.Title"];
         }
 
         /// <summary>
@@ -175,6 +354,38 @@ namespace CkanDotNet.Web.Models.Helpers
             return (enabled == "true") ? true : false;
         }
 
+        #endregion
+
+        #region Package Page Settings
+
+        /// <summary>
+        /// Gets the page title for the package page
+        /// </summary>
+        /// <returns></returns>
+        public static string GetPackagePageTitle()
+        {
+            return ConfigurationManager.AppSettings["Package.Title"];
+        }
+
+        /// <summary>
+        /// Get the list of groups that have been configured in the settings.
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetPackageRssFeedEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Package.RSSFeedEnabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Get the list of groups that have been configured in the settings.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetPackageRssFeedDays()
+        {
+            string days = ConfigurationManager.AppSettings["Package.RSSFeedDays"];
+            return int.Parse(days);
+        }
 
         /// <summary>
         /// Get the label for a package 'extra' field.
@@ -190,6 +401,10 @@ namespace CkanDotNet.Web.Models.Helpers
 
             return label;
         }
+
+        #endregion
+
+        #region Cache Settings
 
         /// <summary>
         /// Get the duration to cache the full package list.
@@ -281,52 +496,9 @@ namespace CkanDotNet.Web.Models.Helpers
             return (enabled == "true") ? true : false;
         }
 
-        /// <summary>
-        /// Get the list of groups that have been configured in the settings.
-        /// </summary>
-        /// <returns></returns>
-        public static string GetGroup()
-        {
-            return ConfigurationManager.AppSettings["Group"];
-        }
+        #endregion
 
-
-        /// <summary>
-        /// Is the data catalog currently offline
-        /// </summary>
-        /// <returns></returns>
-        public static bool IsDataCatalogOffline()
-        {
-            string offline = ConfigurationManager.AppSettings["Offline.Enabled"];
-            return (offline == "true") ? true : false;
-        }
-
-        /// <summary>
-        /// Get the offline title
-        /// </summary>
-        /// <returns></returns>
-        public static string GetOfflineTitle()
-        {
-            return ConfigurationManager.AppSettings["Offline.Title"];
-        }
-
-        /// <summary>
-        /// Get the offline message
-        /// </summary>
-        /// <returns></returns>
-        public static string GetOfflineMessage()
-        {
-            return ConfigurationManager.AppSettings["Offline.Message"];
-        }
-
-        /// <summary>
-        /// Get the list of hidden tags that have been configured in the settings
-        /// </summary>
-        /// <returns></returns>
-        public static List<string> GetHiddenTags()
-        {
-            return GetList("HiddenTags");
-        }
+        #region Helper Methods
 
         /// <summary>
         /// Get a list of comma delimited items from the a key in the settings
@@ -353,119 +525,6 @@ namespace CkanDotNet.Web.Models.Helpers
             return items;
         }
 
-        /// <summary>
-        /// Filter the package title with the package title prefix.
-        /// </summary>
-        /// <param name="package"></param>
-        public static void FilterTitle(Package package)
-        {
-            string title = package.Title;
-            string titlePrefix = ConfigurationManager.AppSettings["PackageTitlePrefix"];
-            if (!String.IsNullOrEmpty(titlePrefix)) 
-            {
-                package.Title = title.Replace(titlePrefix, "");
-            }
-
-        }
-
-        /// <summary>
-        /// Filter the package titles with the package title prefix.
-        /// </summary>
-        /// <param name="packages"></param>
-        public static void FilterTitles(List<Package> packages)
-        {
-            foreach (var package in packages)
-            {
-                FilterTitle(package);
-            }
-        }
-
-        /// <summary>
-        /// Filter the package titles with the package title prefix.
-        /// </summary>
-        /// <param name="packages"></param>
-        public static List<string> FilterTags(List<string> tags)
-        {
-            List<string> hiddenTags = GetHiddenTags();
-            foreach (var hiddenTag in hiddenTags)
-            {
-                tags.Remove(hiddenTag);
-            }
-            return tags;
-        }
-
-        public static ResourceSettings GetResourceSettings()
-        {
-            ResourceSettings settings = new ResourceSettings();
-
-            foreach (var key in ConfigurationManager.AppSettings.AllKeys)
-            {
-                if (key.Contains("ResourceType")) {
-
-                    // Get or create the resource type
-                    string type = key.Split(char.Parse("."))[1];
-                    string property = key.Split(char.Parse("."))[2];
-
-                    ResourceType resourceType;
-                    if (settings.Types.ContainsKey(type)) 
-                    {
-                        resourceType = settings.Types[type];
-                    }
-                    else
-                    {
-                        resourceType = new ResourceType();
-                        settings.Types.Add(type,resourceType);
-                    }
-
-                    // Check for the title
-                    if (property == "Title")
-                    {
-                        resourceType.Title = ConfigurationManager.AppSettings[key]; 
-                    }
-                    else if (property == "Actions")
-                    {
-
-                        // Add the actions
-                        string value = ConfigurationManager.AppSettings[key];
-                        value = value.Replace(Environment.NewLine, "");
-
-                        foreach (var actionSetting in value.Split(char.Parse("|")))
-                        {
-
-                            ResourceAction action = new ResourceAction();
-
-                            foreach (var parameterSetting in actionSetting.Split(char.Parse(";")))
-                            {
-                                string parameter = parameterSetting.Trim();
-
-                                int equalsIndex = parameter.IndexOf("=");
-
-                                var parameterKey = parameter.Substring(0, equalsIndex);
-                                var parameterValue = parameter.Substring(equalsIndex + 1);
-
-                                if (parameterKey == "action")
-                                {
-                                    action.Action = parameterValue;
-                                }
-                                else if (parameterKey == "url")
-                                {
-                                    action.UrlTemplate = parameterValue;
-                                }
-                                else if (parameterKey == "title")
-                                {
-                                    action.Title = parameterValue;
-                                }
-
-                            }
-
-                            resourceType.Actions.Add(action);
-                        }
-                    }
-
-                }
-            }
-
-            return settings;
-        }
+        #endregion
     }
 }

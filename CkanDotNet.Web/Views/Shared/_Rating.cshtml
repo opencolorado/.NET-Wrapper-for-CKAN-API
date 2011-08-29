@@ -35,7 +35,7 @@ $("#@(ratingId)").stars({
         @:disabled: true, 
     }
     callback: function(ui, type, value){
-        var url = "http://@SettingsHelper.GetRepository()/package/rate/@Model.Name?rating=" + value;
+        var url = "http://@SettingsHelper.GetRepositoryHost()/package/rate/@Model.Name?rating=" + value;
         $("#@(ratingId)_iframe").get(0).src = url;
 
         $(".rating-response").text("Thanks for your rating!");

@@ -1,56 +1,94 @@
-# .NET Wrapper for CKAN API
+## Welcome
+This project provides an [ASP.NET MVC 3] (http://www.asp.net/mvc/mvc3) front-end for a 
+[CKAN] (http://wiki.ckan.net/Main_Page) repository.  This project provides
+a fully functioning web-based data catalog that is specific to a group in a shared CKAN respository.
 
-## Overview
-Provides a ASP.NET MVC 3 front-end for a CKAN repository that is intended to be used for providing a fully functioning data catalog for a CKAN group.  
+### About
+This project was created in partnership with [Open Colorado] (http://www.opencolorado.org) and 
+Colorado Smart Communities.  
 
-Also includes a C# wrapper for the CKAN API that can be used as a stand-alone client library for .NET development.
+This .NET implementation was created for communities that want to leverage the Colorado CKAN 
+repository (http://colorado.ckan.net) while hosting a local data catalog front-end on their organization's
+Windows/.NET platform.  For organizations that prefer, there is also 
+a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API) available.
 
-## System Requirements
-* Microsoft Internet Information Services (IIS) 5 or greater
-* .NET Framework 4
+There is no specific implemention in this project related to colorado.ckan.net so this can be
+used with any CKAN instance.
 
-## Development Tools
-* Microsoft Visual Web Developer Express 2010
-* xUnit 1.8
+### Release Notes
 
-## Dependencies
-* Client:
- * jQuery 1.6.2
- * jQuery plugin - Star Rating widget (http://plugins.jquery.com/project/Star_Rating_widget)
- * jQuery plugin - tipTip (http://code.drewwilson.com/entry/tiptip-jquery-plugin)
- * jQuery plugin - watermark (http://jquery-watermark.googlecode.com/)
-* Server
- * log4net (http://logging.apache.org/log4net/)
- * RestSharp (http://restsharp.org/)
-
-## Release Notes
 See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/wiki/Release-Notes
 
-## CkanDotNet.Web
-Provides a ASP.NET MVC 3 front-end for the [CKAN API Version 2][1] that is intended to be used for providing a fully functioning data catalog.  Uses the CkanDotNet.Api library (see below).
+### .NET API for CKAN
+This project includes both a web application and a stand-alone .NET wrapper for the [CKAN API Version 2][1].
+If you are just looking for the .NET wrapper you can download the source and build the CkanDotNet.Api
+project separately.  We'll try to provide a separate binary download for future releases.
 
-### Features
-* Designed to present a data catalog based on a CKAN group
-* Customizable/configurable data catalog front-end
-* Home page provides:
- * Welcome message
- * Search
- * Featured packages (packages tagged with 'featured')
- * Recently updated packages
- * Top tags
-* Search screen provides:
- * Pagination
- * Tag filtering
- * Breadcrumbs for search parameters
-* Package screen provides:
- * Description
- * Resource list
- * Package details
- * Rate this package
- * License information
+For more details on the .NET wrapper see [TODO].
 
-## CkanDotNet.Api
-Provides a .NET wrapper for the [CKAN API Version 2][1].
+## Features
+* Customizable home page
+ * Show featured packages (packages tagged with 'featured')
+ * Show recently updated packages
+ * Show popular tags
+ * Show total number of packages that are available
+ * Customizable text content and layout
+* Search for data packages by query or by tag
+ * Paginated search results
+ * Filter results by tag
+ * Optionally show package ratings with search results
+* View package details
+ * Date posted and date last updated
+ * Package description with support for CKAN Markdown formatting
+ * Resources with customizable resource actions (ex. View KML in Google Maps)
+ * Additional package details
+ * Package rating (and 'rate this package')
+ * License details
+ * RSS feed for package revisions
+* Themeable
+ * Supports custom themes with CSS/HTML (just copy an existing theme and customize from there)
+ * Designed to be integrated into an organizations web site with no code changes required
+* Highly configurable
+* Configurable CKAN request caching for performance
+ * Supports automatic background caching
+* Maintenance mode
+ * Catalog can be taken offline with a custom notice if the CKAN repository needs maintenance
+* Uses clean RESTful URLs with breadcrumb support
+* Configurable logging for system monitoring and troubleshooting
+
+## Getting Started
+
+### System Requirements
+* Windows Server 2003 or greater
+* Microsoft Internet Information Services 6 or greater
+* .NET Framework 4
+* ASP.NET MVC 3
+
+### Installation Guide
+
+See (TODO)
+
+## Want to Contribute?
+
+Feel free to fork this repo and contribute your ideas.
+
+This project was created using free tools and open source libraries.  You will need the following tools
+to run the project from source:
+
+* [Microsoft Visual Web Developer Express 2010] (http://www.microsoft.com/visualstudio/en-us/products/2010-editions/visual-web-developer-express) 
+* [xUnit] (http://xunit.codeplex.com)
+
+### Dependencies
+* Client:
+ * jQuery 1.6.2
+ * jQuery plugin - [Star Rating widget] (http://plugins.jquery.com/project/Star_Rating_widget)
+ * jQuery plugin - [tipTip] (http://code.drewwilson.com/entry/tiptip-jquery-plugin)
+ * jQuery plugin - [watermark] (http://jquery-watermark.googlecode.com/)
+* Server
+ * [log4net] (http://logging.apache.org/log4net/)
+ * [RestSharp] (http://restsharp.org/)
+
+## CKAN.NET API
 
 ### Features
 * Provides the following support for the Model API

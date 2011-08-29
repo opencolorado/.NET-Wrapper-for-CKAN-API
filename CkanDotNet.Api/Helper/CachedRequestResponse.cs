@@ -6,9 +6,9 @@ using RestSharp;
 
 namespace CkanDotNet.Api.Helper
 {
-    public class CachedRequestResponse<T>
+    public class CachedRequestResponse<T> where T : new()
     {
         public RestRequest Request { get; set; }
-        public RestResponse<T> Response { get; set; }
+        public T Data { get; set; }
     }
 }

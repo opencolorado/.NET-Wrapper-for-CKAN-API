@@ -30,7 +30,7 @@
 
         @if (SettingsHelper.GetPackageRssFeedEnabled())
         {
-        <a class="package-subscribe tooltip" title="Subscribe" href="http://@SettingsHelper.GetRepository()/package/history/@Model.Name?format=atom&days=@SettingsHelper.GetPackageRssFeedDays()"> </a>
+        <a class="package-subscribe tooltip" title="Subscribe" href="http://@SettingsHelper.GetRepositoryHost()/package/history/@Model.Name?format=atom&days=@SettingsHelper.GetPackageRssFeedDays()"> </a>
         }
         
     </div>
@@ -63,5 +63,5 @@
 
     @Html.Partial("~/Views/Shared/Package/_License.cshtml")
 
-    @Html.Partial("~/Views/Theme/" + SettingsHelper.GetTheme() + "/_About.cshtml")
+    @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_About.cshtml")
 </aside>

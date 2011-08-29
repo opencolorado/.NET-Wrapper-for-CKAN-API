@@ -17,7 +17,8 @@ namespace CkanDotNet.Web.Models
         /// <returns></returns>
         public static CkanClient GetClient()
         {
-            CkanClient client = new CkanClient(SettingsHelper.GetRepository());
+            CkanClient client = new CkanClient(SettingsHelper.GetRepositoryHost());
+            client.Timeout = SettingsHelper.GetRepositoryRequestTimeout();
             return client;
         }
 
@@ -28,7 +29,7 @@ namespace CkanDotNet.Web.Models
         public static int GetPackageCount()
         {
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add(SettingsHelper.GetGroup());
+            searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
 
             int count = CkanHelper.GetClient().SearchPackages<string>(searchParameters, new CacheSettings(SettingsHelper.GetPackageCountCacheDuration(), SettingsHelper.GetPackageCountCacheBackgroundUpdate())).Count;
             return count;
@@ -44,7 +45,7 @@ namespace CkanDotNet.Web.Models
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add(SettingsHelper.GetGroup());
+            searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
 
             // Collect the results
             PackageSearchResponse<Package> response = CkanHelper.GetClient().SearchPackages<Package>(searchParameters, settings);

@@ -20,13 +20,14 @@ namespace CkanDotNet.Web.Controllers
         /// <summary>
         /// Provides a view of the top 10 tags in the repository group
         /// </summary>
+        [HandleError]
         public ActionResult PopularTags ()
         {
             log.DebugFormat("Controller action requested");
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add(SettingsHelper.GetGroup());
+            searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
 
             // Collect the results
             // Collect the results
@@ -34,7 +35,7 @@ namespace CkanDotNet.Web.Controllers
             SettingsHelper.FilterTitles(packages);
 
             // Get the tag counts
-            List<string> ignoreTags = SettingsHelper.GetHiddenTags();
+            List<string> ignoreTags = SettingsHelper.GetCatalogHiddenTags();
             int tagLimit = SettingsHelper.GetHomePopularTagsLimit();
             Dictionary<string, int> tagCounts = TagHelper.GetTagCounts(packages, ignoreTags, tagLimit);
             
@@ -46,13 +47,14 @@ namespace CkanDotNet.Web.Controllers
         /// Provides a view of features packages in the repository group.  Featured
         /// packages are those that are tagged with "featured".
         /// </summary>
+        [HandleError]
         public ActionResult FeaturedPackages()
         {
             log.DebugFormat("Controller action requested");
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add(SettingsHelper.GetGroup());
+            searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
             searchParameters.Limit = SettingsHelper.GetHomeFeaturedPackageLimit();
             searchParameters.Tags.Add(SettingsHelper.GetHomeFeaturedPackagesTag());
 
@@ -68,13 +70,14 @@ namespace CkanDotNet.Web.Controllers
         /// Provides a view of features packages that have recently bee updated in the repository group.
         /// Return the three most recently updated packages in the group.
         /// </summary>
+        [HandleError]
         public ActionResult RecentlyUpdated()
         {
             log.DebugFormat("Controller action requested");
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add(SettingsHelper.GetGroup());
+            searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
 
             // Collect the results
             List<Package> packages = CkanHelper.GetAllPackages();
@@ -106,12 +109,13 @@ namespace CkanDotNet.Web.Controllers
         /// Provides a view of features packages that have recently bee updated in the repository group.
         /// Return the three most recently updated packages in the group.
         /// </summary>
+        [HandleError]
         public ActionResult BrowsePackages()
         {
             log.DebugFormat("Controller action requested");
 
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add(SettingsHelper.GetGroup());
+            searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
 
             // Set up the pagination
             Pager pager = new Pager(1, SettingsHelper.GetSearchResultsPerPage());
@@ -134,6 +138,7 @@ namespace CkanDotNet.Web.Controllers
         /// <summary>
         /// Provides a view of the top 10 tags in the repository group
         /// </summary>
+        [HandleError]
         public ActionResult PackageCount()
         {
             return Content(CkanHelper.GetPackageCount().ToString());

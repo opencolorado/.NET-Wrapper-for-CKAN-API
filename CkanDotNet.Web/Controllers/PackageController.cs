@@ -19,6 +19,7 @@ namespace CkanDotNet.Web.Controllers
         //
         // GET: /Package/
         [CheckOffline]
+        [HandleError]
         public ActionResult Index(string package)
         {
             log.DebugFormat("Controller action requested for package {0}", package);
@@ -39,6 +40,7 @@ namespace CkanDotNet.Web.Controllers
         /// Configure the breadcrumbs for this controller.
         /// </summary>
         /// <param name="package"></param>
+        [HandleError]
         private void ConfigureBreadCrumbs(Package package)
         {
             // Set up the breadcrumbs for this action

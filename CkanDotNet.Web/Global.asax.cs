@@ -17,6 +17,8 @@ namespace CkanDotNet.Web
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
@@ -58,6 +60,9 @@ namespace CkanDotNet.Web
 
         }
 
+        /// <summary>
+        /// Handle Application_Start event
+        /// </summary>
         protected void Application_Start()
         {
             // Configure log4net
@@ -68,23 +73,33 @@ namespace CkanDotNet.Web
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-            // Start caching of auto-cached CKAN requests
-            if (!SettingsHelper.IsDataCatalogOffline())
+            // Start caching of auto-cached CKAN requests if we aren't in offline mode
+            try
             {
-                if (SettingsHelper.GetPackageCountCacheBackgroundUpdate())
+                if (!SettingsHelper.GetOfflineEnabled())
                 {
-                    CkanHelper.GetPackageCount();
-                }
+                    if (SettingsHelper.GetPackageCountCacheBackgroundUpdate())
+                    {
+                        CkanHelper.GetPackageCount();
+                    }
 
-                if (SettingsHelper.GetAllPackagesCacheBackgroundUpdate())
-                {
-                    CkanHelper.GetAllPackages();
-                }
+                    if (SettingsHelper.GetAllPackagesCacheBackgroundUpdate())
+                    {
+                        CkanHelper.GetAllPackages();
+                    }
 
-                if (SettingsHelper.GetAllLicensesCacheBackgroundUpdate())
-                {
-                    CkanHelper.GetLicenses();
+                    if (SettingsHelper.GetAllLicensesCacheBackgroundUpdate())
+                    {
+                        CkanHelper.GetLicenses();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                // If any errors occur while trying to start caching, log this and clear the error.
+                // Any new page request will re-attempt to start the caching process
+                log.Error("Unable to starting background caching on application start", ex);
+                Server.ClearError();
             }
         }
     }
