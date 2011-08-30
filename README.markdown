@@ -61,24 +61,31 @@ For more details on the .NET wrapper see [TODO].
 ### System Requirements
 * Windows Server 2003 or greater
 * Microsoft Internet Information Services 6 or greater
+
+
+### Installation
+
+#### Install and Configure Prerequisites
 * .NET Framework 4
 * ASP.NET MVC 3
 
-### Installation Guide
-
-See (TODO)
+#### Install Web Application
+* Download the latest stable build
+* Unzip and install the web application on your web server
+* Configure the settings in web.config
+* Access the URL of the application
 
 ## Want to Contribute?
 
 Feel free to fork this repo and contribute your ideas.
 
-This project was created using free tools and open source libraries.  You will need the following tools
-to run the project from source:
+This project was created using a mix of free tools and open source libraries.  You will need the following
+to compile the project from source and run the unit tests:
 
 * [Microsoft Visual Web Developer Express 2010] (http://www.microsoft.com/visualstudio/en-us/products/2010-editions/visual-web-developer-express) 
 * [xUnit] (http://xunit.codeplex.com)
 
-### Dependencies
+### Frameworks Used
 * Client:
  * jQuery 1.6.2
  * jQuery plugin - [Star Rating widget] (http://plugins.jquery.com/project/Star_Rating_widget)
@@ -88,22 +95,26 @@ to run the project from source:
  * [log4net] (http://logging.apache.org/log4net/)
  * [RestSharp] (http://restsharp.org/)
 
-## CKAN.NET API
+## C# CKAN API Wrapper
 
-### Features
-* Provides the following support for the Model API
- * Package Register
- * Package Entity
- * Group Register
- * Group Entity
- * Tag Register
- * Tag Entity
- * Package’s Revisions Entity
- * Revision Register
- * Revision Entity
- * License List
+As mentioned above, this project includes a .NET wrapper for the CKAN REST API.  This wrapper was created for the
+needs of this project but it can be used stand-alone if you just need a .NET library to communicate with CKAN.
 
-* Provides the following support for the Search API
- * Package Search
+The following CKAN features are supported at this time:
+
+### Model API
+* Package Register
+* Package Entity
+* Group Register
+* Group Entity
+* Tag Register
+* Tag Entity
+* Package’s Revisions Entity
+* Revision Register
+* Revision Entity
+* License List
+
+### Search API
+* Package Search
 
 [1]: http://docs.ckan.org/en/latest/api.html#api-details-versions-1-2
