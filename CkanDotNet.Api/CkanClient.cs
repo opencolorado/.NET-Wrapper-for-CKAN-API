@@ -30,6 +30,11 @@ namespace CkanDotNet.Api
         private const string apiVersion = "2";
 
         /// <summary>
+        /// A prefix to be used for generate cache keys for CKAN responses
+        /// </summary>
+        private const string cacheKeyPrefix = "Ckan";
+
+        /// <summary>
         /// Gets or sets the CKAN repository host name
         /// </summary>
         private string Repository { get; set; }
@@ -696,7 +701,7 @@ namespace CkanDotNet.Api
         /// <returns></returns>
         public T CachedExecute<T>(RestRequest request, CacheSettings settings) where T : new()
         {
-            string key = Checksum(request);
+            string key = GenerateCacheKey(request);
 
             MemoryCache cache = MemoryCache.Default;
 
@@ -749,6 +754,21 @@ namespace CkanDotNet.Api
             }
         }
 
+        public void ClearCache()
+        {
+            MemoryCache cache = MemoryCache.Default;
+            foreach (var item in cache)
+            {
+                if (item.Value != null)
+                {
+                    if (item.Key.StartsWith(cacheKeyPrefix))
+                    {
+                        cache.Remove(item.Key);
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Compute a checksum of the URL to use as a key
         /// </summary>
@@ -769,6 +789,16 @@ namespace CkanDotNet.Api
         {
             string url = GetRequestUrl(request);
             return Checksum(url);
+        }
+
+        /// <summary>
+        /// Generates a key to be used for caching the CKAN response
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        private string GenerateCacheKey(RestRequest request)
+        {
+            return String.Format("{0}{1}", cacheKeyPrefix, Checksum(request));
         }
 
         /// <summary>
