@@ -267,18 +267,18 @@ h2
     
 }
 
-.package table
+.container table
 {
     margin-top: 20px;
     border-left: 1px solid #CCCCCC;
     font-size: 13px;
 }
 
-.package tr {
+.container tr {
     border-bottom: 1px solid #CCCCCC;
 }
 
-.package th
+.container th
 {
     padding: 6px 12px;
     border-right: 1px solid #E7E7E7;
@@ -287,14 +287,14 @@ h2
     border-bottom: 1px solid #EEEEEE;
 }
 
-.package td 
+.container td 
 {
     border-right: 1px solid #E7E7E7;
     background-color: #F0F0F0;
     border-top: 1px solid #E7E7E7;
 }
 
-.package tbody {
+.container tbody {
     border-top: 1px solid #CCCCCC;
 }
 

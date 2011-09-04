@@ -77,10 +77,6 @@ header,nav,article,footer,section,aside,figure,figcaption
     position: relative;
 }
 
-.container-content > p
-{
-}
-
 /* Format styles (format 'tags') */
 .formats-label
 {
@@ -256,7 +252,7 @@ header,nav,article,footer,section,aside,figure,figcaption
     margin: 0px 0px 4px 0px;
 }
 
-.package table
+.container table
 {
     border: 0px;
     border-collapse: separate;
@@ -264,19 +260,19 @@ header,nav,article,footer,section,aside,figure,figcaption
     border-spacing: 0;
 }
 
-.package th
+.container th
 {
     text-align: left;
     padding: 5px;
 }
 
-.package td 
+.container td 
 {
     padding: 5px 7px;
     vertical-align: top;
 }
 
-.package tbody {
+.container tbody {
     border-top: 1px solid #CCCCCC;
 }
 

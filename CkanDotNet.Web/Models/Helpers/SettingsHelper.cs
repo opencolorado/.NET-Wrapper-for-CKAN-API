@@ -407,6 +407,15 @@ namespace CkanDotNet.Web.Models.Helpers
         #region Cache Settings
 
         /// <summary>
+        /// Gets the key required for administering the cache
+        /// </summary>
+        /// <returns></returns>
+        public static string GetCacheAdminToken()
+        {
+            return ConfigurationManager.AppSettings["Cache.Admin.Token"];
+        }
+
+        /// <summary>
         /// Get the duration to cache the full package list.
         /// </summary>
         /// <returns></returns>
