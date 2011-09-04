@@ -238,21 +238,16 @@
     <Content Include="Views\Offline\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Content Include="Views\Theme\Denver\_Error.cshtml" />
-=======
     <Content Include="Views\Cache\Index.cshtml" />
->>>>>>> origin/master
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Theme\Default\_Error.cshtml" />
   </ItemGroup>
-<<<<<<< HEAD
-=======
   <ItemGroup>
     <Content Include="Views\Theme\Denver\_Error.cshtml" />
   </ItemGroup>
->>>>>>> origin/master
+
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
