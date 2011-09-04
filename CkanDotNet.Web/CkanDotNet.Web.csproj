@@ -238,9 +238,6 @@
     <Content Include="Views\Offline\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Cache\Clear.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Cache\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

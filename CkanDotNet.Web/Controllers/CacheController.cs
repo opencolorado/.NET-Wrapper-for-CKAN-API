@@ -16,47 +16,63 @@ namespace CkanDotNet.Web.Controllers
         //
         // GET: /Cache/
         [HandleError]
-        public ActionResult Index(string key)
+        public ActionResult Index(string token)
         {
-            if (!IsValidKey(key))
-            {
-                throw new SecurityException("Unauthorized attempt to clear the cache");
-            }
-            return View();
+            CheckToken(token);
+
+            CkanClient client = CkanHelper.GetClient();
+            var cachedItems = client.GetCachedRequests();
+
+            // Set up the breadcrumbs for this action
+            var breadCrumbs = new BreadCrumbs();
+            breadCrumbs.Add(new BreadCrumb("Home", "Index", "Home"));
+            breadCrumbs.Add(new BreadCrumb("Admin"));
+            breadCrumbs.Add(new BreadCrumb("Cache"));
+            ViewData["BreadCrumbs"] = breadCrumbs;
+
+            return View(cachedItems);
         }
 
         [HandleError]
-        public ActionResult Clear(string key)
+        public ActionResult Clear(string token, string id)
         {
-            if (IsValidKey(key))
+            CheckToken(token);
+
+            CkanClient client = CkanHelper.GetClient();
+
+            if (String.IsNullOrEmpty(id))
             {
-                CkanClient client = CkanHelper.GetClient();
                 client.ClearCache();
             }
             else
             {
-                throw new SecurityException("Unauthorized attempt to clear the cache");
+                client.ClearCache(id);
             }
-            return View();
+
+            return RedirectToAction("Index", new { token = token });
         }
 
         /// <summary>
-        /// Checks if the key provided is valid or if cache adminstration is enabled.
+        /// Checks if the token provided is valid or if cache adminstration is enabled.
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="token"></param>
         /// <returns></returns>
-        private bool IsValidKey(string key)
+        private void CheckToken(string token)
         {
             bool valid = false;
-            string adminKey = SettingsHelper.GetCacheAdminKey();
-            if (!String.IsNullOrEmpty(adminKey) && !String.IsNullOrEmpty(key))
+            string adminToken = SettingsHelper.GetCacheAdminToken();
+            if (!String.IsNullOrEmpty(adminToken) && !String.IsNullOrEmpty(token))
             {
-                if (adminKey == key)
+                if (adminToken == token)
                 {
                     valid = true;
                 }
             }
-            return valid;
+
+            if (!valid)
+            {
+                throw new SecurityException("Unauthorized attempt to administer the cache");
+            }
         }
 
     }

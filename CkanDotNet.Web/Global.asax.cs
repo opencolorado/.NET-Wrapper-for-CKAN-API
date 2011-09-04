@@ -42,8 +42,8 @@ namespace CkanDotNet.Web
 
             routes.MapRoute(
                 "Cache", // Route name
-                "cache/{action}", // URL with parameters
-                new { controller = "Cache", action = "Index", key = UrlParameter.Optional } // Parameter defaults
+                "admin/cache/{action}", // URL with parameters
+                new { controller = "Cache", action = "Index"} // Parameter defaults
             );
 
             routes.MapRoute(

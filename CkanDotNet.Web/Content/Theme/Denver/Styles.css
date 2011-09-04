@@ -310,17 +310,17 @@ a:active, a:hover
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#D4D7DB', endColorstr='#ffffff')";
 }
 
-.package table
+.container table
 {
     border-left: 1px solid #CCCCCC;
     font-size: 13px;
 }
 
-.package tr {
+.container tr {
     border-bottom: 1px solid #CCCCCC;
 }
 
-.package th
+.container th
 {
     border-right: 1px solid #BEBFB9;
     background-color: #dedede;
@@ -328,7 +328,7 @@ a:active, a:hover
     border-bottom: 1px solid #eeeeee;
 }
 
-.package td 
+.container td 
 {
     border-right: 1px solid #BEBFB9;
     background-color: #F5F5F5;
@@ -336,7 +336,7 @@ a:active, a:hover
     border-bottom: 1px solid #CCCCCC;
 }
 
-.package tbody {
+.container tbody {
     border-top: 1px solid #CCCCCC;
 }
 

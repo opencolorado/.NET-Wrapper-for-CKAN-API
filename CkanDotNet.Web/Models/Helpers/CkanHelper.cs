@@ -30,6 +30,7 @@ namespace CkanDotNet.Web.Models
         {
             var searchParameters = new PackageSearchParameters();
             searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
+            searchParameters.Limit = 0;
 
             int count = CkanHelper.GetClient().SearchPackages<string>(searchParameters, new CacheSettings(SettingsHelper.GetPackageCountCacheDuration(), SettingsHelper.GetPackageCountCacheBackgroundUpdate())).Count;
             return count;

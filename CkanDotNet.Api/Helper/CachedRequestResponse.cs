@@ -6,9 +6,17 @@ using RestSharp;
 
 namespace CkanDotNet.Api.Helper
 {
-    public class CachedRequestResponse<T> where T : new()
+    public abstract class CachedRequestResponse
     {
-        public RestRequest Request { get; set; }
+        public abstract RestRequest Request { get; set; }
+        public DateTime LastCached { get; set; }
+        public TimeSpan Duration { get; set; }
+        public bool KeepCurrent { get; set; }
+    }
+
+    public class CachedRequestResponse<T> : CachedRequestResponse where T : new() 
+    {
+        public override RestRequest Request { get; set; }
         public T Data { get; set; }
     }
 }

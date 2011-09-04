@@ -432,7 +432,7 @@ namespace CkanDotNet.Api
                 
             }
 
-            if (parameters.Limit > 0)
+            if (parameters.Limit > -1)
             {
                 request.AddParameter("limit", parameters.Limit);
             }
@@ -715,9 +715,12 @@ namespace CkanDotNet.Api
                 // Response not cached, so execute the request and get the response
                 cachedItem.Request = request;
                 cachedItem.Data = this.ExecuteRestRequest<T>(request);
-
+                cachedItem.LastCached = DateTime.Now;
+                cachedItem.Duration = settings.Duration;
+                cachedItem.KeepCurrent = settings.KeepCurrent;
                 CacheItemPolicy policy = new CacheItemPolicy();
                 policy.AbsoluteExpiration = DateTimeOffset.Now.Add(settings.Duration);
+                
 
                 // Keep the cache updated if requested and it has expired
                 if (settings.KeepCurrent)
@@ -736,6 +739,11 @@ namespace CkanDotNet.Api
             return cachedItem.Data;;
         }
 
+        /// <summary>
+        /// Updates a cached request when the item has expired.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="arguments"></param>
         public void CacheUpdated<T>(CacheEntryUpdateArguments arguments) where T : new()
         {
             if (arguments.RemovedReason == CacheEntryRemovedReason.Expired)
@@ -747,13 +755,29 @@ namespace CkanDotNet.Api
                 CachedRequestResponse<T> newCachedItem = new CachedRequestResponse<T>();
                 newCachedItem.Request = cachedItem.Request;
                 newCachedItem.Data = this.ExecuteRestRequest<T>(cachedItem.Request);
+                newCachedItem.LastCached = DateTime.Now;
+                newCachedItem.Duration = cachedItem.Duration;
+                newCachedItem.KeepCurrent = true;
 
-                arguments.UpdatedCacheItem = newCachedItem as CacheItem;
+         
+                CacheItemPolicy policy = new CacheItemPolicy();
+                policy.AbsoluteExpiration = DateTimeOffset.Now.Add(cachedItem.Duration);
+                policy.UpdateCallback = CacheUpdated<T>;
+
+                arguments.UpdatedCacheItem = new CacheItem(arguments.Key, newCachedItem);
+                arguments.UpdatedCacheItemPolicy = policy;
+
+
+                //MemoryCache cache = MemoryCache.Default;
+
 
                 log.Debug("Request automatically recached.");
             }
         }
 
+        /// <summary>
+        /// Clear all cached CKAN requests.
+        /// </summary>
         public void ClearCache()
         {
             MemoryCache cache = MemoryCache.Default;
@@ -767,6 +791,56 @@ namespace CkanDotNet.Api
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Clear a cached item by id.
+        /// </summary>
+        public void ClearCache(string id)
+        {
+            MemoryCache cache = MemoryCache.Default;
+            foreach (var item in cache)
+            {
+                if (item.Value != null)
+                {
+                    if (item.Key == id)
+                    {
+                        cache.Remove(item.Key);
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get a list of all cached requests.
+        /// </summary>
+        public List<CacheEntrySummary> GetCachedRequests()
+        {
+            List<CacheEntrySummary> cachedItems = new List<CacheEntrySummary>();
+
+            MemoryCache cache = MemoryCache.Default;
+            foreach (var item in cache)
+            {
+                if (item.Value != null)
+                {
+                    if (item.Key.StartsWith(cacheKeyPrefix))
+                    {
+                        var cachedItem = (CachedRequestResponse)item.Value;
+
+                        CacheEntrySummary summary = new CacheEntrySummary();
+                        summary.Id = item.Key;
+                        summary.Url = GetRequestUrl(cachedItem.Request);
+                        summary.LastCached = cachedItem.LastCached;
+                        summary.Duration = cachedItem.Duration;
+                        summary.KeepCurrent = cachedItem.KeepCurrent;
+                        cachedItems.Add(summary);
+                    }
+                }
+            }
+            cachedItems.Sort();
+
+            return cachedItems;
         }
 
         /// <summary>
@@ -821,20 +895,23 @@ namespace CkanDotNet.Api
             // Append the querystring parameters
             if (request.Parameters.Count > 0)
             {
-                sb.Append("?");
                 bool first = true;
                 foreach (var parameter in request.Parameters)
                 {
-                    if (!first)
+                    if (parameter.Type == ParameterType.GetOrPost)
                     {
-                        sb.Append("&");
-                    }
-                    else
-                    {
-                        first = false;
-                    }
+                        if (!first)
+                        {
+                            sb.Append("&");
+                        }
+                        else
+                        {
+                            sb.Append("?");
+                            first = false;
+                        }
 
-                    sb.AppendFormat("{0}={1}", parameter.Name, parameter.Value);
+                        sb.AppendFormat("{0}={1}", parameter.Name, parameter.Value);
+                    }
                 }
             }
 

@@ -410,9 +410,9 @@ namespace CkanDotNet.Web.Models.Helpers
         /// Gets the key required for administering the cache
         /// </summary>
         /// <returns></returns>
-        public static string GetCacheAdminKey()
+        public static string GetCacheAdminToken()
         {
-            return ConfigurationManager.AppSettings["Cache.Admin.Key"];
+            return ConfigurationManager.AppSettings["Cache.Admin.Token"];
         }
 
         /// <summary>
