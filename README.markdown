@@ -17,7 +17,7 @@ used with any CKAN instance.
 
 ### Release Notes
 
-See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/wiki/Release-Notes
+See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown
 
 ### .NET API for CKAN
 This project includes both a web application and a stand-alone .NET wrapper for the [CKAN API Version 2][1].
