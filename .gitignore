@@ -29,5 +29,4 @@ obj/
 *.csproj.user
 Download/
 Logs/
-Build/Output
-
+Build/Output/
