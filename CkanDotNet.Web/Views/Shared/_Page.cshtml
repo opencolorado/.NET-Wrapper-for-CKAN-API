@@ -34,6 +34,11 @@
             });
         });
     </script>
+
+    @if (SettingsHelper.GetGoogleAnalyticsEnabled())
+    {
+        @RenderPage("~/Views/Shared/_Analytics.cshtml")
+    }
 </head>
 
 @RenderBody()

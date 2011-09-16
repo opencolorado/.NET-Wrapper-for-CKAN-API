@@ -65,6 +65,48 @@ namespace CkanDotNet.Web.Models.Helpers
 
         #endregion
 
+        #region Google Analytics Settings
+
+        /// <summary>
+        /// Is Google Analytics enabled
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetGoogleAnalyticsEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["GoogleAnalytics.Enabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Gets the Google Analytics profile
+        /// </summary>
+        /// <returns></returns>
+        public static string GetGoogleAnalyticsProfile()
+        {
+            return ConfigurationManager.AppSettings["GoogleAnalytics.Profile"];
+        }
+
+        /// <summary>
+        /// Gets the Google Analytics Domain Name
+        /// </summary>
+        /// <returns></returns>
+        public static string GetGoogleAnalyticsDomainName()
+        {
+            return ConfigurationManager.AppSettings["GoogleAnalytics.DomainName"];
+        }
+
+        /// <summary>
+        /// Is Google Analytics linker allowed
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetGoogleAnalyticsLinkerAllowed()
+        {
+            string allow = ConfigurationManager.AppSettings["GoogleAnalytics.AllowLinker"];
+            return (allow == "true") ? true : false;
+        }
+
+        #endregion
+
         #region Catalog Settings
 
         /// <summary>
