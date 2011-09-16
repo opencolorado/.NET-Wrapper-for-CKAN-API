@@ -59,13 +59,21 @@
                     <td nowrap="nowrap">
                         @if (!formatTypes.ContainsKey(resource.Format))
                         {
-                            <a href="@resource.Url" class="action">Download</a>
+                            <a href="@resource.Url" class="package-action"
+                            data-format="@resource.Format" 
+                            data-package="@Model.Name" 
+                            data-resource="@resource.Description"
+                            data-action="Download">Download</a>
                         }
                         else
                         {
                             foreach (var action in formatTypes[resource.Format].Actions)
                             {
-                                <a href="@action.BuildUrl(resource.Url)" class="package-action">@action.Action</a>
+                                <a href="@action.BuildUrl(resource.Url)" class="package-action" 
+                                data-format="@resource.Format" 
+                                data-package="@Model.Name" 
+                                data-resource="@resource.Description"
+                                data-action="@action.Action">@action.Action</a>
                             }
                         }
                     </td>
@@ -129,7 +137,7 @@
                             <th>
                                 @SettingsHelper.GetPackageExtraFieldLabel(key)
                             </th>
-                            <td>
+                            <td>go
                                 @Model.Extras[key]
                             </td>
                         </tr>
@@ -139,6 +147,18 @@
                 </tbody>
             </table>
         </section>
-    
-    
 </div>
+
+<script language="javascript">
+    // Track click events on resources
+    $("a.package-action").click(function () {
+        var format = $(this).attr('data-format');
+        var package = $(this).attr('data-package');
+        var url = $(this).attr('href');
+        _gaq.push([
+            '_trackEvent',
+            'Package:' + package,
+            'Resource:' + format,
+            url]);
+    });
+</script>
