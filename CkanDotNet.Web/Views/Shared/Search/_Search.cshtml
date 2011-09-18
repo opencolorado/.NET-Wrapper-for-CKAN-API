@@ -22,4 +22,17 @@
 
 <script language="javascript">
     $('.search-input').watermark('Search...');
+
+    $('.search-submit').click(function () {
+        var value = $('.search-input').val();
+
+        // Track the search event in analytics
+        debugger;
+        _gaq.push([
+            '_trackEvent',
+            'Search',
+            'Query',
+            value]);
+
+    });
 </script>
