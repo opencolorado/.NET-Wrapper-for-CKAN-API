@@ -22,3 +22,23 @@
     })();
 
 </script>
+
+<!-- Enable common analtyics -->
+<script language="javascript">
+
+    <!-- Tag clicks -->
+    $(function () {
+        $(".tag > a").click(function () {
+            var tag = $(this).attr('data-tag');
+            var href = $(this).attr('href');
+
+            // Track the search event in analytics
+            _gaq.push([
+                '_trackEvent',
+                'Search',
+                'Tag:' + tag,
+                href]);
+        });
+    });
+
+</script>

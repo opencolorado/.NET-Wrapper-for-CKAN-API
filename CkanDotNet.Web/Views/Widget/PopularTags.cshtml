@@ -7,7 +7,7 @@
     @foreach (var result in Model)
     {
         <div class="tag">
-        @Html.ActionLink(@result.Key + " (" +  @result.Value + ")", "Index", "Search", new { tag = @result.Key }, null)
+            <a href="@Url.Action("Index", "Search", new { tag = @result.Key })" data-tag="@result.Key">@result.Key (@result.Value)</a>
         </div>
     }
 
