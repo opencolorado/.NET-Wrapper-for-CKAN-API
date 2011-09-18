@@ -26,9 +26,10 @@
 <!-- Enable common analtyics -->
 <script language="javascript">
 
-    <!-- Tag clicks -->
     $(function () {
-        $(".tag > a").click(function () {
+        
+         <!-- Tag clicks -->
+         $(".tag > a").click(function () {
             var tag = $(this).attr('data-tag');
             var href = $(this).attr('href');
 
@@ -39,6 +40,20 @@
                 'Tag:' + tag,
                 href]);
         });
-    });
 
+        <!-- External links -->
+        $("a.external").click(function() {
+            var link = $(this).text();
+            var href = $(this).attr('href');
+
+            // Track the click event in analytics
+            _gaq.push([
+                '_trackEvent',
+                'Link:External',
+                link,
+                href]);
+        });
+
+    });
+    
 </script>
