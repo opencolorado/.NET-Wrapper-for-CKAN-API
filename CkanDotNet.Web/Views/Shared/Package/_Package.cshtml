@@ -149,6 +149,8 @@
         </section>
 </div>
 
+@if (SettingsHelper.GetGoogleAnalyticsEnabled())
+{
 <script language="javascript">
     // Track click events on resources
     $("a.package-action").click(function () {
@@ -162,3 +164,4 @@
             url]);
     });
 </script>
+}

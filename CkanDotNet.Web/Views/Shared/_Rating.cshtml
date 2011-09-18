@@ -40,13 +40,18 @@ $("#@(ratingId)").stars({
 
         $(".rating-response").text("Thanks for your rating!");
 
-        // Track the rating event in analytics
-        _gaq.push([
-            '_trackEvent',
-            'Package:@Model.Name',
-            'Rate',
-            value,
-            value]);   
+        @if (SettingsHelper.GetGoogleAnalyticsEnabled()) 
+        {
+            <text>
+            // Track the rating event in analytics
+            _gaq.push([
+                '_trackEvent',
+                'Package:@Model.Name',
+                'Rate',
+                value,
+                value]);
+            </text>
+        }           
     }
 });
 </script>

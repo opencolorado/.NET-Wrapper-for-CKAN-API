@@ -1,5 +1,6 @@
 ﻿@using CkanDotNet.Api.Model
 @using CkanDotNet.Web.Models
+@using CkanDotNet.Web.Models.Helpers
 @model PackageSearchResultsModel
 
 @{
@@ -22,7 +23,11 @@
 
 <script language="javascript">
     $('.search-input').watermark('Search...');
+</script>
 
+@if (SettingsHelper.GetGoogleAnalyticsEnabled()) 
+{
+<script language="javascript">
     $('.search-submit').click(function () {
         var value = $('.search-input').val();
 
@@ -36,3 +41,4 @@
 
     });
 </script>
+}
