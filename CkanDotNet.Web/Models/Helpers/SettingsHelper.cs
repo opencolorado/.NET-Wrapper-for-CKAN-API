@@ -131,6 +131,16 @@ namespace CkanDotNet.Web.Models.Helpers
             return keywords;
         }
 
+        /// <summary>
+        /// Get the maximum number of characters to use in the package description meta tag.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetSeoPackageDescriptionLength()
+        {
+            string length = ConfigurationManager.AppSettings["SEO.PackageDescriptionLength"];
+            return int.Parse(length);
+        }
+
         #endregion
 
         #region Catalog Settings

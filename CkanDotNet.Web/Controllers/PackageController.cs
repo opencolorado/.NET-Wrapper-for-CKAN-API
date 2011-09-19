@@ -68,7 +68,7 @@ namespace CkanDotNet.Web.Controllers
             var metaTags = new MetaTags();
 
             // Set the description from the package summary
-            metaTags.Description = package.GetAbbreviatedNotes(200);
+            metaTags.Description = package.GetAbbreviatedNotes(SettingsHelper.GetSeoPackageDescriptionLength());
 
             // Get the common keywords from the settings
             var keywords = SettingsHelper.GetSeoCommonPackageKeywords();
