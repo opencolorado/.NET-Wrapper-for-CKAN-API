@@ -65,7 +65,7 @@ namespace CkanDotNet.Api.Model
             string summary = NotesRendered;
 
             // Strip the HTML
-            summary = Regex.Replace(summary, @"<(.|\n)*?>", "");
+            summary = Regex.Replace(summary, @"<(.|\n)*?>", "").Trim();
 
             // Abbreviate the notes
             if (summary.Length > length)

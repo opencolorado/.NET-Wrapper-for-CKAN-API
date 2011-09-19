@@ -1,0 +1,22 @@
+﻿@using CkanDotNet.Web.Models
+@{
+    MetaTags metaTags = null;
+
+    if (ViewData.ContainsKey("MetaTags"))
+    {
+        metaTags = (MetaTags)ViewData["MetaTags"];
+    }
+
+}
+
+@if (metaTags != null)
+{
+    if(!String.IsNullOrEmpty(metaTags.Description)) {
+    <meta name="description" content="@metaTags.Description" />
+    }
+    
+    if (!String.IsNullOrEmpty(metaTags.Keywords))
+    {
+    <meta name="keywords" content="@metaTags.Keywords" />
+    }
+}

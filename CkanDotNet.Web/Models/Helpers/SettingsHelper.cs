@@ -107,6 +107,32 @@ namespace CkanDotNet.Web.Models.Helpers
 
         #endregion
 
+        #region SEO Settings
+
+        /// <summary>
+        /// Gets common package keywords to display in the meta keywords for every package page
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetSeoCommonPackageKeywords()
+        {
+            List<string> keywords = new List<string>();
+
+            string keywordsString = ConfigurationManager.AppSettings["SEO.CommonPackageKeywords"];
+
+            if (!String.IsNullOrEmpty(keywordsString))
+            {
+                var keywordsArray = keywordsString.Split(char.Parse(","));
+                foreach (var keyword in keywordsArray)
+                {
+                    keywords.Add(keyword.Trim());
+                }
+            }
+
+            return keywords;
+        }
+
+        #endregion
+
         #region Catalog Settings
 
         /// <summary>

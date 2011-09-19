@@ -83,6 +83,7 @@
     <Compile Include="Models\CheckOfflineAttribute.cs" />
     <Compile Include="Models\Helpers\CkanHelper.cs" />
     <Compile Include="Models\Helpers\GuidHelper.cs" />
+    <Compile Include="Models\MetaTags.cs" />
     <Compile Include="Models\Settings\ResourceAction.cs" />
     <Compile Include="Models\Settings\ResourceType.cs" />
     <Compile Include="Models\Helpers\SettingsHelper.cs" />
@@ -268,6 +269,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Analytics.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_MetaTags.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

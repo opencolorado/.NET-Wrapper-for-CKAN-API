@@ -31,6 +31,7 @@ namespace CkanDotNet.Web.Controllers
             if (package != null)
             {
                 this.ConfigureBreadCrumbs(packageFound);
+                this.ConfigureMetaTags(packageFound);
             }
 
             return View(packageFound);
@@ -55,6 +56,36 @@ namespace CkanDotNet.Web.Controllers
                 String.Format("Package > {0}",package.Title)));
 
             ViewData["BreadCrumbs"] = breadCrumbs;
+        }
+
+        /// <summary>
+        /// Configure the metatags for this package
+        /// </summary>
+        /// <param name="package">The package</param>
+        [HandleError]
+        private void ConfigureMetaTags(Package package)
+        {
+            var metaTags = new MetaTags();
+
+            // Set the description from the package summary
+            metaTags.Description = package.GetAbbreviatedNotes(200);
+
+            // Get the common keywords from the settings
+            var keywords = SettingsHelper.GetSeoCommonPackageKeywords();
+            
+            // Add the tags from the package
+            keywords.AddRange(package.Tags);
+
+            // Convert the list into a comma-delimited string
+            var keywordsString = String.Join(",", keywords.ToArray());
+
+            // Replace CKAN hyphens with spaces
+            keywordsString = keywordsString.Replace("-", " ");
+
+            // Set the page keywords
+            metaTags.Keywords = keywordsString;
+            
+            ViewData["MetaTags"] = metaTags;
         }
 
     }
