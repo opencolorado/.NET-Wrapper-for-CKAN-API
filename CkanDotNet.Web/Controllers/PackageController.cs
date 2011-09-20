@@ -38,7 +38,7 @@ namespace CkanDotNet.Web.Controllers
         }
 
         /// <summary>
-        /// Configure the breadcrumbs for this controller.
+        /// Prepare the breadcrumbs model for this view.
         /// </summary>
         /// <param name="package"></param>
         [HandleError]
@@ -59,7 +59,7 @@ namespace CkanDotNet.Web.Controllers
         }
 
         /// <summary>
-        /// Configure the metatags for this package
+        /// Prepare the meta tags for this view.
         /// </summary>
         /// <param name="package">The package</param>
         [HandleError]

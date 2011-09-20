@@ -110,10 +110,37 @@ namespace CkanDotNet.Web.Models.Helpers
         #region SEO Settings
 
         /// <summary>
+        /// The meta tag description for the home page
+        /// </summary>
+        /// <returns></returns>
+        public static string GetSeoHomeDescription()
+        {
+            return ConfigurationManager.AppSettings["SEO.HomeDescription"];
+        }
+
+        /// <summary>
+        /// The meta tag keywords for the home page
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> GetSeoHomeKeywords()
+        {
+            return GetKeywordsFromSetting("SEO.HomeKeywords");
+        }
+
+        /// <summary>
         /// Gets common package keywords to display in the meta keywords for every package page
         /// </summary>
         /// <returns></returns>
         public static List<string> GetSeoCommonPackageKeywords()
+        {
+            return GetKeywordsFromSetting("SEO.CommonPackageKeywords");
+        }
+
+        /// <summary>
+        /// Get comma-delimited keywords from a setting.
+        /// </summary>
+        /// <returns></returns>
+        private static List<string> GetKeywordsFromSetting(string setting)
         {
             List<string> keywords = new List<string>();
 
@@ -127,7 +154,6 @@ namespace CkanDotNet.Web.Models.Helpers
                     keywords.Add(keyword.Trim());
                 }
             }
-
             return keywords;
         }
 

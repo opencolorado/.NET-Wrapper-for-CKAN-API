@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using CkanDotNet.Web.Models;
 using log4net;
 using System.Reflection;
+using CkanDotNet.Web.Models.Helpers;
 
 namespace CkanDotNet.Web.Controllers
 {
@@ -22,14 +23,33 @@ namespace CkanDotNet.Web.Controllers
         {
             log.Debug("Controller action requested");
 
+            this.ConfigureBreadCrumbs();
+            this.ConfigureMetaTags();
+
+            return View();
+        }
+
+        /// <summary>
+        /// Prepare the breadcrumbs model for this view.
+        /// </summary>
+        private void ConfigureBreadCrumbs()
+        {
             // Set up the breadcrumbs for this action
             var breadCrumbs = new BreadCrumbs();
             breadCrumbs.Add(new BreadCrumb(
                 "Home"));
             ViewData["BreadCrumbs"] = breadCrumbs;
-
-            return View();
         }
 
+        /// <summary>
+        /// Prepare the meta tags for this view.
+        /// </summary>
+        private void ConfigureMetaTags()
+        {
+            var metaTags = new MetaTags();
+            metaTags.Description = SettingsHelper.GetSeoHomeDescription();
+            metaTags.Keywords = String.Join(",",SettingsHelper.GetSeoHomeKeywords());
+            ViewData["MetaTags"] = metaTags;
+        }
     }
 }
