@@ -73,6 +73,7 @@
     <Compile Include="Controllers\OfflineController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\SiteMapController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\WidgetController.cs" />
     <Compile Include="Global.asax.cs">
@@ -83,6 +84,7 @@
     <Compile Include="Models\CheckOfflineAttribute.cs" />
     <Compile Include="Models\Helpers\CkanHelper.cs" />
     <Compile Include="Models\Helpers\GuidHelper.cs" />
+    <Compile Include="Models\Helpers\SiteMapHelper.cs" />
     <Compile Include="Models\MetaTags.cs" />
     <Compile Include="Models\Settings\ResourceAction.cs" />
     <Compile Include="Models\Settings\ResourceType.cs" />
@@ -92,6 +94,8 @@
     <Compile Include="Models\PartialRequest.cs" />
     <Compile Include="Models\Helpers\RouteHelper.cs" />
     <Compile Include="Models\Settings\ResourceSettings.cs" />
+    <Compile Include="Models\SiteMap\SiteMapUrl.cs" />
+    <Compile Include="Models\SiteMap\SiteMapUrlChangeFrequency.cs" />
     <Compile Include="Models\ViewDataFactory.cs" />
     <Compile Include="Models\SearchResultsModel.cs" />
     <Compile Include="Models\SearchResultsSideBarModel.cs" />
@@ -272,6 +276,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_MetaTags.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SiteMap\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SiteMap\_ViewStart.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

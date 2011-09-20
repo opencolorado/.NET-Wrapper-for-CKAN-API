@@ -134,12 +134,8 @@
                         if (!String.IsNullOrEmpty(Model.Extras[key]))
                         {
                         <tr>
-                            <th>
-                                @SettingsHelper.GetPackageExtraFieldLabel(key)
-                            </th>
-                            <td>go
-                                @Model.Extras[key]
-                            </td>
+                            <th>@SettingsHelper.GetPackageExtraFieldLabel(key)</th>
+                            <td>@Model.Extras[key]</td>
                         </tr>
                         }
                     }

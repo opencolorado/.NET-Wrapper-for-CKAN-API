@@ -29,6 +29,12 @@ namespace CkanDotNet.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "SiteMap", // Route name
+                "sitemap.xml", // URL with parameters
+                new { controller = "SiteMap", action = "Index"} // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Tag", // Route name
                 "tag/{tag}", // URL with parameters
                 new { controller = "Tag", action = "Index", tag = UrlParameter.Optional } // Parameter defaults

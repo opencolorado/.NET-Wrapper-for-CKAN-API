@@ -1,0 +1,22 @@
+﻿@model List<CkanDotNet.Web.Models.SiteMap.SiteMapUrl>
+@{
+    Layout = null;
+}
+<?xml version="1.0" encoding="UTF-8"?> 
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
+   @foreach (var url in Model)
+   {
+   <url> 
+      <loc>@url.Location</loc>
+      @if (url.LastModification > DateTime.MinValue)
+      {
+      <lastmod>@url.LastModification.ToString("yyyy-MM-dd")</lastmod> 
+      }
+      @if (url.ChangeFrequency != CkanDotNet.Web.Models.SiteMap.SiteMapUrlChangeFrequency.Never)
+      {
+      <changefreq>@url.ChangeFrequency.ToString().ToLower()</changefreq> 
+      }
+      <priority>@url.Priority</priority> 
+   </url> 
+   }
+</urlset>

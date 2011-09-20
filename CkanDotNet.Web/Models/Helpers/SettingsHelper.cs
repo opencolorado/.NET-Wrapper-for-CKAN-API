@@ -141,6 +141,17 @@ namespace CkanDotNet.Web.Models.Helpers
             return int.Parse(length);
         }
 
+        /// <summary>
+        /// The base map to use for the URLs in the sitemap.  This
+        /// setting is used if the adminstrator wants to override 
+        /// the default url (for example, if using a reverse proxy).
+        /// </summary>
+        /// <returns></returns>
+        public static string GetSeoSiteMapBaseUrl()
+        {
+            return ConfigurationManager.AppSettings["SEO.SiteMapBaseUrl"];
+        }
+
         #endregion
 
         #region Catalog Settings
