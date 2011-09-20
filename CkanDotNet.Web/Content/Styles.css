@@ -246,7 +246,7 @@ header,nav,article,footer,section,aside,figure,figcaption
     margin: 0px 0px 4px 0px;
 }
 
-.package-action:active, .package-action:hover 
+.package-action:active, .package-action:hover, .package-action:visited  
 {
     padding: 4px;
     margin: 0px 0px 4px 0px;
