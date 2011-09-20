@@ -11,16 +11,34 @@ namespace CkanDotNet.Web.Models
 {
     public static class TagHelper
     {
+        /// <summary>
+        /// Get tag counts from a collection of packages.
+        /// </summary>
+        /// <param name="packages"></param>
+        /// <returns></returns>
         public static Dictionary<string, int> GetTagCounts(List<Package> packages)
         {
             return GetTagCounts(packages, new List<string>());
         }
 
+        /// <summary>
+        /// Get tag counts from a collection of packages ignoring specific tags
+        /// </summary>
+        /// <param name="packages"></param>
+        /// <param name="ignoreTags"></param>
+        /// <returns></returns>
         public static Dictionary<string, int> GetTagCounts(List<Package> packages, List<string> ignoreTags)
         {
             return GetTagCounts(packages, ignoreTags, 0);
         }
 
+        /// <summary>
+        /// Get top tags from a collection of packages ignoring specific tags.
+        /// </summary>
+        /// <param name="packages"></param>
+        /// <param name="ignoreTags"></param>
+        /// <param name="limit"></param>
+        /// <returns></returns>
         public static Dictionary<string, int> GetTagCounts(List<Package> packages, List<string> ignoreTags, int limit)
         {
             Dictionary<string, int> tagCounts = new Dictionary<string, int>();
