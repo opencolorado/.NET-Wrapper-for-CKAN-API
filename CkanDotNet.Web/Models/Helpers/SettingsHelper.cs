@@ -519,6 +519,29 @@ namespace CkanDotNet.Web.Models.Helpers
 
         #endregion
 
+        #region Disqus Settings
+
+        /// <summary>
+        /// Are Disqus forums enabled on packages
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetDisqusPackageEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Disqus.PackageForumEnabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Get the Disqus forum short name
+        /// </summary>
+        /// <returns></returns>
+        public static string GetDisqusForumShortName()
+        {
+            return ConfigurationManager.AppSettings["Disqus.ForumShortName"];
+        }
+
+        #endregion
+
         #region Cache Settings
 
         /// <summary>

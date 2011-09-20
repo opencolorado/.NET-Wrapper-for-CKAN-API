@@ -161,3 +161,8 @@
     });
 </script>
 }
+
+@if (SettingsHelper.GetDisqusPackageEnabled())
+{
+    Html.RenderPartial("~/Views/Shared/Package/_Disqus.cshtml", Model);
+}
