@@ -99,7 +99,7 @@ a:active, a:hover
 
 .container-title-link
 {
-    color: #ffffff;
+    color: #ffffff !important;
     font-weight: normal;
     font-size: 14px;
 }
