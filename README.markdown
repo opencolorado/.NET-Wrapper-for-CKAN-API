@@ -1,7 +1,10 @@
 ## Welcome
 This project provides an [ASP.NET MVC 3] (http://www.asp.net/mvc/mvc3) front-end for a 
 [CKAN] (http://wiki.ckan.net/Main_Page) repository.  This project provides
-a fully functioning web-based data catalog that is specific to a group in a shared CKAN respository.
+a fully functioning web-based data catalog based on a group in a shared CKAN respository.
+
+In addition, this project provides a C# wrapper for the [CKAN API Version 2][1] for developers
+that want to develop .NET applications against any CKAN repository.
 
 ### About
 This project was created in partnership with [Open Colorado] (http://www.opencolorado.org) and 
@@ -15,16 +18,10 @@ a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API) ava
 There is no specific implemention in this project related to colorado.ckan.net so this can be
 used with any CKAN instance.
 
-### Release Notes
+### Current Version
 
-See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown
-
-### .NET API for CKAN
-This project includes both a web application and a stand-alone .NET wrapper for the [CKAN API Version 2][1].
-If you are just looking for the .NET wrapper you can download the source and build the CkanDotNet.Api
-project separately.  We'll try to provide a separate binary download for future releases.
-
-For more details on the .NET wrapper see [TODO].
+Version 1.1, released 9/21/2011.  For details see the [Release Notes]
+(https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown)
 
 ## Features
 * Customizable home page
@@ -48,12 +45,18 @@ For more details on the .NET wrapper see [TODO].
 * Themeable
  * Supports custom themes with CSS/HTML (just copy an existing theme and customize from there)
  * Designed to be integrated into an organizations web site with no code changes required
-* Highly configurable
+* Optimized for search engines
+ * Provides an auto-generated site map (sitemap.xml) for submitting to search engines
+ * Meta tag support on home page and package pages
+* Supports [Google Analytics] (http://www.google.com/analytics) including event tracking for resource downloads, search terms etc. (optional)
+* Supports [DISQUS] (http://www.disqus.com) commenting on packages. (optional)
 * Configurable CKAN request caching for performance
  * Supports automatic background caching
+ * A cache admin interface is provided to view cache contents and clear items from the cache if CKAN changes need to be reflected immediately
 * Maintenance mode
  * Catalog can be taken offline with a custom notice if the CKAN repository needs maintenance
-* Uses clean RESTful URLs with breadcrumb support
+* Uses clean RESTful URLs
+* Provides breadcrumbs
 * Configurable logging for system monitoring and troubleshooting
 
 ## Getting Started

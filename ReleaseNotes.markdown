@@ -1,5 +1,13 @@
 ﻿See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API for additional information.
 
+## Version 1.1 (9/21/2011)
+* Implemented new features for search engine optimization
+ * Added auto-generated sitemap (sitemap.xml)
+ * Added configurable meta tags for homepage (keywords and description)
+ * Added automated meta tags for packages (keywords and description)
+* Added support for [Google Analytics] (http://www.google.com/analytics) including event tracking for resource downloads, search etc. (optional)
+* Added support for [DISQUS] (http://www.disqus.com) commenting on packages (optional)
+
 ## Version 1.0 (9/5/2011)
 * Implemented cache admin page for viewing the cache and clearing items from the cache on demand
 * Added improved error handling for failed CKAN requests including a configurable timeout
