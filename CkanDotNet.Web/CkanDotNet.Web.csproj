@@ -102,6 +102,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\rss.png" />
     <Content Include="Content\Styles.css" />
     <Content Include="Content\Images\remove_small.png" />
     <Content Include="Content\Images\remove_small_hover.png" />
