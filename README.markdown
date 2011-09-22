@@ -74,9 +74,13 @@ Version 1.1, released 9/21/2011.  For details see the [Release Notes]
 
 #### Install Web Application
 * Download the latest stable build
-* Unzip and install the web application on your web server
+* Unzip and install as a web application on your IIS web server
 * Configure the settings in web.config
-* Access the URL of the application
+  * Set the Catalog.Group setting to the name of the CKAN group to use in the catalog
+  * Set the page titles to reflect the name of your catalog (ex. City and County of Denver Open Data Catalog)
+  * Configure page meta tags (see SEO.* settings)
+  * Review the web.config comments for additional settings you may want to change
+* Load the application URL in your browser to test the catalog
 
 ## Want to Contribute?
 
