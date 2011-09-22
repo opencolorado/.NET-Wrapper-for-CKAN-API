@@ -9,7 +9,10 @@
         query = Model.SearchParameters.Query;
     }
 }
-<form id="search" action="/search" method="get">
+
+@using (Html.BeginForm(actionName: "Index", controllerName: "Search", routeValues: null,
+    method: FormMethod.Get))
+{ 
 <div class="search">
 <input name="q" type="text" tabindex="1" class="search-input" value="@query" />
 <input type="submit" class="search-submit" value="Search" />
@@ -18,8 +21,7 @@
     @Html.ActionLink("Clear", "Index", "Search");
 }
 </div>
-
-</form>
+}
 
 <script language="javascript">
     $('.search-input').watermark('Search...');
