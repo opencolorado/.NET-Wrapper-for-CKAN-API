@@ -11,8 +11,9 @@
 }
 @if (breadCrumbs != null)
 {
-    <span>You are here: </span>
+    
     <div class="breadcrumbs">
+        <span>You are here: </span>
         @for (int i = 0; i < breadCrumbs.Count; i++)
         {
             var breadCrumb = breadCrumbs[i];

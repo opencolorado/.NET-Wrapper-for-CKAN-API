@@ -12,9 +12,9 @@
     width: 940px;
 }
 
-#header
+#opencolorado-header
 {
-    padding-bottom: 35px;
+    padding-bottom: 50px;
     padding-top: 35px;
 }
 
@@ -35,6 +35,11 @@ body
     color: #4C4C4C;
     font: 14px/20px "Trebuchet MS";
     margin: 0px;
+}
+
+#ribbon
+{
+    height: 16px;
 }
 
 a {

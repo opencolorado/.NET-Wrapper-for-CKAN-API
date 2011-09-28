@@ -9,11 +9,22 @@ header,nav,article,footer,section,aside,figure,figcaption
 }
 
 /* Core page structure styles */
-#main
+#content
 {
-    padding: 10px 10px 10px 10px;
+    padding: 0px;
     overflow:hidden;
 	clear:both;
+	position: relative;
+}
+
+#ribbon
+{
+    margin-bottom: 7px;
+}
+
+#header
+{
+    margin: 5px 0px 0px 0px;
 }
 
 #body
@@ -21,6 +32,7 @@ header,nav,article,footer,section,aside,figure,figcaption
    float: left;
    width: 620px; /* Width of body in pixels */
 }
+
 
 #sidebar
 {
@@ -32,6 +44,9 @@ header,nav,article,footer,section,aside,figure,figcaption
 .breadcrumbs 
 {
     display: inline;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 .breadcrumb-filter
@@ -48,6 +63,14 @@ header,nav,article,footer,section,aside,figure,figcaption
 .breadcrumb-filter:hover
 {
     background-image: url("Images/remove_small_hover.png");
+}
+
+/* Sharing buttons */
+.share-buttons
+{
+    position: absolute;
+    top: 5px;
+    right: 0px;
 }
 
 /* Containers*/

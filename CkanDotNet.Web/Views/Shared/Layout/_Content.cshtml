@@ -1,0 +1,15 @@
+@using CkanDotNet.Web.Models.Helpers
+@{
+    Layout = "~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_Body.cshtml";
+} 
+
+<section id="content">
+
+<section id="ribbon">
+@Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")
+@Html.Partial("_AddThis")                      
+</section>
+
+@RenderBody()    
+
+</section>

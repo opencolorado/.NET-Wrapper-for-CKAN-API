@@ -1,6 +1,6 @@
 ﻿@using CkanDotNet.Web.Models
 @{
-    Layout = "~/Views/Shared/_Page.cshtml";
+    Layout = "~/Views/Shared/Layout/_Page.cshtml";
 }
 <body bottommargin="0" leftmargin="0" topmargin="0" rightmargin="0" marginwidth="0"
     marginheight="0">
@@ -100,9 +100,6 @@
                                     <tr>
                                         <td width="100%" valign="top">
                                             <!--Application Content Here-->
-                                            <div id="Breadcrumb">
-                                            @Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")
-                                            </div>
                                             @RenderBody()
                                             <!--End Application Content Here-->
                                         </td>

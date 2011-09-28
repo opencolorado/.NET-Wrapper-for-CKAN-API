@@ -1,12 +1,12 @@
 ﻿@using CkanDotNet.Web.Models
 @{
-    Layout = "~/Views/Shared/_Page.cshtml";
+    Layout = "~/Views/Shared/Layout/_Page.cshtml";
 } 
 <body>
 <div id="page">
    
     <!-- OpenColorado branding -->  
-    <header id="header">
+    <header id="opencolorado-header">
 	    <h1 id="site-title">
 		    <a href="http://www.opencolorado.org" title="OpenColorado Home">
 			    <img border="0" src="http://opencolorado.org/wordpress/wp-content/themes/the-advent/css/style1/open-colorado-logo.png" alt="OpenColorado Logo" title="OpenColorado Logo" style="display: inline;" />
@@ -14,18 +14,8 @@
 	    </h1>
 
 	    <div id="site-description"></div>
-    </header>
-
-
-    <div id="main">
-       
-        @Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")  
-                               
-        @RenderBody()
-
-    </div>
-
-    
+    </header>                       
+    @RenderBody()    
 </div>
 <footer id="footer"></footer>
 </body>

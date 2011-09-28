@@ -540,6 +540,49 @@ namespace CkanDotNet.Web.Models.Helpers
             return ConfigurationManager.AppSettings["Disqus.ForumShortName"];
         }
 
+        /// <summary>
+        /// Is Disqus developer mode enabled
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetDisqusDeveloperModeEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Disqus.DeveloperModeEnabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        #endregion
+
+        #region AddThis Settings
+
+        /// <summary>
+        /// Are AddThis buttons enabled
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetAddThisEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["AddThis.Enabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Get the AddThis profile id
+        /// </summary>
+        /// <returns></returns>
+        public static string GetAddThisProfileId()
+        {
+            return ConfigurationManager.AppSettings["AddThis.Profile"];
+        }
+
+        /// <summary>
+        /// Is an AddThis customer widget enabled
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetAddThisCustomWidgetEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["AddThis.CustomWidgetenabled"];
+            return (enabled == "true") ? true : false;
+        }
+
         #endregion
 
         #region Cache Settings

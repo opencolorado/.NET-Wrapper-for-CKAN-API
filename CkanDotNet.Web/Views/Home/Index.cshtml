@@ -4,7 +4,10 @@
     ViewBag.Title = SettingsHelper.GetHomePageTitle();
 }
 
+
+<section id="header">
 @RenderPage("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_HomeHeader.cshtml")
+</section>
 
 <section id="body">
     <section id="content">
@@ -31,3 +34,4 @@
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_License.cshtml")
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_About.cshtml")
 </aside>
+
