@@ -332,3 +332,9 @@ header,nav,article,footer,section,aside,figure,figcaption
     bottom: 7px;
     left:1px;
 }
+
+/* AddThis styles */
+.share-buttons 
+{
+    width: 225px;
+}
