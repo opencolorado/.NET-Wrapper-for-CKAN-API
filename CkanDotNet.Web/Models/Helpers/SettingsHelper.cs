@@ -519,6 +519,29 @@ namespace CkanDotNet.Web.Models.Helpers
 
         #endregion
 
+        #region UserVoice Settings
+
+        /// <summary>
+        /// Are UserVoice suggestions enabled
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetUserVoiceEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["UserVoice.Enabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Get the UserVoice widget key
+        /// </summary>
+        /// <returns></returns>
+        public static string GetUserVoiceKey()
+        {
+            return ConfigurationManager.AppSettings["UserVoice.Key"];
+        }
+
+        #endregion
+
         #region Disqus Settings
 
         /// <summary>

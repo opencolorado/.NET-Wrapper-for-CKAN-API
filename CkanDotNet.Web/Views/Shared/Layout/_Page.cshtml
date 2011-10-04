@@ -37,6 +37,11 @@
         });
     </script>
 
+
+    @if (SettingsHelper.GetUserVoiceEnabled())
+    {
+        @RenderPage("~/Views/Shared/_UserVoice.cshtml")
+    }
     
     @if (SettingsHelper.GetGoogleAnalyticsEnabled())
     {

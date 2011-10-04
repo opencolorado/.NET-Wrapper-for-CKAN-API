@@ -1,16 +1,20 @@
 ﻿@using CkanDotNet.Api.Model
 @using CkanDotNet.Web.Models
+@using CkanDotNet.Web.Models.Helpers
+
 @model PackageSearchResultsModel
 
-@using System.Configuration
-@{
-    var theme = ConfigurationManager.AppSettings["Theme"];
-} 
-
 <section class="container">
-    <h2 class="container-title">Results (@Model.Pager.ToString())
-    @if (Model.SearchResults.Count > 0) { 
-         @Html.Partial("_Pager")      
+    <h2 class="container-title">
+    
+    @if (Model.SearchResults.Count > 0)
+    { 
+        <text>Results (</text>@Model.Pager.ToString()<text>)</text>
+        @Html.Partial("_Pager")      
+    }
+    else
+    {
+        <text>No Results Found</text>
     }
    </h2>
 
@@ -20,8 +24,7 @@
     }
     else
     {
-        <div class="results-none">We weren't able to find what you were looking for..  
-        Try a new search term or <a href="#">suggest</a> a new dataset..</div>   
+        @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_NoSearchResultsFound.cshtml")
     }
 
 

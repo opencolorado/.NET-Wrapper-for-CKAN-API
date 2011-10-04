@@ -1,10 +1,14 @@
-﻿<h1>Welcome to the Open Data Catalog</h1>
+﻿@using CkanDotNet.Web.Models.Helpers
+<h1>Welcome to the Open Data Catalog</h1>
 
 <p>As part of an initiative to improve the accessibility, transparency, and 
 accountability of City government, this catalog provides open access to City-managed data.
 </p>
 
-<p>We invite you to actively participate in shaping the future of this data
-catalog by suggesting additional datasets or building applications with the available data.</p>
+@if (SettingsHelper.GetUserVoiceEnabled()) {
+    <p>We invite you to actively participate in shaping the future of this data catalog by 
+    <a href="javascript:UserVoice.showPopupWidget();" title="Suggest additional datasets">suggesting additional datasets</a> 
+    or building applications with the available data.</p>
+}
 
 <p><span class="header-package-count">@Html.Action("PackageCount", "Widget") registered datasets are available.</span></p>
