@@ -20,8 +20,7 @@ used with any CKAN instance.
 
 ### Screenshots
 
-The catalog is fully themable using CSS/HTML.  To see what the catalog looks like when themed
-view the [screenshots] (https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/tree/master/Screenshots)
+The catalog is fully themable using CSS/HTML.  See the [screenshots] (https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/tree/master/Screenshots) for examples.
 
 ### Current Version
 
