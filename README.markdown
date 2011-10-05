@@ -18,6 +18,11 @@ a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API) ava
 There is no specific implemention in this project related to colorado.ckan.net so this can be
 used with any CKAN instance.
 
+### Screenshots
+
+The catalog is fully themable using CSS/HTML.  To see what the catalog looks like when themed
+view the [screenshots] (https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/tree/master/Screenshots)
+
 ### Current Version
 
 Version 1.1, released 9/21/2011.  For details see the [Release Notes]
@@ -50,7 +55,10 @@ Version 1.1, released 9/21/2011.  For details see the [Release Notes]
  * Meta tag support on home page and package pages
 * Supports [Google Analytics] (http://www.google.com/analytics) including event tracking for resource downloads, search terms etc. (optional)
 * Supports [DISQUS] (http://www.disqus.com) commenting on packages. (optional)
-* Configurable CKAN request caching for performance
+* Supports [AddThis] (http://www.addthis.com) social medial sharing (optional)
+ * Includes support for 'print this page' and sending the page by email
+* Supports [UserVoice] (http://www.uservoice.com) for suggesting new datasets (optional)
+* Configurable CKAN request caching for performance optimization
  * Supports automatic background caching
  * A cache admin interface is provided to view cache contents and clear items from the cache if CKAN changes need to be reflected immediately
 * Maintenance mode
@@ -64,7 +72,6 @@ Version 1.1, released 9/21/2011.  For details see the [Release Notes]
 ### System Requirements
 * Windows Server 2003 or greater
 * Microsoft Internet Information Services 6 or greater
-
 
 ### Installation
 

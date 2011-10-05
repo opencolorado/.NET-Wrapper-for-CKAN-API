@@ -1,5 +1,11 @@
 ﻿See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API for additional information.
 
+## Version 1.2 (10/5/2011)
+* Added support for [AddThis] (http://www.addthis.com) social medial sharing (optional)
+ * Includes support for 'print this page' and sending the page by email
+* Added support for [UserVoice] (http://www.uservoice.com) for suggesting new datasets (optional)
+* Miscellaneous code improvements and bug fixes
+
 ## Version 1.1 (9/21/2011)
 * Implemented new features for search engine optimization
  * Added auto-generated sitemap (sitemap.xml)
