@@ -32,7 +32,7 @@ namespace CkanDotNet.Api
         /// <summary>
         /// A prefix to be used for generate cache keys for CKAN responses
         /// </summary>
-        private const string cacheKeyPrefix = "Ckan";
+        internal const string CacheKeyPrefix = "Ckan";
 
         /// <summary>
         /// Gets or sets the CKAN repository host name
@@ -580,6 +580,44 @@ namespace CkanDotNet.Api
         }
         #endregion
 
+        #region Autocomplete
+
+        /// <summary>
+        /// Get the top 10 package search suggestions for the data catalog group.
+        /// </summary>
+        /// <param name="prefix"></param>
+        /// <param name="searchParameters"></param>
+        /// <param name="cacheSettings"></param>
+        /// <returns></returns>
+        public List<string> GetPackageSearchSuggestions(string prefix, PackageSearchParameters searchParameters, CacheSettings cacheSettings)
+        {
+            return GetPackageSearchSuggestions(prefix, 10, searchParameters, cacheSettings);
+        }
+
+        /// <summary>
+        /// Get the top package search suggestions for the data catalog group.
+        /// </summary>
+        /// <param name="prefix"></param>
+        /// <param name="suggestionCount"></param>
+        /// <param name="searchParameters"></param>
+        /// <param name="cacheSettings"></param>
+        /// <returns></returns>
+        public List<string> GetPackageSearchSuggestions(string prefix, int suggestionCount, PackageSearchParameters searchParameters, CacheSettings cacheSettings)
+        {
+            var list = new List<string>();
+
+            var trie = Autocomplete.GetTrie(this, searchParameters, cacheSettings);
+            if (trie != null)
+            {
+                list = trie.GetCompletionList(prefix);
+                list.Sort();
+                list = list.Take(suggestionCount).ToList();
+            }
+            return list;
+        }
+
+        #endregion
+
         #endregion
 
         #region Private Methods
@@ -785,7 +823,7 @@ namespace CkanDotNet.Api
             {
                 if (item.Value != null)
                 {
-                    if (item.Key.StartsWith(cacheKeyPrefix))
+                    if (item.Key.StartsWith(CacheKeyPrefix))
                     {
                         cache.Remove(item.Key);
                     }
@@ -824,16 +862,28 @@ namespace CkanDotNet.Api
             {
                 if (item.Value != null)
                 {
-                    if (item.Key.StartsWith(cacheKeyPrefix))
+                    if (item.Key.StartsWith(CacheKeyPrefix))
                     {
-                        var cachedItem = (CachedRequestResponse)item.Value;
+                        var cacheEntry = item.Value;
 
                         CacheEntrySummary summary = new CacheEntrySummary();
-                        summary.Id = item.Key;
-                        summary.Url = GetRequestUrl(cachedItem.Request);
-                        summary.LastCached = cachedItem.LastCached;
-                        summary.Duration = cachedItem.Duration;
-                        summary.KeepCurrent = cachedItem.KeepCurrent;
+                        summary.Id = item.Key; 
+                        
+                        if (cacheEntry is CacheEntry)
+                        {
+                            var cachedItem = (CacheEntry)cacheEntry;
+                            summary.Label = cachedItem.Label;
+                            summary.LastCached = cachedItem.LastCached;
+                            summary.Duration = cachedItem.Duration;
+                        }
+
+                        if (cacheEntry is CachedRequestResponse)
+                        {
+                            var cachedItem = (CachedRequestResponse)cacheEntry;
+                            summary.Url = GetRequestUrl(cachedItem.Request);
+                            summary.KeepCurrent = cachedItem.KeepCurrent; 
+                        }
+
                         cachedItems.Add(summary);
                     }
                 }
@@ -872,7 +922,7 @@ namespace CkanDotNet.Api
         /// <returns></returns>
         private string GenerateCacheKey(RestRequest request)
         {
-            return String.Format("{0}{1}", cacheKeyPrefix, Checksum(request));
+            return String.Format("{0}{1}", CacheKeyPrefix, Checksum(request));
         }
 
         /// <summary>

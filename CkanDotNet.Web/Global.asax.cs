@@ -35,6 +35,12 @@ namespace CkanDotNet.Web
             );
 
             routes.MapRoute(
+                "Suggest", // Route name
+                "suggest/{prefix}", // URL with parameters
+                new { controller = "Suggestion", action = "Index"} // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Tag", // Route name
                 "tag/{tag}", // URL with parameters
                 new { controller = "Tag", action = "Index", tag = UrlParameter.Optional } // Parameter defaults

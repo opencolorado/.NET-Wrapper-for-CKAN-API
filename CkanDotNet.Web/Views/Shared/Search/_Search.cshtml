@@ -11,7 +11,7 @@
 }
 
 @using (Html.BeginForm(actionName: "Index", controllerName: "Search", routeValues: null,
-    method: FormMethod.Get))
+method: FormMethod.Get, htmlAttributes: new { @class = "search-form"}))
 { 
 <div class="search">
 <input name="q" type="text" tabindex="1" class="search-input" value="@query" />
@@ -24,7 +24,30 @@
 }
 
 <script language="javascript">
-    $('.search-input').watermark('Search...');
+    
+    var $input = $('.search-input');
+
+    $input.watermark('Search...');
+
+    $input.focus(function() {
+        $(this).select();
+    });
+
+    $input.autocomplete({
+        
+        source: function (request, response) {
+            $.getJSON("/suggest/" + request.term, null, function (json) {
+                response(json);
+            });
+        },
+        select: function (event, ui) {
+            if (ui.item) {
+                $input.val(ui.item.value);
+            }
+            $('.search-form').submit();
+        }
+    });
+    
 </script>
 
 @if (SettingsHelper.GetGoogleAnalyticsEnabled()) 

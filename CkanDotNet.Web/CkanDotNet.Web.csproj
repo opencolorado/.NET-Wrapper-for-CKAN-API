@@ -74,6 +74,7 @@
     <Compile Include="Controllers\PackageController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SiteMapController.cs" />
+    <Compile Include="Controllers\SuggestionController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Controllers\WidgetController.cs" />
     <Compile Include="Global.asax.cs">
@@ -102,6 +103,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\NOTICE.txt">
+      <Link>NOTICE.txt</Link>
+    </Content>
     <Content Include="Content\Images\rss.png" />
     <Content Include="Content\Styles.css" />
     <Content Include="Content\Images\remove_small.png" />
@@ -117,6 +121,7 @@
     <Content Include="Scripts\stars\jquery.ui.stars.js" />
     <Content Include="Scripts\stars\jquery.ui.stars.min.css" />
     <Content Include="Scripts\stars\jquery.ui.stars.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.16.custom.min.js" />
     <Content Include="Scripts\tiptip\jquery.tipTip.min.js" />
     <Content Include="Scripts\tiptip\tipTip.css" />
     <Content Include="Views\Package\Index.cshtml">
@@ -164,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Suggestion\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CkanDotNet.Api\CkanDotNet.Api.csproj">

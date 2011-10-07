@@ -6,11 +6,10 @@ using RestSharp;
 
 namespace CkanDotNet.Api.Helper
 {
-    public abstract class CachedRequestResponse
+    public abstract class CachedRequestResponse: CacheEntry
     {
         public abstract RestRequest Request { get; set; }
-        public DateTime LastCached { get; set; }
-        public TimeSpan Duration { get; set; }
+
         public bool KeepCurrent { get; set; }
     }
 

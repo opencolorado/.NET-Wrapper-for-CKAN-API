@@ -387,3 +387,9 @@ a:active, a:hover
     bottom: 7px;
     left:1px;
 }
+
+/* jQuery UI overrides */
+.ui-widget {
+    font-family:  Helvetica,Verdana,Arial,Sans !important;
+    font-size: 1.1em;
+}

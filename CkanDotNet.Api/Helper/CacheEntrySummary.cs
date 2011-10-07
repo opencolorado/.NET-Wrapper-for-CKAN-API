@@ -9,6 +9,7 @@ namespace CkanDotNet.Api.Helper
     public class CacheEntrySummary : IComparable
     {
         public string Id { get; set; }
+        public string Label { get; set; }
         public string Url { get; set; }
         public DateTime LastCached { get; set; }
         public TimeSpan Duration { get; set; }
