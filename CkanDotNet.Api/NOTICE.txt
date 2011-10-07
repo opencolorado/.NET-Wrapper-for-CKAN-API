@@ -1,0 +1,20 @@
+This product includes the following software products:
+
+----------
+
+RestSharp (https://github.com/restsharp/RestSharp)
+Licensed under the Apache License, Version 2.0
+See license text at https://github.com/restsharp/RestSharp/blob/master/LICENSE.txt
+
+---------
+
+log4net (http://logging.apache.org/log4net/)
+Licensed under the Apache License, Version 2.0
+See license text at http://logging.apache.org/log4net/license.html
+
+---------
+
+DataStructures (http://wwww.datastructures.codeplex.com)
+Licensed under the Apache License, Version 2.0
+
+---------
