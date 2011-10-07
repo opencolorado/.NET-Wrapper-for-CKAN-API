@@ -2,7 +2,6 @@ This product includes the following software products:
 
 ----------
 
-
 RestSharp (https://github.com/restsharp/RestSharp)
 Licensed under the Apache License, Version 2.0
 See license text at https://github.com/restsharp/RestSharp/blob/master/LICENSE.txt
@@ -40,8 +39,6 @@ http://www.opensource.org/licenses/mit-license.php
 
 http://www.gnu.org/licenses/gpl.html
 
-
-
 ---------
 
 jquery-watermark (http://code.google.com/p/jquery-watermark/)
@@ -51,7 +48,6 @@ The jquery-watermark plugin is dual licensed under the MIT and GPL licenses:
 http://www.opensource.org/licenses/mit-license.php
 
 http://www.gnu.org/licenses/gpl.html
-
 
 ---------
 
