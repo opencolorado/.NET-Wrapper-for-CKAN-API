@@ -2,7 +2,7 @@
 @using CkanDotNet.Api.Helper
 @model List<CacheEntrySummary>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cache Administration";
 }
 <section class="container">
     <h2 class="container-title">Cache Contents</h2>
@@ -26,7 +26,14 @@
         @foreach (var entry in Model)
         {
         <tr>
+            @if (!String.IsNullOrEmpty(entry.Url))
+            { 
             <td><a href="@entry.Url" target="_blank">@entry.Url</a></td>
+            }
+            else
+            {
+            <td>@entry.Label</td>
+            }
             <td><input type="button" value="Clear" onclick="location.href='@Url.Action("Clear", new { token = Request["token"], id = entry.Id })'" /></td>
             <td nowrap="nowrap">@entry.LastCached.ToShortDateString()<br/>@entry.LastCached.ToLongTimeString()</td>
             <td nowrap="nowrap">@entry.Expires.ToShortDateString()<br/>@entry.Expires.ToLongTimeString()</td>
