@@ -65,6 +65,20 @@ namespace CkanDotNet.Web.Models.Helpers
 
         #endregion
 
+        #region Suggestion Settings
+
+        /// <summary>
+        /// Are suggestions enabled
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetSuggestionsEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Suggestions.Enabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        #endregion
+
         #region Google Analytics Settings
 
         /// <summary>

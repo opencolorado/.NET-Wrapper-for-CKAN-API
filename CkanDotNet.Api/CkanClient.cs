@@ -606,7 +606,7 @@ namespace CkanDotNet.Api
         {
             var list = new List<string>();
 
-            var trie = Autocomplete.GetTrie(this, searchParameters, cacheSettings);
+            var trie = SuggestionHelper.GetTrie(this, searchParameters, cacheSettings);
             if (trie != null)
             {
                 list = trie.GetCompletionList(prefix);

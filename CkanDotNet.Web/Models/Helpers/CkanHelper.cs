@@ -47,7 +47,7 @@ namespace CkanDotNet.Web.Models
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
             searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
-            searchParameters.Limit = 1000;
+            searchParameters.Limit = GetPackageCount();
 
             // Collect the results
             PackageSearchResponse<Package> response = CkanHelper.GetClient().SearchPackages<Package>(searchParameters, settings);
@@ -98,11 +98,12 @@ namespace CkanDotNet.Web.Models
         {
             CacheSettings settings = new CacheSettings(SettingsHelper.GetAllPackagesCacheDuration(), SettingsHelper.GetAllPackagesCacheBackgroundUpdate());
 
-            // Create the CKAN search parameters
+            // Create the CKAN search parameters to get all packages in the group
             var searchParameters = new PackageSearchParameters();
             searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
-            searchParameters.Limit = 1000;
+            searchParameters.Limit = GetPackageCount();
 
+            // Get a list of search suggestions
             List<string> suggestions = CkanHelper.GetClient().GetPackageSearchSuggestions(prefix, searchParameters, settings);
 
             return suggestions;

@@ -8,11 +8,12 @@ using CkanDotNet.Api.Model;
 
 namespace CkanDotNet.Api.Helper
 {
-    internal static class Autocomplete
+    internal static class SuggestionHelper
     {
         /// <summary>
-        /// Gets a trie of package search suggestions.  If cache, the trie will be returned from the 
-        /// cache. otherwise it will be created and cached.
+        /// Gets a trie of package search suggestions a package search.  
+        /// If cached, the trie will be returned from the 
+        /// cache, otherwise it will be created and cached.
         /// </summary>
         /// <param name="client"></param>
         /// <param name="searchParameters"></param>
@@ -25,11 +26,13 @@ namespace CkanDotNet.Api.Helper
             // Get the trie from the cache
             string key = CkanClient.CacheKeyPrefix + "AutoComplete";
 
-            // TODO: Need to figure out how to create a unique key for the search parameters
+            // Get the memorycache
             MemoryCache cache = MemoryCache.Default;
 
+            // Get the cached entry if it exists
             CacheEntry cacheEntry = cache[key] as CacheEntry;
             if (cacheEntry == null) {
+                // Generate the trie
                 trie = GenerateTrie(client, searchParameters, cacheSettings);
 
                 cacheEntry = new CacheEntry();
@@ -41,10 +44,12 @@ namespace CkanDotNet.Api.Helper
                 CacheItemPolicy policy = new CacheItemPolicy();
                 policy.AbsoluteExpiration = DateTimeOffset.Now.Add(cacheSettings.Duration);
 
+                // Add the trie to the cache
                 cache.Set(key, cacheEntry, policy);
             }
             else
             {
+                // Get the trie from the cache
                 trie = (Trie)cacheEntry.Data;
             }
 
@@ -60,15 +65,19 @@ namespace CkanDotNet.Api.Helper
         /// <returns></returns>
         private static Trie GenerateTrie(CkanClient client, PackageSearchParameters searchParameters, CacheSettings cacheSettings)
         {
+            // Create an empty trie
             Trie trie = new Trie();
 
-            // Get the packages
+            // Run the search to get all packages
             PackageSearchResponse<Package> response = client.SearchPackages<Package>(searchParameters, cacheSettings);
 
+            // Add the entrys to the trie
             foreach (var package in response.Results)
 	        {
+                // Add the package title
                 trie.Add(package.Title);
 
+                // Add the package tags (removing hyphens which represent spaces)
                 foreach (var tag in package.Tags)
                 {
                     trie.Add(tag.Replace("-"," "));
@@ -77,7 +86,5 @@ namespace CkanDotNet.Api.Helper
 
             return trie;
         }
-
-      
     }
 }
