@@ -52,8 +52,17 @@ namespace CkanDotNet.Web.Controllers
                 "Index",
                 "Home"));
 
+
             breadCrumbs.Add(new BreadCrumb(
-                String.Format("Package > {0}",package.Title)));
+                "Search",
+                "Index",
+                "Search"));
+
+            breadCrumbs.Add(new BreadCrumb(
+                package.Title));
+
+            //breadCrumbs.Add(new BreadCrumb(
+            //    String.Format("Package > {0}",package.Title)));
 
             ViewData["BreadCrumbs"] = breadCrumbs;
         }
