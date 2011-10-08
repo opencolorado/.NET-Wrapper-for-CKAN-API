@@ -41,9 +41,9 @@ namespace CkanDotNet.Web
             );
 
             routes.MapRoute(
-                "Content Proxy", // Route name
-                "content/{*path}", // URL with parameters
-                new { controller = "ContentProxy", action = "Index" } // Parameter defaults
+                "Download Proxy", // Route name
+                "download/{*path}", // URL with parameters
+                new { controller = "DownloadProxy", action = "Index" } // Parameter defaults
             );
 
             routes.MapRoute(

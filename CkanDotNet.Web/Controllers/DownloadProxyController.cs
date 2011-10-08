@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace CkanDotNet.Web.Controllers
 {
-    public class ContentProxyController : Controller
+    public class DownloadProxyController : Controller
     {
         /// <summary>
         /// Provides a reverse proxy to content that is provided via the
