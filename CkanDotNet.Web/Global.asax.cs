@@ -41,6 +41,12 @@ namespace CkanDotNet.Web
             );
 
             routes.MapRoute(
+                "Content Proxy", // Route name
+                "content/{*path}", // URL with parameters
+                new { controller = "ContentProxy", action = "Index" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Tag", // Route name
                 "tag/{tag}", // URL with parameters
                 new { controller = "Tag", action = "Index", tag = UrlParameter.Optional } // Parameter defaults

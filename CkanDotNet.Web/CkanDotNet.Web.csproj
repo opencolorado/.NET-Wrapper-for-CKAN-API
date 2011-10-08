@@ -41,6 +41,9 @@
     <DeployIisAppPath>Default Web Site/CkanDotNet</DeployIisAppPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GaDotNet.Common">
+      <HintPath>..\References\GaDotNet.Common.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\References\log4net.dll</HintPath>
     </Reference>
@@ -69,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CacheController.cs" />
+    <Compile Include="Controllers\ContentProxyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OfflineController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
