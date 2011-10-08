@@ -89,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CacheController.cs" />
-    <Compile Include="Controllers\ContentProxyController.cs" />
+    <Compile Include="Controllers\DownloadProxyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OfflineController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
