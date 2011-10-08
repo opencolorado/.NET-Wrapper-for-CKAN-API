@@ -1,15 +1,25 @@
 ﻿@using CkanDotNet.Web.Models.Helpers
-<h1>Welcome to the Denver Open Data Catalog</h1>
+<h1>Welcome to the Open Data Catalog Demonstration</h1>
 
+<p>The catalog is a demonstration of the .NET front end for CKAN that has been developed
+to allow jurisdictions in Colorado to host a data catalog using 
+<a href="http://www.opencolorado.org">OpenColorado.org</a>.</p>
+
+<p>The catalog front-end is themable and this demonstration shows the Denver website theme
+while pointing to the Arvada group on 
+<a href="http://www.opencolorado.org">OpenColorado.org</a></p>
+
+<!--
 <p>As part of an initiative to improve the accessibility, transparency, and 
 accountability of city government, this catalog provides open access to data managed by the 
 City and County of Denver.
-</p>
+</p>-->
 
+<!--
 @if (SettingsHelper.GetUserVoiceEnabled()) {
     <p>We invite you to actively participate in shaping the future of this data catalog by 
     <a href="javascript:UserVoice.showPopupWidget();" title="Suggest additional datasets">suggesting additional datasets</a> 
     or building applications with the available data.</p>
-}
+}-->
 
 <p><span class="header-package-count">@Html.Action("PackageCount", "Widget") registered datasets are available.</span></p>
