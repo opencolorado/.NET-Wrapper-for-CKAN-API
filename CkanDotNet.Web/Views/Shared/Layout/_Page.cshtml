@@ -44,7 +44,7 @@
         @RenderPage("~/Views/Shared/_UserVoice.cshtml")
     }
     
-    @if (SettingsHelper.GetGoogleAnalyticsEnabled())
+    @if (SettingsHelper.GetGoogleAnalyticsEnabled() && ViewData["DisableAnalytics"] == null)
     {
         @RenderPage("~/Views/Shared/_Analytics.cshtml")
     }

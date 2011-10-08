@@ -30,6 +30,9 @@ namespace CkanDotNet.Web.Controllers
             breadCrumbs.Add(new BreadCrumb("Cache"));
             ViewData["BreadCrumbs"] = breadCrumbs;
 
+            // Disable analytics on admin pages
+            ViewData["DisableAnalytics"] = true;
+
             return View(cachedItems);
         }
 
