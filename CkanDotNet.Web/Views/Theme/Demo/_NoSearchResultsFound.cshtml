@@ -1,0 +1,15 @@
+﻿@using CkanDotNet.Web.Models.Helpers
+<div class="results-none">We weren't able to find what you were looking for.
+@if (SettingsHelper.GetUserVoiceEnabled()) {
+    <text>
+    Please try a new search term or 
+    <a href="javascript:UserVoice.showPopupWidget();" title="Suggest a new dataset">suggest a new dataset</a>...  
+    </text>
+}
+else
+{
+    <text>
+    Please try a new search term.
+    </text>
+}
+</div>

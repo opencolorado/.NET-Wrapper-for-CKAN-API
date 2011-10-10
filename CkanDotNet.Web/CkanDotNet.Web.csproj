@@ -145,6 +145,7 @@
     <Content Include="Content\Styles.css" />
     <Content Include="Content\Images\remove_small.png" />
     <Content Include="Content\Images\remove_small_hover.png" />
+    <Content Include="Content\Theme\Demo\Styles.css" />
     <Content Include="Content\Theme\Denver\Styles.css" />
     <Content Include="Content\Theme\Default\Styles.css" />
     <Content Include="Global.asax" />
@@ -327,6 +328,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Theme\Default\_NoSearchResultsFound.cshtml" />
+    <Content Include="Views\Theme\Demo\_About.cshtml" />
+    <Content Include="Views\Theme\Demo\_Body.cshtml" />
+    <Content Include="Views\Theme\Demo\_Error.cshtml" />
+    <Content Include="Views\Theme\Demo\_Head.cshtml" />
+    <Content Include="Views\Theme\Demo\_HomeHeader.cshtml" />
+    <Content Include="Views\Theme\Demo\_License.cshtml" />
+    <Content Include="Views\Theme\Demo\_NoSearchResultsFound.cshtml" />
     <None Include="Views\Theme\Denver\_NoSearchResultsFound.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
