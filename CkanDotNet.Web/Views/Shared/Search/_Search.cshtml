@@ -36,6 +36,7 @@ method: FormMethod.Get, htmlAttributes: new { @class = "search-form"}))
     @if (SettingsHelper.GetSuggestionsEnabled()) 
     {
         <text>
+        var delay = @SettingsHelper.GetSuggestionsDelay();
         $input.autocomplete({
             // TODO: fix this route
             source: function (request, response) {
@@ -48,7 +49,8 @@ method: FormMethod.Get, htmlAttributes: new { @class = "search-form"}))
                     $input.val(ui.item.value);
                 }
                 $('.search-form').submit();
-            }
+            },
+            delay: delay
         });
         </text>
     }

@@ -77,6 +77,17 @@ namespace CkanDotNet.Web.Models.Helpers
             return (enabled == "true") ? true : false;
         }
 
+        /// <summary>
+        /// Set the delay time for queueing keystokes before 
+        // requesting suggestions.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetSuggestionsDelay()
+        {
+            string delay = ConfigurationManager.AppSettings["Suggestions.Delay"];
+            return int.Parse(delay);
+        }
+
         #endregion
 
         #region Google Analytics Settings
