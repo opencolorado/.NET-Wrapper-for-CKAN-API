@@ -84,10 +84,8 @@
     <Compile Include="Model\RevisionSearchParameters.cs" />
     <Compile Include="Model\PackageSearchParameters.cs" />
     <Compile Include="Model\Group.cs" />
-    <Compile Include="Model\GroupExtras.cs" />
     <Compile Include="Model\License.cs" />
     <Compile Include="Model\Package.cs" />
-    <Compile Include="Model\PackageExtras.cs" />
     <Compile Include="Model\ResourceSearchParameters.cs" />
     <Compile Include="Model\Rating.cs" />
     <Compile Include="Model\Resource.cs" />

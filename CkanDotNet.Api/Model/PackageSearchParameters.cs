@@ -12,7 +12,6 @@ namespace CkanDotNet.Api.Model
     {
         private List<string> tags = new List<string>();
         private List<string> groups = new List<string>();
-        private PackageExtras packageExtras = new PackageExtras();
         private string orderBy = "rank";
         private int offset = -1;
         private int limit = -1;
@@ -57,11 +56,6 @@ namespace CkanDotNet.Api.Model
         /// Search by update frequency.
         /// </summary>
         public string UpdateFrequency { get; set; }
-
-        /// <summary>
-        /// Search by extra package fields.
-        /// </summary>
-        public PackageExtras ExtraFields { get { return packageExtras; } }
 
         /// <summary>
         /// Specify the field to sort the results by.  Defaults to "rank"

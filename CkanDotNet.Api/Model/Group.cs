@@ -8,16 +8,49 @@ namespace CkanDotNet.Api.Model
 {
     public class Group
     {
+        /// <summary>
+        /// Gets the auto-generated unique identifier
+        /// </summary>
         public string Id { get; set; }
-        public string Name { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string Created { get; set; }
-        public string State { get; set; }
-        public string RevisionId { get; set; }
-        public List<string> Packages { get; set; }
-        public GroupExtras Extras { get; set; }
 
+        /// <summary>
+        /// Gets the friendly unique identifier
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets the title for display
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Gets the description
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Gets the created date in ISO string format
+        /// </summary>
+        public string Created { get; set; }
+
+        /// <summary>
+        /// Gets the state of the group
+        /// </summary>
+        public string State { get; set; }
+
+        /// <summary>
+        /// Gets the id of the most recent revision
+        /// </summary>
+        public string RevisionId { get; set; }
+
+        /// <summary>
+        /// Gets the packages in the group
+        /// </summary>
+        public List<string> Packages { get; set; }
+
+        /// <summary>
+        /// Gets the created date of the group
+        /// </summary>
         public DateTime CreatedAsDate
         {
             get
