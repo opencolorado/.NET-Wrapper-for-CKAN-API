@@ -27,58 +27,83 @@ namespace CkanDotNet.Web.Controllers
         /// <returns></returns>
         public void Index(string path)
         {
-            // Get the HttpContext for the request going through this controller.
-            HttpContextWrapper context = (HttpContextWrapper)HttpContext;
+            if (SettingsHelper.GetDownloadProxyEnabled())
+            {
+                StreamDownload(path);
+            }
+            else
+            {
+                //TODO: Handle this appropriately
+                Response.End();
+            }
+        }
 
-            Uri uri = new Uri("http://maps.arvada.org/opendata/");
+        /// <summary>
+        /// Stream the resource to the client
+        /// </summary>
+        /// <param name="path"></param>
+        private void StreamDownload(string path)
+        {
+            // Get the base proxy location
+            Uri proxyLocation = SettingsHelper.GetDownloadProxyLocation();
 
-            //uri = new Uri("file://c:/temp/");
-
-            uri = new Uri(@"\\localhost\c$\temp\");
             // Get the full uri to the resource
-            Uri contentUri = new Uri(uri,path);
+            Uri contentUri = new Uri(proxyLocation, path);
 
             long bytes = 0;
 
-            // Handle the download accordingly
-            if (uri.IsFile || uri.IsUnc)
+            // Get the HttpContext for the request going through this controller.
+            HttpContextWrapper context = (HttpContextWrapper)HttpContext;
+
+            // Process the download
+            if (contentUri.IsFile || contentUri.IsUnc)
             {
                 bytes = StreamFromFileResource(context, contentUri);
             }
-            else if (uri.Scheme == "http" || uri.Scheme == "https")
+            else if (contentUri.Scheme == "http" || contentUri.Scheme == "https")
             {
-                bytes =StreamFromHttpResource(context, contentUri);
+                bytes = StreamFromHttpResource(context, contentUri);
             }
 
             // Track the download in Google Analytics
-            if (SettingsHelper.GetGoogleAnalyticsEnabled())
+            if (bytes > 0 && SettingsHelper.GetGoogleAnalyticsEnabled())
             {
-                ConfigurationManager.AppSettings["GoogleAnalyticsAccountCode"] = SettingsHelper.GetGoogleAnalyticsProfile();
+                TrackDownloadEvent(path, context, bytes);
+            }
+        }
 
-                var code = GaDotNet.Common.Data.ConfigurationSettings.GoogleAccountCode;
+        /// <summary>
+        /// Track the download event
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="context"></param>
+        /// <param name="bytes"></param>
+        private static void TrackDownloadEvent(string path, HttpContextWrapper context, long bytes)
+        {
+            ConfigurationManager.AppSettings["GoogleAnalyticsAccountCode"] = SettingsHelper.GetGoogleAnalyticsProfile();
 
-                string referrer = "None";
-                if (context.Request.UrlReferrer != null)
-                {
-                    referrer = context.Request.UrlReferrer.Host;
-                }
+            var code = GaDotNet.Common.Data.ConfigurationSettings.GoogleAccountCode;
 
-                int kiloBytes = (int)(bytes / 1024);
-
-                GoogleEvent googleEvent = new GoogleEvent("http://localhost.local",
-                    "Download",
-                    referrer,
-                    path,
-                    kiloBytes);
-
-                var app = (HttpApplication)context.GetService(typeof(HttpApplication));
-
-                TrackingRequest request =
-                    new RequestFactory().BuildRequest(googleEvent, app.Context);
-
-                GoogleTracking.FireTrackingEvent(request);
+            string referrer = "None";
+            if (context.Request != null && context.Request.UrlReferrer != null)
+            {
+                referrer = context.Request.UrlReferrer.Host;
             }
 
+            int kiloBytes = (int)(bytes / 1024);
+
+            GoogleEvent googleEvent = new GoogleEvent("http://localhost.local",
+                "Download",
+                referrer,
+                path,
+                kiloBytes);
+
+            var app = (HttpApplication)context.GetService(typeof(HttpApplication));
+
+            TrackingRequest request =
+                new RequestFactory().BuildRequest(googleEvent, app.Context);
+
+            GoogleTracking.FireTrackingEvent(request);
         }
 
         private long StreamFromFileResource(HttpContextWrapper context, Uri uri)
@@ -88,23 +113,32 @@ namespace CkanDotNet.Web.Controllers
             // Get the HttpResponse from this proxied request.
             HttpResponseWrapper response = (HttpResponseWrapper)context.Response;
 
-            response.ContentType = MimeType(uri.LocalPath);
-
-            // Transfer the stream to the response stream
-            using (FileStream stream = new FileStream(uri.LocalPath, FileMode.Open))
+            if (System.IO.File.Exists(uri.LocalPath))
             {
-                using (BinaryWriter bw = new BinaryWriter(response.OutputStream))
+                response.ContentType = MimeType(uri.LocalPath);
+                // Transfer the stream to the response stream
+                using (FileStream stream = new FileStream(uri.LocalPath, FileMode.Open))
                 {
-                    byte[] buffer = new byte[1];
-                    while (stream.Read(buffer, 0, 1) > 0)
+                    using (BinaryWriter bw = new BinaryWriter(response.OutputStream))
                     {
-                        bytes++;
-                        bw.Write(buffer);
+                        byte[] buffer = new byte[1];
+                        while (stream.Read(buffer, 0, 1) > 0)
+                        {
+                            bytes++;
+                            bw.Write(buffer);
+                        }
                     }
-                }
-                response.End();
+                    response.End();
 
+                }
             }
+            else
+            {
+                response.StatusCode = 404;
+                response.End();
+            }
+
+          
             return bytes;
         }
 
@@ -131,25 +165,42 @@ namespace CkanDotNet.Web.Controllers
             req.ServicePoint.Expect100Continue = false;
             req.Timeout = 20000;
 
-            WebResponse serverResponse = req.GetResponse();
-
-            // Set the return content type
-            response.ContentType = serverResponse.ContentType;
-
-            // Transfer the stream to the response stream
-            using (Stream responseStream = serverResponse.GetResponseStream())
+            try
             {
-                using (BinaryWriter bw = new BinaryWriter(response.OutputStream))
+                using (WebResponse serverResponse = req.GetResponse())
                 {
-                    byte[] buffer = new byte[1];
-                    while (responseStream.Read(buffer, 0, 1) > 0)
+                    // Set the return content type
+                    response.ContentType = serverResponse.ContentType;
+
+                    // Transfer the stream to the response stream
+                    using (Stream responseStream = serverResponse.GetResponseStream())
                     {
-                        bytes++;
-                        bw.Write(buffer);
+                        using (BinaryWriter bw = new BinaryWriter(response.OutputStream))
+                        {
+                            byte[] buffer = new byte[1];
+                            while (responseStream.Read(buffer, 0, 1) > 0)
+                            {
+                                bytes++;
+                                bw.Write(buffer);
+                            }
+                        }
+                        response.End();
                     }
                 }
-                response.End();
+
             }
+            catch (WebException ex)
+            {
+                int statusCode = 404;
+                HttpWebResponse errorResponse = (HttpWebResponse)ex.Response;
+                if (errorResponse != null)
+                {
+                    statusCode = (int)errorResponse.StatusCode;
+                }
+                
+                response.StatusCode = statusCode;
+            }
+
             return bytes;
         }
         

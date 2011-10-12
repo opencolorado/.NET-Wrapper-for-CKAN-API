@@ -736,6 +736,31 @@ namespace CkanDotNet.Web.Models.Helpers
 
         #endregion
 
+        #region Download Proxy Settings
+
+        /// <summary>
+        /// Is the download proxy enabled
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetDownloadProxyEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["DownloadProxy.Enabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Get the download proxy location
+        /// </summary>
+        /// <returns></returns>
+        public static Uri GetDownloadProxyLocation()
+        {
+            string location = ConfigurationManager.AppSettings["DownloadProxy.Location"];
+            Uri uri = new Uri(location);
+            return uri;
+        }
+
+        #endregion
+
         #region Helper Methods
 
         /// <summary>
@@ -764,5 +789,7 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         #endregion
+
+
     }
 }
