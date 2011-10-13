@@ -1,5 +1,11 @@
 ﻿See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API for additional information.
 
+## Version 1.3 (10/12/2011)
+* Added autocomplete for search box
+ * Suggestions are provided for package names and tags
+* Added experimental support for a download proxy that allows download tracking even when a resource is downloaded through an external catalog link (ex. OpenColorado).  
+ * If Google Analytics are enabled, individual resource downloads are tracked including the total bytes for each download.
+
 ## Version 1.2 (10/5/2011)
 * Added support for [AddThis] (http://www.addthis.com) social medial sharing (optional)
  * Includes support for 'print this page' and sending the page by email
