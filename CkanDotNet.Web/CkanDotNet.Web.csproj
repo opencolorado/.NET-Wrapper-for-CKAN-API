@@ -118,7 +118,6 @@
     <Compile Include="Models\Settings\ResourceSettings.cs" />
     <Compile Include="Models\SiteMap\SiteMapUrl.cs" />
     <Compile Include="Models\SiteMap\SiteMapUrlChangeFrequency.cs" />
-    <Compile Include="Models\ViewDataFactory.cs" />
     <Compile Include="Models\SearchResultsModel.cs" />
     <Compile Include="Models\SearchResultsSideBarModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

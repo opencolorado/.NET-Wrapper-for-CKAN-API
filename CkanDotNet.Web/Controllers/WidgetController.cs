@@ -122,7 +122,7 @@ namespace CkanDotNet.Web.Controllers
             searchParameters.Offset = pager.RecordOffset;
             searchParameters.Limit = pager.RecordsPerPage;
 
-            PackageSearchResultsModel model = ViewDataFactory.Create<PackageSearchResultsModel>();
+            PackageSearchResultsModel model = new PackageSearchResultsModel();
             model.SearchParameters = searchParameters;
             model.SearchResults = CkanHelper.GetClient().SearchPackages<Package>(searchParameters, new CacheSettings(SettingsHelper.GetSearchResultsCacheDuration()));
             SettingsHelper.FilterTitles(model.SearchResults.Results);

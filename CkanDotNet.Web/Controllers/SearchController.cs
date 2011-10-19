@@ -65,7 +65,7 @@ namespace CkanDotNet.Web.Controllers
             searchParameters.Limit = pager.RecordsPerPage;
 
             // Build the view model for the results
-            PackageSearchResultsModel model = ViewDataFactory.Create<PackageSearchResultsModel>();
+            PackageSearchResultsModel model = new PackageSearchResultsModel();
             model.SearchParameters = searchParameters;
             model.SearchResults = CkanHelper.GetClient().SearchPackages<Package>(searchParameters, new CacheSettings(SettingsHelper.GetSearchResultsCacheDuration()));
             SettingsHelper.FilterTitles(model.SearchResults.Results);
