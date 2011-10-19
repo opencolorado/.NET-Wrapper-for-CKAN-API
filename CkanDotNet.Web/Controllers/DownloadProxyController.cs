@@ -27,6 +27,8 @@ namespace CkanDotNet.Web.Controllers
         /// <returns></returns>
         public void Index(string path)
         {
+            // Try returning a DelegatingActionResult instead of void.. makes it more testable..
+
             if (SettingsHelper.GetDownloadProxyEnabled())
             {
                 StreamDownload(path);
@@ -119,17 +121,8 @@ namespace CkanDotNet.Web.Controllers
                 // Transfer the stream to the response stream
                 using (FileStream stream = new FileStream(uri.LocalPath, FileMode.Open))
                 {
-                    using (BinaryWriter bw = new BinaryWriter(response.OutputStream))
-                    {
-                        byte[] buffer = new byte[1];
-                        while (stream.Read(buffer, 0, 1) > 0)
-                        {
-                            bytes++;
-                            bw.Write(buffer);
-                        }
-                    }
+                    stream.CopyTo(response.OutputStream);
                     response.End();
-
                 }
             }
             else
@@ -175,15 +168,7 @@ namespace CkanDotNet.Web.Controllers
                     // Transfer the stream to the response stream
                     using (Stream responseStream = serverResponse.GetResponseStream())
                     {
-                        using (BinaryWriter bw = new BinaryWriter(response.OutputStream))
-                        {
-                            byte[] buffer = new byte[1];
-                            while (responseStream.Read(buffer, 0, 1) > 0)
-                            {
-                                bytes++;
-                                bw.Write(buffer);
-                            }
-                        }
+                        responseStream.CopyTo(response.OutputStream);
                         response.End();
                     }
                 }
