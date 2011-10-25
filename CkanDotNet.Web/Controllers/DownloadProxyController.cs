@@ -88,7 +88,7 @@ namespace CkanDotNet.Web.Controllers
 
             var code = GaDotNet.Common.Data.ConfigurationSettings.GoogleAccountCode;
 
-            string referrer = "None";
+            string referrer = "NoReferrer";
             if (context.Request != null && context.Request.UrlReferrer != null)
             {
                 referrer = context.Request.UrlReferrer.Host;
