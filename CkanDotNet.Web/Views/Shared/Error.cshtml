@@ -1,8 +1,21 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
 @using CkanDotNet.Web.Models.Helpers
-
+@model CkanDotNet.Web.Models.ErrorPresentation
 @{
-    ViewBag.Title = "Error";
+    ViewBag.Title = Model.StatusCode + " - " + SettingsHelper.GetHomePageTitle();
 }
 
-@RenderPage("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_Error.cshtml")
+<h2>@Model.Title</h2>
+
+<p>
+@if (!String.IsNullOrEmpty(Model.Description))
+{
+    @Model.Description
+}
+else
+{
+    <text>Oops.. something has gone wrong.  Please try again or try back later.</text>
+}
+</p>
+
+
+@*RenderPage("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_Error.cshtml")*@

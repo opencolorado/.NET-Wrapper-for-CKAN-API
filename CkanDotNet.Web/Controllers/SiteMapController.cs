@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CkanDotNet.Web.Models.Helpers;
+using CkanDotNet.Web.Models;
 
 namespace CkanDotNet.Web.Controllers
 {
@@ -11,7 +12,6 @@ namespace CkanDotNet.Web.Controllers
     {
         //
         // GET: /SiteMap/
-        [HandleError]
         public ActionResult Index()
         {
             Response.ContentType = "text/xml";

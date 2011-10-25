@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CkanDotNet.Api.Model;
 using CkanDotNet.Api;
-using System.Web.UI;
 using CkanDotNet.Web.Models;
 using log4net;
 using System.Reflection;
@@ -20,7 +17,6 @@ namespace CkanDotNet.Web.Controllers
         /// <summary>
         /// Provides a view of the top 10 tags in the repository group
         /// </summary>
-        [HandleError]
         public ActionResult PopularTags ()
         {
             log.DebugFormat("Controller action requested");
@@ -47,7 +43,6 @@ namespace CkanDotNet.Web.Controllers
         /// Provides a view of features packages in the repository group.  Featured
         /// packages are those that are tagged with "featured".
         /// </summary>
-        [HandleError]
         public ActionResult FeaturedPackages()
         {
             log.DebugFormat("Controller action requested");
@@ -70,7 +65,6 @@ namespace CkanDotNet.Web.Controllers
         /// Provides a view of features packages that have recently bee updated in the repository group.
         /// Return the three most recently updated packages in the group.
         /// </summary>
-        [HandleError]
         public ActionResult RecentlyUpdated()
         {
             log.DebugFormat("Controller action requested");
@@ -109,7 +103,6 @@ namespace CkanDotNet.Web.Controllers
         /// Provides a view of features packages that have recently bee updated in the repository group.
         /// Return the three most recently updated packages in the group.
         /// </summary>
-        [HandleError]
         public ActionResult BrowsePackages()
         {
             log.DebugFormat("Controller action requested");
@@ -138,7 +131,6 @@ namespace CkanDotNet.Web.Controllers
         /// <summary>
         /// Provides a view of the top 10 tags in the repository group
         /// </summary>
-        [HandleError]
         public ActionResult PackageCount()
         {
             return Content(CkanHelper.GetPackageCount().ToString());

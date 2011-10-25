@@ -19,7 +19,6 @@ namespace CkanDotNet.Web.Controllers
         //
         // GET: /Package/
         [CheckOffline]
-        [HandleError]
         public ActionResult Index(string package)
         {
             log.DebugFormat("Controller action requested for package {0}", package);
@@ -41,7 +40,6 @@ namespace CkanDotNet.Web.Controllers
         /// Prepare the breadcrumbs model for this view.
         /// </summary>
         /// <param name="package"></param>
-        [HandleError]
         private void ConfigureBreadCrumbs(Package package)
         {
             // Set up the breadcrumbs for this action
@@ -71,7 +69,6 @@ namespace CkanDotNet.Web.Controllers
         /// Prepare the meta tags for this view.
         /// </summary>
         /// <param name="package">The package</param>
-        [HandleError]
         private void ConfigureMetaTags(Package package)
         {
             var metaTags = new MetaTags();

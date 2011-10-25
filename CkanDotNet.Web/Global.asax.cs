@@ -9,6 +9,7 @@ using System.Reflection;
 using CkanDotNet.Api;
 using CkanDotNet.Web.Models;
 using CkanDotNet.Web.Models.Helpers;
+using System.Net;
 
 namespace CkanDotNet.Web
 {
@@ -29,15 +30,21 @@ namespace CkanDotNet.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "Error",
+                "error",
+                new { controller = "Error", action = "Index" }
+            );
+
+            routes.MapRoute(
                 "SiteMap", // Route name
                 "sitemap.xml", // URL with parameters
-                new { controller = "SiteMap", action = "Index"} // Parameter defaults
+                new { controller = "SiteMap", action = "Index" } // Parameter defaults
             );
 
             routes.MapRoute(
                 "Suggest", // Route name
                 "suggest/{prefix}", // URL with parameters
-                new { controller = "Suggestion", action = "Index"} // Parameter defaults
+                new { controller = "Suggestion", action = "Index" } // Parameter defaults
             );
 
             routes.MapRoute(
@@ -61,19 +68,19 @@ namespace CkanDotNet.Web
             routes.MapRoute(
                 "Cache", // Route name
                 "admin/cache/{action}", // URL with parameters
-                new { controller = "Cache", action = "Index"} // Parameter defaults
+                new { controller = "Cache", action = "Index" } // Parameter defaults
             );
 
             routes.MapRoute(
                 "Search", // Route name
                 "search", // URL with parameters
-                new { controller = "Search", action = "Index"} // Parameter defaults
+                new { controller = "Search", action = "Index" } // Parameter defaults
             );
 
             routes.MapRoute(
                 "Home", // Route name
                 "{controller}", // URL with parameters
-                new { controller = "Home", action = "Index"} // Parameter defaults
+                new { controller = "Home", action = "Index" } // Parameter defaults
             );
 
             routes.MapRoute(
@@ -126,5 +133,26 @@ namespace CkanDotNet.Web
                 Server.ClearError();
             }
         }
+
+        /// <summary>
+        /// Handle application level errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            // Get the last error and clear the response
+            Exception ex = Server.GetLastError();
+            Response.Clear();
+
+            var errorPresentation = ErrorHelper.GetDefaultErrorPresentation(ex);
+
+            // Set the status code on the response
+            Response.StatusCode = errorPresentation.StatusCode;
+
+            // Display the error view to the client
+            ErrorHelper.DisplayErrorView(errorPresentation);
+        }
+
     }
 }

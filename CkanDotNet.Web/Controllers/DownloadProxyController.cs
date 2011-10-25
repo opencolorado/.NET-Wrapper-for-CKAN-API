@@ -10,6 +10,8 @@ using GaDotNet.Common.Data;
 using GaDotNet.Common.Helpers;
 using CkanDotNet.Web.Models.Helpers;
 using System.Configuration;
+using CkanDotNet.Web.Models.ActionResults;
+using CkanDotNet.Web.Models;
 
 namespace CkanDotNet.Web.Controllers
 {
@@ -25,18 +27,18 @@ namespace CkanDotNet.Web.Controllers
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public void Index(string path)
+        public ActionResult Index(string path)
         {
-            // Try returning a DelegatingActionResult instead of void.. makes it more testable..
-
             if (SettingsHelper.GetDownloadProxyEnabled())
             {
-                StreamDownload(path);
+                return new DelegatingResult(context =>
+                {
+                    StreamDownload(path);
+                });
             }
             else
             {
-                //TODO: Handle this appropriately
-                Response.End();
+                throw new DescriptiveHttpException(404, "Resource not found", "The requested file was not found or is no longer available.");
             }
         }
 
@@ -127,8 +129,10 @@ namespace CkanDotNet.Web.Controllers
             }
             else
             {
-                response.StatusCode = 404;
-                response.End();
+                //response.StatusCode = 404;
+                //response.End();
+
+                throw new DescriptiveHttpException(404, "Resource not found", "The requested file was not found or is no longer available.");
             }
 
           
@@ -182,8 +186,8 @@ namespace CkanDotNet.Web.Controllers
                 {
                     statusCode = (int)errorResponse.StatusCode;
                 }
-                
-                response.StatusCode = statusCode;
+
+                throw new DescriptiveHttpException(statusCode, errorResponse.StatusDescription, "The requested file was not able to be downloaded.");
             }
 
             return bytes;

@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\DownloadProxyController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OfflineController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
@@ -101,10 +102,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ActionResults\DelegatingResult.cs" />
     <Compile Include="Models\BreadCrumb.cs" />
     <Compile Include="Models\BreadCrumbs.cs" />
     <Compile Include="Models\CheckOfflineAttribute.cs" />
+    <Compile Include="Models\DescriptiveHttpException.cs" />
+    <Compile Include="Models\ErrorPresentation.cs" />
     <Compile Include="Models\Helpers\CkanHelper.cs" />
+    <Compile Include="Models\Helpers\ErrorHelper.cs" />
     <Compile Include="Models\Helpers\GuidHelper.cs" />
     <Compile Include="Models\Helpers\SiteMapHelper.cs" />
     <Compile Include="Models\MetaTags.cs" />
@@ -282,14 +287,7 @@
     <Content Include="Views\Offline\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Theme\Denver\_Error.cshtml" />
     <Content Include="Views\Cache\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Theme\Default\_Error.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Theme\Denver\_Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\README.markdown">

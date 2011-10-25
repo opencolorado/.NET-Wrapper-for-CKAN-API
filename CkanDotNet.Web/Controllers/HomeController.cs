@@ -10,7 +10,6 @@ using CkanDotNet.Web.Models.Helpers;
 
 namespace CkanDotNet.Web.Controllers
 {
-    [HandleError]
     public class HomeController : Controller
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -18,7 +17,6 @@ namespace CkanDotNet.Web.Controllers
         //
         // GET: /Home/
         [CheckOffline]
-        [HandleError]
         public ActionResult Index()
         {
             log.Debug("Controller action requested");

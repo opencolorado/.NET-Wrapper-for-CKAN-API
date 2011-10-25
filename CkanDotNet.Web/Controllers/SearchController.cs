@@ -29,7 +29,7 @@ namespace CkanDotNet.Web.Controllers
         /// <param name="page"></param>
         /// <returns></returns>
         [CheckOffline]
-        [HandleError]
+        
         public ActionResult Index(string q, int? page, string order_by, string tag)
         {
             log.DebugFormat("Controller action requested");
@@ -83,7 +83,6 @@ namespace CkanDotNet.Web.Controllers
         /// </summary>
         /// <param name="q">The query</param>
         /// <param name="tag">The selected tag</param>
-        [HandleError]
         private void ConfigureBreadCrumbs(string q, string tag)
         {
             // Set up the breadcrumbs for this action

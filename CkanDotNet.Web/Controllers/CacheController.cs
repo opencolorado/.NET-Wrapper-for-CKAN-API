@@ -10,12 +10,10 @@ using System.Security;
 
 namespace CkanDotNet.Web.Controllers
 {
-    [HandleError]
     public class CacheController : Controller
     {
         //
         // GET: /Cache/
-        [HandleError]
         public ActionResult Index(string token)
         {
             CheckToken(token);
@@ -36,7 +34,6 @@ namespace CkanDotNet.Web.Controllers
             return View(cachedItems);
         }
 
-        [HandleError]
         public ActionResult Clear(string token, string id)
         {
             CheckToken(token);
