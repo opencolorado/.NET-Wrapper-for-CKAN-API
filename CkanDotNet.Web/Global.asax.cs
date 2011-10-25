@@ -150,6 +150,15 @@ namespace CkanDotNet.Web
             // Set the status code on the response
             Response.StatusCode = errorPresentation.StatusCode;
 
+            if (errorPresentation.StatusCode >= 500)
+            {
+                log.Error("An unhandled server error has occurred", ex);
+            }
+            else
+            {
+                log.Debug("An unhandled error has occurred", ex);
+            }
+
             // Display the error view to the client
             ErrorHelper.DisplayErrorView(errorPresentation);
         }
