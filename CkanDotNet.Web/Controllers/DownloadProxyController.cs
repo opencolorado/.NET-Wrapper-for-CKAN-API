@@ -12,11 +12,16 @@ using CkanDotNet.Web.Models.Helpers;
 using System.Configuration;
 using CkanDotNet.Web.Models.ActionResults;
 using CkanDotNet.Web.Models;
+using log4net;
+using System.Reflection;
+using Microsoft.Win32;
 
 namespace CkanDotNet.Web.Controllers
 {
     public class DownloadProxyController : Controller
     {
+        private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         /// <summary>
         /// Provides a reverse proxy to content that is provided via the
         /// catalog.  Provided to allow capturing of analytics
@@ -110,6 +115,12 @@ namespace CkanDotNet.Web.Controllers
             GoogleTracking.FireTrackingEvent(request);
         }
 
+        /// <summary>
+        /// Stream a file from a file resource.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="uri"></param>
+        /// <returns></returns>
         private long StreamFromFileResource(HttpContextWrapper context, Uri uri)
         {
             long bytes = 0;
@@ -139,16 +150,36 @@ namespace CkanDotNet.Web.Controllers
             return bytes;
         }
 
-        private string MimeType(string Filename)
+        /// <summary>
+        /// Get the mime type of a file
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        private string MimeType(string filename)
         {
-            string mime = "application/octetstream";
-            string ext = System.IO.Path.GetExtension(Filename).ToLower();
-            Microsoft.Win32.RegistryKey rk = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
-            if (rk != null && rk.GetValue("Content Type") != null)
-                mime = rk.GetValue("Content Type").ToString();
-            return mime;
+            string mimeType = "application/octetstream";
+            try
+            {
+                string extension = System.IO.Path.GetExtension(filename).ToLower();
+                RegistryKey registryKey = Registry.ClassesRoot.OpenSubKey(extension);
+                if (registryKey != null && registryKey.GetValue("Content Type") != null)
+                {
+                    mimeType = registryKey.GetValue("Content Type").ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                log.Warn(String.Format("Unable to determine mime type for file {0}", filename), ex);
+            }
+            return mimeType;
         } 
 
+        /// <summary>
+        /// Stream a file from an HTTP resource.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="uri"></param>
+        /// <returns></returns>
         private long StreamFromHttpResource(HttpContextWrapper context, Uri uri)
         {
             long bytes = 0;
