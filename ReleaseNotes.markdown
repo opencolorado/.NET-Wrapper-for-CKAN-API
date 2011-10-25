@@ -1,5 +1,10 @@
 ﻿See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API for additional information.
 
+## Version 1.4 (10/25/2011)
+* Enhanced support for the download proxy
+* Improved error handling and messaging to the end user
+* General code improvements and optimizations
+
 ## Version 1.3 (10/12/2011)
 * Added autocomplete for search box
  * Suggestions are provided for package names and tags
