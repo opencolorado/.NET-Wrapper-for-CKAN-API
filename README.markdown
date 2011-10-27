@@ -18,6 +18,13 @@ a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API) ava
 There is no specific implemention in this project related to colorado.ckan.net so this can be
 used with any CKAN instance.
 
+### Demo
+
+Two live demo sites are available:
+
+* [Default theme] (http://ckandotnetdemodefault.apphb.com) pointing to the [Arvada group] (http://colorado.ckan.net/group/arvada) on [OpenColorado] (http://colorado.ckan.net)
+* [Denver theme] (http://ckandotnetdemodenver.apphb.com) pointing to the [Arvada group] (http://colorado.ckan.net/group/arvada) on [OpenColorado] (http://colorado.ckan.net)
+
 ### Screenshots
 
 The catalog is fully themable using CSS/HTML.  See the [screenshots] (https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/tree/master/Screenshots) for examples.
