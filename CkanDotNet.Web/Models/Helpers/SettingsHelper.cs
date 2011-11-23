@@ -544,6 +544,40 @@ namespace CkanDotNet.Web.Models.Helpers
 
         #endregion
 
+        #region Tag Cloud Settings
+
+        /// <summary>
+        /// Should the count be displayed beside the tag
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetTagCloudShowCount()
+        {
+            string showCount = ConfigurationManager.AppSettings["TagCloud.ShowCount"];
+            return (showCount == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// The minimum scale for the tag cloud (percent)
+        /// </summary>
+        /// <returns></returns>
+        public static int GetTagCloudMinScale()
+        {
+            string scale = ConfigurationManager.AppSettings["TagCloud.MinScale"];
+            return int.Parse(scale);
+        }
+
+        /// <summary>
+        /// The maximum scale for the tag cloud
+        /// </summary>
+        /// <returns></returns>
+        public static int GetTagCloudMaxScale()
+        {
+            string scale = ConfigurationManager.AppSettings["TagCloud.MaxScale"];
+            return int.Parse(scale);
+        }
+
+        #endregion
+
         #region UserVoice Settings
 
         /// <summary>
@@ -789,7 +823,6 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         #endregion
-
 
     }
 }

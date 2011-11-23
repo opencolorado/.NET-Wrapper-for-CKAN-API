@@ -125,6 +125,7 @@
     <Compile Include="Models\SiteMap\SiteMapUrlChangeFrequency.cs" />
     <Compile Include="Models\SearchResultsModel.cs" />
     <Compile Include="Models\SearchResultsSideBarModel.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

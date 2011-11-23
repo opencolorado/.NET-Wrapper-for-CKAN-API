@@ -1,5 +1,7 @@
 ﻿@using CkanDotNet.Api.Model
-@model Dictionary<string, int>
+@using CkanDotNet.Web.Models
+@using CkanDotNet.Web.Models.Helpers
+@model List<Tag>
  
 <section class="container">
 <h2 class="container-title">Popular Tags</h2>
@@ -7,7 +9,15 @@
     @foreach (var result in Model)
     {
         <div class="tag">
-            <a href="@Url.Action("Index", "Search", new { tag = @result.Key })" data-tag="@result.Key">@result.Key (@result.Value)</a>
+            @{
+                string scale = result.Scale + "%";
+            }
+            <a href="@Url.Action("Index", "Search", new { tag = @result.Label })" 
+               data-tag="@result.Label" 
+               style="font-size: @scale;">@result.Label 
+            @if (SettingsHelper.GetTagCloudShowCount()) {
+                <text>(@result.Count)</text>
+            }</a>
         </div>
     }
 

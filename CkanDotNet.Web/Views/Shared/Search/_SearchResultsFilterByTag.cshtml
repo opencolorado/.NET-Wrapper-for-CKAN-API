@@ -1,5 +1,6 @@
 ﻿@using CkanDotNet.Api.Model
 @using CkanDotNet.Web.Models
+@using CkanDotNet.Web.Models.Helpers
 @model PackageSearchResultsModel
 
 @{
@@ -10,7 +11,7 @@
     // Remove the page number since we want to start from the beginning if we filter
     RouteHelper.UpdateRoute(routeValues, "page", null);
 
-    Dictionary<string, int> tagCounts = TagHelper.GetTagCounts(Model.SearchResults.Results);
+    List<Tag> tags = TagHelper.GetTagCounts(Model.SearchResults.Results);
    
 }
 
@@ -19,11 +20,20 @@
 <section class="container">
     <h2 class="container-title">Filter By Tag</h2>
     <div class="container-content">
-        @foreach (var entry in tagCounts)
+        @foreach (var tag in tags)
         {
+            string scale = tag.Scale + "%";
             <div class="tag">
-            @Html.ActionLink(entry.Key, "Index", "Search", RouteHelper.UpdateRoute(routeValues, "tag", entry.Key), null)
+            
+        
+            <a href="@Url.Action("Index", "Search", RouteHelper.UpdateRoute(routeValues, "tag", tag.Label))" 
+               data-tag="@tag.Label" 
+               style="font-size: @scale;">@tag.Label 
+             @if (SettingsHelper.GetTagCloudShowCount()) {
+                <text>(@tag.Count)</text>
+            }</a>
             </div>
+
         }
     </div>
 </section>

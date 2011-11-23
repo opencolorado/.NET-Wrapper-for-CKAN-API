@@ -33,10 +33,10 @@ namespace CkanDotNet.Web.Controllers
             // Get the tag counts
             List<string> ignoreTags = SettingsHelper.GetCatalogHiddenTags();
             int tagLimit = SettingsHelper.GetHomePopularTagsLimit();
-            Dictionary<string, int> tagCounts = TagHelper.GetTagCounts(packages, ignoreTags, tagLimit);
+            List<Tag> tags = TagHelper.GetTagCounts(packages, ignoreTags, tagLimit, SettingsHelper.GetTagCloudMinScale(), SettingsHelper.GetTagCloudMaxScale());
             
             // Render the view
-            return View(tagCounts);
+            return View(tags);
         }
 
         /// <summary>

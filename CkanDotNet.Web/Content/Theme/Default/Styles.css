@@ -306,10 +306,6 @@ h2
 /* Tag counts */
 .tag
 {
-    display: block;
-    padding: 0px;
-    color: #FFFFFF;
-    font-size: 14px;
 }
 
 .tag a

@@ -348,16 +348,11 @@ a:active, a:hover
 /* Tag counts */
 .tag
 {
-    padding: 3px;
-    border-radius: 2px 2px 2px 2px;
-    color: #ffffff;
-    background-color: #699A48;
-    font-size: 13px;
 }
 
 .tag a
-{    
-    color: #ffffff;
+{   
+    text-decoration: none !important; 
 }
 
 /* Featured packages */
