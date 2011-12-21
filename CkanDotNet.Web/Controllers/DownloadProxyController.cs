@@ -15,6 +15,7 @@ using CkanDotNet.Web.Models;
 using log4net;
 using System.Reflection;
 using Microsoft.Win32;
+using System.Text.RegularExpressions;
 
 namespace CkanDotNet.Web.Controllers
 {
@@ -53,9 +54,24 @@ namespace CkanDotNet.Web.Controllers
         /// <param name="path"></param>
         private void StreamDownload(string path)
         {
-            // Get the base proxy location
-            Uri proxyLocation = SettingsHelper.GetDownloadProxyLocation();
+            // Get the first element in the path and determine if we have a download proxy configured for that path
+            string[] pathElements = path.Split(char.Parse(@"/"), char.Parse(@"\"));
+            string rootDirectory = String.Empty;
+            if (pathElements.Length > 1)
+            {
+                rootDirectory = pathElements[0];
+            }
 
+            // Get the base proxy location
+            bool rootLocationFound = false;
+            Uri proxyLocation = SettingsHelper.GetDownloadProxyLocation(rootDirectory, out rootLocationFound);
+
+            // If the root location maps to a download proxy location remove the first part of the path
+            if (rootLocationFound)
+            {
+                path = Regex.Replace(path, String.Format(@"^{0}[\/\\]",rootDirectory), "");
+            }
+                
             // Get the full uri to the resource
             Uri contentUri = new Uri(proxyLocation, path);
 

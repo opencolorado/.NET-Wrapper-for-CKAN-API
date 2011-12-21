@@ -786,9 +786,20 @@ namespace CkanDotNet.Web.Models.Helpers
         /// Get the download proxy location
         /// </summary>
         /// <returns></returns>
-        public static Uri GetDownloadProxyLocation()
+        public static Uri GetDownloadProxyLocation(string root, out bool rootLocationFound)
         {
-            string location = ConfigurationManager.AppSettings["DownloadProxy.Location"];
+            string location = String.Empty;
+            rootLocationFound = false;
+
+            if (String.IsNullOrEmpty(root))
+            {
+                location = ConfigurationManager.AppSettings["DownloadProxy.Location"];
+            }
+            else
+            {
+                location = ConfigurationManager.AppSettings[String.Format("DownloadProxy.Location.{0}",root.ToLower())];
+                rootLocationFound = true;
+            }
             Uri uri = new Uri(location);
             return uri;
         }
