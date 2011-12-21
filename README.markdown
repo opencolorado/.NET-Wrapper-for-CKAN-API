@@ -31,14 +31,14 @@ The catalog is fully themable using CSS/HTML.  See the [screenshots] (https://gi
 
 ### Current Version
 
-Version 1.4, released 10/25/2011.  For details see the [Release Notes]
+Version 1.5, released 12/21/2011.  For details see the [Release Notes]
 (https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown)
 
 ## Features
 * Customizable home page
  * Show featured packages (packages tagged with 'featured')
  * Show recently updated packages
- * Show popular tags
+ * Show popular tags in a tag cloud
  * Show total number of packages that are available
  * Customizable text content and layout
 * Search for data packages by query or by tag
@@ -72,6 +72,9 @@ Version 1.4, released 10/25/2011.  For details see the [Release Notes]
 * Uses clean RESTful URLs
 * Provides breadcrumbs
 * Configurable logging for system monitoring and troubleshooting
+* Provides a download proxy so that downloads from an external catalog can also be tracked in analytics
+ * Multiple download proxy locations can be configured
+ * If Google Analytics is enabled, the files and total bytes are tracked in the analytics
 
 ## Getting Started
 

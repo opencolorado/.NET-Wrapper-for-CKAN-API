@@ -1,5 +1,9 @@
 ﻿See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API for additional information.
 
+## Version 1.5 (12/21/2011)
+* Added support for multiple download proxy locations 
+* Added true tag cloud support
+
 ## Version 1.4 (10/25/2011)
 * Enhanced support for the download proxy
 * Improved error handling and messaging to the end user
