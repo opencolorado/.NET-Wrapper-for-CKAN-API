@@ -297,8 +297,13 @@ header,nav,article,footer,section,aside,figure,figcaption
 /* Tag counts */
 .tag
 {
+    font-size: 12px;
     display: inline-block;
     margin: 0 0px 5px 0;
+    margin: 1px;
+    padding: 2px;
+    zoom: 1;
+    *display: inline;
 }
 
 /* Featured packages */
