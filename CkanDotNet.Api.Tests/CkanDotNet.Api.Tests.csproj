@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\CkanApiHelper.cs" />
     <Compile Include="WhenUsingCkanSearchResourceApi.cs" />
     <Compile Include="WhenUsingCkanSearchPackageApi.cs" />
     <Compile Include="Helpers\LogHelper.cs" />

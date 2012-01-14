@@ -22,9 +22,10 @@ namespace CkanDotNet.Api.Tests
         [Fact]
         public void ShouldReturnResources()
         {
-            CkanClient client = new CkanClient("test.ckan.net");
+            CkanClient client = CkanApiHelper.GetCkanClient();
 
             var parameters = new ResourceSearchParameters();
+            parameters.Description = "city";
 
             var response = client.SearchResources<Resource>(parameters);
 
@@ -34,9 +35,10 @@ namespace CkanDotNet.Api.Tests
         [Fact]
         public void ShouldReturnResourcesIds()
         {
-            CkanClient client = new CkanClient("test.ckan.net");
+            CkanClient client = CkanApiHelper.GetCkanClient();
 
             var parameters = new ResourceSearchParameters();
+            parameters.Description = "city";
 
             var response = client.SearchResources<string>(parameters);
 
@@ -46,10 +48,10 @@ namespace CkanDotNet.Api.Tests
         [Fact]
         public void ShouldReturnResourcesByFormat()
         {
-            CkanClient client = new CkanClient("test.ckan.net");
+            CkanClient client = CkanApiHelper.GetCkanClient();
 
             var parameters = new ResourceSearchParameters();
-            parameters.Format = "html";
+            parameters.Format = "kml";
 
             var response = client.SearchResources<Resource>(parameters);
 
@@ -57,33 +59,34 @@ namespace CkanDotNet.Api.Tests
 
             foreach (var result in response.Results)
             {
-                Assert.Contains("html",result.Format,StringComparison.InvariantCultureIgnoreCase);
+                Assert.Contains("kml",result.Format,StringComparison.InvariantCultureIgnoreCase);
             }
         }
 
         [Fact]
         public void ShouldReturnResourcesByDescription()
         {
-            CkanClient client = new CkanClient("test.ckan.net");
+            CkanClient client = CkanApiHelper.GetCkanClient();
 
             var parameters = new ResourceSearchParameters();
-            parameters.Description = "university";
+            parameters.Description = "city";
 
             var response = client.SearchResources<Resource>(parameters);
 
             Assert.NotEmpty(response.Results);
 
-            Assert.Contains("university", response.Results[0].Description ,StringComparison.InvariantCultureIgnoreCase);
+            Assert.Contains("city", response.Results[0].Description, StringComparison.InvariantCultureIgnoreCase);
         }
 
         [Fact]
         public void ShouldReturnResourcesWithLimitAndOffset()
         {
-            CkanClient client = new CkanClient("test.ckan.net");
+            CkanClient client = CkanApiHelper.GetCkanClient();
 
             var parameters = new ResourceSearchParameters();
             parameters.Limit = 1;
             parameters.Offset = 1;
+            parameters.Description = "city";
 
             var response = client.SearchResources<Resource>(parameters);
 

@@ -22,7 +22,7 @@ namespace CkanDotNet.Api.Tests
         [Fact]
         public void ShouldReturnPackagesWithQuery()
         {
-            CkanClient client = new CkanClient("test.ckan.net");
+            CkanClient client = CkanApiHelper.GetCkanClient();
 
             PackageSearchParameters parameters = new PackageSearchParameters();
             parameters.Query = "road";
@@ -35,10 +35,10 @@ namespace CkanDotNet.Api.Tests
         [Fact]
         public void ShouldReturnSinglePackagesWithQueryLimit()
         {
-            CkanClient client = new CkanClient("test.ckan.net");
+            CkanClient client = CkanApiHelper.GetCkanClient();
 
             PackageSearchParameters parameters = new PackageSearchParameters();
-            parameters.Query = "road";
+            parameters.Query = "bike";
             parameters.Offset = 0;
             parameters.Limit = 1;
 
@@ -50,10 +50,10 @@ namespace CkanDotNet.Api.Tests
         [Fact]
         public void ShouldReturnPackageIdsWithQuery()
         {
-            CkanClient client = new CkanClient("test.ckan.net");
+            CkanClient client = CkanApiHelper.GetCkanClient();
 
             PackageSearchParameters parameters = new PackageSearchParameters();
-            parameters.Query = "road";
+            parameters.Query = "bike";
 
             PackageSearchResponse<string> response = client.SearchPackages<string>(parameters);
 
@@ -63,10 +63,10 @@ namespace CkanDotNet.Api.Tests
         [Fact]
         public void ShouldReturnPackagesWithGroup()
         {
-            CkanClient client = new CkanClient("test.ckan.net");
+            CkanClient client = CkanApiHelper.GetCkanClient();
 
             PackageSearchParameters parameters = new PackageSearchParameters();
-            parameters.Groups.Add("art");
+            parameters.Groups.Add("arvada");
 
             PackageSearchResponse<Package> response = client.SearchPackages<Package>(parameters);
 
@@ -74,17 +74,17 @@ namespace CkanDotNet.Api.Tests
 
             foreach (var result in response.Results)
             {
-                Assert.Contains<string>("art", result.Groups);
+                Assert.Contains<string>("arvada", result.Groups);
             }
         }
 
         [Fact]
         public void ShouldReturnPackagesWithTag()
         {
-            CkanClient client = new CkanClient("test.ckan.net");
+            CkanClient client = CkanApiHelper.GetCkanClient();
 
             PackageSearchParameters parameters = new PackageSearchParameters();
-            parameters.Tags.Add("academic");
+            parameters.Tags.Add("colorado");
 
             PackageSearchResponse<Package> response = client.SearchPackages<Package>(parameters);
 
