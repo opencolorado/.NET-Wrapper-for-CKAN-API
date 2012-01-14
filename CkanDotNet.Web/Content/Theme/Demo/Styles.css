@@ -95,6 +95,7 @@ a:active, a:hover
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#45A3CC', endColorstr='#3C74A3');
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#45A3CC', endColorstr='#3C74A3')";
     border-radius: 5px 5px 0px 0px;
+    height: 14px;
 }
 
 .container-title-link
