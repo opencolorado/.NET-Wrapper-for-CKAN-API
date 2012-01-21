@@ -60,8 +60,8 @@ namespace CkanDotNet.Web
             );
 
             routes.MapRoute(
-                "Package", // Route name
-                "package/{package}", // URL with parameters
+                "Dataset", // Route name
+                "dataset/{package}", // URL with parameters
                 new { controller = "Package", action = "Index", package = UrlParameter.Optional } // Parameter defaults
             );
 
