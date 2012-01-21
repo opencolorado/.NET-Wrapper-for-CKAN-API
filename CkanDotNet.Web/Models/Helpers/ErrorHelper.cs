@@ -90,15 +90,20 @@ namespace CkanDotNet.Web.Models.Helpers
 
             // Get the context for the error controller
             HttpContext context = HttpContext.Current;
-            RequestContext requestContext = ((MvcHandler)context.CurrentHandler).RequestContext;
-            //string controllerName = rc.RouteData.GetRequiredString("Error");
-            IControllerFactory factory = ControllerBuilder.Current.GetControllerFactory();
-            IController controller = factory.CreateController(requestContext, "Error");
-            ControllerContext controllerContext = new ControllerContext(requestContext, (ControllerBase)controller);
 
-            // Execute the view results
-            result.ExecuteResult(controllerContext);
-            context.Server.ClearError();
+            if (context.CurrentHandler is MvcHandler)
+            {
+                RequestContext requestContext = ((MvcHandler)context.CurrentHandler).RequestContext;
+                //string controllerName = rc.RouteData.GetRequiredString("Error");
+                IControllerFactory factory = ControllerBuilder.Current.GetControllerFactory();
+                IController controller = factory.CreateController(requestContext, "Error");
+                ControllerContext controllerContext = new ControllerContext(requestContext, (ControllerBase)controller);
+
+                // Execute the view results
+                result.ExecuteResult(controllerContext);
+                context.Server.ClearError();
+            }
+            
         }
     }
 }
