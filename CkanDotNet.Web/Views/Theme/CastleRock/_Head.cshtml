@@ -1,0 +1,180 @@
+﻿@using CkanDotNet.Web.Models.Helpers
+@{
+    string site = "http://www.crgov.com";
+}
+<link href="@Url.Content("~/Content/Theme/" + SettingsHelper.GetCatalogTheme() + "/Styles.css")" rel="stylesheet" type="text/css" />
+
+<link rel="icon" href="@site/images/favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="@site/images/favicon.ico" type="image/x-icon" />
+
+<link href="@site/images/pages/style.css" rel="stylesheet" type="text/css" />
+<link href="@site/images/pages/template.css" rel="stylesheet" type="text/css" />
+<link href="@site/App_Themes/Combined.css" rel="stylesheet" type="text/css">
+
+
+<script type="text/javascript" src="@site/common/GlobalJSFunctionsDetail.js"></script>
+
+<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="@site/App_Themes/ie8.css"><![endif]-->
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="@site/App_Themes/ie7.css"><![endif]-->
+<!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="@site/App_Themes/ie6.css"><![endif]-->
+
+<!-- Dynamic Header Scripts -->
+	<script type="text/javascript"><!--
+	    var intCountryCode = 840;
+	    var externalSiteDialogHeight = '350px';
+	    var minw = 0;
+	    var maxw = 0;
+	    var menuWidth = 0;
+	    var menuLevelSide = 15;
+	    var menuLevelTop = 15;
+
+	    popdownDelay = popdownDelay2 = 500;
+	    popupDelay = popupDelay2 = false;
+
+	    var intSubMenuXRelative = intSubMenuXRelative2 = 9;
+	    var intSubMenuYRelative = intSubMenuYRelative2 = -3;
+	    intSecondSidePadding = intSecondSidePadding2 = 5;
+	    intSecondaryMenuXRelative = intSecondaryMenuXRelative2 = 0;
+	    var intSecondaryMenuYRelative = intSecondaryMenuYRelative2 = 0;
+	    var intPopupMenuWidthLevels = 0;
+	    var intPopupMenuHeightLevels = 0;
+
+	    intPopupMenuHeight = intPopupMenuHeight2 = '0';
+
+	    var txtMenuType = 'Combined';
+	    var SideBarPopout = 'right';
+	    var ysnMenuBounce = ysnMenuBounce2 = true;
+
+	    intOuterMOMBorderSize = intOuterMOMBorderSizeb = intOuterMOMBorderSize2b = 1;
+	    txtMOMBackgroundb = txtMOMBackground2b = 'url(/images/layout/design21/dropdownbkgleft.jpg) top center repeat-y #dfd9cb';
+	    intSubMenuYRelativeb = intSubMenuYRelative2b = 0;
+	    intSubMenuXRelativeb = intSubMenuXRelative2b = 0;
+	    intSubMenuY = 0;
+	    menuLevelTop = 15;
+	    popdownDelay2 = 500;
+	    popupDelay2 = false;
+	    intSubMenuXRelative2 = 1;
+	    intSubMenuYRelative2 = -4;
+	    intSecondSidePadding2 = 5;
+	    intSecondaryMenuXRelative2 = 0;
+	    intSecondaryMenuYRelative2 = 0;
+	    ysnMenuBounce2 = true;
+
+	    intOuterMOMBorderSize2 = intOuterMOMBorderSize2b = 1;
+
+	    function getPrintPreviewType() {
+	        return 0;
+	    }
+
+	    function printPreview() {
+	        pPreview(getPrintPreviewType());
+	    }
+
+//--></script>
+	<!--[if IE 6]><script language="JavaScript" type="text/javascript">var isie6 = true;</script><![endif]-->
+	<!--[if IE 7]><script language="JavaScript" type="text/javascript">var isie7 = true;</script><![endif]-->
+	<script type="text/javascript" src="@site/common/layout/MouseOverMenuFloatingStatic.js"></script>
+
+	<!--<script type="text/javascript" src="@site/Areas/MyAccount/Assets/Scripts/Favorites.js"></script>-->
+	
+	<script type="text/javascript" src="@site/Assets/Scripts/FrontEnd.js"></script>
+	<!--Reference Stylesheet-->
+	
+	<!--Dynamic Header Styles-->
+	<style type="text/css">
+	.modalBackground  {
+		background: #fff;
+		opacity: 0.5;
+		filter: alpha(opacity=50);
+	}
+	.featureFooter{	clear:both; }
+	a.SubCat, a.SubCat:visited,a.SubCat:link,a.SubCat:active,a.SubCat:hover
+	{
+		background:url(@site/images/layout/design21/dropdownbkgleft.jpg) top center repeat-y #dfd9cb;
+		padding:3px 5px;
+	}
+.navText > a.SubCat
+{
+	padding-right: 25px;
+}
+.navText > a.SubCat > img
+{
+	border: none;
+   margin-top: -8px; /* This is half the height of the image */
+  position: absolute;
+ right: 5px;
+top: 50%;
+width: auto;
+}
+    a.SubCat:hover { background:url(@site/images/layout/design21/dropdownbkgleftmo.jpg) top center repeat-y #c2b89f; }
+	span.SubCatGroup
+	{
+		background:url(@site/images/layout/design21/dropdownbkgleft.jpg) top center repeat-y #dfd9cb;
+		padding:3px 5px;
+	}
+	div.wrapper ,div#navTopWrapper
+	{
+		background:url(@site/images/layout/design21/dropdownbkgleft.jpg) top center repeat-y #dfd9cb;
+		border:1px #c9bb99 solid;
+   }
+   div.wrapper div.navText,div#navTopWrapper div, div#navWrapper div.intPopupMenuHeight
+   {
+       border-bottom: 1px #c9bb99 solid;
+   }
+    div#navSideWrapper { top: -3px; }
+    div#navSideWrapper div.wrapper, div#navTopWrapper div.navText div.wrapper { top: -1px; }
+img.btmImage { left:-1px; }
+    div.wrapper { border-bottom: none; }
+    #navTopWrapper a.SubCat, #navTopWrapper a.SubCat:visited,#navTopWrapper a.SubCat:link,#navTopWrapper a.SubCat:active,#navTopWrapper a.SubCat:hover
+    {
+        background:url(@site/images/layout/design21/dropdownbkg.jpg) top center repeat-y #431e12 ;
+        padding:3px 5px;
+    }
+    #navTopWrapper a.SubCat:hover { background:url(@site/images/layout/design21/dropdownbkgmo.jpg) top center repeat-y #6e3523; }
+	#navTopWrapper span.SubCatGroup
+	{
+		background:url(@site/images/layout/design21/dropdownbkg.jpg) top center repeat-y #431e12;
+		padding:3px 5px;
+	}
+    #navTopWrapper div.wrapper ,div#navTopWrapper
+    {
+        background:url(@site/images/layout/design21/dropdownbkg.jpg) top center repeat-y #431e12;
+        border:1px #974e38 solid;
+    }
+    div#navTopWrapper, div#navTopWrapper div.wrapper { border-bottom:none; }
+    #navTopWrapper div.wrapper div.navText,div#navTopWrapper div, div#floating div.wrapperHeight { border-bottom: 1px #974e38 solid; }
+    div#navTopWrapper div.navText div.wrapper, div#navTopWrapper div.navText div.bounce { top: -1px; }
+    #navTopWrapper div.navText div.bounce div.bounceItem { border-bottom-style:solid; }
+    #navTopWrapper div.imgWrapper { left: -1px; }
+    div#navTopWrapper div.navText div.bounce { border-bottom-width: 0px; }
+	div#navTopWrapper div.navText a
+	{
+		display:block;
+		width:auto; 
+	}
+	.formline
+	{
+		position:relative;
+		text-align:left;
+		padding:0 0 0 5px;
+		margin:1px;
+		border:1px solid green; 
+	}	
+	.formline input, .formline select, .formline h4, .formline textarea, .readonlyinput
+	{
+		position:relative;
+		left:10px;
+		display:inline; 
+	}
+	.dateexample
+	{
+		font-size:x-small;
+		position:relative;
+		left:15px; 
+	}
+	hr.special
+	{
+		height:1px;
+		color:#808080; 
+	}
+</style>

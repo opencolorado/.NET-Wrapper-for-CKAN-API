@@ -1,0 +1,380 @@
+﻿/*=============================================*/
+/* Theme: Castle Rock
+/* About: This theme is designed for the 
+/* Town of Castle Rock Open Data Catalog
+/*=============================================*/
+
+a 
+{
+    color: #1B68B8;
+    font-family: Arial;
+    font-size: 10pt;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: underline;
+}
+
+.Headline:hover, .Headline:active, .Headline:visited
+{
+    text-decoration: none;
+}
+
+#body
+{
+    float: none;
+}
+
+#content
+{
+    padding-left: 15px;
+}
+
+#sidebar
+{
+    float:none;
+    width:auto;
+    padding-left: 20px;
+}
+
+.header-package-count
+{
+    font-weight: bold;
+}
+
+.container-title
+{    
+    padding: 0px;
+    padding-bottom: 3px;
+    color: #441805;
+    font-family: Arial;
+    font-size: 11pt;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#sidebar 
+{
+    font-size: 12px;
+}
+
+#sidebar a
+{
+    color: #153856;
+    text-decoration: none;
+}
+
+#sidebar a:hover
+{
+    color: #4D2316;
+    text-decoration: none;
+    
+}
+
+#sidebar .container
+{
+     background: url("http://www.crgov.com/images/layout/design21/mombkg.gif ") no-repeat scroll right bottom transparent;
+}
+
+#sidebar .container-title 
+{
+    color: #441805;
+    font-family: Arial;
+    font-size: 11pt;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    margin: 0px;
+}
+
+#sidebar .container-content
+{
+    margin: 0px;
+    padding: 1px;
+}
+
+#sidebar .container-content p, #sidebar .container-content div
+{
+    margin: 0px;
+    padding: 3px 1px 5px 1px;
+}
+
+#sidebar .license-title
+{
+    font-size: 8pt;
+}
+
+#sidebar .tag
+{
+    font-size: 10px;
+    margin: 0px !important;
+    padding: 2px !important;
+}
+
+#sidebar .tag:hover
+{
+    background-color: #CEC4AE;
+}
+
+/* Search box styles */
+.search-input 
+{
+    border:1px solid #999999;
+    font-size:18px;
+    height: 28px; 
+}
+
+.search-input:hover 
+{
+    border:1px solid #333333; 
+}
+
+.search-submit 
+{
+    height: 32px;
+    border:1px solid #999999;
+    font-size:18px;
+    padding: 0 8px 2px;
+    background-color: #699A48;
+    border: 0 none;
+    color: #D4C5A8;
+    
+    background-image: -moz-linear-gradient(top, #652813, #301005);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #301005), color-stop(1, #652813));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#652813', endColorstr='#301005');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#652813', endColorstr='#301005')";
+}
+
+.search-submit:hover 
+{
+    color: #FFF8D2;
+    background-image: -moz-linear-gradient(top, #9E4211, #6E1904);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #6E1904), color-stop(1, #9E4211));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#9E4211', endColorstr='#6E1904');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#9E4211', endColorstr='#6E1904')";
+}
+
+/* Search results styles */
+.package-link
+{
+    font-weight: bold;
+    font-size: 15px;
+    text-decoration: none;
+    color: #441805;
+}
+
+.results-none
+{
+    font-size: 14px;
+}
+
+.result 
+{
+    border-top: 1px solid #D1C9B5;
+    padding: 5px;
+    margin: 1px 0px 1px 0px;
+}
+
+.result.odd {
+            
+}
+
+.result.odd:hover
+{
+    background-color: #EBE8E0;
+}
+
+.result.even {
+          
+}
+
+.result.even:hover {
+    background-color: #EBE8E0;
+}
+
+.result-title
+{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.result-date
+{
+    font-size: 11px;
+}
+
+.result-tags
+{
+    font-size: 11px;
+    color: #666666;
+}
+
+.result-tag a
+{
+    font-size: 11px;
+}
+
+/* Pager styles */
+
+.pager li.link
+{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.pager li.item
+{
+    font-weight:bold;
+    font-size: 14px;
+    border: 1px solid #666666;
+    background-color: #ffffff;
+}
+
+.pager li.item span
+{
+    background-color: #57280C;
+    color: #ffffff;
+}
+
+.pager li.item a:hover
+{
+    background-color: #E4E0D5;
+}
+
+/* Pager in a header */
+
+.container-title .pager
+{
+    top: -3px;
+}
+
+.pager .link a
+{
+    text-decoration: none;
+}
+
+.pager li.item a
+{
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Format styles (format 'tags') */
+.formats-label
+{
+    font-size: 12px;
+    color: #444444;
+}
+
+.format
+{   
+    border-radius: 2px 2px 2px 2px;
+    color: #FFFFFF;
+    background-color: #787878;
+    font-size: 11px;
+}
+
+/* Breadcrumbs */
+.breadcrumb {
+    color: #663919;
+    font-family: Arial;
+    font-size: 9pt;
+    font-weight: normal;
+}
+
+.breadcrumb a:link, .breadcrumb a:visited, .breadcrumb a:hover, .breadcrumb a:active {
+    color: #958A82;
+    font-family: Arial;
+    font-size: 9pt;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+/* Package styles */
+.package-title
+{
+    font-size: 14pt;
+    margin: 0;
+}
+
+.package-subtitle
+{
+    font-size:11px;
+    border-bottom: 1px solid #D1C9B5;
+}
+
+.package-link
+{
+    color: #005C96;
+    font-size:14px;
+    font-weight: bold;
+}
+
+.package-action
+{
+    position:relative; /* Required to make "button" clickable in IE */
+    
+    font-size: 11px;
+    font-weight: bold;
+    border: 1px solid #aaaaaa;
+    display: block;
+    color: #333333;
+    text-decoration: none !important;
+       
+    background-color: #CDD0D4;
+    background-image: -moz-linear-gradient(top, #F2F4F7, #CDD0D4);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #CDD0D4), color-stop(1, #F2F4F7));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#F2F4F7', endColorstr='#CDD0D4');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#F2F4F7', endColorstr='#CDD0D4')"; 
+}
+
+.package-action:hover 
+{
+    cursor: pointer;
+    border: 1px solid #666666;
+    text-decoration: none;
+       
+    background-color: #D4D7DB;
+    background-image: -moz-linear-gradient(top, #ffffff, #D4D7DB);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #D4D7DB), color-stop(1, #ffffff));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#ffffff', endColorstr='#D4D7DB');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ffffff', endColorstr='#D4D7DB')";
+}
+
+.package-action:active 
+{
+    cursor: pointer;
+    border: 1px solid #666666;
+    text-decoration: none;
+       
+    background-color: #ffffff;
+    background-image: -moz-linear-gradient(top, #D4D7DB, #ffffff);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ffffff), color-stop(1, #D4D7DB));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#D4D7DB', endColorstr='#ffffff');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#D4D7DB', endColorstr='#ffffff')";
+}
+
+.container table
+{
+    font-size: 10pt;
+    border-collapse: collapse;
+}
+
+.container tr {
+
+}
+
+.container th
+{
+    background-color: #E8EFF7;
+    border: 1px solid #82A5C8;
+}
+
+.container td 
+{
+    background-color: #ffffff;
+    border: 1px solid #82A5C8;
+}
+
+

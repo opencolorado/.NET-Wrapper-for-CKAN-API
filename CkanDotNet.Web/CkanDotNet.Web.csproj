@@ -150,6 +150,7 @@
     <Content Include="Content\Styles.css" />
     <Content Include="Content\Images\remove_small.png" />
     <Content Include="Content\Images\remove_small_hover.png" />
+    <Content Include="Content\Theme\CastleRock\Styles.css" />
     <Content Include="Content\Theme\Demo\Styles.css" />
     <Content Include="Content\Theme\Denver\Styles.css" />
     <Content Include="Content\Theme\Default\Styles.css" />
@@ -330,6 +331,12 @@
     <Content Include="Views\Theme\Demo\_HomeHeader.cshtml" />
     <Content Include="Views\Theme\Demo\_License.cshtml" />
     <Content Include="Views\Theme\Demo\_NoSearchResultsFound.cshtml" />
+    <Content Include="Views\Theme\CastleRock\_About.cshtml" />
+    <Content Include="Views\Theme\CastleRock\_Body.cshtml" />
+    <Content Include="Views\Theme\CastleRock\_Head.cshtml" />
+    <Content Include="Views\Theme\CastleRock\_HomeHeader.cshtml" />
+    <Content Include="Views\Theme\CastleRock\_License.cshtml" />
+    <Content Include="Views\Theme\CastleRock\_NoSearchResultsFound.cshtml" />
     <Content Include="Views\Theme\Denver\_HomeHeader.cshtml" />
     <None Include="Views\Theme\Denver\_NoSearchResultsFound.cshtml" />
   </ItemGroup>
