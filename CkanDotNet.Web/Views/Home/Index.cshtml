@@ -4,13 +4,10 @@
     ViewBag.Title = SettingsHelper.GetHomePageTitle();
 }
 
-
-<section id="header">
-@RenderPage("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_HomeHeader.cshtml")
-</section>
+<div id="header">@RenderPage("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_HomeHeader.cshtml")
+</div>
 
 <section id="body">
-    <section id="content">
         @Html.Partial("~/Views/Shared/Search/_Search.cshtml")
 
         @if (SettingsHelper.GetHomeFeaturedPackagesEnabled())
@@ -22,10 +19,9 @@
         {
             @Html.Action("RecentlyUpdated", "Widget")
         }
-        
-    </section>
-
 </section>
+
+@section SideBar {
 <aside id="sidebar">
     @if (SettingsHelper.GetHomePopularTagsEnabled())
     {
@@ -34,4 +30,7 @@
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_License.cshtml")
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_About.cshtml")
 </aside>
+}
+
+
 

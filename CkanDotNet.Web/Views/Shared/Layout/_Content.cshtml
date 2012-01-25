@@ -1,15 +1,26 @@
 @using CkanDotNet.Web.Models.Helpers
 @{
     Layout = "~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_Body.cshtml";
-} 
-
+}
+@section ContentStart {
 <section id="content">
+}
 
-<section id="ribbon">
-@Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")
-@Html.Partial("_AddThis")                      
+@section BreadCrumbs {
+    @Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")
+}
+
+@if (SettingsHelper.GetAddThisEnabled())
+{
+    @Html.Partial("_AddThis")                 
+}     
+
+@RenderBody()  
+
+@section SideBar {
+    @RenderSection("SideBar", false)
+}
+
+@section ContentEnd {
 </section>
-
-@RenderBody()    
-
-</section>
+}

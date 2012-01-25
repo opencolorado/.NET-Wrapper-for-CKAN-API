@@ -23,7 +23,7 @@ namespace CkanDotNet.Web.Controllers
 
             // Set up the breadcrumbs for this action
             var breadCrumbs = new BreadCrumbs();
-            breadCrumbs.Add(new BreadCrumb("Home", "Index", "Home"));
+            breadCrumbs.Add(new BreadCrumb(SettingsHelper.GetCatalogBreadcrumbBaseLabel(), "Index", "Home"));
             breadCrumbs.Add(new BreadCrumb("Admin"));
             breadCrumbs.Add(new BreadCrumb("Cache"));
             ViewData["BreadCrumbs"] = breadCrumbs;

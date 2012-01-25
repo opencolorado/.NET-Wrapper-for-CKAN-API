@@ -217,6 +217,15 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Gets the label to use for the base breadcrumb
+        /// </summary>
+        /// <returns></returns>
+        public static string GetCatalogBreadcrumbBaseLabel()
+        {
+            return ConfigurationManager.AppSettings["Catalog.BreadcrumbBaseLabel"];
+        }
+
+        /// <summary>
         /// Get the list of groups that have been configured in the settings.
         /// </summary>
         /// <returns></returns>

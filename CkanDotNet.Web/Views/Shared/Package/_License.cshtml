@@ -10,7 +10,7 @@
     <div class="container-content">
 
     @if (license != null) {
-        <a href="@license.Url">@license.Title</a>
+        <a href="@license.Url" class="license-title">@license.Title</a>
 
         if (license.IsOkdCompliant)
         {

@@ -3,12 +3,13 @@
     ViewBag.Title = SettingsHelper.GetSearchPageTitle();
 }
 
+@Html.Partial("~/Views/Shared/Search/_Search.cshtml")
+
 <div id="body">
-    <div id="content">
-        @Html.Partial("~/Views/Shared/Search/_Search.cshtml")
-        @Html.Partial("~/Views/Shared/Search/_SearchResults.cshtml")
-    </div>
+    @Html.Partial("~/Views/Shared/Search/_SearchResults.cshtml")
 </div>
+
+@section SideBar {
 <aside id="sidebar">
     @* @Html.Partial("~/Views/Shared/Search/_SearchResultsSortBy.cshtml") *@
 
@@ -16,3 +17,4 @@
 
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_About.cshtml")
 </aside>
+}

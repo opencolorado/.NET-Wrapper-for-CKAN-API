@@ -46,21 +46,12 @@ namespace CkanDotNet.Web.Controllers
             var breadCrumbs = new BreadCrumbs();
 
             breadCrumbs.Add(new BreadCrumb(
-                "Home",
+                SettingsHelper.GetCatalogBreadcrumbBaseLabel(),
                 "Index",
                 "Home"));
 
-
-            breadCrumbs.Add(new BreadCrumb(
-                "Search",
-                "Index",
-                "Search"));
-
             breadCrumbs.Add(new BreadCrumb(
                 package.Title));
-
-            //breadCrumbs.Add(new BreadCrumb(
-            //    String.Format("Package > {0}",package.Title)));
 
             ViewData["BreadCrumbs"] = breadCrumbs;
         }
@@ -78,7 +69,7 @@ namespace CkanDotNet.Web.Controllers
 
             // Get the common keywords from the settings
             var keywords = SettingsHelper.GetSeoCommonPackageKeywords();
-            
+
             // Add the tags from the package
             keywords.AddRange(package.Tags);
 

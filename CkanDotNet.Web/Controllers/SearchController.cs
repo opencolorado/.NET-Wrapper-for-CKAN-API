@@ -89,7 +89,7 @@ namespace CkanDotNet.Web.Controllers
             var breadCrumbs = new BreadCrumbs();
 
             breadCrumbs.Add(new BreadCrumb(
-                "Home",
+                SettingsHelper.GetCatalogBreadcrumbBaseLabel(),
                 "Index",
                 "Home"));
 

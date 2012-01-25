@@ -8,8 +8,10 @@
     ViewBag.Title = title.Replace("{Package.Title}", @Model.Title);
 }
 
+@Html.Partial("~/Views/Shared/Search/_Search.cshtml", null, new ViewDataDictionary())
+
 <div class="package">
-<h1>@Model.Title</h1>
+<h2 class="package-title">@Model.Title</h2>
 
     <div class="package-subtitle">
 
@@ -51,10 +53,10 @@
 </div>
 
 <section id="body">
-    <section id="content">
         @Html.Partial("~/Views/Shared/Package/_Package.cshtml")
-    </section>
 </section>
+
+@section SideBar {
 <aside id="sidebar">
 
     @Html.Partial("~/Views/Shared/Package/_Rate.cshtml")
@@ -65,3 +67,4 @@
 
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_About.cshtml")
 </aside>
+}
