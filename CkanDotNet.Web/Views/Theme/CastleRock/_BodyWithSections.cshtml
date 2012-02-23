@@ -1,0 +1,18 @@
+﻿@using CkanDotNet.Web.Models
+@{
+    Layout = "~/Views/Shared/Layout/_Page.cshtml";
+} 
+<body>
+
+<div id="page">
+
+    <div class="Headline" style="">Open Data Catalog</div> 
+                      
+    <!--Application Content Here-->
+    @RenderSection("ContentStart")
+    @RenderBody()
+    @RenderSection("SideBar",false)
+    @RenderSection("ContentEnd")
+    <!--End Application Content Here-->
+</div>
+</body>
