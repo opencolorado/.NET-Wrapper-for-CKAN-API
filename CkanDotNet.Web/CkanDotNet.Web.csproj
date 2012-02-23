@@ -332,7 +332,7 @@
     <Content Include="Views\Theme\Demo\_License.cshtml" />
     <Content Include="Views\Theme\Demo\_NoSearchResultsFound.cshtml" />
     <Content Include="Views\Theme\CastleRock\_About.cshtml" />
-    <Content Include="Views\Theme\CastleRock\_Body.cshtml" />
+    <Content Include="Views\Theme\CastleRock\_BodyWithSections.cshtml" />
     <Content Include="Views\Theme\CastleRock\_Head.cshtml" />
     <Content Include="Views\Theme\CastleRock\_HomeHeader.cshtml" />
     <Content Include="Views\Theme\CastleRock\_License.cshtml" />
