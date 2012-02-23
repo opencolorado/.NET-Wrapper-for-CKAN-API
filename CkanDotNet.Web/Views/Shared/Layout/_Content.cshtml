@@ -1,26 +1,65 @@
 @using CkanDotNet.Web.Models.Helpers
 @{
-    Layout = "~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_Body.cshtml";
-}
-@section ContentStart {
-<section id="content">
+    //File.Exists();
+
+    string body = "~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_Body.cshtml";
+    string bodyWithSections = "~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_BodyWithSections.cshtml";
+    bool sections = false;
+
+    if (File.Exists(Server.MapPath(body)))
+    {
+        Layout = body;
+    }
+    else
+    {
+        Layout = bodyWithSections;
+        sections = true;
+    }
 }
 
-@section BreadCrumbs {
-    @Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")
-}
-
-@if (SettingsHelper.GetAddThisEnabled())
+@if (!sections)
 {
+    <section id="content">
+    @Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")
+
+    @if (SettingsHelper.GetAddThisEnabled())
+    {
     @Html.Partial("_AddThis")                 
-}     
+    }   
 
-@RenderBody()  
-
-@section SideBar {
+    @RenderBody()
     @RenderSection("SideBar", false)
+    </section>
 }
+else
+{
+<text>
+    @section ContentStart {
+    <section id="content">
+    }
 
-@section ContentEnd {
-</section>
+    @if (SettingsHelper.GetBreadcrumbsEnabled())
+    {
+        <text>
+        @section BreadCrumbs {
+            @Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")
+        }
+        </text>
+    }
+
+    @if (SettingsHelper.GetAddThisEnabled())
+    {
+        @Html.Partial("_AddThis")                 
+    }     
+
+    @RenderBody()  
+
+    @section SideBar {
+        @RenderSection("SideBar", false)
+    }
+
+    @section ContentEnd {
+    </section>
+    }
+</text> 
 }
