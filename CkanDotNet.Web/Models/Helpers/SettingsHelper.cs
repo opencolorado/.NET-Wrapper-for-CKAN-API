@@ -217,6 +217,16 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Gets the enabled status of the breadcrumbs
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetBreadcrumbsEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Catalog.BreadcrumbsEnabled"];
+            return (enabled == "false") ? false : true;
+        }
+
+        /// <summary>
         /// Gets the label to use for the base breadcrumb
         /// </summary>
         /// <returns></returns>
