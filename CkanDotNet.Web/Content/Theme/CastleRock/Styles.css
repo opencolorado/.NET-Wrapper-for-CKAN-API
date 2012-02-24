@@ -4,22 +4,27 @@
 /* Town of Castle Rock Open Data Catalog
 /*=============================================*/
 
+body 
+{
+    margin: 0px;
+}
+
 #page 
 {
     position: relative;
     margin: 0 auto 50px;
-    width: 740px;
+    width: 680px;
 }
 
 #body
 {
-    width: 480px;
+    width: 460px;
 }
 
 #sidebar 
 {
     font-size: 12px;
-    width: 230px;
+    width: 190px;
     border-left: 1px solid #82A5C8;
 }
 
@@ -133,7 +138,7 @@ a
     border:1px solid #999999;
     font-size:18px;
     height: 28px;
-    width: 380px;
+    width: 340px;
 }
 
 .search-input:hover 
