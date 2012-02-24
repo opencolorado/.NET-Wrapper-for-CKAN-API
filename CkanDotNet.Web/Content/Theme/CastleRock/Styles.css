@@ -4,6 +4,12 @@
 /* Town of Castle Rock Open Data Catalog
 /*=============================================*/
 
+/* HTML5 support for IE versions less than 9 */
+header,nav,article,footer,section,aside,figure,figcaption
+{
+    display:block;
+}
+
 body 
 {
     margin: 0px;
