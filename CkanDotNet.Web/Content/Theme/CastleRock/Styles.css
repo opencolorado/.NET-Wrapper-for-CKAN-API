@@ -30,7 +30,7 @@ body
 #sidebar 
 {
     font-size: 12px;
-    width: 190px;
+    width: 215px;
     border-left: 1px solid #82A5C8;
 }
 
@@ -54,6 +54,11 @@ a
 .Headline:hover, .Headline:active, .Headline:visited
 {
     text-decoration: none;
+}
+
+#header p
+{
+    margin-top: 0px;
 }
 
 .header-package-count
