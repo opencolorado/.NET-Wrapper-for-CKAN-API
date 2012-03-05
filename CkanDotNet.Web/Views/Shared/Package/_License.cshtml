@@ -10,12 +10,12 @@
     <div class="container-content">
 
     @if (license != null) {
-        <a href="@license.Url" class="license-title">@license.Title</a>
+        <a href="@license.Url" class="license-title" target="_top">@license.Title</a>
 
         if (license.IsOkdCompliant)
         {
             <!-- Open Data Link -->
-            <a href="http://opendefinition.org/" class="external">
+            <a href="http://opendefinition.org/" class="external" target="_top">
               <img class="button-open-data tooltip"
               alt="This material is Open Data" border="0"
               src="http://m.okfn.org/images/ok_buttons/od_80x15_blue.png"
