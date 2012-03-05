@@ -32,11 +32,14 @@ namespace CkanDotNet.Web.Controllers
         /// </summary>
         private void ConfigureBreadCrumbs()
         {
-            // Set up the breadcrumbs for this action
-            var breadCrumbs = new BreadCrumbs();
-            breadCrumbs.Add(new BreadCrumb(
-                SettingsHelper.GetCatalogBreadcrumbBaseLabel()));
-            ViewData["BreadCrumbs"] = breadCrumbs;
+            if (SettingsHelper.GetBreadcrumbsHomeEnabled())
+            {
+                // Set up the breadcrumbs for this action
+                var breadCrumbs = new BreadCrumbs();
+                breadCrumbs.Add(new BreadCrumb(
+                    SettingsHelper.GetCatalogBreadcrumbsBaseLabel()));
+                ViewData["BreadCrumbs"] = breadCrumbs;
+            }
         }
 
         /// <summary>

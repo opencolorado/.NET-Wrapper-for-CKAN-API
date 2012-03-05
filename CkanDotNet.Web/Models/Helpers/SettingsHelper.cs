@@ -227,12 +227,22 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Gets the enabled status of the breadcrumbs on the home page
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetBreadcrumbsHomeEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Catalog.BreadcrumbsHomeEnabled"];
+            return (enabled == "false") ? false : true;
+        }
+
+        /// <summary>
         /// Gets the label to use for the base breadcrumb
         /// </summary>
         /// <returns></returns>
-        public static string GetCatalogBreadcrumbBaseLabel()
+        public static string GetCatalogBreadcrumbsBaseLabel()
         {
-            return ConfigurationManager.AppSettings["Catalog.BreadcrumbBaseLabel"];
+            return ConfigurationManager.AppSettings["Catalog.BreadcrumbsBaseLabel"];
         }
 
         /// <summary>
