@@ -10,7 +10,7 @@
     // Remove the page number since we want to start from the beginning if we sort differently
     RouteHelper.UpdateRoute(routeValues, "page", "");
 }
-<section class="container">
+<div class="container">
     <h2 class="container-title">Sort By</h2>
     <ul>
         <li>@Html.ActionLink("Relevancy", "Index", "Search", RouteHelper.UpdateRoute(routeValues,"order_by","rank"),null)</li>
@@ -18,4 +18,4 @@
         <li>@Html.ActionLink("Rating", "Index", "Search", RouteHelper.UpdateRoute(routeValues, "order_by", "ratings_average"), null)</li>
         <li>@Html.ActionLink("Last Updated", "Index", "Search", RouteHelper.UpdateRoute(routeValues,"order_by","metadata_modified"),null)</li>
     </ul>
-</section>
+</div>

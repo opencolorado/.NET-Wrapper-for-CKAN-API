@@ -3,7 +3,7 @@
  
 @if (Model.Results.Count >= 3)
 {  
-<section class="container">
+<div class="container">
 <h2 class="container-title">Featured Datasets | @Html.ActionLink("View All Datasets", "Index", "Search", null, new { @class = "container-title-link" })</h2>
 <div class="featured-container">
     @foreach (var result in Model.Results)
@@ -29,6 +29,6 @@
     }
 
 </div>
-</section>
+</div>
 }
 

@@ -4,7 +4,7 @@
 
 @model PackageSearchResultsModel
 
-<section class="container">
+<div class="container">
     <h2 class="container-title">
     
     @if (Model.SearchResults.Count > 0)
@@ -28,7 +28,7 @@
     }
 
 
-</section>
+</div>
 
 <div class="pager-container">
 @Html.Partial("_Pager")

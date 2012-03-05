@@ -10,11 +10,11 @@
 </div>
 
 @section SideBar {
-<aside id="sidebar">
+<div id="sidebar">
     @* @Html.Partial("~/Views/Shared/Search/_SearchResultsSortBy.cshtml") *@
 
     @Html.Partial("~/Views/Shared/Search/_SearchResultsFilterByTag.cshtml")
 
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_About.cshtml")
-</aside>
+</div>
 }

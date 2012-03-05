@@ -19,7 +19,7 @@
 
 @if (!sections)
 {
-    <section id="content">
+    <div id="content">
     @Html.Partial("~/Views/Shared/_BreadCrumbs.cshtml")
 
     @if (SettingsHelper.GetAddThisEnabled())
@@ -29,13 +29,13 @@
 
     @RenderBody()
     @RenderSection("SideBar", false)
-    </section>
+    </div>
 }
 else
 {
 <text>
     @section ContentStart {
-    <section id="content">
+    <div id="content">
     }
 
     @if (SettingsHelper.GetBreadcrumbsEnabled())
@@ -59,7 +59,7 @@ else
     }
 
     @section ContentEnd {
-    </section>
+    </div>
     }
 </text> 
 }

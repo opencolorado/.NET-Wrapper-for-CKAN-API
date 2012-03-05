@@ -52,12 +52,12 @@
     }
 </div>
 
-<section id="body">
+<div id="body">
         @Html.Partial("~/Views/Shared/Package/_Package.cshtml")
-</section>
+</div>
 
 @section SideBar {
-<aside id="sidebar">
+<div id="sidebar">
 
     @Html.Partial("~/Views/Shared/Package/_Rate.cshtml")
     
@@ -66,5 +66,5 @@
     @Html.Partial("~/Views/Shared/Package/_License.cshtml")
 
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_About.cshtml")
-</aside>
+</div>
 }

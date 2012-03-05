@@ -7,7 +7,7 @@
 <div id="header">@RenderPage("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_HomeHeader.cshtml")
 </div>
 
-<section id="body">
+<div id="body">
         @Html.Partial("~/Views/Shared/Search/_Search.cshtml")
 
         @if (SettingsHelper.GetHomeFeaturedPackagesEnabled())
@@ -19,17 +19,17 @@
         {
             @Html.Action("RecentlyUpdated", "Widget")
         }
-</section>
+</div>
 
 @section SideBar {
-<aside id="sidebar">
+<div id="sidebar">
     @if (SettingsHelper.GetHomePopularTagsEnabled())
     {
         @Html.Action("PopularTags", "Widget")
     }
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_License.cshtml")
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_About.cshtml")
-</aside>
+</div>
 }
 
 
