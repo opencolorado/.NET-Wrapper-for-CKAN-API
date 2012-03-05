@@ -57,7 +57,10 @@
                     </td>
 
                     <td nowrap="nowrap">
-                        @if (!formatTypes.ContainsKey(resource.Format))
+                        @{
+                          var format = formatTypes[resource.Format];               
+                        }
+                        @if (format == null || format.Actions.Count == 0)
                         {
                             <a href="@resource.Url" class="package-action"
                             data-format="@resource.Format" 
@@ -68,6 +71,7 @@
                         }
                         else
                         {
+  
                             foreach (var action in formatTypes[resource.Format].Actions)
                             {
                                 <a href="@action.BuildUrl(resource.Url)" class="package-action" 
@@ -77,6 +81,7 @@
                                 data-action="@action.Action"
                                 target="_top">@action.Action</a>
                             }
+                           
                         }
                     </td>
                 </tr>
@@ -130,7 +135,7 @@
                               
                 @if (Model.Extras.Count > 0)
                 {
-                    
+
                     foreach (var key in Model.Extras.Keys)
                     {
                         if (!String.IsNullOrEmpty(Model.Extras[key]))
