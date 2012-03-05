@@ -2,6 +2,11 @@
 @using CkanDotNet.Web.Models
 @using CkanDotNet.Web.Models.Helpers
 @model PackageSearchResultsModel
+           
+@{
+    var formatTypes = CkanDotNet.Web.Models.Helpers.SettingsHelper.GetResourceSettings().Types;
+}
+
 <div class="results">
     @{ var odd = true; }
     @foreach (var result in Model.SearchResults.Results)
@@ -12,13 +17,18 @@
             {
                 <div class="formats">
                     <span class="formats-label"></span>
-                    @foreach (var resource in result.Resources)
+                    @foreach (var format in result.Resources.Select(r => r.Format).Distinct())
                     {
-                        <span class="format tooltip" title="@resource.Description">
-                            @if (!String.IsNullOrEmpty(resource.Format))
+                        var title = format;
+                        if (formatTypes.ContainsKey(format))
+                        {
+                            title = formatTypes[format].Title;
+                        }
+                        <span class="format tooltip" title="@title">
+                            @if (!String.IsNullOrEmpty(format))
                             {
                                 
-                                @resource.Format
+                                @format
                             }
                             else
                             {
