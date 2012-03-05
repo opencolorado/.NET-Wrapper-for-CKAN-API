@@ -316,6 +316,48 @@ namespace CkanDotNet.Web.Models.Helpers
 
         #endregion
 
+
+        #region Iframe Settings
+
+        /// <summary>
+        /// Gets the enabled status of enhanced iframe support
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetIframeEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Iframe.Enabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Get the document domain for the iframe.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetIframeDocumentDomain()
+        {
+            return ConfigurationManager.AppSettings["Iframe.DocumentDomain"];
+        }
+
+        /// <summary>
+        /// Get the id of the iframe on the parent page.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetIframeId()
+        {
+            return ConfigurationManager.AppSettings["Iframe.Id"];
+        }
+
+        /// <summary>
+        /// Get the source of the iframe on the parent page.
+        /// </summary>
+        /// <returns></returns>
+        public static string GetIframeSrc()
+        {
+            return ConfigurationManager.AppSettings["Iframe.Src"];
+        }
+
+        #endregion
+
         #region Resource Settings
 
         /// <summary>

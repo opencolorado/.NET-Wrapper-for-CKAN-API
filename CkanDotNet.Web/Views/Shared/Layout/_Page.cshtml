@@ -46,5 +46,44 @@
 </head>
 
 @RenderBody()
-           
+
+@if (SettingsHelper.GetIframeEnabled())
+{
+    var id = SettingsHelper.GetIframeId();
+    var src = SettingsHelper.GetIframeSrc();
+    
+    <!-- Handle iframe resize after page load -->
+    <script language="javascript">
+        $(function () {
+            try {
+                
+                @if (!String.IsNullOrEmpty(SettingsHelper.GetIframeDocumentDomain())) {
+                <text>document.domain = "@SettingsHelper.GetIframeDocumentDomain()";</text>
+                }
+
+                var isInIFrame = (window.location != window.parent.location) ? true : false;
+
+                if (isInIFrame) {
+                    @if(!String.IsNullOrEmpty(id)) {
+                      <text>var iframe = $('iframe#@id]', parent.document).get(0);</text>
+                    }
+                    else
+                    {
+                      <text>var iframe = $('iframe[src="@src"]', parent.document).get(0);</text>
+                    }
+                    
+                    if (iframe) {
+                        $(iframe).height($(document).height());
+                    }
+                }
+
+            } catch (ex) {
+                // Intentionally catch this so we don't get same origin errors in we aren't in an iframe
+            }
+        });
+    </script>
+}
 </html>
+
+
+

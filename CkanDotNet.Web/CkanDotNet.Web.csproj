@@ -155,6 +155,7 @@
     <Content Include="Content\Theme\Denver\Styles.css" />
     <Content Include="Content\Theme\Default\Styles.css" />
     <Content Include="Global.asax" />
+    <Content Include="iframetest.html" />
     <Content Include="LICENSE.txt" />
     <Content Include="Scripts\jquery-ui-1.8.14.custom.min.js" />
     <Content Include="Scripts\jquery.watermark.min.js" />
