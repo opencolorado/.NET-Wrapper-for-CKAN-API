@@ -7,21 +7,11 @@
     @foreach (var result in Model.SearchResults.Results)
     {
         <div class="result @(odd ? "odd" : "even")">
-            <div class="result-title">@Html.ActionLink(@result.Title, "Index", "Package", new { package = @result.Name }, new { @class = "package-link" })</div>
-            <div class="result-date">
-                Last updated @result.MetadataModifiedAsDate.ToShortDateString()</div>
-            
-            @if (SettingsHelper.GetSearchResultsShowRating())
-            {
-            <div class="result-rating">
-                @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
-            </div>
-            }
             
             @if (result.Resources.Count > 0)
             {
                 <div class="formats">
-                    <span class="formats-label">Available formats:</span>
+                    <span class="formats-label"></span>
                     @foreach (var resource in result.Resources)
                     {
                         <span class="format tooltip" title="@resource.Description">
@@ -38,6 +28,18 @@
                     }
                 </div>
             }
+            
+            <div class="result-title">@Html.ActionLink(@result.Title, "Index", "Package", new { package = @result.Name }, new { @class = "package-link" })</div>
+            
+            @if (SettingsHelper.GetSearchResultsShowRating())
+            {
+            <div class="result-rating">
+                @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
+            </div>
+            }
+
+            <div class="result-date">Last updated @result.MetadataModifiedAsDate.ToShortDateString()</div>
+
             <div class="notes">@Html.Raw(result.GetAbbreviatedNotes(300))</div>
 
             @if (SettingsHelper.GetSearchResultsShowTags())
