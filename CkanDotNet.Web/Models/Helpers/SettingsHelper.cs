@@ -854,6 +854,16 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Get the download proxy route
+        /// </summary>
+        /// <returns></returns>
+        public static string GetDownloadProxyRoute()
+        {
+            string route = ConfigurationManager.AppSettings["DownloadProxy.Route"];
+            return route;
+        }
+
+        /// <summary>
         /// Get the download proxy location
         /// </summary>
         /// <returns></returns>

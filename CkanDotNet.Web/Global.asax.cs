@@ -47,11 +47,15 @@ namespace CkanDotNet.Web
                 new { controller = "Suggestion", action = "Index" } // Parameter defaults
             );
 
-            routes.MapRoute(
-                "Download Proxy", // Route name
-                "download/{*path}", // URL with parameters
-                new { controller = "DownloadProxy", action = "Index" } // Parameter defaults
-            );
+            if (SettingsHelper.GetDownloadProxyEnabled())
+            {
+                var route = SettingsHelper.GetDownloadProxyRoute();
+                routes.MapRoute(
+                    "Download Proxy", // Route name
+                    route + "/{*path}", // URL with parameters
+                    new { controller = "DownloadProxy", action = "Index" } // Parameter defaults
+                );
+            }
 
             routes.MapRoute(
                 "Tag", // Route name
