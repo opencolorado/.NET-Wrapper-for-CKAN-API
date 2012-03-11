@@ -1,5 +1,11 @@
 ﻿See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API for additional information.
 
+## Version 1.6 (3/11/2012)
+* Improvements and bug fixes
+* Added support for diplaying in an iframe
+* Optimized layout to support more advanced theme control
+* Fixes for IE7/IE8
+
 ## Version 1.5 (12/21/2011)
 * Added support for multiple download proxy locations 
 * Added true tag cloud support
