@@ -11,6 +11,16 @@
             <text>var disqus_developer = 1; // developer mode is on</text>
         }
 
+        @if (SettingsHelper.GetIframeEnabled())
+        {
+        <text>
+        function disqus_config() {
+            this.callbacks.onNewComment = [function() { resizeFrame() }];
+            this.callbacks.onReady = [function() { resizeFrame() }];
+        }
+        </text>
+        }
+
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function () {
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
