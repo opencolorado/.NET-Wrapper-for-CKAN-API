@@ -1,5 +1,11 @@
 ﻿See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API for additional information.
 
+## Version 1.7 (3/13/2012)
+* jQuery version is now a config setting
+* Improved dynamic resizing when in an iframe (now supports resizing after Disqus comments loaded)
+* Fixed bug with suggestions (search autocomplete) when not installed in root of the web server
+* Fixed layout of license information when sidebar is narrow
+
 ## Version 1.6 (3/11/2012)
 * Improvements and bug fixes
 * Added support for diplaying in an iframe

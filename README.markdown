@@ -31,7 +31,7 @@ The catalog is fully themable using CSS/HTML.  See the [screenshots] (https://gi
 
 ### Current Version
 
-Version 1.6, released 3/11/2012.  For details see the [Release Notes]
+Version 1.7, released 3/13/2012.  For details see the [Release Notes]
 (https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown)
 
 ## Features
