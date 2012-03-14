@@ -36,11 +36,12 @@ method: FormMethod.Get, htmlAttributes: new { @class = "search-form"}))
     @if (SettingsHelper.GetSuggestionsEnabled()) 
     {
         <text>
+        var suggestUrl = '@Url.Action("Index", "Suggestion", new { prefix = "_" })'.slice(0, -1);
         var delay = @SettingsHelper.GetSuggestionsDelay();
         $input.autocomplete({
-            // TODO: fix this route
+            
             source: function (request, response) {
-                $.getJSON("/suggest/" + request.term, null, function (json) {
+                $.getJSON(suggestUrl + request.term, null, function (json) {
                     response(json);
                 });
             },
