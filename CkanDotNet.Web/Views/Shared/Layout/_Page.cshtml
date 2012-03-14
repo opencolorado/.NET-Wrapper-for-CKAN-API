@@ -54,6 +54,32 @@
     
     <!-- Handle iframe resize after page load -->
     <script language="javascript">
+
+        var iframeId = '@id';
+        var iframeSrc = '@src';
+
+        function resizeFrame() {
+            var isInIFrame = (window.location != window.parent.location) ? true : false;
+
+                if (isInIFrame) {
+
+                    var iframe = null;
+                    if (iframeId !== '') {
+                        iframe = $('iframe#' + iframeId, parent.document).get(0);
+                    } else if (iframeSrc !== '') {
+                        iframe = $('iframe[src="' + iframeSrc + '"]', parent.document).get(0);
+                    }
+                    
+                    if (iframe) {
+                        // Reset the iframe height (so we can shrink the iframe if needed)
+                        $(iframe).height(0);
+
+                        // Set the new size
+                        $(iframe).height($(document).height());
+                    }
+                }
+        }
+        
         $(function () {
             try {
                 
@@ -61,28 +87,15 @@
                 <text>document.domain = "@SettingsHelper.GetIframeDocumentDomain()";</text>
                 }
 
-                var isInIFrame = (window.location != window.parent.location) ? true : false;
-
-                if (isInIFrame) {
-                    @if(!String.IsNullOrEmpty(id)) {
-                      <text>var iframe = $('iframe#@id]', parent.document).get(0);</text>
-                    }
-                    else
-                    {
-                      <text>var iframe = $('iframe[src="@src"]', parent.document).get(0);</text>
-                    }
-                    
-                    if (iframe) {
-                        $(iframe).height($(document).height());
-                    }
-                }
+                resizeFrame();
 
             } catch (ex) {
                 // Intentionally catch this so we don't get same origin errors in we aren't in an iframe
             }
         });
     </script>
-}
+}
+
 </html>
 
 
