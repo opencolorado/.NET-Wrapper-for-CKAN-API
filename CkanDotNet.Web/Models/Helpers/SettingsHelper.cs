@@ -42,6 +42,18 @@ namespace CkanDotNet.Web.Models.Helpers
 
         #endregion
 
+        #region jQuery Settings
+
+        /// <summary>
+        /// Get the jQuery source
+        /// </summary>
+        /// <returns></returns>
+        public static string GetJQuerySource()
+        {
+            return ConfigurationManager.AppSettings["jQuery.Source"];
+        }
+
+        #endregion
         #region Repository Settings
 
         /// <summary>

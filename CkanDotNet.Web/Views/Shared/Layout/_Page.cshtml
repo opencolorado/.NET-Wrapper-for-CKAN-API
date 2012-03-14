@@ -8,7 +8,7 @@
     @Html.Partial("~/Views/Shared/_MetaTags.cshtml")
 
     <!-- JavaScript dependencies -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="@SettingsHelper.GetJQuerySource()"></script>
     <script src="@Url.Content("~/Scripts/jquery.watermark.min.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery-ui-1.8.16.custom.min.js")"></script>
     <script src="@Url.Content("~/Scripts/stars/jquery.ui.stars.min.js")"></script>
@@ -74,8 +74,8 @@
                         // Reset the iframe height (so we can shrink the iframe if needed)
                         $(iframe).height(0);
 
-                        // Set the new size
-                        $(iframe).height($(document).height());
+                        // Set the new size (plus a bit extra for IE quirks)
+                        $(iframe).height($(document).height() + 10);
                     }
                 }
         }
