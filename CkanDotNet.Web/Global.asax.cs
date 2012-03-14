@@ -103,39 +103,13 @@ namespace CkanDotNet.Web
             // Configure log4net
             log4net.Config.XmlConfigurator.Configure();
 
+            log.Debug("Application starting");
+
             AreaRegistration.RegisterAllAreas();
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
 
-            // Start caching of auto-cached CKAN requests if we aren't in offline mode
-            try
-            {
-                if (!SettingsHelper.GetOfflineEnabled())
-                {
-                    if (SettingsHelper.GetPackageCountCacheBackgroundUpdate())
-                    {
-                        CkanHelper.GetPackageCount();
-                    }
-
-                    if (SettingsHelper.GetAllPackagesCacheBackgroundUpdate())
-                    {
-                        CkanHelper.GetAllPackages();
-                    }
-
-                    if (SettingsHelper.GetAllLicensesCacheBackgroundUpdate())
-                    {
-                        CkanHelper.GetLicenses();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // If any errors occur while trying to start caching, log this and clear the error.
-                // Any new page request will re-attempt to start the caching process
-                log.Error("Unable to starting background caching on application start", ex);
-                Server.ClearError();
-            }
         }
 
         /// <summary>

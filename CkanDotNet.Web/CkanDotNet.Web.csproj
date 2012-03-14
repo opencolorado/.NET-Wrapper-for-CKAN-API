@@ -113,6 +113,7 @@
     <Compile Include="Models\Helpers\GuidHelper.cs" />
     <Compile Include="Models\Helpers\SiteMapHelper.cs" />
     <Compile Include="Models\MetaTags.cs" />
+    <Compile Include="Models\PreWarmCache.cs" />
     <Compile Include="Models\Settings\ResourceAction.cs" />
     <Compile Include="Models\Settings\ResourceType.cs" />
     <Compile Include="Models\Helpers\SettingsHelper.cs" />
