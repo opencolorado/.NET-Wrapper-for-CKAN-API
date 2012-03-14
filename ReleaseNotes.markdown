@@ -5,6 +5,7 @@
 * Improved dynamic resizing when in an iframe (now supports resizing after Disqus comments loaded)
 * Fixed bug with suggestions (search autocomplete) when not installed in root of the web server
 * Fixed layout of license information when sidebar is narrow
+* Added support for ASP.NET 4.0/IIS 7.5 [auto-start] (http://weblogs.asp.net/scottgu/archive/2009/09/15/auto-start-asp-net-applications-vs-2010-and-net-4-0-series.aspx) to precache data from the CKAN repository
 
 ## Version 1.6 (3/11/2012)
 * Improvements and bug fixes
