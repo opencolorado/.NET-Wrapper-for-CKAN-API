@@ -58,6 +58,8 @@ namespace CkanDotNet.Web.Models
                 // Any new page request will re-attempt to start the caching process
                 log.Error("Unable to starting background caching on preload", ex);
             }
+
+            log.Debug("Preloading application complete.");
         }  
     }
 }

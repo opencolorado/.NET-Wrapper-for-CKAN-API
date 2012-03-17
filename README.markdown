@@ -31,7 +31,7 @@ The catalog is fully themable using CSS/HTML.  See the [screenshots] (https://gi
 
 ### Current Version
 
-Version 1.7, released 3/13/2012.  For details see the [Release Notes]
+Version 1.7, released 3/16/2012.  For details see the [Release Notes]
 (https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown)
 
 ## Features
@@ -67,6 +67,7 @@ Version 1.7, released 3/13/2012.  For details see the [Release Notes]
 * Configurable CKAN request caching for performance optimization
  * Supports automatic background caching
  * A cache admin interface is provided to view cache contents and clear items from the cache if CKAN changes need to be reflected immediately
+ * Supports ASP.NET 4/IIS7.5 Application Auto-Start
 * Maintenance mode
  * Catalog can be taken offline with a custom notice if the CKAN repository needs maintenance
 * Uses clean RESTful URLs
@@ -97,6 +98,9 @@ Version 1.7, released 3/13/2012.  For details see the [Release Notes]
   * Configure page meta tags (see SEO.* settings)
   * Review the web.config comments for additional settings you may want to change
 * Load the application URL in your browser to test the catalog
+* Configuring ASP.NET 4.0 Auto-Start
+  * See http://weblogs.asp.net/scottgu/archive/2009/09/15/auto-start-asp-net-applications-vs-2010-and-net-4-0-series.aspx for instructions
+  * The autostart class type is "CkanDotNet.Web.Models.PreWarmCache, CkanDotNet.Web"
 
 ## Want to Contribute?
 
