@@ -58,7 +58,11 @@
 
                     <td nowrap="nowrap">
                         @{
-                          var format = formatTypes[resource.Format];               
+                        CkanDotNet.Web.Models.Settings.ResourceType format = null;
+                        if (formatTypes.ContainsKey(resource.Format))
+                        {
+                            format = formatTypes[resource.Format];
+                        };               
                         }
                         @if (format == null || format.Actions.Count == 0)
                         {
