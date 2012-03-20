@@ -1,5 +1,9 @@
 ﻿See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API for additional information.
 
+## Version 1.8 (3/19/2012)
+* Fixed bug with dataset timestamps not being converted from UTC
+* Resource links not open in a new window
+
 ## Version 1.7 (3/13/2012)
 * jQuery version is now a config setting
 * Improved dynamic resizing when in an iframe (now supports resizing after Disqus comments loaded)

@@ -31,7 +31,7 @@ The catalog is fully themable using CSS/HTML.  See the [screenshots] (https://gi
 
 ### Current Version
 
-Version 1.7, released 3/16/2012.  For details see the [Release Notes]
+Version 1.8, released 3/19/2012.  For details see the [Release Notes]
 (https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown)
 
 ## Features
@@ -114,7 +114,7 @@ to compile the project from source and run the unit tests:
 
 ### Frameworks Used
 * Client:
- * jQuery 1.6.2
+ * jQuery 1.7.1
  * jQuery plugin - [Star Rating widget] (http://plugins.jquery.com/project/Star_Rating_widget)
  * jQuery plugin - [tipTip] (http://code.drewwilson.com/entry/tiptip-jquery-plugin)
  * jQuery plugin - [watermark] (http://jquery-watermark.googlecode.com/)
