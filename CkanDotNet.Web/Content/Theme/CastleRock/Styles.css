@@ -133,7 +133,7 @@ a
 
 #sidebar .tag
 {
-    font-size: 10px;
+    font-size: 13px;
     margin: 0px !important;
     padding: 2px !important;
 }
@@ -234,13 +234,13 @@ a
 
 .result-tags
 {
-    font-size: 11px;
+    font-size: 12px;
     color: #666666;
 }
 
 .result-tag a
 {
-    font-size: 11px;
+    font-size: 12px;
 }
 
 /* Pager styles */
