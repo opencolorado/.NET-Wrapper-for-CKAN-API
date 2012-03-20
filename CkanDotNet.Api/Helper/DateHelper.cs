@@ -41,6 +41,7 @@ namespace CkanDotNet.Api.Helper
             DateTime date;
             if (DateTime.TryParseExact(dateString, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
             {
+                date = TimeZoneInfo.ConvertTimeFromUtc(date,TimeZoneInfo.Local);
                 return date;
             }
 
