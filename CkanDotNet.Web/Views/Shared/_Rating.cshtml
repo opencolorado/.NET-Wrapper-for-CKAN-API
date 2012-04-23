@@ -40,6 +40,11 @@ $("#@(ratingId)").stars({
 
         $(".rating-response").text("Thanks for your rating!");
 
+        @if (SettingsHelper.GetIframeEnabled())
+        {
+            <text>resizeFrame();</text>
+        }
+
         @if (SettingsHelper.GetGoogleAnalyticsEnabled()) 
         {
             <text>
