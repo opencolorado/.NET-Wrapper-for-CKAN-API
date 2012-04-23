@@ -435,4 +435,11 @@ a
     border: 1px solid #82A5C8;
 }
 
-
+/* Rating styles */
+.rating-response
+{
+    padding: 0px 0px 2px 0px;
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
