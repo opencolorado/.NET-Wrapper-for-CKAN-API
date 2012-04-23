@@ -1,5 +1,8 @@
 ﻿See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API for additional information.
 
+## Version 1.9 (4/22/2012)
+* Removed created date from package page, now shows last updated date
+
 ## Version 1.8 (3/19/2012)
 * Fixed bug with dataset timestamps not being converted from UTC
 * Resource links not open in a new window
