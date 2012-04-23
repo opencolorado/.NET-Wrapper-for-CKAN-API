@@ -18,11 +18,10 @@
         <div class="tagline">
             @{
                 StringBuilder sb = new StringBuilder();
-                sb.AppendFormat("Posted {0}", Model.MetadataCreatedAsDate.ToShortDateString());
 
                 if (Model.MetadataModifiedAsDate > DateTime.MinValue)
                 {
-                    sb.AppendFormat(", last updated {0}", Model.MetadataModifiedAsDate.ToShortDateString());
+                    sb.AppendFormat("Last updated {0}", Model.MetadataModifiedAsDate.ToShortDateString());
                 }
             }
             @sb.ToString()
