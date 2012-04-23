@@ -319,6 +319,36 @@ a
     text-decoration: none;
 }
 
+/* Featured packages */
+.featured-container
+{
+    background-color:#ebebeb;
+}
+
+.featured-package
+{  
+    border: 1px solid #999999;
+    background-color: #ffffff;
+    box-shadow: 0 3px 5px #cccccc;
+    border-radius: 5px 5px;
+    width: 130px;
+    padding: 3px;
+}
+
+.featured-package-notes
+{
+    margin: 3px 0px 0px 0px;
+    padding: 0px;
+    font-size: 12px;
+}
+
+.featured-package .formats
+{ 
+    position: absolute;
+    bottom: 4px;
+    left:3px;
+}
+
 /* Package styles */
 .package-title
 {
