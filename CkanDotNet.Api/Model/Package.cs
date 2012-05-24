@@ -152,7 +152,15 @@ namespace CkanDotNet.Api.Model
         public List<Resource> Resources {
             get
             {
-                if (resources.Count == 0 && ResFormat != null)
+                // If there is no resource collection and there
+                // are resource urls, formats or descriptions
+                // use that information to build the resource collection
+                // This is required because the CKAN search result returns
+                // a slightly different format that the REST package result.
+                // This normalizes the format of a package so that the object
+                // format is consistent.
+                if (resources.Count == 0 && 
+                    (ResFormat != null || ResUrl != null || ResDescription != null))
                 {
                     for (int i = 0; i < ResFormat.Count; i++)
                     {
