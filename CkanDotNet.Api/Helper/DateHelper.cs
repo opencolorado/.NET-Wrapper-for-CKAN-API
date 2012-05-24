@@ -35,13 +35,19 @@ namespace CkanDotNet.Api.Helper
 				"yyyy-MM-ddTHH:mm:sszzzzzz",
                 "yyyy-MM-ddTHH:mm:ss.ffffff",
                 "yyyy-MM-dd HH:mm:ss.ffffff",
+                "yyyy-MM-ddTHH:mm:ss.ffffffZ",
+                "yyyy-MM-dd HH:mm:ss.ffffffZ",
+                "yyyy-MM-ddTHH:mm:ss.fffZ",
 				"M/d/yyyy h:mm:ss tt" // default format for invariant culture
 			};
 
             DateTime date;
             if (DateTime.TryParseExact(dateString, formats, CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
             {
-                date = TimeZoneInfo.ConvertTimeFromUtc(date,TimeZoneInfo.Local);
+                if (date.Kind != DateTimeKind.Local)
+                {
+                    date = TimeZoneInfo.ConvertTimeFromUtc(date, TimeZoneInfo.Local);
+                }
                 return date;
             }
 
