@@ -286,21 +286,25 @@ namespace CkanDotNet.Api.Model
             // Get the rendered notes
             string summary = NotesRendered;
 
-            // Strip the HTML
-            summary = Regex.Replace(summary, @"<(.|\n)*?>", "").Trim();
-
-            // Abbreviate the notes
-            if (summary.Length > length)
+            if (!String.IsNullOrEmpty(summary))
             {
-                // Get the nearest space
-                int spaceIndex = summary.IndexOf(" ", length);
+                // Strip the HTML
+                summary = Regex.Replace(summary, @"<(.|\n)*?>", "").Trim();
 
-                if (spaceIndex > 0) {
-                    summary = summary.Substring(0, spaceIndex) + "...";
-                }
-                else 
+                // Abbreviate the notes
+                if (summary.Length > length)
                 {
-                    summary = summary.Substring(0, length) + "...";
+                    // Get the nearest space
+                    int spaceIndex = summary.IndexOf(" ", length);
+
+                    if (spaceIndex > 0)
+                    {
+                        summary = summary.Substring(0, spaceIndex) + "...";
+                    }
+                    else
+                    {
+                        summary = summary.Substring(0, length) + "...";
+                    }
                 }
             }
             return summary;
