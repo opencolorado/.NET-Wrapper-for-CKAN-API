@@ -11,9 +11,11 @@
         <div class="featured-package">
             @Html.ActionLink(@result.Title, "Index", "Package", new { package = @result.Name }, new { @class = "package-link" })
             
+             @* Removed, no longer supported by CKAN
             <div class="resultRating">
             @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
             </div>
+            *@
 
             <p class="featured-package-notes">
             @result.GetAbbreviatedNotes(75)

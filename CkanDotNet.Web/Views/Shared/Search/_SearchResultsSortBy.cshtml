@@ -15,7 +15,9 @@
     <ul>
         <li>@Html.ActionLink("Relevancy", "Index", "Search", RouteHelper.UpdateRoute(routeValues,"order_by","rank"),null)</li>
         <li>@Html.ActionLink("Name", "Index", "Search", RouteHelper.UpdateRoute(routeValues, "order_by", "name"), null)</li>
+         @* Removed, no longer supported by CKAN
         <li>@Html.ActionLink("Rating", "Index", "Search", RouteHelper.UpdateRoute(routeValues, "order_by", "ratings_average"), null)</li>
+        *@
         <li>@Html.ActionLink("Last Updated", "Index", "Search", RouteHelper.UpdateRoute(routeValues,"order_by","metadata_modified"),null)</li>
     </ul>
 </div>
