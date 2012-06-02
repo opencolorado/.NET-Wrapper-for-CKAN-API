@@ -31,7 +31,12 @@
 
         @if (SettingsHelper.GetPackageRssFeedEnabled())
         {
-        <a class="package-subscribe tooltip" title="Subscribe" href="http://@SettingsHelper.GetRepositoryHost()/package/history/@Model.Name?format=atom&days=@SettingsHelper.GetPackageRssFeedDays()" target="_top"> </a>
+            string entityType = "dataset";
+            if (Model.IsOpen == null)
+            {
+                entityType = "package";
+            }
+            <a class="package-subscribe tooltip" title="Subscribe" href="http://@SettingsHelper.GetRepositoryHost()/@entityType/history/@Model.Name?days=@SettingsHelper.GetPackageRssFeedDays()&format=atom" target="_top"> </a>
         }
         
     </div>
