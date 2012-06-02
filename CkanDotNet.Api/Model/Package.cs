@@ -94,6 +94,11 @@ namespace CkanDotNet.Api.Model
         public string License { get; set; }
 
         /// <summary>
+        /// Gets the open status of the dataset
+        /// </summary>
+        public bool? IsOpen { get; set; }
+
+        /// <summary>
         /// Gets the tags associated with the package
         /// </summary>
         public List<string> Tags {
@@ -235,7 +240,7 @@ namespace CkanDotNet.Api.Model
         public string MetadataCreated { get; set; }
 
         /// <summary>
-        /// Gets the notes rendered date in ISO string format
+        /// Gets the notes rendered as HTML from Markdown formatting
         /// </summary>
         public string NotesRendered
         {
