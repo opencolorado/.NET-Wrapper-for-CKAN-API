@@ -1,7 +1,7 @@
 ﻿See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API for additional information.
 
 ## Version 1.10 (6/2/2012)
-* Implemented forward compatability for the CKAN 1.7 API to allow OpenColorado to be upgraded from CKAN 1.3.3b to 1.7
+* Implemented forward compatibility for the CKAN 1.7 API to allow OpenColorado to be upgraded from CKAN 1.3.3b to 1.7
 
 ## Version 1.9 (4/22/2012)
 * Removed created date from package page, now shows last updated date
