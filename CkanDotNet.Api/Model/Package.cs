@@ -94,6 +94,11 @@ namespace CkanDotNet.Api.Model
         public string License { get; set; }
 
         /// <summary>
+        /// Gets the open status of the dataset
+        /// </summary>
+        public bool? IsOpen { get; set; }
+
+        /// <summary>
         /// Gets the tags associated with the package
         /// </summary>
         public List<string> Tags {
@@ -235,7 +240,7 @@ namespace CkanDotNet.Api.Model
         public string MetadataCreated { get; set; }
 
         /// <summary>
-        /// Gets the notes rendered date in ISO string format
+        /// Gets the notes rendered as HTML from Markdown formatting
         /// </summary>
         public string NotesRendered
         {
@@ -286,21 +291,25 @@ namespace CkanDotNet.Api.Model
             // Get the rendered notes
             string summary = NotesRendered;
 
-            // Strip the HTML
-            summary = Regex.Replace(summary, @"<(.|\n)*?>", "").Trim();
-
-            // Abbreviate the notes
-            if (summary.Length > length)
+            if (!String.IsNullOrEmpty(summary))
             {
-                // Get the nearest space
-                int spaceIndex = summary.IndexOf(" ", length);
+                // Strip the HTML
+                summary = Regex.Replace(summary, @"<(.|\n)*?>", "").Trim();
 
-                if (spaceIndex > 0) {
-                    summary = summary.Substring(0, spaceIndex) + "...";
-                }
-                else 
+                // Abbreviate the notes
+                if (summary.Length > length)
                 {
-                    summary = summary.Substring(0, length) + "...";
+                    // Get the nearest space
+                    int spaceIndex = summary.IndexOf(" ", length);
+
+                    if (spaceIndex > 0)
+                    {
+                        summary = summary.Substring(0, spaceIndex) + "...";
+                    }
+                    else
+                    {
+                        summary = summary.Substring(0, length) + "...";
+                    }
                 }
             }
             return summary;

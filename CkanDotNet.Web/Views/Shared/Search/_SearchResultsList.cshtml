@@ -41,12 +41,14 @@
             
             <div class="result-title">@Html.ActionLink(@result.Title, "Index", "Package", new { package = @result.Name }, new { @class = "package-link" })</div>
             
+            @* Removed, no longer supported by CKAN
             @if (SettingsHelper.GetSearchResultsShowRating())
             {
             <div class="result-rating">
                 @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
             </div>
             }
+            *@
 
             <div class="result-date">Last updated @result.MetadataModifiedAsDate.ToShortDateString()</div>
 

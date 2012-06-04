@@ -31,7 +31,7 @@ The catalog is fully themable using CSS/HTML.  See the [screenshots] (https://gi
 
 ### Current Version
 
-Version 1.9, released 4/22/2012.  For details see the [Release Notes]
+Version 1.10, released 6/2/2012.  For details see the [Release Notes]
 (https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown)
 
 ## Features
@@ -50,7 +50,6 @@ Version 1.9, released 4/22/2012.  For details see the [Release Notes]
  * Package description with support for CKAN Markdown formatting
  * Resources with customizable resource actions (ex. View KML in Google Maps)
  * Additional package details
- * Package rating (and 'rate this package')
  * License details
  * RSS feed for package revisions
 * Themeable
