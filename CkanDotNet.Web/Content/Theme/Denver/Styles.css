@@ -35,7 +35,7 @@ a:active, a:hover
 #body
 {
    float: left;
-   width: 620px; /* Width of body in pixels */
+   width: 640px; /* Width of body in pixels */
 }
 
 #sidebar
@@ -168,12 +168,8 @@ a:active, a:hover
 
 .format
 {   
-    border-radius: 2px 2px 2px 2px;
     color: #000000;
-    background-color: #eeeeee;
-    border: 1px solid #bbbbbb;
-    font-size: 10px;
-    font-weight: bold;
+    font-size: 11px;
 }
 
 /* Rating styles */
@@ -285,11 +281,10 @@ a:active, a:hover
 }
 
 /* Pager in a header */
-.container-title .pager .link a
+.container-title .pager
 {
-    color: #ffffff;
+    top: 0px;
 }
-
 .container-title .pager .item span
 {
     color: #000000;
@@ -305,9 +300,9 @@ a:active, a:hover
 .result-title
 {
     height:26px;
-    background-image: url("img/table.png");
+    background-image: url("img/data.png");
     background-repeat:no-repeat;
-    background-position: left;
+    background-position: 3px 0px;
     padding-left: 32px;
 }
 
@@ -391,6 +386,7 @@ a:active, a:hover
 .container table
 {
     border-left: 1px solid #CCCCCC;
+    border-top: 1px solid #CCC;
     font-size: 13px;
 }
 
