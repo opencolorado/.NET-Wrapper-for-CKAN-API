@@ -57,6 +57,15 @@ a:active, a:hover
 /* Breadcrumbs */
 .breadcrumbs 
 {   
+    color: #999999;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-style:italic;
+	
+	background-repeat: no-repeat;
+	background-position: top right;
+	background: url('images/bullet_white.png') no-repeat right 5px;
+	padding-right:15px!important;
+	
     font-weight: normal;
     margin-bottom: 2px;
     padding: 0;
@@ -68,6 +77,11 @@ a:active, a:hover
 {   
     font-weight: normal;
     text-decoration: none;
+}
+
+.breadcrumb:hover 
+{
+    color: #4082c6;
 }
 
 .breadcrumb-filter
@@ -193,13 +207,14 @@ a:active, a:hover
     border-radius: 3px 3px;
     color: #FFFFFF;
     
-    background-image: -moz-linear-gradient(top, #63BCFC, #0379AC);
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0379AC), color-stop(1, #63BCFC));
-    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#63BCFC', endColorstr='#0379AC');
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#63BCFC', endColorstr='#0379AC')";
+    background-image: -moz-linear-gradient(top, #63BCFC, #00579d);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #00579d), color-stop(1, #63BCFC));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#63BCFC', endColorstr='#00579d');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#63BCFC', endColorstr='#00579d')";
+    text-shadow: 0 1px 0 rgba(0, 0, 0, .5);
 }
 
-.search-submit:hover 
+.search-submit:hover, .search-submit:focus
 {
     background-image: -moz-linear-gradient(top, #63BCFC, #0379AC);
     background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #0379AC), color-stop(1, #63BCFC));
@@ -287,6 +302,15 @@ a:active, a:hover
 }
 
 /* Package styles */
+.result-title
+{
+    height:26px;
+    background-image: url("img/table.png");
+    background-repeat:no-repeat;
+    background-position: left;
+    padding-left: 32px;
+}
+
 .package-subtitle
 {
     font-size:12px;
@@ -298,6 +322,9 @@ a:active, a:hover
     color: #005C96;
     font-size:14px;
     font-weight: bold;
+    
+    position: relative;
+    top: 4px;
 }
 
 .package-action
@@ -352,6 +379,13 @@ a:active, a:hover
     background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #ffffff), color-stop(1, #D4D7DB));
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#D4D7DB', endColorstr='#ffffff');
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#D4D7DB', endColorstr='#ffffff')";
+}
+
+.package-subscribe 
+{
+    background-image: url("img/rss.png");
+    height: 24px;
+    width: 24px;
 }
 
 .container table
