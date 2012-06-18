@@ -1,5 +1,6 @@
 ﻿@using CkanDotNet.Api.Model
 @using CkanDotNet.Web.Models
+@using CkanDotNet.Web.Models.Helpers
 @using System.Collections.Specialized
 @model PackageSearchResultsModel
 
@@ -21,7 +22,21 @@ var routeValues = RouteHelper.RouteFromParameters(Html.ViewContext);
 }
 
 @* Show the individual pages*@
-@for (int i = 1; i <= Model.Pager.Last; i++)
+@{
+    int maxPagesToDisplay = SettingsHelper.GetSearchResultsMaxPagesToShowInPager();
+    int currentPage = Model.Pager.Page;
+    
+    int range = maxPagesToDisplay / 2;
+    int firstPageToDisplay = Math.Max(1, currentPage - range);
+    int lastPageToDisplay = firstPageToDisplay + maxPagesToDisplay - 1;
+
+    if (lastPageToDisplay > Model.Pager.Last)
+    {
+        lastPageToDisplay = Model.Pager.Last;
+        firstPageToDisplay = lastPageToDisplay - maxPagesToDisplay + 1;
+    }
+}
+@for (int i = firstPageToDisplay; i <= lastPageToDisplay; i++)
 {
     routeValues["page"] = i;
     if (i == Model.Pager.Page)
