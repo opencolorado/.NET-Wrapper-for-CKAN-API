@@ -33,7 +33,7 @@ var routeValues = RouteHelper.RouteFromParameters(Html.ViewContext);
     if (lastPageToDisplay > Model.Pager.Last)
     {
         lastPageToDisplay = Model.Pager.Last;
-        firstPageToDisplay = lastPageToDisplay - maxPagesToDisplay + 1;
+        firstPageToDisplay = Math.Max(1, lastPageToDisplay - maxPagesToDisplay + 1);
     }
 }
 @for (int i = firstPageToDisplay; i <= lastPageToDisplay; i++)
