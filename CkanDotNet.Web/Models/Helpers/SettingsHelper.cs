@@ -548,13 +548,29 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
-        /// Get the list of groups that have been configured in the settings.
+        /// Get the maximum number of search results to show per page.
         /// </summary>
         /// <returns></returns>
         public static int GetSearchResultsPerPage()
         {
             string results = ConfigurationManager.AppSettings["Search.ResultsPerPage"];
             return int.Parse(results);
+        }
+
+        /// <summary>
+        /// Get the max number of pages to show in the pager.  A moving window around the current
+        /// page will be used.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetSearchResultsMaxPagesToShowInPager()
+        {
+            string pagesSetting = ConfigurationManager.AppSettings["Search.ResultsMaxPagesToShowInPager"];
+            int pages = 5; //Default
+            if (!String.IsNullOrEmpty(pagesSetting))
+            {
+                int.TryParse(pagesSetting, out pages);
+            } 
+            return pages;
         }
 
         /// <summary>
