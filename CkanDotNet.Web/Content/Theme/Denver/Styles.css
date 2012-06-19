@@ -45,7 +45,7 @@ a:active, a:hover
 {
     float: right;
     width: 280px; /*Width of right column in pixels*/
-    padding: 10px;
+    padding: 0px 10px;
 }
 
 #content
@@ -57,8 +57,7 @@ a:active, a:hover
 /* Header */
 .header-spacer
 {
-    height:90px;
-
+    height:100px;
 }
 
 .catalog-header 
