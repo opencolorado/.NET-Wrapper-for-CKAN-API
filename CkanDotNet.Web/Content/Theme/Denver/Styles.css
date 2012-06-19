@@ -2,6 +2,12 @@
 /* Theme: Denver
 /*=============================================*/
 
+/* Skin overrides */
+#Denvergov\.appBody 
+{
+    padding: 0px !important;
+}
+
 /* Page styles */
 body
 {
@@ -39,11 +45,13 @@ a:active, a:hover
 {
     float: right;
     width: 280px; /*Width of right column in pixels*/
+    padding: 10px;
 }
 
 #content
 {
-    padding: 0px;
+    padding: 10px;
+    width: auto;
 }
 
 /* Header */
