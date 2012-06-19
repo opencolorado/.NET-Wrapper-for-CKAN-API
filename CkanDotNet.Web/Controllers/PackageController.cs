@@ -56,6 +56,11 @@ namespace CkanDotNet.Web.Controllers
             ViewData["BreadCrumbs"] = breadCrumbs;
         }
 
+        private void ConfigureDatasetTitle(Package package)
+        { 
+            
+        }
+
         /// <summary>
         /// Prepare the meta tags for this view.
         /// </summary>

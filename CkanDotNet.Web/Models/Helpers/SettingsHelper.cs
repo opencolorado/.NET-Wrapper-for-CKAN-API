@@ -277,6 +277,16 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
+        /// Get the maximum length of a dataset title.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetDatasetTitleLength()
+        {
+            string length = ConfigurationManager.AppSettings["Catalog.GetDatasetTitleLength"];
+            return int.Parse(length);
+        }
+
+        /// <summary>
         /// Filter the package title with the package title prefix.
         /// </summary>
         /// <param name="package"></param>
