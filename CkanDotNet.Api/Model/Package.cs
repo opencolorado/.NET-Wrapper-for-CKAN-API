@@ -33,7 +33,7 @@ namespace CkanDotNet.Api.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets the primary title
+        /// Gets the dataset title
         /// </summary>
         public string Title { get; set; }
 
