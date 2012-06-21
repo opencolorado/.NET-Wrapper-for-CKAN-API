@@ -1,4 +1,5 @@
 ﻿@using CkanDotNet.Api.Model
+@using CkanDotNet.Web.Models.Helpers
 @model PackageSearchResponse<Package>
  
 @if (Model.Results.Count >= 3)
@@ -9,9 +10,9 @@
     @foreach (var result in Model.Results)
     {
         <div class="featured-package">
-            @Html.ActionLink(@result.Title, "Index", "Package", new { package = @result.Name }, new { @class = "package-link" })
+            @Html.ActionLink(@result.GetAbbreviatedTitle(SettingsHelper.GetDatasetTitleLength()), "Index", "Package", new { package = @result.Name }, new { @class = "package-link tooltip", title = @result.Title })
             
-             @* Removed, no longer supported by CKAN
+            @* Removed, no longer supported by CKAN
             <div class="resultRating">
             @Html.Partial("~/Views/Shared/_Rating.cshtml", result)
             </div>

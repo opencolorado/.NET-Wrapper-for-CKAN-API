@@ -28,7 +28,7 @@ namespace CkanDotNet.Api.Model
         public string Format { get; set; }
 
         /// <summary>
-        /// Gets a descrption of the resource
+        /// Gets a description of the resource
         /// </summary>
         public string Description { get; set; }
 

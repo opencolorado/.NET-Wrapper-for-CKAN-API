@@ -5,6 +5,7 @@ using System.Web;
 using CkanDotNet.Api.Model;
 using System.Configuration;
 using CkanDotNet.Web.Models.Settings;
+using CkanDotNet.Api.Helper;
 
 namespace CkanDotNet.Web.Models.Helpers
 {
@@ -274,6 +275,25 @@ namespace CkanDotNet.Web.Models.Helpers
         public static string GetCatalogPackageTitlePrefix()
         {
             return ConfigurationManager.AppSettings["Catalog.PackageTitlePrefix"];
+        }
+
+        /// <summary>
+        /// Get the maximum length of a dataset title.
+        /// </summary>
+        /// <returns></returns>
+        public static int GetDatasetTitleLength()
+        {
+            
+            string configTitleLength = ConfigurationManager.AppSettings["Catalog.DatasetTitleLength"];
+            int titleLength = 60;
+            
+            // Check if the app setting above returned a value.
+            if (!string.IsNullOrEmpty(configTitleLength))
+            {
+                titleLength = int.Parse(configTitleLength);
+            }
+
+            return titleLength;
         }
 
         /// <summary>

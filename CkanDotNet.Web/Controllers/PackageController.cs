@@ -56,6 +56,7 @@ namespace CkanDotNet.Web.Controllers
             ViewData["BreadCrumbs"] = breadCrumbs;
         }
 
+
         /// <summary>
         /// Prepare the meta tags for this view.
         /// </summary>
