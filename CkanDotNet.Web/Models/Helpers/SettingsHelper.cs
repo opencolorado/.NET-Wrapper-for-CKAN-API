@@ -5,6 +5,7 @@ using System.Web;
 using CkanDotNet.Api.Model;
 using System.Configuration;
 using CkanDotNet.Web.Models.Settings;
+using CkanDotNet.Api.Helper;
 
 namespace CkanDotNet.Web.Models.Helpers
 {
@@ -282,8 +283,17 @@ namespace CkanDotNet.Web.Models.Helpers
         /// <returns></returns>
         public static int GetDatasetTitleLength()
         {
-            string length = ConfigurationManager.AppSettings["Catalog.GetDatasetTitleLength"];
-            return int.Parse(length);
+            
+            string configTitleLength = ConfigurationManager.AppSettings["Catalog.DatasetTitleLength"];
+            int titleLength = 60;
+            
+            // Check if the app setting above returned a value.
+            if (!string.IsNullOrEmpty(configTitleLength))
+            {
+                titleLength = int.Parse(configTitleLength);
+            }
+
+            return titleLength;
         }
 
         /// <summary>

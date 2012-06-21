@@ -9,7 +9,6 @@ namespace CkanDotNet.Api.Model
 {
     public class Package
     {
-        private string baseTitle;
 
         private List<Resource> resources = new List<Resource>();
 
@@ -34,7 +33,7 @@ namespace CkanDotNet.Api.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets the title for display
+        /// Gets the primary title
         /// </summary>
         public string Title { get; set; }
 
@@ -295,6 +294,22 @@ namespace CkanDotNet.Api.Model
             return summary;
         }
 
+
+        /// <summary>
+        /// Gets an abbreviated title truncated to a specific size (nearest word). All markup is
+        /// removed.
+        /// </summary>
+        /// <param name="length">The allowable length for a title.</param>
+        /// <returns>The abbreviated title. </returns>
+        public string GetAbbreviatedTitle(int length)
+        {
+            string title = Title;
+
+            title = StringHelper.CreateAbbreviatedString(length, title);
+
+            return title;
+
+        }
         
     }
 
