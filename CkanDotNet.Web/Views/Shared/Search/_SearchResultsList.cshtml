@@ -39,7 +39,7 @@
                 </div>
             }
             
-            <div class="result-title">@Html.ActionLink(@result.Title, "Index", "Package", new { package = @result.Name }, new { @class = "package-link" })</div>
+            <div class="result-title">@Html.ActionLink(@result.GetAbbreviatedTitle(SettingsHelper.GetDatasetTitleLength()), "Index", "Package", new { package = @result.Name }, new { @class = "package-link tooltip", title = @result.Title })</div>
             
             @* Removed, no longer supported by CKAN
             @if (SettingsHelper.GetSearchResultsShowRating())

@@ -9,7 +9,6 @@ namespace CkanDotNet.Api.Model
 {
     public class Package
     {
-        private string baseTitle;
 
         private List<Resource> resources = new List<Resource>();
 
@@ -34,7 +33,7 @@ namespace CkanDotNet.Api.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets the title for display
+        /// Gets the dataset title
         /// </summary>
         public string Title { get; set; }
 
@@ -291,29 +290,27 @@ namespace CkanDotNet.Api.Model
             // Get the rendered notes
             string summary = NotesRendered;
 
-            if (!String.IsNullOrEmpty(summary))
-            {
-                // Strip the HTML
-                summary = Regex.Replace(summary, @"<(.|\n)*?>", "").Trim();
-
-                // Abbreviate the notes
-                if (summary.Length > length)
-                {
-                    // Get the nearest space
-                    int spaceIndex = summary.IndexOf(" ", length);
-
-                    if (spaceIndex > 0)
-                    {
-                        summary = summary.Substring(0, spaceIndex) + "...";
-                    }
-                    else
-                    {
-                        summary = summary.Substring(0, length) + "...";
-                    }
-                }
-            }
+            summary = StringHelper.CreateAbbreviatedString(length, summary);
             return summary;
         }
+
+
+        /// <summary>
+        /// Gets an abbreviated title truncated to a specific size (nearest word). All markup is
+        /// removed.
+        /// </summary>
+        /// <param name="length">The allowable length for a title.</param>
+        /// <returns>The abbreviated title. </returns>
+        public string GetAbbreviatedTitle(int length)
+        {
+            string title = Title;
+
+            title = StringHelper.CreateAbbreviatedString(length, title);
+
+            return title;
+
+        }
+        
     }
 
 }

@@ -74,6 +74,7 @@
     <Compile Include="Exceptions\CkanException.cs" />
     <Compile Include="Exceptions\CkanRequestException.cs" />
     <Compile Include="Exceptions\CkanTimeoutException.cs" />
+    <Compile Include="Helper\StringHelper.cs" />
     <Compile Include="Helper\SuggestionHelper.cs" />
     <Compile Include="Helper\CachedRequestResponse.cs" />
     <Compile Include="Helper\CacheEntry.cs" />
