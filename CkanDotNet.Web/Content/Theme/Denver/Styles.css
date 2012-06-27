@@ -157,7 +157,7 @@ a:active, a:hover
 
 .container-title 
 {
-    background: url("http://dgqa.denvergov.org/Portals/_default/Containers/DenverGov/box_top.jpg") no-repeat scroll center center #002445;
+    background: url("img/box_top.jpg") no-repeat scroll center center #002445;
     display: block;
     max-height: 64px;
     min-height: 30px;
