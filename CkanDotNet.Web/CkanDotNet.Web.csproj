@@ -155,6 +155,7 @@
     <Content Include="Content\Theme\CastleRock\Styles.css" />
     <Content Include="Content\Theme\Demo\Styles.css" />
     <Content Include="Content\Theme\Denver\img\banner.jpg" />
+    <Content Include="Content\Theme\Denver\img\box_top.jpg" />
     <Content Include="Content\Theme\Denver\img\data.png" />
     <Content Include="Content\Theme\Denver\img\rss.png" />
     <Content Include="Content\Theme\Denver\img\table.png" />

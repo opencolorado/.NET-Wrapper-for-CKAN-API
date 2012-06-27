@@ -1,4 +1,7 @@
 ﻿@using CkanDotNet.Web.Models
+@using System.Configuration
+
+
 @{
     Layout = "~/Views/Shared/Layout/_Page.cshtml";
 }
@@ -6,7 +9,8 @@
 
 <!--v Denvergov:2of3(body-top) v-->
 <div id="Denvergov.page">
-	<iframe id="Denvergov.headFrame" name="Denvergov.headFrame" src="http://dgqa.denvergov.org/dgskin1/DenvergovHead.htm" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+	<iframe id="Denvergov.headFrame" name="Denvergov.headFrame" src="@Url.Content(ConfigurationManager.AppSettings["Catalog.SkinLocation"] + "/dgskin1/DenvergovHead.htm")" 
+        frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
 	<div id="Denvergov.appBody">
 <!--^ Denvergov:2of3(body-top) ^-->
 
@@ -25,7 +29,8 @@
 
 <!--v Denvergov:3of3(body-bottom) v-->
 	</div>
-	<iframe id="Denvergov.footFrame" name="Denvergov.footFrame" src="http://dgqa.denvergov.org/dgskin1/DenvergovFoot.htm" frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
+	<iframe id="Denvergov.footFrame" name="Denvergov.footFrame" src="@Url.Content(ConfigurationManager.AppSettings["Catalog.SkinLocation"] + "/dgskin1/DenvergovFoot.htm")"
+        frameborder="0" marginheight="0" marginwidth="0" scrolling="no"></iframe>
 	</div>
 <!--^ Denvergov:3of3(body-bottom) ^-->
 </body>
