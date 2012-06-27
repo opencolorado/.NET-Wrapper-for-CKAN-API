@@ -82,15 +82,21 @@ namespace CkanDotNet.Web
             );
 
             routes.MapRoute(
+                "Widget", // Route name
+                "widget/{action}", // URL with parameters
+                new { controller = "Widget", action = "Index" } // Parameter defaults
+            );
+
+            routes.MapRoute(
                 "Home", // Route name
-                "{controller}", // URL with parameters
+                "", // URL with parameters
                 new { controller = "Home", action = "Index" } // Parameter defaults
             );
 
             routes.MapRoute(
-                "Widget", // Route name
-                "widget/{action}", // URL with parameters
-                new { controller = "Widget", action = "Index" } // Parameter defaults
+                "ThemePage", // Route name
+                "{page}", // URL with parameters
+                new { controller = "ThemePage", action = "Index" } // Parameter defaults
             );
 
         }
