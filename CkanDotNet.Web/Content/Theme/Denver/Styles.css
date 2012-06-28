@@ -45,12 +45,12 @@ a:active, a:hover
 {
     float: right;
     width: 280px; /*Width of right column in pixels*/
-    padding: 0px 10px;
+    padding: 0px 5px;
 }
 
 #content
 {
-    padding: 10px;
+    padding: 15px;
     width: auto;
 }
 
@@ -96,6 +96,7 @@ a:active, a:hover
 /* Breadcrumbs */
 .breadcrumbs 
 {   
+    display: block;
     color: #999999;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-style:italic;
@@ -144,7 +145,7 @@ a:active, a:hover
 #body .container
 {
     border: none;
-    margin: 15px 5px;
+    margin: 5px;
     padding: 0 10px 10px;
     background: none;
 }
