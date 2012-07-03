@@ -209,6 +209,7 @@ h3
 {   
     color: #000000;
     font-size: 11px;
+    padding: 1px;
 }
 
 /* Rating styles */
@@ -288,18 +289,27 @@ h3
 {
     font-size: 12px;
     font-weight: bold;
-    width: 300px;
 }
 
 .result-date
 {
     font-size: 11px;
+    clear: both;
 }
 
 .result-tags
 {
     font-size: 11px;
     color: #666666;
+}
+
+.result .formats
+{
+    float:right;
+    display: block;
+    position:relative;
+    right: 0px;
+    top: 0px;
 }
 
 /* Pager styles */
@@ -358,7 +368,7 @@ h3
     font-weight: bold;
     
     position: relative;
-    top: 4px;
+    top: 0px;
 }
 
 .package-action
@@ -482,7 +492,7 @@ h3
 .featured-package .formats
 { 
     position: absolute;
-    bottom: 7px;
+    bottom: 0px;
     left:1px;
 }
 
