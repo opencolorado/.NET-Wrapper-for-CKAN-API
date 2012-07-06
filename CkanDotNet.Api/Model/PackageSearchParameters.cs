@@ -12,7 +12,7 @@ namespace CkanDotNet.Api.Model
     {
         private List<string> tags = new List<string>();
         private List<string> groups = new List<string>();
-        private string orderBy = "rank";
+        private string orderBy;
         private int offset = -1;
         private int limit = -1;
 
