@@ -120,11 +120,36 @@
                             Author Email
                         </th>
                         <td>
-                            @Model.AuthorEmail
+                            <a href="mailto:@Model.AuthorEmail">@Model.AuthorEmail</a>
                         </td>
                     </tr>
                 } 
                 
+                
+                @if (!String.IsNullOrEmpty(Model.Maintainer))
+                {
+                    <tr>
+                        <th>
+                            Maintainer
+                        </th>
+                        <td>
+                            @Model.Maintainer
+                        </td>
+                    </tr>
+                }
+                
+                @if (!String.IsNullOrEmpty(Model.MaintainerEmail))
+                {
+                    <tr>
+                        <th>
+                            Maintainer Email
+                        </th>
+                        <td>
+                            <a href="mailto:@Model.MaintainerEmail">@Model.MaintainerEmail</a>
+                        </td>
+                    </tr>
+                } 
+
                 @if (!String.IsNullOrEmpty(Model.Version))
                 {
                     <tr>
