@@ -661,6 +661,17 @@ namespace CkanDotNet.Web.Models.Helpers
             return label;
         }
 
+        /// <summary>
+        /// Use the license block from the theme license page (_License).  Uses the 
+        /// standard CKAN license information by default.
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetPackageUseThemeLicenseTemplate()
+        {
+            string enabled = ConfigurationManager.AppSettings["Package.UseThemeLicenseTemplate"];
+            return (enabled == "true") ? true : false;
+        }
+
         #endregion
 
         #region Tag Cloud Settings

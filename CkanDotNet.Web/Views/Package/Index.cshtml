@@ -69,7 +69,13 @@
     
     @Html.Partial("~/Views/Shared/Package/_Tags.cshtml")
 
-    @Html.Partial("~/Views/Shared/Package/_License.cshtml")
+    @if (SettingsHelper.GetPackageUseThemeLicenseTemplate()) {
+        @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_License.cshtml")
+    }
+    else
+    {
+        @Html.Partial("~/Views/Shared/Package/_License.cshtml")
+    }
 
     @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_About.cshtml")
 </div>
