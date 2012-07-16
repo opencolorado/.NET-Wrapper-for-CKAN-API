@@ -20,8 +20,8 @@ used with any CKAN instance.
 
 ### Live Sites
 
-* City and County of Denver Open Data Catalog (http://data.denvergov.org)
-* Town of Castle Rock Open Data Catalog (http://crgov.com/index.aspx?nid=1253)
+* [City and County of Denver Open Data Catalog] (http://data.denvergov.org)
+* [Town of Castle Rock Open Data Catalog] (http://crgov.com/index.aspx?nid=1253)
 
 ### Screenshots
 
