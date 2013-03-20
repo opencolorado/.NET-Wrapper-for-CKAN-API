@@ -1,4 +1,2 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<publishData>
-  <publishProfile publishUrl="http://govgisdev02/msdeployagentservice" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="Default Web Site/opendatacatalog" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="False" msdeployMarkAsApp="False" profileName="GOVGISDEV02" publishMethod="MSDeploy" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True" />
-</publishData>
+<publishData />

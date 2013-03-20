@@ -19,14 +19,24 @@ a {
     text-decoration: none;
 }
 
-ul
+ol
 {
-   list-style: none; 
+    margin: 0px 0px 8px 0px;
+}
+
+p + p 
+{
+    padding-bottom: 8px;
 }
 
 a:active, a:hover 
 {
     text-decoration: underline;
+}
+
+h3
+{
+    margin-bottom: 5px;
 }
 
 /* Page layout */
@@ -45,12 +55,12 @@ a:active, a:hover
 {
     float: right;
     width: 280px; /*Width of right column in pixels*/
-    padding: 0px 10px;
+    padding: 0px 5px;
 }
 
 #content
 {
-    padding: 10px;
+    padding: 15px;
     width: auto;
 }
 
@@ -96,13 +106,13 @@ a:active, a:hover
 /* Breadcrumbs */
 .breadcrumbs 
 {   
+    display: block;
     color: #999999;
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-style:italic;
 	
 	background-repeat: no-repeat;
 	background-position: top right;
-	background: url('images/bullet_white.png') no-repeat right 5px;
 	padding-right:15px!important;
 	
     font-weight: normal;
@@ -144,7 +154,7 @@ a:active, a:hover
 #body .container
 {
     border: none;
-    margin: 15px 5px;
+    margin: 5px;
     padding: 0 10px 10px;
     background: none;
 }
@@ -157,7 +167,7 @@ a:active, a:hover
 
 .container-title 
 {
-    background: url("http://dgqa.denvergov.org/Portals/_default/Containers/DenverGov/box_top.jpg") no-repeat scroll center center #002445;
+    background: url("img/box_top.jpg") no-repeat scroll center center #002445;
     display: block;
     max-height: 64px;
     min-height: 30px;
@@ -198,6 +208,7 @@ a:active, a:hover
 {   
     color: #000000;
     font-size: 11px;
+    padding: 1px;
 }
 
 /* Rating styles */
@@ -277,18 +288,27 @@ a:active, a:hover
 {
     font-size: 12px;
     font-weight: bold;
-    width: 300px;
 }
 
 .result-date
 {
     font-size: 11px;
+    clear: both;
 }
 
 .result-tags
 {
     font-size: 11px;
     color: #666666;
+}
+
+.result .formats
+{
+    float:right;
+    display: block;
+    position:relative;
+    right: 0px;
+    top: 0px;
 }
 
 /* Pager styles */
@@ -347,7 +367,7 @@ a:active, a:hover
     font-weight: bold;
     
     position: relative;
-    top: 4px;
+    top: 0px;
 }
 
 .package-action
@@ -471,7 +491,7 @@ a:active, a:hover
 .featured-package .formats
 { 
     position: absolute;
-    bottom: 7px;
+    bottom: 0px;
     left:1px;
 }
 

@@ -11,17 +11,19 @@ This project was created in partnership with [Open Colorado] (http://www.opencol
 Colorado Smart Communities.  
 
 This .NET implementation was created for communities that want to leverage the Colorado CKAN 
-repository (http://colorado.ckan.net) while hosting a local data catalog front-end on their organization's
+repository (http://data.opencolorado.org) while hosting a local data catalog front-end on their organization's
 Windows/.NET platform.  For organizations that prefer, there is also 
 a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API) available.
 
-There is no specific implemention in this project related to colorado.ckan.net so this can be
+There is no specific implemention in this project related to data.opencolorado.org so this can be
 used with any CKAN instance.
 
-### Live Sites
+### Demo
 
-* [City and County of Denver Open Data Catalog] (http://data.denvergov.org)
-* [Town of Castle Rock Open Data Catalog] (http://crgov.com/index.aspx?nid=1253)
+Two live demo sites are available:
+
+* [Default theme] (http://ckandotnetdemodefault.apphb.com) pointing to the [Arvada group] (http://data.opencolorado.org/group/arvada) on [OpenColorado] (http://data.opencolorado.org)
+* [Denver theme] (http://ckandotnetdemodenver.apphb.com) pointing to the [Arvada group] (http://data.opencolorado.org/group/arvada) on [OpenColorado] (http://data.opencolorado.org)
 
 ### Screenshots
 

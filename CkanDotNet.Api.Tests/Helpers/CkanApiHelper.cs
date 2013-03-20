@@ -7,7 +7,7 @@ namespace CkanDotNet.Api.Tests.Helpers
 {
     public static class CkanApiHelper
     {
-        private static string host = "colorado.ckan.net";
+        private static string host = "data.opencolorado.org";
 
         public static CkanClient GetCkanClient()
         {
