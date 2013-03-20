@@ -18,16 +18,12 @@ a [PHP front-end] (https://github.com/opencolorado/PHP-Wrapper-for-CKAN-API) ava
 There is no specific implemention in this project related to data.opencolorado.org so this can be
 used with any CKAN instance.
 
-### Demo
+### Live sites
 
-Two live demo sites are available:
+The catalog is fully themable using CSS/HTML and two live sites are available:
 
-* [Default theme] (http://ckandotnetdemodefault.apphb.com) pointing to the [Arvada group] (http://data.opencolorado.org/group/arvada) on [OpenColorado] (http://data.opencolorado.org)
-* [Denver theme] (http://ckandotnetdemodenver.apphb.com) pointing to the [Arvada group] (http://data.opencolorado.org/group/arvada) on [OpenColorado] (http://data.opencolorado.org)
-
-### Screenshots
-
-The catalog is fully themable using CSS/HTML.  See the [screenshots] (https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/tree/master/Screenshots) for examples.
+* [Denver Open Data Catalog] (http://data.denvergov.org)
+* [Town of Castle Rock Town Mapping Catalog] (http://crgov.com/index.aspx?nid=1253)
 
 ### Current Version
 
