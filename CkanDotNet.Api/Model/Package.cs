@@ -12,6 +12,8 @@ namespace CkanDotNet.Api.Model
 
         private List<Resource> resources = new List<Resource>();
 
+        private List<Related> related = new List<Related>();
+
         private List<string> groups = new List<string>();
 
         private List<string> tags = new List<string>();
@@ -309,6 +311,21 @@ namespace CkanDotNet.Api.Model
 
             return title;
 
+        }
+
+        /// <summary>
+        /// Gets the package's related items
+        /// </summary>
+        public List<Related> Related
+        {
+            get
+            {
+                return related;
+            }
+            set
+            {
+                related = value;
+            }
         }
         
     }

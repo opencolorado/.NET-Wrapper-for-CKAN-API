@@ -1,0 +1,66 @@
+﻿@using CkanDotNet.Api.Model
+@using CkanDotNet.Web.Models.Helpers
+@model Package
+
+@if (Model.Related.Count > 0) {
+    <div class="container">
+        <h2 class="container-title">Apps & Ideas</h2>
+        <div class="container-content">
+            <div class="application-list">
+            @foreach (Related item in Model.Related) {
+                var imageUrl = @item.ImageUrl;
+                if (String.IsNullOrEmpty(imageUrl))
+                {
+                    imageUrl = String.Format("http://{0}/images/photo-placeholder.png", SettingsHelper.GetRepositoryHost()); 
+                }
+                <a class="application-thumbnail" href="@item.Url">
+                @*<div class="application-thumbnail-image" style="background-image:url(@imageUrl)"></div>*@
+                    <img class="application-thumbnail-image" src="@imageUrl"/>
+                <div class="application-thumbnail-meta">
+                    <div class="application-thumbnail-name">@item.Title</div>
+                    <div class="application-thumbnail-description" style="height: 0px;">
+                        <div>
+                        @item.Description
+                        </div>
+                    </div>
+                </div>
+                </a>
+
+            }
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('.application-thumbnail').hover(
+            function () {
+                // Get the height of the name
+                var descHeight = $(this).find('.application-thumbnail-description > div').height()
+
+                $(this).find('.application-thumbnail-description').animate({
+                    height: descHeight
+                }, 200, function () {
+                    // Animation complete
+                });
+
+            },
+            function () {
+                
+                 $(this).find('.application-thumbnail-description').animate({
+                    height: 0
+                }, 200, function () {
+                    // Animation complete
+                });
+
+
+            }
+        );
+
+    });
+
+</script>
+
+}

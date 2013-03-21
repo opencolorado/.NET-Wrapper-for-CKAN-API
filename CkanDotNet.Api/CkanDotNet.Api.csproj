@@ -80,6 +80,9 @@
     <Compile Include="Helper\CacheEntry.cs" />
     <Compile Include="Helper\CacheEntrySummary.cs" />
     <Compile Include="Helper\DateHelper.cs" />
+    <Compile Include="Model\ActionResponse.cs" />
+    <Compile Include="Model\ActionResponseRelated.cs" />
+    <Compile Include="Model\Related.cs" />
     <Compile Include="Model\ResourceSearchResponse.cs" />
     <Compile Include="Model\PackageSearchResponse.cs" />
     <Compile Include="Model\RevisionSearchParameters.cs" />
