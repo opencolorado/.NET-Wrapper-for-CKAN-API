@@ -627,7 +627,17 @@ namespace CkanDotNet.Web.Models.Helpers
         }
 
         /// <summary>
-        /// Get the list of groups that have been configured in the settings.
+        /// Is the package related items section enabled
+        /// </summary>
+        /// <returns></returns>
+        public static bool GetPackageRelatedItemsEnabled()
+        {
+            string enabled = ConfigurationManager.AppSettings["Package.RelatedItemsEnabled"];
+            return (enabled == "true") ? true : false;
+        }
+
+        /// <summary>
+        /// Is the package RSS feed link enabled
         /// </summary>
         /// <returns></returns>
         public static bool GetPackageRssFeedEnabled()
