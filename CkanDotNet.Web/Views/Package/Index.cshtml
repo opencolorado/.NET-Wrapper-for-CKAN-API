@@ -63,10 +63,10 @@
 @section SideBar {
 <div id="sidebar">
 
-    @* Removed, no longer supported by CKAN
-    @Html.Partial("~/Views/Shared/Package/_Rate.cshtml")
-    *@
+    @if (SettingsHelper.GetPackageRelatedItemsEnabled())
+    {
     @Html.Partial("~/Views/Shared/Package/_Related.cshtml")
+    }
 
     @Html.Partial("~/Views/Shared/Package/_Tags.cshtml")
 
