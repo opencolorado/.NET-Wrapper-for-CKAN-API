@@ -77,7 +77,11 @@ See license text at http://xunit.codeplex.com/license
 
 ---------
 
+MarkdownSharp (https://code.google.com/p/markdownsharp/)
+Licensed under the MIT License.
+See license text at http://opensource.org/licenses/mit-license.php
 
+---------
 
 
 

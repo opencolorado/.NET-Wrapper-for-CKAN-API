@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using CkanDotNet.Api.Helper;
 using System.Text.RegularExpressions;
+using MarkdownSharp;
 
 namespace CkanDotNet.Api.Model
 {
@@ -248,7 +249,9 @@ namespace CkanDotNet.Api.Model
             get
             {
                 if (String.IsNullOrEmpty(notesRendered)) {
-                    notesRendered = Notes;
+                    Markdown markdown = new Markdown();
+                    string transformedNotes = markdown.Transform(Notes);
+                    notesRendered = transformedNotes;
                 }
                 return notesRendered;
             }
@@ -282,16 +285,16 @@ namespace CkanDotNet.Api.Model
         }
 
         /// <summary>
-        /// Get the abbreviated notes truncated to a specific size (nearest word).  All markup is 
-        /// removed.
+        /// Get the abbreviated notes (with no HTML formatting) truncated to a specific size (nearest word).
         /// </summary>
         /// <param name="length"></param>
         /// <returns></returns>
         public string GetAbbreviatedNotes(int length)
         {
-            // Get the rendered notes
+            // Get the notes (in rendered form to make sure any markdown is processed)
             string summary = NotesRendered;
 
+            // Abbreviate the string (also strips HTML)
             summary = StringHelper.CreateAbbreviatedString(length, summary);
             return summary;
         }
