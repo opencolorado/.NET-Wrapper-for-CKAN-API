@@ -311,37 +311,74 @@ h3
     top: 0px;
 }
 
+.results-mode .mode
+{
+    padding: 4px;
+    margin: 0px 0px 0px 0px;
+
+    position:relative; /* Required to make "button" clickable in IE */
+    
+    font-size: 11px;
+    font-weight: bold;
+    border: 1px solid #aaaaaa;
+    
+    
+    background-color: #EAEAEA;
+    background-image: -moz-linear-gradient(top, #FAFAFA, #EAEAEA);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #EAEAEA), color-stop(1, #FAFAFA));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#FAFAFA', endColorstr='#EAEAEA');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FAFAFA', endColorstr='#EAEAEA')";
+}
+
+.results-mode .mode:first-child
+{
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.results-mode .mode:last-child
+{
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: none;
+}
+
+
+.results-mode .mode.active
+{
+    color: #ffffff;
+    font-weight: bold;
+
+    background-color: #63BCFC;
+    background-image: -moz-linear-gradient(top, #00579d, #63BCFC);
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #63BCFC), color-stop(1, #00579d));
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#00579d', endColorstr='#63BCFC');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#00579d', endColorstr='#63BCFC')";
+}
+
 /* Pager styles */
 
-.pager li.link
+
+.pager a
 {
     font-size: 12px;
     font-weight: bold;
 }
 
-.pager li.item
+.pager span a
 {
-    font-weight:bold;
     font-size: 14px;
     border: 1px solid #666666;
     background-color: #ffffff;
     border-radius: 2px;
-}
-
-/* Pager in a header */
-.container-title .pager
-{
-    top: 0px;
-}
-.container-title .pager .item span
-{
-    color: #000000;
-}
-
-.container-title .pager li.item a
-{
-    color: #0074BD;
-    font-weight: bold;
 }
 
 /* Package styles */

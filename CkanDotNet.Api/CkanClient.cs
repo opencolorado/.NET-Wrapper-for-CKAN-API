@@ -369,6 +369,30 @@ namespace CkanDotNet.Api
         #region CKAN Search API
 
         /// <summary>
+        /// Get a count of all packages that meet the search criteria
+        /// </summary>
+        /// <param name="parameters">Provides that parameters to use in the search.</param>
+        /// <returns>Search results</returns>
+        public int GetPackageCount(PackageSearchParameters parameters)
+        {
+            return GetPackageCount(parameters, null);
+        }
+
+        /// <summary>
+        /// Get a count of all packages that meet the search criteria with caching.
+        /// </summary>
+        /// <param name="parameters">Provides that parameters to use in the search.</param>
+        /// <returns>Search results</returns>
+        public int GetPackageCount(PackageSearchParameters parameters, CacheSettings settings)
+        {
+            // Set the limit to 0 (only getting the count, not package details)
+            parameters.Limit = 0;
+
+            int count = SearchPackages<string>(parameters, settings).Count;
+            return count;
+        }
+
+        /// <summary>
         /// Search for packages in the CKAN repository.
         /// </summary>
         /// <param name="parameters">Provides that parameters to use in the search.</param>
@@ -376,7 +400,6 @@ namespace CkanDotNet.Api
         public PackageSearchResponse<T> SearchPackages<T>(PackageSearchParameters parameters)
         {
             return SearchPackages<T>(parameters, null);
-
         }
 
         /// <summary>
@@ -438,24 +461,6 @@ namespace CkanDotNet.Api
                 request.AddParameter("maintainer", parameters.Maintainer);
             }
 
-            // Apply order_by parameter
-            if (!String.IsNullOrEmpty(parameters.OrderBy))
-            {
-                request.AddParameter("order_by", parameters.OrderBy);
-            }
-
-            // Set the offset and limit parameters
-            if (parameters.Offset > -1)
-            {
-                request.AddParameter("offset", parameters.Offset);
-                
-            }
-
-            if (parameters.Limit > -1)
-            {
-                request.AddParameter("limit", parameters.Limit);
-            }
-
             // Apply all_fields parameter
             if (typeof(T) == typeof(Package))
             {
@@ -474,7 +479,25 @@ namespace CkanDotNet.Api
                 request.AddParameter("filter_by_downloadable", "1");
             }
 
-            // Execute the request
+            // Apply order_by parameter
+            if (!String.IsNullOrEmpty(parameters.OrderBy))
+            {
+                request.AddParameter("order_by", parameters.OrderBy);
+            }
+
+            // Set the offset and limit parameters
+            if (parameters.Offset > -1)
+            {
+                request.AddParameter("offset", parameters.Offset);
+
+            }
+
+            if (parameters.Limit > -1)
+            {
+                request.AddParameter("limit", parameters.Limit);
+            }
+
+            // Execute the search request
             PackageSearchResponse<T> response = Execute<PackageSearchResponse<T>>(request, settings);
 
             // If no results, return an empty results object
@@ -482,8 +505,60 @@ namespace CkanDotNet.Api
             {
                 response = new PackageSearchResponse<T>();
             }
+            else
+            {
+                if (typeof(T) == typeof(Package) && parameters.AggregateTagCounts && response.Results.Count > 0)
+                {
+                    if (response.Results.Count == response.Count)
+                    {
+                        // If we have all of the results on the current page just aggregate the tags
+                        if (typeof(T) == typeof(Package))
+                        {
+                            List<Package> packages = response.Results.ConvertAll(item => (Package)((object)item));
+                            response.Tags = TagHelper.GetTagCounts(packages);
+                        }
+                    }
+                    else
+                    {
+                        // If we don't have all of the results submit another request to 
+                        // get all of the tags
+                        response.Tags = SearchPackagesGetTagCounts(parameters, settings);
+                    }
+                }
+            }
 
             return response;
+        }
+
+        /// <summary>
+        /// Search for packages in the CKAN repository and just return tag counts.
+        /// </summary>
+        /// <param name="parameters">Provides that parameters to use in the search.</param>
+        /// <returns>Search results</returns>
+        private List<Tag> SearchPackagesGetTagCounts(PackageSearchParameters parameters)
+        {
+            return SearchPackagesGetTagCounts(parameters, null);
+        }
+
+        /// <summary>
+        /// Search for packages in the CKAN repository and just return tag counts with caching.
+        /// </summary>
+        /// <param name="parameters">Provides that parameters to use in the search.</param>
+        /// <param name="settings">The cache settings.</param>
+        /// <returns>Search results</returns>
+        public List<Tag> SearchPackagesGetTagCounts(PackageSearchParameters parameters, CacheSettings settings)
+        {
+            // Execute the search request
+            parameters.Offset = 0;
+            parameters.Limit = GetPackageCount(parameters, settings);
+
+            PackageSearchResponse<Package> response = SearchPackages<Package>(parameters, settings);
+
+            List<Package> packages = response.Results;
+
+            List<Tag> tags = TagHelper.GetTagCounts(packages);
+
+            return tags;
         }
 
         /// <summary>

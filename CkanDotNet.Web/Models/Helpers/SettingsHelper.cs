@@ -332,20 +332,6 @@ namespace CkanDotNet.Web.Models.Helpers
             return GetList("Catalog.HiddenTags");
         }
 
-        /// <summary>
-        /// Filter the package titles with the package title prefix.
-        /// </summary>
-        /// <param name="packages"></param>
-        public static List<string> FilterTags(List<string> tags)
-        {
-            List<string> hiddenTags = GetCatalogHiddenTags();
-            foreach (var hiddenTag in hiddenTags)
-            {
-                tags.Remove(hiddenTag);
-            }
-            return tags;
-        }
-
         #endregion
 
 

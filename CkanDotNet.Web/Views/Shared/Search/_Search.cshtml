@@ -10,12 +10,20 @@
     }
 }
 
-@using (Html.BeginForm(actionName: "Index", controllerName: "Search", routeValues: null,
-method: FormMethod.Get, htmlAttributes: new { @class = "search-form"}))
+@using (Html.BeginForm("Index", "Search",
+    null,
+    FormMethod.Get, 
+    new Dictionary<string, object> { { "class", "search-form" } } ))
 { 
 <div class="search">
 <input name="q" type="text" tabindex="1" class="search-input" value="@query" />
 <input type="submit" class="search-submit" value="Search" />
+
+@if (Model != null && Model.DisplayMode != ResultsDisplayMode.List)
+{
+    @Html.Hidden("mode", @Model.DisplayMode.ToString().ToLower());
+}
+
 @if (!String.IsNullOrEmpty(query))
 {
     @Html.ActionLink("Clear", "Index", "Search");

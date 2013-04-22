@@ -9,10 +9,12 @@ namespace CkanDotNet.Api.Model
     {
         public int Count { get; set; }
         public List<T> Results { get; set; }
+        public List<Tag> Tags { get; set; }
 
         public PackageSearchResponse()
         {
             Results = new List<T>();
+            Tags = new List<Tag>();
         }
     }
 }

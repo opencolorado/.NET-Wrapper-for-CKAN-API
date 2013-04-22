@@ -30,7 +30,7 @@ namespace CkanDotNet.Web.Controllers
         /// <returns></returns>
         [CheckOffline]
         
-        public ActionResult Index(string q, int? page, string order_by, string tag)
+        public ActionResult Index(string q, int? page, string order_by, string tag, string mode)
         {
             log.DebugFormat("Controller action requested");
 
@@ -38,6 +38,7 @@ namespace CkanDotNet.Web.Controllers
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
+            searchParameters.AggregateTagCounts = true;
             searchParameters.Query = q;
             searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
             
@@ -53,26 +54,52 @@ namespace CkanDotNet.Web.Controllers
                 searchParameters.Tags.Add(tag);
             }
 
-            // Set up the pagination
-            int pageNumber = 1;
-            if (page != null)
-            {
-                pageNumber = (int)page;
-            }
-
-            Pager pager = new Pager(pageNumber, SettingsHelper.GetSearchResultsPerPage());
-            searchParameters.Offset = pager.RecordOffset;
-            searchParameters.Limit = pager.RecordsPerPage;
-
             // Build the view model for the results
             PackageSearchResultsModel model = new PackageSearchResultsModel();
+            Pager pager = null;
+
+            if (mode == "table")
+            {
+                model.DisplayMode = ResultsDisplayMode.Table;
+                searchParameters.Offset = 0;
+                // TODO: In the table mode all results are currently returned and paginated client side.
+                // This isn't scalable so this will need looked at in the future (AJAX pagination maybe?)
+                searchParameters.Limit = CkanHelper.GetPackageCount();
+            }
+            else // mode == list (default)
+            {
+                // Set up the pagination
+                int pageNumber = 1;
+                if (page != null)
+                {
+                    pageNumber = (int)page;
+                }
+
+                pager = new Pager(pageNumber, SettingsHelper.GetSearchResultsPerPage());
+
+                searchParameters.Offset = pager.RecordOffset;
+                searchParameters.Limit = pager.RecordsPerPage;
+            }
+
+            // Execute the search
             model.SearchParameters = searchParameters;
             model.SearchResults = CkanHelper.GetClient().SearchPackages<Package>(searchParameters, new CacheSettings(SettingsHelper.GetSearchResultsCacheDuration()));
+            
+            // Filter the titles
             SettingsHelper.FilterTitles(model.SearchResults.Results);
-            model.Pager = pager;
 
-            // Set the number of records to be paged
-            pager.RecordCount = model.SearchResults.Count;            
+            // Filter the tags
+            model.SearchResults.Tags = TagHelper.FilterTags(model.SearchResults.Tags);
+
+            // Set the pager if we are using it
+            if (pager != null)
+            {
+                // Set the number of records to be paged
+                pager.RecordCount = model.SearchResults.Count;      
+
+                // Add the pager to the model
+                model.Pager = pager;
+            }
 
             // Render the view
             return View(model);

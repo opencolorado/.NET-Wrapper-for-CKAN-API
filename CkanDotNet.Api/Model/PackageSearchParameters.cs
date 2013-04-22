@@ -95,5 +95,10 @@ namespace CkanDotNet.Api.Model
         /// </summary>
         public bool FilterByDownloadable { get; set; }
 
+        /// <summary>
+        /// Aggregate tag counts.  Gets tags counts for all results (not just the current page) (default: false)
+        /// </summary>
+        public bool AggregateTagCounts { get; set; }
+
     }
 }

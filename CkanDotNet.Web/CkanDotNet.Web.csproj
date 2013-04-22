@@ -123,12 +123,13 @@
     <Compile Include="Models\Helpers\ErrorHelper.cs" />
     <Compile Include="Models\Helpers\GuidHelper.cs" />
     <Compile Include="Models\Helpers\SiteMapHelper.cs" />
+    <Compile Include="Models\Helpers\TagHelper.cs" />
     <Compile Include="Models\MetaTags.cs" />
     <Compile Include="Models\PreWarmCache.cs" />
+    <Compile Include="Models\ResultsDisplayMode.cs" />
     <Compile Include="Models\Settings\ResourceAction.cs" />
     <Compile Include="Models\Settings\ResourceType.cs" />
     <Compile Include="Models\Helpers\SettingsHelper.cs" />
-    <Compile Include="Models\Helpers\TagHelper.cs" />
     <Compile Include="Models\Pager.cs" />
     <Compile Include="Models\PartialRequest.cs" />
     <Compile Include="Models\Helpers\RouteHelper.cs" />
@@ -137,7 +138,6 @@
     <Compile Include="Models\SiteMap\SiteMapUrlChangeFrequency.cs" />
     <Compile Include="Models\SearchResultsModel.cs" />
     <Compile Include="Models\SearchResultsSideBarModel.cs" />
-    <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +175,20 @@
     <Content Include="Global.asax" />
     <Content Include="iframetest.html" />
     <Content Include="LICENSE.txt" />
+    <Content Include="Scripts\datatables\css\jquery.dataTables.css" />
+    <Content Include="Scripts\datatables\images\back_disabled.png" />
+    <Content Include="Scripts\datatables\images\back_enabled.png" />
+    <Content Include="Scripts\datatables\images\back_enabled_hover.png" />
+    <Content Include="Scripts\datatables\images\favicon.ico" />
+    <Content Include="Scripts\datatables\images\forward_disabled.png" />
+    <Content Include="Scripts\datatables\images\forward_enabled.png" />
+    <Content Include="Scripts\datatables\images\forward_enabled_hover.png" />
+    <Content Include="Scripts\datatables\images\sort_asc.png" />
+    <Content Include="Scripts\datatables\images\sort_asc_disabled.png" />
+    <Content Include="Scripts\datatables\images\sort_both.png" />
+    <Content Include="Scripts\datatables\images\sort_desc.png" />
+    <Content Include="Scripts\datatables\images\sort_desc_disabled.png" />
+    <Content Include="Scripts\datatables\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.14.custom.min.js" />
     <Content Include="Scripts\jquery.watermark.min.js" />
     <Content Include="Scripts\stars\jquery.ui.stars.css" />
@@ -366,6 +380,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Package\_Related.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_ResultsMode.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Search\_SearchResultsTable.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\datatables\images\Sorting icons.psd" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

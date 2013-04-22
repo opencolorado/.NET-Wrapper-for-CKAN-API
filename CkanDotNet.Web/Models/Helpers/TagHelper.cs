@@ -13,81 +13,87 @@ namespace CkanDotNet.Web.Models
     public static class TagHelper
     {
         /// <summary>
-        /// Get tag counts from a collection of packages.
+        /// Compute the relative size of each tag based on the total number of tags
         /// </summary>
-        /// <param name="packages"></param>
+        /// <param name="tags"></param>
+        /// <param name="minPercent"></param>
+        /// <param name="maxPercent"></param>
         /// <returns></returns>
-        public static List<Tag> GetTagCounts(Package package)
+        public static List<Tag> ComputeTagScale(List<Tag> tags)
         {
-            var packages = new List<Package>();
-            packages.Add(package);
-            return GetTagCounts(packages, 0, SettingsHelper.GetTagCloudMinScale(), SettingsHelper.GetTagCloudMaxScale());
-        }
-
-        /// <summary>
-        /// Get tag counts from a collection of packages.
-        /// </summary>
-        /// <param name="packages"></param>
-        /// <returns></returns>
-        public static List<Tag> GetTagCounts(List<Package> packages)
-        {
-            return GetTagCounts(packages, 0, SettingsHelper.GetTagCloudMinScale(), SettingsHelper.GetTagCloudMaxScale());
-        }
-
-        /// <summary>
-        /// Get tag counts from a collection of packages
-        /// </summary>
-        /// <param name="packages"></param>
-        /// <param name="ignoreTags"></param>
-        /// <returns></returns>
-        public static List<Tag> GetTagCounts(List<Package> packages, int minPercent, int maxPercent)
-        {
-            return GetTagCounts(packages, new List<string>(), 0, minPercent, maxPercent);
-        }
-
-        /// <summary>
-        /// Get tag counts from a collection of packages ignoring specific tags
-        /// </summary>
-        /// <param name="packages"></param>
-        /// <param name="ignoreTags"></param>
-        /// <returns></returns>
-        public static List<Tag> GetTagCounts(List<Package> packages, int limit, int minPercent, int maxPercent)
-        {
-            return GetTagCounts(packages, new List<string>(), 0, minPercent, maxPercent);
-        }
-
-        /// <summary>
-        /// Get top tags from a collection of packages ignoring specific tags.
-        /// </summary>
-        /// <param name="packages"></param>
-        /// <param name="ignoreTags"></param>
-        /// <param name="limit"></param>
-        /// <returns></returns>
-        public static List<Tag> GetTagCounts(List<Package> packages, List<string> ignoreTags, int limit, int minPercent, int maxPercent)
-        {
-            List<Tag> tags = new List<Tag>();
-
-            foreach (var package in packages)
+            if (tags.Count > 0)
             {
-                foreach (var tagString in package.Tags)
-                {
-                    if (!ignoreTags.Contains(tagString))
-                    {
-                        Tag tag = new Tag(tagString);
+                int minPercent = SettingsHelper.GetTagCloudMinScale();
+                int maxPercent = SettingsHelper.GetTagCloudMaxScale();
 
-                        if (tags.Contains(tag))
-                        {
-                            tag = tags.Find(item => item.Label == tagString);
-                            tag.Count = tag.Count + 1;
-                        }
-                        else
-                        {
-                            tags.Add(tag);
-                        }
-                    }
-                }  
+                double min = (from entry in tags
+                              orderby entry.Count
+                              ascending
+                              select entry).First().Count;
+
+                double max = (from entry in tags
+                              orderby entry.Count
+                              ascending
+                              select entry).Last().Count;
+
+                int count = tags.Count;
+
+                double multiplier = 1;
+
+                if (max > min && maxPercent > minPercent)
+                {
+                    multiplier = (double)(maxPercent - minPercent) / (double)(max - min);
+                }
+
+                foreach (var tag in tags)
+                {
+                    double size = (double)minPercent + ((max - (max - ((double)tag.Count - min))) * multiplier);
+                    tag.Scale = (int)Math.Round(size);
+                }
             }
 
+            return tags;
+        }
+
+
+        /// <summary>
+        /// Remove tags that should be hidden
+        /// </summary>
+        /// <param name="packages"></param>
+        public static List<string> FilterTags(List<string> tags)
+        {
+            List<string> hiddenTags = SettingsHelper.GetCatalogHiddenTags();
+            foreach (var hiddenTag in hiddenTags)
+            {
+                tags.Remove(hiddenTag);
+            }
+            return tags;
+        }
+
+        /// <summary>
+        /// Remove tags that should be hidden
+        /// </summary>
+        /// <param name="packages"></param>
+        public static List<Tag> FilterTags(List<Tag> tags)
+        {
+            List<string> hiddenTags = SettingsHelper.GetCatalogHiddenTags();
+            List<Tag> filteredTags = new List<Tag>();
+
+            foreach (var tag in tags)
+            {
+                if (!hiddenTags.Contains(tag.Label)) {
+                    filteredTags.Add(tag);
+                }
+            }
+            return filteredTags;
+        }
+
+        /// <summary>
+        /// Limit tags to the top n tags with the largest count
+        /// </summary>
+        /// <param name="packages"></param>
+        public static List<Tag> LimitTags(List<Tag> tags, int limit)
+        {
             if (tags.Count > 0)
             {
                 // Get the top items from the list
@@ -103,46 +109,6 @@ namespace CkanDotNet.Web.Models
 
                 // Order the list
                 tags.Sort();
-
-                // Compute the tag scales
-                tags = ComputeTagScale(tags, minPercent, maxPercent);
-            }
-
-            return tags;
-        }
-
-        /// <summary>
-        /// Compute the relative size of each tag based on the total number of tags
-        /// </summary>
-        /// <param name="tags"></param>
-        /// <param name="minPercent"></param>
-        /// <param name="maxPercent"></param>
-        /// <returns></returns>
-        private static List<Tag> ComputeTagScale(List<Tag> tags, int minPercent, int maxPercent)
-        {
-            int min = (from entry in tags
-                       orderby entry.Count
-                       ascending
-                       select entry).First().Count;
-
-            int max = (from entry in tags
-                       orderby entry.Count
-                       ascending
-                       select entry).Last().Count;
-
-            int count = tags.Count;
-
-            var multiplier = 1;
-
-            if (max > min && maxPercent > minPercent)
-            {
-                multiplier = (maxPercent - minPercent) / (max - min);
-            }
-
-            foreach (var tag in tags)
-            {
-                double size = minPercent + ((max - (max - (tag.Count - min))) * multiplier);
-                tag.Scale = (int)Math.Round(size);
             }
 
             return tags;

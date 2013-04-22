@@ -57,7 +57,7 @@
             @if (SettingsHelper.GetSearchResultsShowTags())
             {
                 <div class="result-tags">Tags:
-                @foreach (var tag in SettingsHelper.FilterTags(result.Tags))
+                @foreach (var tag in TagHelper.FilterTags(result.Tags))
                 {
                     <span class="result-tag">@Html.ActionLink(tag, "Index", "Search", new { tag = @tag }, null)</span>
                 }

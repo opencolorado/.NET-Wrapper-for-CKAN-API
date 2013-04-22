@@ -83,6 +83,7 @@
     <Compile Include="Helper\CacheEntry.cs" />
     <Compile Include="Helper\CacheEntrySummary.cs" />
     <Compile Include="Helper\DateHelper.cs" />
+    <Compile Include="Helper\TagHelper.cs" />
     <Compile Include="Model\ActionResponse.cs" />
     <Compile Include="Model\ActionResponseRelated.cs" />
     <Compile Include="Model\Related.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Model\Rating.cs" />
     <Compile Include="Model\Resource.cs" />
     <Compile Include="Model\Revision.cs" />
+    <Compile Include="Model\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

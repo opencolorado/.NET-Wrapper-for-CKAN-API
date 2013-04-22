@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CkanDotNet.Web.Models
+namespace CkanDotNet.Api.Model
 {
     public class Tag : IEquatable<Tag>, IComparable<Tag>
     {

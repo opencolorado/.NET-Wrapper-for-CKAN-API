@@ -37,6 +37,33 @@ namespace CkanDotNet.Web.Models
         }
 
         /// <summary>
+        /// Get all tags from the CKAN group.
+        /// </summary>
+        /// <returns></returns>
+        public static List<Tag> GetAllTags(int limit)
+        {
+            CacheSettings settings = new CacheSettings(SettingsHelper.GetAllPackagesCacheDuration(), SettingsHelper.GetAllPackagesCacheBackgroundUpdate());
+
+            // Create the CKAN search parameters
+            var searchParameters = new PackageSearchParameters();
+            searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
+
+            // Collect the results
+            List<Tag> tags = CkanHelper.GetClient().SearchPackagesGetTagCounts(searchParameters, settings);
+
+            // Remove filtered tags
+            tags = TagHelper.FilterTags(tags);
+
+            if (limit > 0)
+            {
+                tags = TagHelper.LimitTags(tags, limit);
+            }
+
+            return tags;
+        }
+
+
+        /// <summary>
         /// Get all packages from the CKAN group.
         /// </summary>
         /// <returns></returns>

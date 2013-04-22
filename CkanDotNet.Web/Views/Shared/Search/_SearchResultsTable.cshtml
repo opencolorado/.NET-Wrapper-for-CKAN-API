@@ -1,0 +1,69 @@
+﻿@using CkanDotNet.Api.Model
+@using CkanDotNet.Web.Models
+@using CkanDotNet.Web.Models.Helpers
+@model PackageSearchResultsModel
+           
+@{
+    var formatTypes = CkanDotNet.Web.Models.Helpers.SettingsHelper.GetResourceSettings().Types;
+}
+
+<div class="results-table">
+    <table id="results-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Updated</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        @foreach (var result in Model.SearchResults.Results)
+        {
+        <tr>
+            <!-- Title -->
+            <td>@Html.ActionLink(@result.GetAbbreviatedTitle(SettingsHelper.GetDatasetTitleLength()), "Index", "Package", new { package = @result.Name }, new { @class = "package-link tooltip", title = @result.Title })
+                <div class="notes">@Html.Raw(result.GetAbbreviatedNotes(150))</div>
+            </td>
+            
+            <!--- Last Updated -->
+            <td>
+                @result.MetadataModifiedAsDate.ToShortDateString()
+            </td>
+
+        </tr>
+        }
+        </tbody>
+
+    </table>
+
+</div>
+
+<script language="javascript">
+
+    $(function () {
+
+        $.fn.dataTableExt.oStdClasses.sPaging = "pager ";
+        $.fn.dataTableExt.oStdClasses.sPageButtonActive = "active";
+
+        $('#results-table').dataTable({
+            "sPaginationType": "full_numbers",
+            "oLanguage": {
+                "sInfo": "_START_ - _END_ of _TOTAL_",
+                "sSearch": "Filter results:",
+                "oPaginate": {
+                    "sFirst": "",
+                    "sLast": "",
+                    "sNext": "next >",
+                    "sPrevious": "< previous"
+                },
+                "sLengthMenu": 'Display <select>' +
+                '<option value="10">10</option>' +
+                '<option value="25">25</option>' +
+                '<option value="50">50</option>' +
+                '<option value="-1">All</option>' +
+                '</select> results per page'
+            },
+            "sDom": '<"results-header"i<"results-limit"l>>rt<"pager-container"p>'
+        });
+    });
+</script>

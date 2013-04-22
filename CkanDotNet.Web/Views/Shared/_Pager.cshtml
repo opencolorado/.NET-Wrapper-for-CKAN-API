@@ -10,15 +10,14 @@ var routeValues = RouteHelper.RouteFromParameters(Html.ViewContext);
 
 @if (Model.Pager.Last > 1)
 {
-    
+
 <div class="pager">
-<ul>
 
 @* Show the previous link*@
 @if (Model.Pager.Page > 1)
 {
     routeValues["page"] = Model.Pager.Previous;
-    <li class="link">@Html.ActionLink("< previous", "Index", "Search", routeValues, null)</li>
+    @Html.ActionLink("< previous", "Index", "Search", routeValues, null)
 }
 
 @* Show the individual pages*@
@@ -36,28 +35,45 @@ var routeValues = RouteHelper.RouteFromParameters(Html.ViewContext);
         firstPageToDisplay = Math.Max(1, lastPageToDisplay - maxPagesToDisplay + 1);
     }
 }
+<span>
 @for (int i = firstPageToDisplay; i <= lastPageToDisplay; i++)
 {
     routeValues["page"] = i;
     if (i == Model.Pager.Page)
     {
-        <li class="item"><span>@i</span></li>
+        @Html.ActionLink(@i.ToString(), "Index", "Search", routeValues, new Dictionary<string, object> { { "class", "active" } })
     }
     else
     {
             
-        <li class="item">@Html.ActionLink(@i.ToString(), "Index", "Search", routeValues, null)</li>
+        @Html.ActionLink(@i.ToString(), "Index", "Search", routeValues, null)
     };
 }
+</span>
 
 @* Show the next link*@
 @if (Model.Pager.Page < Model.Pager.Last)
 {
     routeValues["page"] = Model.Pager.Next;
-    <li class="link">@Html.ActionLink("next >", "Index", "Search", routeValues, null)</li>
+    @Html.ActionLink("next >", "Index", "Search", routeValues, null)
 }
 
-</ul>
 </div>
     
 }
+
+<!--
+<div class="pager full_numbers" id="results-table_paginate">
+    <a tabindex="0" class="link paginate_button paginate_button_disabled" id="results-table_first"></a>
+    <a tabindex="0" class="previous paginate_button paginate_button_disabled" id="results-table_previous">&lt; Previous</a>
+    <span>
+        <a tabindex="0" class="paginate_active">1</a>
+        <a tabindex="0" class="item">2</a>
+        <a tabindex="0" class="item">3</a>
+        <a tabindex="0" class="item">4</a>
+        <a tabindex="0" class="item">5</a>
+    </span>
+    <a tabindex="0" class="next item" id="results-table_next">Next &gt;</a>
+    <a tabindex="0" class="link item" id="results-table_last">    </a>
+</div>
+-->

@@ -6,30 +6,47 @@
 
 <div class="container">
     <h2 class="container-title">
-    
-    @if (Model.SearchResults.Count > 0)
-    { 
-        <text>Results (</text>@Model.Pager.ToString()<text>)</text>
-        @Html.Partial("_Pager")      
-    }
-    else
-    {
-        <text>No Results Found</text>
-    }
-   </h2>
+    Results
 
     @if (Model.SearchResults.Count > 0)
     {
-        @Html.Partial("~/Views/Shared/Search/_SearchResultsList.cshtml")
+        @Html.Partial("_ResultsMode")  
+    }
+
+    </h2>
+
+    @if (Model.SearchResults.Count > 0)
+    {         
+        if (Model.Pager != null)
+        {
+            <div class="results-header">
+            @Model.Pager.ToString()
+            </div> 
+        }
+    }
+   
+    @if (Model.SearchResults.Count > 0)
+    {
+        if (Model.DisplayMode == ResultsDisplayMode.Table) {
+            @Html.Partial("~/Views/Shared/Search/_SearchResultsTable.cshtml")
+        } 
+        else
+        {
+            @Html.Partial("~/Views/Shared/Search/_SearchResultsList.cshtml")            
+        }
     }
     else
     {
         @Html.Partial("~/Views/Theme/" + SettingsHelper.GetCatalogTheme() + "/_NoSearchResultsFound.cshtml")
     }
 
+    @if (Model.Pager != null)
+    {
+        <div class="pager-container">
+        @Html.Partial("_Pager")
+        </div>
+    }
 
 </div>
 
-<div class="pager-container">
-@Html.Partial("_Pager")
-</div>
+

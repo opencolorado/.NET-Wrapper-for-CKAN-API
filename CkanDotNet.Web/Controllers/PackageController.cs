@@ -25,7 +25,7 @@ namespace CkanDotNet.Web.Controllers
 
             Package packageFound = CkanHelper.GetClient().GetPackage(package, new CacheSettings(SettingsHelper.GetPackageCacheDuration()));
             SettingsHelper.FilterTitle(packageFound);
-            SettingsHelper.FilterTags(packageFound.Tags);
+            TagHelper.FilterTags(packageFound.Tags);
 
             if (package != null)
             {

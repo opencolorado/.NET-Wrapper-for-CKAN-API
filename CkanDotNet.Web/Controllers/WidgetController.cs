@@ -21,19 +21,14 @@ namespace CkanDotNet.Web.Controllers
         {
             log.DebugFormat("Controller action requested");
 
-            // Create the CKAN search parameters
-            var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
-
-            // Collect the results
-            // Collect the results
-            List<Package> packages = CkanHelper.GetAllPackages();
-            SettingsHelper.FilterTitles(packages);
-
-            // Get the tag counts
-            List<string> ignoreTags = SettingsHelper.GetCatalogHiddenTags();
+            // Get the tag limit
             int tagLimit = SettingsHelper.GetHomePopularTagsLimit();
-            List<Tag> tags = TagHelper.GetTagCounts(packages, ignoreTags, tagLimit, SettingsHelper.GetTagCloudMinScale(), SettingsHelper.GetTagCloudMaxScale());
+
+            // Collect the results
+            List<Tag> tags = CkanHelper.GetAllTags(tagLimit);
+
+            // Compute the tag scale
+            tags = TagHelper.ComputeTagScale(tags);
             
             // Render the view
             return View(tags);

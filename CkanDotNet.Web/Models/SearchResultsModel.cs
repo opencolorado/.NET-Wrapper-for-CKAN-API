@@ -10,6 +10,7 @@ namespace CkanDotNet.Web.Models
     {
         public PackageSearchResponse<Package> SearchResults { get; set; }
         public Pager Pager { get; set; }
-        public PackageSearchParameters SearchParameters { get; set; } 
+        public PackageSearchParameters SearchParameters { get; set; }
+        public ResultsDisplayMode DisplayMode { get; set; }
     }
 }

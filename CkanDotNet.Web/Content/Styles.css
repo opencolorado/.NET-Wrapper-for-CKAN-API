@@ -79,6 +79,7 @@ header,nav,article,footer,section,aside,figure,figcaption
    padding: 0px;
    margin: 5px;
    margin-bottom: 10px;
+   position: relative;
 }
 
 .container-title 
@@ -194,10 +195,68 @@ header,nav,article,footer,section,aside,figure,figcaption
     margin: 6px 0px 0px 0px;
 }
 
+.results-header
+{
+    position: relative;
+    padding: 5px 0px 10px 0px;
+    color: #808080;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 28px;
+}
+
+.results-limit
+{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    font-weight: normal;
+}
+
+.results-mode
+{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.results-mode .mode
+{
+    font-size: 12px;
+    padding: 4px;
+    margin: 0px 0px 0px 0px;
+    font-weight: normal;
+}
+
+
+.results-mode .mode.active
+{
+    padding: 4px;
+    margin: 0px 0px 4px 0px;
+    color: #333333;
+    font-weight: bold;
+}
+
+#results-table
+{
+    margin: 5px 0px 15px 0px;
+}
+
+.results-table td
+{
+    font-size: 12px;
+}
+
+.results-table .package-link
+{
+    font-size: 13px;
+}
+
 /* Pager styles */
 .pager-container
 {
-    position: relative;
+    position: absolute;
+    right: 0px;
     height: 24px;
 }
 
@@ -205,31 +264,25 @@ header,nav,article,footer,section,aside,figure,figcaption
 {
     display: inline-block;
     padding: 0px !important;
-    position: absolute;
     right: 10px;
 }
 
-.pager ul
-{
-    margin: 0px;
-    padding-left: 10px;
-}
-
-.pager li 
-{
-    display: inline;
-    padding: 2px 0;
-}
-
-.pager li.item a
-{
+.pager a
+ {
     padding: 2px 5px;
+    cursor: pointer;
+ }
+
+.pager span a
+{
+    margin: 0px 4px 0px 0px;
 }
 
-.pager li.item span
+.pager span a.active
 {
-    padding: 2px 5px;
-    
+    color: #000000;
+    text-decoration: none;
+    cursor:default;
 }
 
 /* Pager in a header */
@@ -240,6 +293,7 @@ header,nav,article,footer,section,aside,figure,figcaption
     position: absolute;
     right: 6px;
     top: 8px;
+    min-height: 24px;
 }
 
 /* Package styles */

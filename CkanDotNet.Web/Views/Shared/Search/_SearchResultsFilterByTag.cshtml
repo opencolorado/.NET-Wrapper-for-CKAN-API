@@ -11,8 +11,7 @@
     // Remove the page number since we want to start from the beginning if we filter
     RouteHelper.UpdateRoute(routeValues, "page", null);
 
-    List<Tag> tags = TagHelper.GetTagCounts(Model.SearchResults.Results);
-   
+    List<Tag> tags = TagHelper.ComputeTagScale(Model.SearchResults.Tags);   
 }
 
 @if (Model.SearchResults.Count > 0)
