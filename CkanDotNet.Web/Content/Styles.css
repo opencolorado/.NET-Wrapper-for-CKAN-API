@@ -255,16 +255,16 @@ header,nav,article,footer,section,aside,figure,figcaption
 /* Pager styles */
 .pager-container
 {
-    position: absolute;
-    right: 0px;
+    position: relative;
     height: 24px;
 }
 
 .pager
 {
+    position:absolute;
     display: inline-block;
     padding: 0px !important;
-    right: 10px;
+    right: 0px;
 }
 
 .pager a

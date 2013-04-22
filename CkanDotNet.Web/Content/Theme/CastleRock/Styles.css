@@ -245,13 +245,13 @@ a
 
 /* Pager styles */
 
-.pager li.link
+.pager a
 {
     font-size: 12px;
     font-weight: bold;
 }
 
-.pager li.item
+.pager span a
 {
     font-weight:bold;
     font-size: 14px;
@@ -259,13 +259,14 @@ a
     background-color: #ffffff;
 }
 
-.pager li.item span
+.pager span a.active
 {
     background-color: #57280C;
     color: #ffffff;
 }
 
-.pager li.item a:hover
+
+.pager span a:hover
 {
     background-color: #E4E0D5;
 }
