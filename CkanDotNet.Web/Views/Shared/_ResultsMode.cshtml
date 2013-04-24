@@ -26,4 +26,17 @@ RouteHelper.UpdateRoute(routeValues, "page", null);
     }
 
 </div>
-    
+ 
+@if (SettingsHelper.GetGoogleAnalyticsEnabled())
+{
+<script language="javascript">
+    $('.mode').click(function () {
+        var mode = $(this).text();
+        _gaq.push([
+            '_trackEvent',
+            'Search',
+            'Mode',
+            mode]);
+    });
+</script>
+}
