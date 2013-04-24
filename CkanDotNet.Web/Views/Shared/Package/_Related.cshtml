@@ -13,7 +13,7 @@
                 {
                     imageUrl = String.Format("http://{0}/images/photo-placeholder.png", SettingsHelper.GetRepositoryHost()); 
                 }
-                <a class="application-thumbnail" href="@item.Url">
+                <a class="application-thumbnail" href="@item.Url" data-package="@Model.Name">
                     <div class="application-thumbnail-image"><img  src="@imageUrl"/></div>
                     <div class="application-thumbnail-meta">
                         <div class="application-thumbnail-name">@item.Title</div>
@@ -61,5 +61,16 @@
     });
 
 </script>
-
+}@if (SettingsHelper.GetGoogleAnalyticsEnabled())
+{
+<script language="javascript">
+    $('.application-thumbnail').click(function () {
+        var package = $(this).attr('data-package');
+        var url = $(this).attr('href');
+        _gaq.push([
+            '_trackEvent',
+            'Package:' + package,
+            'Related:' + url]);
+    });
+</script>
 }
