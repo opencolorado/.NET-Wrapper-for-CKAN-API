@@ -69,5 +69,15 @@ namespace CkanDotNet.Api.Model
             }
         }
 
+        /// <summary>
+        /// Gets an abbreviated description truncated to a specific size (nearest word).
+        /// </summary>
+        /// <param name="length">The allowable length for a title.</param>
+        /// <returns>The abbreviated title. </returns>
+        public string GetAbbreviatedDescription(int length)
+        {
+            return StringHelper.CreateAbbreviatedString(length, Description);
+        }
+
     }
 }
