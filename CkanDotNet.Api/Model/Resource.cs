@@ -7,6 +7,8 @@ namespace CkanDotNet.Api.Model
 {
     public class Resource
     {
+        private string format;
+
         /// <summary>
         /// Gets the auto-generated unique identifier
         /// </summary>
@@ -25,7 +27,20 @@ namespace CkanDotNet.Api.Model
         /// <summary>
         /// Gets the resource format
         /// </summary>
-        public string Format { get; set; }
+        public string Format
+        {
+            get
+            {
+                if (!String.IsNullOrEmpty(format)) {
+                    format = format.ToLower();
+                }
+                return format;
+            }
+            set
+            {
+                format = value;
+            }
+        }
 
         /// <summary>
         /// Gets a description of the resource

@@ -392,7 +392,7 @@ namespace CkanDotNet.Web.Models.Helpers
                 {
 
                     // Get or create the resource type
-                    string type = key.Split(char.Parse("."))[1];
+                    string type = key.Split(char.Parse("."))[1].ToLower();
                     string property = key.Split(char.Parse("."))[2];
 
                     ResourceType resourceType;
