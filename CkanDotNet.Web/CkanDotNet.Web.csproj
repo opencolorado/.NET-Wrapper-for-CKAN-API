@@ -179,7 +179,6 @@
     <Content Include="Scripts\datatables\images\back_disabled.png" />
     <Content Include="Scripts\datatables\images\back_enabled.png" />
     <Content Include="Scripts\datatables\images\back_enabled_hover.png" />
-    <Content Include="Scripts\datatables\images\favicon.ico" />
     <Content Include="Scripts\datatables\images\forward_disabled.png" />
     <Content Include="Scripts\datatables\images\forward_enabled.png" />
     <Content Include="Scripts\datatables\images\forward_enabled_hover.png" />
@@ -388,7 +387,6 @@
     <Content Include="Views\Shared\Search\_SearchResultsTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\datatables\images\Sorting icons.psd" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
