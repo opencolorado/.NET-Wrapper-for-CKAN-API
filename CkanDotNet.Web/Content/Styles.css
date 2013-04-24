@@ -417,8 +417,7 @@ header,nav,article,footer,section,aside,figure,figcaption
 }
 
 .application-thumbnail, .application-thumbnail:link, .application-thumbnail:active, .application-thumbnail:hover, .application-thumbnail:visited {
-	max-height: 220px;
-	
+    	
 	display: inline-block;
 	border: 1px solid #bbb;
 	
@@ -434,6 +433,12 @@ header,nav,article,footer,section,aside,figure,figcaption
     overflow:hidden;
 
     text-align: left;
+}
+
+.application-thumbnail-image
+{
+    line-height: 180px;
+    max-height: 180px;
 }
 
 .application-thumbnail-meta
@@ -472,5 +477,5 @@ header,nav,article,footer,section,aside,figure,figcaption
 .application-thumbnail-image
 {
     max-width: 100%;
-	background-position:center;
+	background-position:center center;
 }

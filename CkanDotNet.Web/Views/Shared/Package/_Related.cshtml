@@ -4,7 +4,7 @@
 
 @if (Model.Related.Count > 0) {
     <div class="container">
-        <h2 class="container-title">Apps & Ideas</h2>
+        <h2 class="container-title">Apps & Visualizations</h2>
         <div class="container-content">
             <div class="application-list">
             @foreach (Related item in Model.Related) {
@@ -14,13 +14,12 @@
                     imageUrl = String.Format("http://{0}/images/photo-placeholder.png", SettingsHelper.GetRepositoryHost()); 
                 }
                 <a class="application-thumbnail" href="@item.Url">
-                @*<div class="application-thumbnail-image" style="background-image:url(@imageUrl)"></div>*@
-                    <img class="application-thumbnail-image" src="@imageUrl"/>
-                <div class="application-thumbnail-meta">
-                    <div class="application-thumbnail-name">@item.Title</div>
-                    <div class="application-thumbnail-description" style="height: 0px;">
+                    <div class="application-thumbnail-image"><img  src="@imageUrl"/></div>
+                    <div class="application-thumbnail-meta">
+                        <div class="application-thumbnail-name">@item.Title</div>
+                        <div class="application-thumbnail-description" style="height: 0px;">
                         <div>
-                        @item.Description
+                        @item.GetAbbreviatedDescription(300)
                         </div>
                     </div>
                 </div>
