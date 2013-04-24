@@ -27,7 +27,7 @@ The catalog is fully themable using CSS/HTML and two live sites are available:
 
 ### Current Version
 
-Version 1.10, released 6/2/2012.  For details see the [Release Notes]
+Version 1.11, released 4/24/2013.  For details see the [Release Notes]
 (https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown)
 
 ## Features
@@ -41,11 +41,13 @@ Version 1.10, released 6/2/2012.  For details see the [Release Notes]
  * Paginated search results
  * Filter results by tag
  * Optionally show package ratings with search results
+ * Display results in list mode or table mode
 * View package details
  * Date posted and date last updated
  * Package description with support for CKAN Markdown formatting
  * Resources with customizable resource actions (ex. View KML in Google Maps)
  * Additional package details
+ * Related items (apps & ideas)
  * License details
  * RSS feed for package revisions
 * Themeable
@@ -107,16 +109,6 @@ to compile the project from source and run the unit tests:
 * [Microsoft Visual Web Developer Express 2010] (http://www.microsoft.com/visualstudio/en-us/products/2010-editions/visual-web-developer-express) 
 * [xUnit] (http://xunit.codeplex.com)
 
-### Frameworks Used
-* Client:
- * jQuery 1.7.1
- * jQuery plugin - [Star Rating widget] (http://plugins.jquery.com/project/Star_Rating_widget)
- * jQuery plugin - [tipTip] (http://code.drewwilson.com/entry/tiptip-jquery-plugin)
- * jQuery plugin - [watermark] (http://jquery-watermark.googlecode.com/)
-* Server
- * [log4net] (http://logging.apache.org/log4net/)
- * [RestSharp] (http://restsharp.org/)
-
 ## C# CKAN API Wrapper
 
 As mentioned above, this project includes a .NET wrapper for the CKAN REST API.  This wrapper was created for the
@@ -139,4 +131,4 @@ The following CKAN features are supported at this time:
 ### Search API
 * Package Search
 
-[1]: http://docs.ckan.org/en/latest/api.html#api-details-versions-1-2
+[1]: http://docs.ckan.org/en/ckan-1.8/api.html

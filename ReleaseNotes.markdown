@@ -1,5 +1,19 @@
 ﻿See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API for additional information.
 
+## Version 1.11 (4/24/2013)
+* Added support for CKAN apps & ideas (related items)
+* Added support for a custom license block on dataset pages
+* Better theme support for breadcrumbs
+* Themes can now include custom pages
+* Fixed incorrect format of dataset update dates on some datasets
+* Added option to set maximum dataset title length
+* Added ability to control max number of pages shown in the search results pager
+* Added author and maintainer information to dataset page (with hyperlinks when email addresses are provided)
+* Changed default references from colorado.ckan.net to data.opencolorado.org
+* Upgraded solution to support Visual Studio 2012 (all editions including Express supported)
+* Add table view mode for search results
+* Search results now show tag cloud for all results that match the query, not just the current page
+
 ## Version 1.10 (6/2/2012)
 * Implemented forward compatibility for the CKAN 1.7 API to allow OpenColorado to be upgraded from CKAN 1.3.3b to 1.7
 
