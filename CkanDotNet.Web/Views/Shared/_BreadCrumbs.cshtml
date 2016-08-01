@@ -23,11 +23,13 @@
 
                     if (!filterLabelDisplayed)
                     {
-                    @::
-                filterLabelDisplayed = true;
-                    }
-                  
-            
+                        <text>
+                    ::                        
+                </text>
+        filterLabelDisplayed = true;
+    }
+
+
                     <a href="@Url.Action(breadCrumb.ActionName, breadCrumb.RouteValues)"><span class="breadcrumb-filter">@breadCrumb.Label</span>
                     </a>
             

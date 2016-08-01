@@ -438,9 +438,9 @@ namespace CkanDotNet.Api
             }
 
             // Apply group parameters
-            foreach (var group in parameters.Groups)
+            foreach (var organization in parameters.Organizations)
             {
-                request.AddParameter("groups", group);
+                request.AddParameter("organization", organization);
             }
 
             // Apply author parameter

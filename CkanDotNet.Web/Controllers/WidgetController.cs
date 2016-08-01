@@ -44,7 +44,7 @@ namespace CkanDotNet.Web.Controllers
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
+            searchParameters.Organizations.Add(SettingsHelper.GetCatalogGroup());
             searchParameters.Limit = SettingsHelper.GetHomeFeaturedPackageLimit();
             searchParameters.Tags.Add(SettingsHelper.GetHomeFeaturedPackagesTag());
 
@@ -66,7 +66,7 @@ namespace CkanDotNet.Web.Controllers
 
             // Create the CKAN search parameters
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
+            searchParameters.Organizations.Add(SettingsHelper.GetCatalogGroup());
 
             // Collect the results
             List<Package> packages = CkanHelper.GetAllPackages();
@@ -103,7 +103,7 @@ namespace CkanDotNet.Web.Controllers
             log.DebugFormat("Controller action requested");
 
             var searchParameters = new PackageSearchParameters();
-            searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
+            searchParameters.Organizations.Add(SettingsHelper.GetCatalogGroup());
 
             // Set up the pagination
             Pager pager = new Pager(1, SettingsHelper.GetSearchResultsPerPage());

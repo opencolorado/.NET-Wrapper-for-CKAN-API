@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Web
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CkanDotNet.Web", "CkanDotNet.Web\CkanDotNet.Web.csproj", "{26E93A2C-AC4F-469D-BE0D-E09ADAF72AE6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CkanDotNet.Api", "CkanDotNet.Api\CkanDotNet.Api.csproj", "{C396235F-68A5-48F1-B804-18E7CF030E1D}"
