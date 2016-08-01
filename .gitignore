@@ -29,3 +29,4 @@ obj/
 Download/
 Logs/
 Build/Output/
+/.vs/config/applicationhost.config
