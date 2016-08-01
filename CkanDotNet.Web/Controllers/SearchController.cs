@@ -40,7 +40,7 @@ namespace CkanDotNet.Web.Controllers
             var searchParameters = new PackageSearchParameters();
             searchParameters.AggregateTagCounts = true;
             searchParameters.Query = q;
-            searchParameters.Groups.Add(SettingsHelper.GetCatalogGroup());
+            searchParameters.Organizations.Add(SettingsHelper.GetCatalogGroup());
             
             // Ordering
             if (!String.IsNullOrEmpty(order_by))

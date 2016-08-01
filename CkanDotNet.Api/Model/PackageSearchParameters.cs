@@ -11,7 +11,7 @@ namespace CkanDotNet.Api.Model
     public class PackageSearchParameters
     {
         private List<string> tags = new List<string>();
-        private List<string> groups = new List<string>();
+        private List<string> organizations = new List<string>();
         private string orderBy;
         private int offset = -1;
         private int limit = -1;
@@ -35,7 +35,7 @@ namespace CkanDotNet.Api.Model
         /// <summary>
         /// Search by groups.
         /// </summary>
-        public List<string> Groups { get { return groups; } }
+        public List<string> Organizations { get { return organizations; } }
 
         /// <summary>
         /// Search the author field.

@@ -66,7 +66,7 @@ namespace CkanDotNet.Api.Tests
             CkanClient client = CkanApiHelper.GetCkanClient();
 
             PackageSearchParameters parameters = new PackageSearchParameters();
-            parameters.Groups.Add("arvada");
+            parameters.Organizations.Add("arvada");
 
             PackageSearchResponse<Package> response = client.SearchPackages<Package>(parameters);
 
