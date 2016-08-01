@@ -27,8 +27,8 @@ The catalog is fully themable using CSS/HTML and two live sites are available:
 
 ### Current Version
 
-Version 1.11, released 4/24/2013.  For details see the [Release Notes]
-(https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown)
+Version 1.12, released 8/01/2016.  For details see the [Release Notes]
+(https://github.com/DenverDev/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown)
 
 ## Features
 * Customizable home page
