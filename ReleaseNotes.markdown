@@ -1,5 +1,10 @@
 ﻿See https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API for additional information.
 
+## Version 1.12 (8/01/2016)
+* Upgraded to .NET 4.6.1
+* Upgraded from MVC 3 to MVC 5
+* Added support for CKAN version 2.5.2 (organizations)
+
 ## Version 1.11 (4/24/2013)
 * Added support for CKAN apps & ideas (related items)
 * Added support for a custom license block on dataset pages

@@ -264,7 +264,7 @@ namespace CkanDotNet.Web.Models.Helpers
         /// <returns></returns>
         public static string GetCatalogGroup()
         {
-            return ConfigurationManager.AppSettings["Catalog.Group"];
+            return ConfigurationManager.AppSettings["Catalog.Organization"];
         }
 
         /// <summary>

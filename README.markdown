@@ -1,5 +1,5 @@
 ## Welcome
-This project provides an [ASP.NET MVC 3] (http://www.asp.net/mvc/mvc3) front-end for a 
+This project provides an [ASP.NET MVC 5] (http://www.asp.net/mvc/mvc3) front-end for a 
 [CKAN] (http://wiki.ckan.net/Main_Page) repository.  This project provides
 a fully functioning web-based data catalog based on a group in a shared CKAN respository.
 
@@ -27,8 +27,8 @@ The catalog is fully themable using CSS/HTML and two live sites are available:
 
 ### Current Version
 
-Version 1.11, released 4/24/2013.  For details see the [Release Notes]
-(https://github.com/opencolorado/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown)
+Version 1.12, released 8/01/2016.  For details see the [Release Notes]
+(https://github.com/DenverDev/.NET-Wrapper-for-CKAN-API/blob/master/ReleaseNotes.markdown)
 
 ## Features
 * Customizable home page
@@ -83,8 +83,8 @@ Version 1.11, released 4/24/2013.  For details see the [Release Notes]
 ### Installation
 
 #### Install and Configure Prerequisites
-* .NET Framework 4
-* ASP.NET MVC 3
+* .NET Framework 4.6.1
+* ASP.NET MVC 5
 
 #### Install Web Application
 * Download the latest stable build
@@ -123,7 +123,7 @@ The following CKAN features are supported at this time:
 * Group Entity
 * Tag Register
 * Tag Entity
-* Packageâ€™s Revisions Entity
+* Package’s Revisions Entity
 * Revision Register
 * Revision Entity
 * License List
